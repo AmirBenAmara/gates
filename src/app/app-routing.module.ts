@@ -6,6 +6,10 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { MonitoringComponent } from './monitoring/monitoring.component';
+import { UsersComponent } from './users/users.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { DevicesComponent } from './devices/devices.component';
 
 const routes: Routes = [
   {
@@ -70,8 +74,37 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
+      {
+        path: 'monitoring',
+        component: MonitoringComponent,
+        data: {
+          title: 'Monitoring'
+        }
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: {
+          title: 'Users'
+        }
+      },
+      {
+        path: 'departments',
+        component: DepartmentsComponent,
+        data: {
+          title: 'Departments'
+        }
+      },
+      {
+        path: 'devices',
+        component: DevicesComponent,
+        data: {
+          title: 'Devices'
+        }
+      },
     ]
   },
+  
   {
     path: '404',
     component: Page404Component,
