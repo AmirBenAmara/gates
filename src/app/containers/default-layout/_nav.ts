@@ -23,8 +23,21 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Devices',
-    url: '/devices',
     iconComponent: { name: 'cil-speedometer' },
+    children: [
+      {
+        name: 'Cameras',
+        url: '/devices/cameras'
+      },
+      {
+        name: 'Readers',
+        url: '/devices/readers'
+      },
+      {
+        name: 'Control Panels',
+        url: '/devices/c-panels'
+      },
+    ]
   },
   {
     title: true,

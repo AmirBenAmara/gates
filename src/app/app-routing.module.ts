@@ -10,6 +10,9 @@ import { MonitoringComponent } from './monitoring/monitoring.component';
 import { UsersComponent } from './users/users.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { DevicesComponent } from './devices/devices.component';
+import { CPanelsComponent } from './c-panels/c-panels.component';
+import { CamerasComponent } from './cameras/cameras.component';
+import { ReadersComponent } from './readers/readers.component';
 
 const routes: Routes = [
   {
@@ -100,6 +103,27 @@ const routes: Routes = [
         component: DevicesComponent,
         data: {
           title: 'Devices'
+        }
+      },
+      {
+        path: 'devices/cameras',
+        component: CamerasComponent,
+        data: {
+          title: 'Cameras'
+        }
+      },
+      {
+        path: 'devices/readers',
+        component: ReadersComponent,
+        data: {
+          title: 'Readers'
+        }
+      },
+      {
+        path: 'devices/c-panels',
+        component: CPanelsComponent,
+        data: {
+          title: 'Control Panels'
         }
       },
     ]

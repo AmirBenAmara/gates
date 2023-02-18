@@ -29,6 +29,7 @@ import {
   BreadcrumbModule,
   ButtonGroupModule,
   ButtonModule,
+  TableModule,
   CardModule,
   DropdownModule,
   FooterModule,
@@ -49,6 +50,9 @@ import { MonitoringComponent } from './monitoring/monitoring.component';
 import { UsersComponent } from './users/users.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { DevicesComponent } from './devices/devices.component';
+import { CamerasComponent } from './cameras/cameras.component';
+import { ReadersComponent } from './readers/readers.component';
+import { CPanelsComponent } from './c-panels/c-panels.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -61,7 +65,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, MonitoringComponent, UsersComponent, DepartmentsComponent, DevicesComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, MonitoringComponent, UsersComponent, DepartmentsComponent, DevicesComponent, CamerasComponent, ReadersComponent, CPanelsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -73,6 +77,7 @@ const APP_CONTAINERS = [
     GridModule,
     HeaderModule,
     SidebarModule,
+    TableModule,
     IconModule,
     PerfectScrollbarModule,
     NavModule,
