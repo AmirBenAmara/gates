@@ -5,11 +5,16 @@
                 <strong>Manage Cameras</strong> <small></small>
             </c-card-header>
             <c-card-body>
-                
+
                 <div class="example mb-3">
 
                     <div class="tab-content rounded-bottom">
                         <div class="tab-pane active show p-3 preview fade">
+                            <button type="button" class="btn  btn-secondary" style="float:right" id="btnDetail"
+                                                (click)="newCamera({})">
+                                                <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
+                                                &nbsp; Add a camera
+                                            </button>
                             <table cTable>
                                 <thead class="table-dark">
                                     <tr>
@@ -29,7 +34,17 @@
                                         <td>172.53.3.5</td>
                                         <td>N552854AG654654</td>
                                         <td>Door 1</td>
-                                        <td></td>
+                                        <td style="text-align:center;">
+                                            <button type="button" class="btn  btn-sm btn-info" id="btnDelete"
+                                                (click)="deleteCamera(1)">
+                                                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                                            </button>
+                                            <button type="button" class="btn btn-sm  btn-danger" id="btnDetail"
+                                                (click)="updateCamera({})">
+                                                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                                            </button>
+                                        </td>
 
                                     </tr>
                                     <tr>
@@ -38,15 +53,35 @@
                                         <td>172.53.3.6</td>
                                         <td>N552854AG654657</td>
                                         <td>Door 2</td>
-                                        <td></td>
+                                        <td style="text-align:center;">
+                                            <button type="button" class="btn  btn-sm btn-info" id="btnDelete"
+                                                (click)="deleteCamera(1)">
+                                                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                                            </button>
+                                            <button type="button" class="btn btn-sm  btn-danger" id="btnDetail"
+                                                (click)="updateCamera({})">
+                                                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                                            </button>
+                                        </td>
                                     </tr>
-                                    <tr>
+                                    <tr >
                                         <th scope="row">3</th>
                                         <td>Camera 3</td>
                                         <td>172.53.3.7</td>
                                         <td>N552854AG654670</td>
                                         <td>Door 3</td>
-                                        <td></td>
+                                        <td style="text-align:center;">
+                                            <button type="button" class="btn  btn-sm btn-info" id="btnDelete"
+                                                (click)="deleteCamera(1)">
+                                                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                                            </button>
+                                            <button type="button" class="btn btn-sm  btn-danger" id="btnDetail"
+                                                (click)="updateCamera({})">
+                                                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

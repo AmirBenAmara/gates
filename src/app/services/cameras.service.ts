@@ -34,9 +34,9 @@ export class CamerasService {
 }
 
 export interface Camera {
-  id: number;
-  ipAddress: string;
-  serialNumber: string;
-  name: string;
-  doorId: number;
+  id?: number;
+  ipAddress?: string;
+  serialNumber?: string;
+  name?: string;
+  doorId?: number;
 }

@@ -53,6 +53,7 @@ import { DevicesComponent } from './devices/devices.component';
 import { CamerasComponent } from './cameras/cameras.component';
 import { ReadersComponent } from './readers/readers.component';
 import { CPanelsComponent } from './c-panels/c-panels.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -86,6 +87,7 @@ const APP_CONTAINERS = [
     UtilitiesModule,
     ButtonGroupModule,
     ReactiveFormsModule,
+    HttpClientModule,
     SidebarModule,
     SharedModule,
     TabsModule,
