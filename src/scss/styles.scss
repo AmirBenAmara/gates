@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 // If you want to override variables do it here
-@import "variables";
+// Here you can add other styles
+
+
+
+  
+// @import "variables";
 
 $enable-ltr: true;
 $enable-rtl: true;
@@ -21,6 +26,4 @@ $enable-rtl: true;
 
 // Prism.js
 @import "examples";
-
-// If you want to add something do it here
 @import "custom";
