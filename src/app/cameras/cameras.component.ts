@@ -10,7 +10,7 @@ import { cilPencil, cilTrash, cilPlus } from '@coreui/icons';
 export class CamerasComponent implements OnInit {
   cameras: Camera[] | undefined;
   icons = { cilPencil, cilTrash ,cilPlus};
-
+  public visible = false;
   constructor(private cameraService: CamerasService) { }
   ngOnInit(): void {
   }
@@ -35,5 +35,21 @@ export class CamerasComponent implements OnInit {
   newCamera(camera: Camera) {
     this.cameraService.createCamera(camera).subscribe();
   }
+
+  //TODO: finish implementation
+
+  cancel() {
+    this.visible = false;
+  }
+  //TODO: finish implementation
+
+  handleCameraModalVisbilityChange(event: any) {
+    this.visible = event;
+  }
+
+  openCameraModal() {
+    this.visible = true;
+  }
+  
 
 }

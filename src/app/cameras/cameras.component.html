@@ -11,7 +11,7 @@
                     <div class="tab-content rounded-bottom">
                         <div class="tab-pane active show p-3 preview fade">
                             <button type="button" class="btn  btn-secondary" style="float:right" id="btnDetail"
-                                                (click)="newCamera({})">
+                                                (click)="openCameraModal()">
                                                 <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
                                                 &nbsp; Add a camera
                                             </button>
@@ -92,3 +92,17 @@
         </c-card>
     </c-col>
 </c-row>
+
+<c-modal id="cameraModal" [visible]="visible" (visibleChange)="handleCameraModalVisbilityChange($event)">
+    <c-modal-header>
+      <h5 cModalTitle>New Camera</h5>
+      <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>New Camera form Here</c-modal-body>
+    <c-modal-footer>
+      <button (click)="cancel()" cButton color="secondary">
+        Close
+      </button>
+      <button (click)="cancel()" cButton color="primary">Submit</button>
+    </c-modal-footer>
+  </c-modal>
