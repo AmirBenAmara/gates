@@ -54,6 +54,10 @@ export const navItems: INavData[] = [
         name: 'Control Panels',
         url: '/devices/c-panels'
       },
+      {
+        name: 'Wave Shares',
+        url: '/devices/wave-share'
+      },
     ]
   },
   // {
