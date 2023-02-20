@@ -1,53 +1,41 @@
-<c-row ngPreserveWhitespaces>
-    <c-col xs="12">
-        <c-card class="mb-4">
-            <c-card-header>
-                <strong>Users</strong>
-                <button cButton type="button" style="float:right"  color="dark"  (click)="openUserModal()">
-                    <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
-                    <strong> Create new user </strong>
-                </button>
-            </c-card-header>
-            <c-card-body>
-                <!-- <p class="text-medium-emphasis small">
-                    Using the most basic table CoreUI, here&#39;s how <code>cTable</code>-based
-                    tables look in CoreUI.
-                </p> -->
-                <div class="example mb-3">
+<div class="example ">
 
-                    <div class="tab-content rounded-bottom">
-                        <div class="tab-pane active show p-3 preview fade">
-                            <table cTable>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Username</th>
-                                        <th scope="col">email</th>
-                                        <th scope="col">Role</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto@otto.com</td>
-                                        <td>Admin</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton@otto.com</td>
-                                        <td>User</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </c-card-body>
-        </c-card>
-    </c-col>
-</c-row>
+    <div class="tab-content rounded-bottom">
+        <div class="tab-pane active show p-3 preview fade">
+
+            <h2 style="float:left"><strong> Manage Users</strong></h2>
+            <button cButton type="button" style="float:right" color="dark" (click)="openUserModal()">
+                <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
+                <strong> Add User</strong>
+            </button>
+            <h1>&nbsp;</h1>
+            <table cTable>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto@otto.com</td>
+                        <td>Admin</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton@otto.com</td>
+                        <td>User</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 <c-modal id="UserModal" [visible]="visible" (visibleChange)="handleUserModalVisbilityChange($event)">

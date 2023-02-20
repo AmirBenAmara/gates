@@ -16,6 +16,7 @@ import { ReadersComponent } from './readers/readers.component';
 import { ProfileService } from './services/profile.service';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { DoorsComponent } from './doors/doors.component';
+import { GuestsComponent } from './guests/guests.component';
 
 const routes: Routes = [
   {
@@ -99,6 +100,13 @@ const routes: Routes = [
         component: ProfilesComponent,
         data: {
           title: 'Profiles'
+        }
+      },
+      {
+        path: 'guests',
+        component: GuestsComponent,
+        data: {
+          title: 'Guests'
         }
       },
       {
