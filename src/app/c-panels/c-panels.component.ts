@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CPanelsService, CtrPanel } from '../services/c-panels.service'
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-c-panels',
@@ -7,11 +8,23 @@ import { CPanelsService, CtrPanel } from '../services/c-panels.service'
   styleUrls: ['./c-panels.component.scss']
 })
 export class CPanelsComponent implements OnInit {
+  ctrPanelForm = this.fb.group({
+    ipAddress: ['', Validators.required],
+    serialNumber: ['', Validators.required],
+    name: ['', Validators.required],
+    ctrPanelId: [null, Validators.required],
+  });
   ctrPanels: CtrPanel[] | undefined;
 
-  constructor(private ctrPanelService: CPanelsService) { }
+  constructor(private ctrPanelService: CPanelsService, private fb: FormBuilder) { }
   
   ngOnInit(): void {
+    this.ctrPanelForm = this.fb.group({
+      ipAddress: ['', Validators.required],
+      serialNumber: ['', Validators.required],
+      name: ['', Validators.required],
+      ctrPanelId: [null, Validators.required],
+    });
   }
 
 

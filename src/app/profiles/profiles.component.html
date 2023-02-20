@@ -93,12 +93,64 @@
     </c-col>
 </c-row> -->
 
-<c-modal id="ProfileModal" [visible]="visible" (visibleChange)="handleProfileModalVisbilityChange($event)">
+<c-modal id="ProfileModal" [visible]="visible" size="lg" (visibleChange)="handleProfileModalVisbilityChange($event)">
     <c-modal-header>
         <h5 cModalTitle>New Profile</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
-    <c-modal-body>New Profile form Here</c-modal-body>
+    <c-modal-body>
+        <form [formGroup]="profileForm">
+            <div class="form-group mb-3">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+            </div>
+            <div class="form-group mb-3">
+              <label for="surname">Surname:</label>
+              <input type="text" class="form-control" cFormControl formControlName="surname" id="surname" placeholder="Surname">
+            </div>
+            <div class="form-group mb-3">
+              <label for="birthDate">Birth Date:</label>
+              <input type="date" class="form-control" cFormControl formControlName="birthDate" id="birthDate" placeholder="Birth Date">
+            </div>
+            <div class="form-group mb-3">
+              <label for="documentNumber">Document Number:</label>
+              <input type="number" class="form-control" cFormControl formControlName="documentNumber" id="documentNumber" placeholder="Document Number">
+            </div>
+            <div class="form-group mb-3">
+              <label for="sex">Sex:</label>
+              <input type="text" class="form-control" cFormControl formControlName="sex" id="sex" placeholder="Sex">
+            </div>
+            <div class="form-group mb-3">
+              <label for="nationality">Nationality:</label>
+              <input type="text" class="form-control" cFormControl formControlName="nationality" id="nationality" placeholder="Nationality">
+            </div>
+            <div class="form-group mb-3">
+              <label for="expiryDate">Expiry Date:</label>
+              <input type="date" class="form-control" cFormControl formControlName="expiryDate" id="expiryDate" placeholder="Expiry Date">
+            </div>
+            <div class="form-group mb-3">
+              <label for="personalData">Personal Data:</label>
+              <input type="text" class="form-control" cFormControl formControlName="personalData" id="personalData" placeholder="Personal Data">
+            </div>
+            <div class="form-group mb-3">
+              <label for="MRZ1">MRZ1:</label>
+              <input type="text" class="form-control" cFormControl formControlName="MRZ1" id="MRZ1" placeholder="MRZ1">
+            </div>
+            <div class="form-group mb-3">
+              <label for="MRZ2">MRZ2:</label>
+              <input type="text" class="form-control" cFormControl formControlName="MRZ2" id="MRZ2" placeholder="MRZ2">
+            </div>
+            <div class="form-group mb-3">
+              <label for="MRZ3">MRZ3:</label>
+              <input type="text" class="form-control" cFormControl formControlName="MRZ3" id="MRZ3" placeholder="MRZ3">
+            </div>
+            <div class="form-group mb-3">
+              <label for="issueCountry">Issue Country:</label>
+              <input type="text" class="form-control" cFormControl formControlName="issueCountry" id="issueCountry" placeholder="Issue Country">
+            </div>
+          </form>
+          
+    </c-modal-body>
     <c-modal-footer>
         <button (click)="cancel()" cButton color="secondary">
             Close

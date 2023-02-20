@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
 import { DepartmentsService, Department } from '../services/departments.service'
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-departments',
@@ -8,12 +9,18 @@ import { DepartmentsService, Department } from '../services/departments.service'
   styleUrls: ['./departments.component.scss']
 })
 export class DepartmentsComponent implements OnInit {
+  departmentForm = this.fb.group({
+    name: ['', Validators.required],
+  });
   departments: Department[] | undefined;
   icons = { cilPencil, cilTrash ,cilPlus};
   public visible = false;
-  constructor(private departmentService: DepartmentsService) { }
+  constructor(private departmentService: DepartmentsService, private fb: FormBuilder) { }
   
   ngOnInit(): void {
+    this.departmentForm = this.fb.group({
+      name: ['', Validators.required],
+    });
   }
 
 

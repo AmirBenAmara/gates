@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
 import {Profile , ProfileService} from '../services/profile.service'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profiles',
@@ -8,11 +9,39 @@ import {Profile , ProfileService} from '../services/profile.service'
   styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent {
+  profileForm: FormGroup = this.fb.group({
+    name: ['', Validators.required],
+    surname: ['', Validators.required],
+    birthDate: ['', Validators.required],
+    documentNumber: [null, Validators.required],
+    sex: ['', Validators.required],
+    nationality: ['', Validators.required],
+    expiryDate: ['', Validators.required],
+    personalData: ['', Validators.required],
+    MRZ1: ['', Validators.required],
+    MRZ2: ['', Validators.required],
+    MRZ3: ['', Validators.required],
+    issueCountry: ['', Validators.required],
+  });
   Profiles: Profile[] | undefined;
   icons = { cilPencil, cilTrash ,cilPlus};
   public visible = false;
-  constructor(private ProfileService: ProfileService) { }
+  constructor(private ProfileService: ProfileService, private fb: FormBuilder) { }
   ngOnInit(): void {
+    this.profileForm = this.fb.group({
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      documentNumber: [null, Validators.required],
+      sex: ['', Validators.required],
+      nationality: ['', Validators.required],
+      expiryDate: ['', Validators.required],
+      personalData: ['', Validators.required],
+      MRZ1: ['', Validators.required],
+      MRZ2: ['', Validators.required],
+      MRZ3: ['', Validators.required],
+      issueCountry: ['', Validators.required],
+    });
   }
 
 

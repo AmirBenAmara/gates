@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
 import {DoorsService,Door} from '../services/doors.service'
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-doors',
@@ -8,12 +9,20 @@ import {DoorsService,Door} from '../services/doors.service'
   styleUrls: ['./doors.component.scss']
 })
 export class DoorsComponent {
+  doorForm = this.fb.group({
+    name: ['', Validators.required],
+    departmentId: [null, Validators.required],
+  });
   Doors: Door[] | undefined;
   icons = { cilPencil, cilTrash ,cilPlus};
   public visible = false;
-  constructor(private DoorService: DoorsService) { }
+  constructor(private DoorService: DoorsService, private fb: FormBuilder) { }
   
   ngOnInit(): void {
+    this.doorForm = this.fb.group({
+      name: ['', Validators.required],
+      departmentId: [null, Validators.required],
+    });
   }
 
 

@@ -69,16 +69,22 @@
     </c-col>
 </c-row> -->
 
-<c-modal id="DepartmentModal" [visible]="visible" (visibleChange)="handleDepartmentModalVisbilityChange($event)">
+<c-modal id="DepartmentModal" [visible]="visible" size="lg" (visibleChange)="handleDepartmentModalVisbilityChange($event)">
     <c-modal-header>
         <h5 cModalTitle>New Department</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
-        <c-input-group class="mb-3">
+        <form [formGroup]="departmentForm">
+            <div class="form-group  mb-3">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" cFormControl formControlName="name" placeholder="Name">
+            </div>
+          </form>
+        <!-- <c-input-group class="mb-3">
             <span cInputGroupText id="inputGroup-sizing-default">Name</span>
             <input aria-describedby="inputGroup-sizing-default" aria-label="Sizing example input" cFormControl />
-        </c-input-group>
+        </c-input-group> -->
 
     </c-modal-body>
     <c-modal-footer>

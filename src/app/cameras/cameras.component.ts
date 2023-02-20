@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CamerasService } from '../services/cameras.service'
 import { cilPencil, cilTrash, cilPlus } from '@coreui/icons';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cameras',
@@ -8,11 +9,23 @@ import { cilPencil, cilTrash, cilPlus } from '@coreui/icons';
   styleUrls: ['./cameras.component.scss']
 })
 export class CamerasComponent implements OnInit {
+  cameraForm = this.fb.group({
+    ipAddress: ['', Validators.required],
+    serialNumber: ['', Validators.required],
+    name: ['', Validators.required],
+    doorId: [null, Validators.required],
+  });
   cameras: Camera[] | undefined;
-  icons = { cilPencil, cilTrash ,cilPlus};
+  icons = { cilPencil, cilTrash, cilPlus };
   public visible = false;
-  constructor(private cameraService: CamerasService) { }
+  constructor(private cameraService: CamerasService, private fb: FormBuilder) { }
   ngOnInit(): void {
+    this.cameraForm = this.fb.group({
+      ipAddress: ['', Validators.required],
+      serialNumber: ['', Validators.required],
+      name: ['', Validators.required],
+      doorId: [null, Validators.required],
+    });
   }
 
 
@@ -37,7 +50,6 @@ export class CamerasComponent implements OnInit {
   }
 
   //TODO: finish implementation
-
   cancel() {
     this.visible = false;
   }
@@ -50,6 +62,6 @@ export class CamerasComponent implements OnInit {
   openCameraModal() {
     this.visible = true;
   }
-  
+
 
 }

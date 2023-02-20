@@ -86,12 +86,40 @@
     </c-col>
 </c-row> -->
 
-<c-modal id="cameraModal" [visible]="visible" (visibleChange)="handleCameraModalVisbilityChange($event)">
+<c-modal id="cameraModal"  size="lg" [visible]="visible" (visibleChange)="handleCameraModalVisbilityChange($event)">
     <c-modal-header>
         <h5 cModalTitle>New Camera</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
-    <c-modal-body>New Camera form Here</c-modal-body>
+    <c-modal-body>
+        <form [formGroup]="cameraForm" class="form-horizontal">
+            <div class="form-group row mb-3">
+              <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress" placeholder="IP Address">
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <label for="serialNumber" class="col-md-3 col-form-label">Serial Number</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" cFormControl formControlName="serialNumber" id="serialNumber" placeholder="Serial Number">
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <label for="name" class="col-md-3 col-form-label">Name</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <label for="doorId" class="col-md-3 col-form-label">Door ID</label>
+              <div class="col-md-9">
+                <input type="number" class="form-control" cFormControl formControlName="doorId" id="doorId" placeholder="Door ID">
+              </div>
+            </div>
+          </form>
+          
+    </c-modal-body>
     <c-modal-footer>
         <button (click)="cancel()" cButton color="secondary">
             Close
