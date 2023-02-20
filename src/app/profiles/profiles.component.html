@@ -1,0 +1,108 @@
+
+
+<div class="example ">
+
+    <div class="tab-content rounded-bottom">
+        <div class="tab-pane active show p-3 preview fade">
+
+            <h2 style="float:left"><strong> Manage Profiles</strong></h2>
+            <button cButton type="button" style="float:right"  color="dark"  (click)="openProfileModal()">
+                <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
+                <strong> Add Profile</strong>
+            </button>
+<h1>&nbsp;</h1>
+            <table cTable>
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">SurName</th>
+                        <th scope="col">Birthdate</th>
+                        <th scope="col">Document</th>
+                        <th scope="col">Sex</th>
+                        <th scope="col">Nationality</th>
+                        <th scope="col">Expiry Date</th>
+                        <th scope="col">Personal Data</th>
+                        <th scope="col">MRZ1</th>
+                        <th scope="col">MRZ2</th>
+                        <th scope="col">MRZ3</th>
+                        <th scope="col">Issue Country</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Amir</td>
+                        <td>Ben Amara</td>
+                        <td>23/02/1990</td>
+                        <td>613516</td>
+                        <td>Male</td>
+                        <td>Tunisian</td>
+                        <td>20/04/2023</td>
+                        <td>personalData1</td>
+                        <td>3753</td>
+                        <td>5353</td>
+                        <td>5353</td>
+                        <td>Tunisia</td>
+                        <td style="text-align:center;">
+                            <button type="button" cButton color="light" (click)="deleteProfile(1)">
+                                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                            </button> &nbsp;
+                            <button type="button"cButton color="light"
+                                (click)="updateProfile({})">
+                                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                            </button>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Mlak</td>
+                        <td>Dhif</td>
+                        <td>23/02/1990</td>
+                        <td>613516</td>
+                        <td>Male</td>
+                        <td>Tunisian</td>
+                        <td>20/04/2023</td>
+                        <td>personalData1</td>
+                        <td>27552</td>
+                        <td>535</td>
+                        <td>543453</td>
+                        <td>Tunisia</td>
+                        <td style="text-align:center;">
+                            <button type="button" cButton color="light" (click)="deleteProfile(1)">
+                                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                            </button> &nbsp;
+                            <button type="button"cButton color="light"
+                                (click)="updateProfile({})">
+                                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- </c-card-body>
+        </c-card>
+    </c-col>
+</c-row> -->
+
+<c-modal id="ProfileModal" [visible]="visible" (visibleChange)="handleProfileModalVisbilityChange($event)">
+    <c-modal-header>
+        <h5 cModalTitle>New Profile</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>New Profile form Here</c-modal-body>
+    <c-modal-footer>
+        <button (click)="cancel()" cButton color="secondary">
+            Close
+        </button>
+        <button (click)="cancel()" cButton color="primary">Submit</button>
+    </c-modal-footer>
+</c-modal>

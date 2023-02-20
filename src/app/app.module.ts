@@ -55,6 +55,7 @@ import { CamerasComponent } from './cameras/cameras.component';
 import { ReadersComponent } from './readers/readers.component';
 import { CPanelsComponent } from './c-panels/c-panels.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfilesComponent } from './profiles/profiles.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -67,7 +68,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, MonitoringComponent, UsersComponent, DepartmentsComponent, DevicesComponent, CamerasComponent, ReadersComponent, CPanelsComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, MonitoringComponent, UsersComponent, DepartmentsComponent, DevicesComponent, CamerasComponent, ReadersComponent, CPanelsComponent, ProfilesComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

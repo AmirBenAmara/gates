@@ -13,6 +13,8 @@ import { DevicesComponent } from './devices/devices.component';
 import { CPanelsComponent } from './c-panels/c-panels.component';
 import { CamerasComponent } from './cameras/cameras.component';
 import { ReadersComponent } from './readers/readers.component';
+import { ProfileService } from './services/profile.service';
+import { ProfilesComponent } from './profiles/profiles.component';
 
 const routes: Routes = [
   {
@@ -89,6 +91,13 @@ const routes: Routes = [
         component: UsersComponent,
         data: {
           title: 'Users'
+        }
+      },
+      {
+        path: 'profiles',
+        component: ProfilesComponent,
+        data: {
+          title: 'Profiles'
         }
       },
       {

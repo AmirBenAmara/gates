@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
 import { DepartmentsService, Department } from '../services/departments.service'
 
 @Component({
@@ -8,7 +9,8 @@ import { DepartmentsService, Department } from '../services/departments.service'
 })
 export class DepartmentsComponent implements OnInit {
   departments: Department[] | undefined;
-
+  icons = { cilPencil, cilTrash ,cilPlus};
+  public visible = false;
   constructor(private departmentService: DepartmentsService) { }
   
   ngOnInit(): void {
@@ -34,5 +36,22 @@ export class DepartmentsComponent implements OnInit {
   newDepartment(department: Department) {
     this.departmentService.createDepartment(department).subscribe();
   }
+
+
+  //TODO: finish implementation
+
+  cancel() {
+    this.visible = false;
+  }
+  //TODO: finish implementation
+
+  handleDepartmentModalVisbilityChange(event: any) {
+    this.visible = event;
+  }
+
+  openDepartmentModal() {
+    this.visible = true;
+  }
+  
 
 }
