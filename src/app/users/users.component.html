@@ -3,6 +3,10 @@
         <c-card class="mb-4">
             <c-card-header>
                 <strong>Users</strong>
+                <button cButton type="button" style="float:right"  color="dark"  (click)="openUserModal()">
+                    <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
+                    <strong> Create new user </strong>
+                </button>
             </c-card-header>
             <c-card-body>
                 <!-- <p class="text-medium-emphasis small">
@@ -19,7 +23,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">email</th>
-                                        <th scope="col">Heading</th>
+                                        <th scope="col">Role</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -27,13 +31,13 @@
                                         <th scope="row">1</th>
                                         <td>Mark</td>
                                         <td>Otto@otto.com</td>
-                                        <td>@mdo</td>
+                                        <td>Admin</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Jacob</td>
                                         <td>Thornton@otto.com</td>
-                                        <td>@fat</td>
+                                        <td>User</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -44,3 +48,18 @@
         </c-card>
     </c-col>
 </c-row>
+
+
+<c-modal id="UserModal" [visible]="visible" (visibleChange)="handleUserModalVisbilityChange($event)">
+    <c-modal-header>
+        <h5 cModalTitle>New User</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>New User form Here</c-modal-body>
+    <c-modal-footer>
+        <button (click)="cancel()" cButton color="secondary">
+            Close
+        </button>
+        <button (click)="cancel()" cButton color="primary">Submit</button>
+    </c-modal-footer>
+</c-modal>
