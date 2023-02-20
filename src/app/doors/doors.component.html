@@ -5,18 +5,18 @@
     <div class="tab-content rounded-bottom">
         <div class="tab-pane active show p-3 preview fade">
 
-            <h2 style="float:left"><strong> Manage Readers</strong></h2>
-            <button cButton type="button" style="float:right"  color="dark"  (click)="openReaderModal()">
+            <h2 style="float:left"><strong> Manage Doors</strong></h2>
+            <button cButton type="button" style="float:right"  color="dark"  (click)="openDoorModal()">
                 <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
-                <strong> Add Reader</strong>
+                <strong> Add Door</strong>
             </button>
 <h1>&nbsp;</h1>
             <table cTable>
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Serial Number</th>
-                        <th scope="col">IP Address</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Department</th>
                         <th scope="col"></th>
 
                     </tr>
@@ -24,10 +24,10 @@
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>N552854AG654654</td>
-                        <td>172.53.3.5</td>
+                        <td>Door 1</td>
+                        <td>Department 2 </td>
                         <td style="text-align:center;">
-                            <button type="button" cButton color="light" (click)="deleteReader(1)">
+                            <button type="button" cButton color="light" (click)="deleteDoor(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                             </button> &nbsp;
@@ -40,10 +40,10 @@
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>N552854AG654657</td>
-                        <td>172.53.3.6</td>
+                        <td>Door 2</td>
+                        <td>Department 3 </td>
                         <td style="text-align:center;">
-                            <button type="button" cButton color="light" (click)="deleteReader(1)">
+                            <button type="button" cButton color="light" (click)="deleteDoor(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                             </button> &nbsp;
@@ -55,10 +55,10 @@
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>N552854AG654670</td>
-                        <td>172.53.3.7</td>
+                        <td>Door 3</td>
+                        <td>Department 1</td>
                         <td style="text-align:center;">
-                            <button type="button" cButton color="light" (click)="deleteReader(1)">
+                            <button type="button" cButton color="light" (click)="deleteDoor(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                             </button> &nbsp;
@@ -78,12 +78,12 @@
     </c-col>
 </c-row> -->
 
-<c-modal id="ReaderModal" [visible]="visible" (visibleChange)="handleReaderModalVisbilityChange($event)">
+<c-modal id="DoorModal" [visible]="visible" (visibleChange)="handleDoorModalVisbilityChange($event)">
     <c-modal-header>
-        <h5 cModalTitle>New Reader</h5>
+        <h5 cModalTitle>New Door</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
-    <c-modal-body>New Reader form Here</c-modal-body>
+    <c-modal-body>New Door form Here</c-modal-body>
     <c-modal-footer>
         <button (click)="cancel()" cButton color="secondary">
             Close

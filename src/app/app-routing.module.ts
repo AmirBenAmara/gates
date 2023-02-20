@@ -15,6 +15,7 @@ import { CamerasComponent } from './cameras/cameras.component';
 import { ReadersComponent } from './readers/readers.component';
 import { ProfileService } from './services/profile.service';
 import { ProfilesComponent } from './profiles/profiles.component';
+import { DoorsComponent } from './doors/doors.component';
 
 const routes: Routes = [
   {
@@ -112,6 +113,13 @@ const routes: Routes = [
         component: DevicesComponent,
         data: {
           title: 'Devices'
+        }
+      },
+      {
+        path: 'devices/doors',
+        component: DoorsComponent,
+        data: {
+          title: 'Doors'
         }
       },
       {

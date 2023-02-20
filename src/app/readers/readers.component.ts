@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
 import { ReadersService, Reader } from '../services/readers.service'
 
 @Component({
@@ -8,6 +9,8 @@ import { ReadersService, Reader } from '../services/readers.service'
 })
 export class ReadersComponent implements OnInit {
   readers: Reader[] | undefined;
+  icons = { cilPencil, cilTrash ,cilPlus};
+  public visible = false;
 
   constructor(private readerService: ReadersService) { }
   
@@ -34,5 +37,21 @@ export class ReadersComponent implements OnInit {
   newReader(reader: Reader) {
     this.readerService.createReader(reader).subscribe();
   }
+
+  //TODO: finish implementation
+
+  cancel() {
+    this.visible = false;
+  }
+  //TODO: finish implementation
+
+  handleReaderModalVisbilityChange(event: any) {
+    this.visible = event;
+  }
+
+  openReaderModal() {
+    this.visible = true;
+  }
+  
 
 }
