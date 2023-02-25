@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { cilPencil, cilTrash, cilPlus } from '@coreui/icons';
+import { cilPencil, cilTrash, cilPlus, cilFullscreen } from '@coreui/icons';
 
 @Component({
   selector: 'app-guests',
   templateUrl: './guests.component.html',
-  styleUrls: ['./guests.component.scss']
+  styleUrls: ['./guests.component.scss'],
 })
 export class GuestsComponent {
-    icons = { cilPencil, cilTrash ,cilPlus};
-    public visible = false;
-  
+  icons = { cilPencil, cilTrash, cilPlus, cilFullscreen };
+  public visible = false;
+
   //TODO: finish implementation
   deleteGuest(id: number) {
     // this.GuestService.deleteGuest(id).subscribe();
@@ -29,6 +29,8 @@ export class GuestsComponent {
   newGuest(Guest: any) {
     // this.GuestService.createGuest(Guest).subscribe();
   }
+
+  detailGuest() {}
 
   //TODO: finish implementation
 

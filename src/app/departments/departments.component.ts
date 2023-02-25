@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
+import { cilPencil, cilPlus, cilTrash , cilFullscreen} from '@coreui/icons';
 import { DepartmentsService, Department } from '../services/departments.service'
 import { Validators, FormBuilder } from '@angular/forms';
 
@@ -13,7 +13,7 @@ export class DepartmentsComponent implements OnInit {
     name: ['', Validators.required],
   });
   departments: Department[] | undefined;
-  icons = { cilPencil, cilTrash ,cilPlus};
+  icons = { cilPencil, cilTrash ,cilPlus,cilFullscreen};
   public visible = false;
   constructor(private departmentService: DepartmentsService, private fb: FormBuilder) { }
   
@@ -42,6 +42,9 @@ export class DepartmentsComponent implements OnInit {
   //TODO: finish implementation
   newDepartment(department: Department) {
     this.departmentService.createDepartment(department).subscribe();
+  }
+
+  detailDepartment(){
   }
 
 

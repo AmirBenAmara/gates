@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
+import { cilPencil, cilPlus, cilTrash , cilFullscreen } from '@coreui/icons';
 import {Profile , ProfileService} from '../services/profile.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -24,7 +24,7 @@ export class ProfilesComponent {
     issueCountry: ['', Validators.required],
   });
   Profiles: Profile[] | undefined;
-  icons = { cilPencil, cilTrash ,cilPlus};
+  icons = { cilPencil, cilTrash ,cilPlus ,cilFullscreen};
   public visible = false;
   constructor(private ProfileService: ProfileService, private fb: FormBuilder) { }
   ngOnInit(): void {
@@ -63,6 +63,10 @@ export class ProfilesComponent {
   //TODO: finish implementation
   newProfile(Profile: Profile) {
     this.ProfileService.createProfile(Profile).subscribe();
+  }
+
+  detailProfile(){
+    
   }
 
   //TODO: finish implementation

@@ -23,6 +23,10 @@
                         <th scope="row">1</th>
                         <td>Department 1</td>
                         <td style="text-align:center;">
+                            <button type="button" cButton color="light" (click)="detailDepartment()">
+                                <svg [cIcon]="icons.cilFullscreen" width="15" title="detail Icon"></svg>
+
+                            </button> &nbsp;
                             <button type="button" cButton color="light" (click)="deleteDepartment(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
@@ -37,6 +41,10 @@
                         <th scope="row">2</th>
                         <td>Department 2</td>
                         <td style="text-align:center;">
+                            <button type="button" cButton color="light" (click)="detailDepartment()">
+                                <svg [cIcon]="icons.cilFullscreen" width="15" title="detail Icon"></svg>
+
+                            </button> &nbsp;
                             <button type="button" cButton color="light" (click)="deleteDepartment(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
@@ -50,6 +58,10 @@
                         <th scope="row">3</th>
                         <td>Department 3</td>
                         <td style="text-align:center;">
+                            <button type="button" cButton color="light" (click)="detailDepartment()">
+                                <svg [cIcon]="icons.cilFullscreen" width="15" title="detail Icon"></svg>
+
+                            </button> &nbsp;
                             <button type="button" cButton color="light" (click)="deleteDepartment(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
@@ -77,10 +89,19 @@
     <c-modal-body>
         <form [formGroup]="departmentForm">
             <div class="form-group  mb-3">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" cFormControl formControlName="name" placeholder="Name">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" cFormControl formControlName="name" placeholder="Name">
             </div>
-          </form>
+            <div class="form-group  mb-3">
+                <label for="name">Controllers</label>
+                <select cSelect id="inputGroupSelect01">
+                    <option>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </form>
         <!-- <c-input-group class="mb-3">
             <span cInputGroupText id="inputGroup-sizing-default">Name</span>
             <input aria-describedby="inputGroup-sizing-default" aria-label="Sizing example input" cFormControl />
