@@ -1,32 +1,177 @@
-<!-- <form [formGroup]="ctrPanelForm" class="form-horizontal">
-    <div class="form-group row mb-3">
-      <label for="id" class="col-md-3 col-form-label">ID</label>
-      <div class="col-md-9">
-        <input type="number" class="form-control" cFormControl formControlName="id" id="id" placeholder="ID">
+
+  
+
+<div class="example ">
+
+  <div class="tab-content rounded-bottom">
+      <div class="tab-pane active show p-3 preview fade">
+
+          <h2 style="float:left"><strong> Manage Control Panels</strong></h2>
+          <button cButton type="button" style="float:right"  color="dark"  (click)="openCtrPanelModal()">
+              <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
+              <strong> Add Control Panel</strong>
+          </button>
+<h1>&nbsp;</h1>
+          <table cTable>
+              <thead class="table-dark">
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">IP Address</th>
+                      <th scope="col">Serial Number</th>
+                      <th scope="col">Door</th>
+                      <th scope="col"></th>
+
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <th scope="row">1</th>
+                      <td>C Panel 1</td>
+                      <td>172.53.3.5</td>
+                      <td>N552854AG654654</td>
+                      <td>Door 1</td>
+                      <td style="text-align:center;">
+                          <button type="button" cButton  (click)="openViewCtrPanelDetailsModal()" color="light">
+                              <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+              
+                            </button> &nbsp;
+                          <button type="button" cButton color="light" (click)="deleteCtrPanel(1)">
+                              <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                          </button> &nbsp;
+                          <button type="button"cButton color="light"
+                              (click)="updateCtrPanel(1,ctrPanel)">
+                              <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                          </button>
+                      </td>
+
+                  </tr>
+                  <tr>
+                      <th scope="row">2</th>
+                      <td>C Panel 2</td>
+                      <td>172.53.3.6</td>
+                      <td>N552854AG654657</td>
+                      <td>Door 2</td>
+                      <td style="text-align:center;">
+                          <button type="button" cButton (click)="openViewCtrPanelDetailsModal()" color="light">
+                              <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+              
+                            </button> &nbsp;
+                          <button type="button" cButton color="light" (click)="deleteCtrPanel(1)">
+                              <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                          </button> &nbsp;
+                          <button type="button"cButton color="light"
+                              (click)="updateCtrPanel(1,ctrPanel)">
+                              <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                          </button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th scope="row">3</th>
+                      <td>C Panel 3</td>
+                      <td>172.53.3.7</td>
+                      <td>N552854AG654670</td>
+                      <td>Door 3</td>
+                      <td style="text-align:center;">
+                          <button type="button" cButton (click)="openViewCtrPanelDetailsModal()" color="light">
+                              <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+              
+                            </button> &nbsp;
+                          <button type="button" cButton color="light" (click)="deleteCtrPanel(1)">
+                              <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                          </button> &nbsp;
+                          <button type="button"cButton color="light"
+                              (click)="updateCtrPanel(1,ctrPanel)">
+                              <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                          </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
       </div>
-    </div>
-    <div class="form-group row mb-3">
-      <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress" placeholder="IP Address">
-      </div>
-    </div>
-    <div class="form-group row mb-3">
-      <label for="serialNumber" class="col-md-3 col-form-label">Serial Number</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" cFormControl formControlName="serialNumber" id="serialNumber" placeholder="Serial Number">
-      </div>
-    </div>
-    <div class="form-group row mb-3">
-      <label for="name" class="col-md-3 col-form-label">Name</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
-      </div>
-    </div>
-    <div class="form-group row mb-3">
-      <label for="ctrPanelId" class="col-md-3 col-form-label">Control Panel ID</label>
-      <div class="col-md-9">
-        <input type="number" class="form-control" cFormControl formControlName="ctrPanelId" id="ctrPanelId" placeholder="Control Panel ID">
-      </div>
-    </div>
-  </form> -->
+  </div>
+</div>
+<!-- </c-card-body>
+      </c-card>
+  </c-col>
+</c-row> -->
+
+<c-modal id="upsertCtrPanelModal"  size="lg" [visible]="upsertModalVisible">
+  <c-modal-header>
+      <h5 cModalTitle>New Control Panel</h5>
+      <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+      <form [formGroup]="ctrPanelForm" class="form-horizontal">
+          <div class="form-group row mb-3">
+            <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress" placeholder="IP Address">
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label for="serialNumber" class="col-md-3 col-form-label">Serial Number</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" cFormControl formControlName="serialNumber" id="serialNumber" placeholder="Serial Number">
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label for="name" class="col-md-3 col-form-label">Name</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label for="doorId" class="col-md-3 col-form-label">Door ID</label>
+            <div class="col-md-9">
+              <input type="number" class="form-control" cFormControl formControlName="doorId" id="doorId" placeholder="Door ID">
+            </div>
+          </div>
+        </form>
+        
+  </c-modal-body>
+  <c-modal-footer>
+      <button (click)="cancel()" cButton color="secondary">
+          Close
+      </button>
+      <button (click)="cancel()" cButton color="primary">Submit</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal id="viewCtrPanelDetailsModal"  [visible]="viewModalVisible" >
+  <c-modal-header>
+      <h5 cModalTitle>Control panel details</h5>
+      <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+      
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <p><strong>Name:</strong> {{ ctrPanel.name }}</p>
+              </div>
+              <div class="col-sm-12">
+                <p><strong>IP Address:</strong> {{ ctrPanel.ipAddress }}</p>
+              </div>
+              <div class="col-sm-12">
+                <p><strong>Serial Number:</strong> {{ ctrPanel.serialNumber }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <p><strong>Door:</strong> Door {{ ctrPanel.doorId }}</p>
+              </div>
+            </div>
+          </div>
+        
+  </c-modal-body>
+  <c-modal-footer>
+      <button (click)="cancel()" cButton color="secondary">
+          Close
+      </button>
+      <button (click)="cancel()" cButton color="primary">Submit</button>
+  </c-modal-footer>
+</c-modal>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
+import { cilInfo, cilPencil, cilPlus, cilTrash } from '@coreui/icons';
 import { ReadersService, Reader } from '../services/readers.service'
 import { Validators, FormBuilder } from '@angular/forms';
 
@@ -15,9 +15,17 @@ export class ReadersComponent implements OnInit {
     name: ['', Validators.required],
     doorId: [null, Validators.required],
   });
+  reader: Reader = { 
+    id: 1,
+    ipAddress: '172.53.3.6',
+    serialNumber: 'N552854AG654657',
+    name: 'Reader 1',
+    doorId:0 
+  }
   readers: Reader[] | undefined;
-  icons = { cilPencil, cilTrash ,cilPlus};
-  public visible = false;
+  icons = { cilPencil, cilTrash ,cilPlus,cilInfo};
+  public visible: boolean = false;
+  public viewModalVisible: boolean = false;
 
   constructor(private readerService: ReadersService, private fb: FormBuilder) { }
   
@@ -55,6 +63,7 @@ export class ReadersComponent implements OnInit {
 
   cancel() {
     this.visible = false;
+    this.viewModalVisible = false
   }
   //TODO: finish implementation
 
@@ -65,6 +74,10 @@ export class ReadersComponent implements OnInit {
   openReaderModal() {
     this.visible = true;
   }
+  openViewReaderDetailsModal() {
+    this.viewModalVisible = true;
+  }
+
   
 
 }

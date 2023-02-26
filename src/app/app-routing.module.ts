@@ -17,6 +17,7 @@ import { ProfileService } from './services/profile.service';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { DoorsComponent } from './doors/doors.component';
 import { GuestsComponent } from './guests/guests.component';
+import { WaveSharesComponent } from './wave-shares/wave-shares.component';
 
 const routes: Routes = [
   {
@@ -149,6 +150,13 @@ const routes: Routes = [
         component: CPanelsComponent,
         data: {
           title: 'Control Panels'
+        }
+      },
+      {
+        path: 'devices/wave-shares',
+        component: WaveSharesComponent,
+        data: {
+          title: 'Wave Shares'
         }
       },
     ]

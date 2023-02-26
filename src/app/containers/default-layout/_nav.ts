@@ -56,7 +56,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Wave Shares',
-        url: '/devices/wave-share'
+        url: '/devices/wave-shares'
       },
     ]
   },

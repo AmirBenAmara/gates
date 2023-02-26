@@ -40,5 +40,5 @@ export interface CtrPanel {
   ipAddress: string;
   serialNumber: string;
   name: string;
-  ctrPanelId: number;
+  doorId?: number;
 }

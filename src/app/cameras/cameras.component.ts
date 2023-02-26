@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CamerasService } from '../services/cameras.service'
-import { cilPencil, cilTrash, cilPlus } from '@coreui/icons';
+import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -15,9 +15,17 @@ export class CamerasComponent implements OnInit {
     name: ['', Validators.required],
     doorId: [null, Validators.required],
   });
+  camera: Camera = { 
+    id: 1,
+    ipAddress: '172.53.3.6',
+    serialNumber: 'N552854AG654657',
+    name: 'Camera 1',
+    doorId:0 
+  }
   cameras: Camera[] | undefined;
-  icons = { cilPencil, cilTrash, cilPlus };
-  public visible = false;
+  icons = { cilPencil, cilTrash, cilPlus, cilInfo };
+  public upsertModalVisible:boolean = false;
+  public viewModalVisible: boolean = false
   constructor(private cameraService: CamerasService, private fb: FormBuilder) { }
   ngOnInit(): void {
     this.cameraForm = this.fb.group({
@@ -51,16 +59,21 @@ export class CamerasComponent implements OnInit {
 
   //TODO: finish implementation
   cancel() {
-    this.visible = false;
+    this.upsertModalVisible = false;
+    this.viewModalVisible = false;
   }
   //TODO: finish implementation
 
   handleCameraModalVisbilityChange(event: any) {
-    this.visible = event;
+    this.upsertModalVisible = event;
   }
 
   openCameraModal() {
-    this.visible = true;
+    this.upsertModalVisible = true;
+  }
+
+  openViewCameraDetailsModal() {
+    this.viewModalVisible = true;
   }
 
 

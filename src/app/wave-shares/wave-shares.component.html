@@ -1,16 +1,17 @@
 
+  
 
 <div class="example ">
 
     <div class="tab-content rounded-bottom">
         <div class="tab-pane active show p-3 preview fade">
-
-            <h2 style="float:left"><strong> Manage Cameras</strong></h2>
-            <button cButton type="button" style="float:right"  color="dark"  (click)="openCameraModal()">
+  
+            <h2 style="float:left"><strong> Manage Wave Shares</strong></h2>
+            <button cButton type="button" style="float:right"  color="dark"  (click)="openWaveShareModal()">
                 <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
-                <strong> Add Camera</strong>
+                <strong> Add Wave Share</strong>
             </button>
-<h1>&nbsp;</h1>
+  <h1>&nbsp;</h1>
             <table cTable>
                 <thead class="table-dark">
                     <tr>
@@ -20,70 +21,70 @@
                         <th scope="col">Serial Number</th>
                         <th scope="col">Door</th>
                         <th scope="col"></th>
-
+  
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Camera 1</td>
+                        <td>W Share 1</td>
                         <td>172.53.3.5</td>
                         <td>N552854AG654654</td>
                         <td>Door 1</td>
                         <td style="text-align:center;">
-                            <button type="button" cButton  (click)="openViewCameraDetailsModal()" color="light">
+                            <button type="button" cButton  (click)="openViewWaveShareDetailsModal()" color="light">
                                 <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
                 
                               </button> &nbsp;
-                            <button type="button" cButton color="light" (click)="deleteCamera(1)">
+                            <button type="button" cButton color="light" (click)="deleteWaveShare(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
+  
                             </button> &nbsp;
                             <button type="button"cButton color="light"
-                                (click)="updateCamera({})">
+                                (click)="updateWaveShare(1,waveShare)">
                                 <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                             </button>
                         </td>
-
+  
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Camera 2</td>
+                        <td>W Share 2</td>
                         <td>172.53.3.6</td>
                         <td>N552854AG654657</td>
                         <td>Door 2</td>
                         <td style="text-align:center;">
-                            <button type="button" cButton (click)="openViewCameraDetailsModal()" color="light">
+                            <button type="button" cButton (click)="openViewWaveShareDetailsModal()" color="light">
                                 <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
                 
                               </button> &nbsp;
-                            <button type="button" cButton color="light" (click)="deleteCamera(1)">
+                            <button type="button" cButton color="light" (click)="deleteWaveShare(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
+  
                             </button> &nbsp;
                             <button type="button"cButton color="light"
-                                (click)="updateCamera({})">
+                                (click)="updateWaveShare(1,waveShare)">
                                 <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                             </button>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>Camera 3</td>
+                        <td>W Share 3</td>
                         <td>172.53.3.7</td>
                         <td>N552854AG654670</td>
                         <td>Door 3</td>
                         <td style="text-align:center;">
-                            <button type="button" cButton (click)="openViewCameraDetailsModal()" color="light">
+                            <button type="button" cButton (click)="openViewWaveShareDetailsModal()" color="light">
                                 <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
                 
                               </button> &nbsp;
-                            <button type="button" cButton color="light" (click)="deleteCamera(1)">
+                            <button type="button" cButton color="light" (click)="deleteWaveShare(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
+  
                             </button> &nbsp;
                             <button type="button"cButton color="light"
-                                (click)="updateCamera({})">
+                                (click)="updateWaveShare(1,waveShare)">
                                 <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                             </button>
                         </td>
@@ -92,19 +93,19 @@
             </table>
         </div>
     </div>
-</div>
-<!-- </c-card-body>
+  </div>
+  <!-- </c-card-body>
         </c-card>
     </c-col>
-</c-row> -->
-
-<c-modal id="upsertCameraModal"  size="lg" [visible]="upsertModalVisible">
+  </c-row> -->
+  
+  <c-modal id="upsertWaveShareModal"  size="lg" [visible]="upsertModalVisible">
     <c-modal-header>
-        <h5 cModalTitle>New Camera</h5>
+        <h5 cModalTitle>New Wave Share</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
-        <form [formGroup]="cameraForm" class="form-horizontal">
+        <form [formGroup]="waveShareForm" class="form-horizontal">
             <div class="form-group row mb-3">
               <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
               <div class="col-md-9">
@@ -138,11 +139,11 @@
         </button>
         <button (click)="cancel()" cButton color="primary">Submit</button>
     </c-modal-footer>
-</c-modal>
-
-<c-modal id="viewCameraDetailsModal"  [visible]="viewModalVisible" >
+  </c-modal>
+  
+  <c-modal id="viewWaveShareDetailsModal"  [visible]="viewModalVisible" >
     <c-modal-header>
-        <h5 cModalTitle>Camera details</h5>
+        <h5 cModalTitle>Wave Share details</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
@@ -150,18 +151,18 @@
             <div class="container">
               <div class="row">
                 <div class="col-sm-12">
-                  <p><strong>Name:</strong> {{ camera.name }}</p>
+                  <p><strong>Name:</strong> {{ waveShare.name }}</p>
                 </div>
                 <div class="col-sm-12">
-                  <p><strong>IP Address:</strong> {{ camera.ipAddress }}</p>
+                  <p><strong>IP Address:</strong> {{ waveShare.ipAddress }}</p>
                 </div>
                 <div class="col-sm-12">
-                  <p><strong>Serial Number:</strong> {{ camera.serialNumber }}</p>
+                  <p><strong>Serial Number:</strong> {{ waveShare.serialNumber }}</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <p><strong>Door:</strong> Door {{ camera.doorId }}</p>
+                  <p><strong>Door:</strong> Door {{ waveShare.doorId }}</p>
                 </div>
               </div>
             </div>
@@ -173,4 +174,4 @@
         </button>
         <button (click)="cancel()" cButton color="primary">Submit</button>
     </c-modal-footer>
-</c-modal>
+  </c-modal>
