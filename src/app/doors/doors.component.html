@@ -77,3 +77,39 @@
         <button (click)="cancel()" cButton color="primary">Submit</button>
     </c-modal-footer>
 </c-modal>
+
+<c-modal id="viewDoorDetailsModal" [visible]="viewModalVisible">
+    <c-modal-header>
+        <h5 cModalTitle>Door details</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+
+        <div class="container" *ngIf="selectedDoor">
+            <div class="row">
+                <div class="col-sm-12">
+                  <p><strong>Name:</strong> {{ selectedDoor.name}}</p>
+                </div>
+                <!-- <div class="col-sm-12">
+                  <p><strong>IP Address:</strong> {{ camera.ipAddress }}</p>
+                </div>
+                <div class="col-sm-12">
+                  <p><strong>Serial Number:</strong> {{ camera.serialNumber }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p><strong>Door:</strong> Door {{ camera.doorId }}</p>
+                </div> -->
+            </div>
+        </div>
+
+    </c-modal-body>
+    <c-modal-footer>
+        <button (click)="cancel()" cButton color="secondary">
+            Close
+        </button>
+    </c-modal-footer>
+</c-modal>
+
+

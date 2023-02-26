@@ -28,6 +28,7 @@ export class DoorsComponent {
   selectedDoor : Door | undefined;
   icons = { cilPencil, cilTrash ,cilPlus,cilFullscreen};
   public visible = false;
+  public viewModalVisible: boolean = false
   constructor(private DoorService: DoorsService, private fb: FormBuilder) { }
   
   ngOnInit(): void {
@@ -63,6 +64,7 @@ export class DoorsComponent {
   }
 
   detailDoor(door: Door | undefined) {
+    this.viewModalVisible = true
     this.selectedDoor = door;
   }
 
@@ -71,6 +73,7 @@ export class DoorsComponent {
 
   cancel() {
     this.visible = false;
+    this.viewModalVisible = false
   }
   //TODO: finish implementation
 

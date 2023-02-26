@@ -28,6 +28,7 @@ export class DepartmentsComponent implements OnInit {
   selectedDepartment: Department | undefined ;
   icons = { cilPencil, cilTrash, cilPlus, cilFullscreen };
   public visible = false;
+  public viewModalVisible: boolean = false
   constructor(
     private departmentService: DepartmentsService,
     private fb: FormBuilder
@@ -65,12 +66,14 @@ export class DepartmentsComponent implements OnInit {
 
   detailDepartment(department: Department | undefined) {
     this.selectedDepartment = department;
+    this.viewModalVisible = true
   }
 
   //TODO: finish implementation
 
   cancel() {
     this.visible = false;
+    this.viewModalVisible = false
   }
   //TODO: finish implementation
 
