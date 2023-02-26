@@ -27,6 +27,10 @@
                         <td>N552854AG654654</td>
                         <td>172.53.3.5</td>
                         <td style="text-align:center;">
+                            <button type="button" cButton (click)="openViewReaderDetailsModal()" color="light">
+                                <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+                
+                              </button> &nbsp;
                             <button type="button" cButton color="light" (click)="deleteReader(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
@@ -43,6 +47,10 @@
                         <td>N552854AG654657</td>
                         <td>172.53.3.6</td>
                         <td style="text-align:center;">
+                            <button type="button" cButton (click)="openViewReaderDetailsModal()" color="light">
+                                <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+                
+                              </button> &nbsp;
                             <button type="button" cButton color="light" (click)="deleteReader(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
@@ -58,6 +66,10 @@
                         <td>N552854AG654670</td>
                         <td>172.53.3.7</td>
                         <td style="text-align:center;">
+                            <button type="button" cButton  (click)="openViewReaderDetailsModal()" color="light">
+                                <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+                
+                              </button> &nbsp;
                             <button type="button" cButton color="light" (click)="deleteReader(1)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
@@ -78,7 +90,7 @@
     </c-col>
 </c-row> -->
 
-<c-modal id="ReaderModal" [visible]="visible" size="lg" (visibleChange)="handleReaderModalVisbilityChange($event)">
+<c-modal id="upsertReaderModal" [visible]="visible" size="lg" (visibleChange)="handleReaderModalVisbilityChange($event)">
     <c-modal-header>
         <h5 cModalTitle>New Reader</h5>
         <button (click)="cancel()" cButtonClose></button>
@@ -110,6 +122,41 @@
               </div>
             </div>
           </form>
+          
+    </c-modal-body>
+    <c-modal-footer>
+        <button (click)="cancel()" cButton color="secondary">
+            Close
+        </button>
+        <button (click)="cancel()" cButton color="primary">Submit</button>
+    </c-modal-footer>
+</c-modal>
+
+<c-modal id="viewReaderDetailsModal"  [visible]="viewModalVisible" >
+    <c-modal-header>
+        <h5 cModalTitle>Reader details</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+        
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12">
+                  <p><strong>Name:</strong> {{ reader.name }}</p>
+                </div>
+                <div class="col-sm-12">
+                  <p><strong>IP Address:</strong> {{ reader.ipAddress }}</p>
+                </div>
+                <div class="col-sm-12">
+                  <p><strong>Serial Number:</strong> {{ reader.serialNumber }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p><strong>Door:</strong> Door {{ reader.doorId }}</p>
+                </div>
+              </div>
+            </div>
           
     </c-modal-body>
     <c-modal-footer>

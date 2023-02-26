@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { cilPencil, cilTrash, cilPlus, cilFullscreen } from '@coreui/icons';
+import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 
 @Component({
   selector: 'app-guests',
@@ -7,7 +7,7 @@ import { cilPencil, cilTrash, cilPlus, cilFullscreen } from '@coreui/icons';
   styleUrls: ['./guests.component.scss'],
 })
 export class GuestsComponent {
-  icons = { cilPencil, cilTrash, cilPlus, cilFullscreen };
+  icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
 
   //TODO: finish implementation
