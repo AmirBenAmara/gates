@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { cilPencil, cilPlus, cilTrash } from '@coreui/icons';
+import { cilPencil, cilPlus, cilTrash , cilFullscreen} from '@coreui/icons';
 import {DoorsService,Door} from '../services/doors.service'
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -13,8 +13,20 @@ export class DoorsComponent {
     name: ['', Validators.required],
     departmentId: [null, Validators.required],
   });
-  Doors: Door[] | undefined;
-  icons = { cilPencil, cilTrash ,cilPlus};
+  doors: Door[] =[
+    {
+      id : 1,
+      name : 'door1',
+      departmentId : 2
+    },
+    {
+      id : 2,
+      name : 'door2',
+      departmentId : 1
+    }
+  ];
+  selectedDoor : Door | undefined;
+  icons = { cilPencil, cilTrash ,cilPlus,cilFullscreen};
   public visible = false;
   constructor(private DoorService: DoorsService, private fb: FormBuilder) { }
   
@@ -33,7 +45,7 @@ export class DoorsComponent {
   //TODO: finish implementation
   getDoors() {
     this.DoorService.getDoors().subscribe(Doors => {
-      this.Doors = Doors;
+      this.doors = Doors;
     });
   }
   //TODO: finish implementation
@@ -44,6 +56,14 @@ export class DoorsComponent {
   //TODO: finish implementation
   newDoor(Door: Door) {
     this.DoorService.createDoor(Door).subscribe();
+  }
+
+  editDoor(door: Door | undefined){
+    this.selectedDoor = door;
+  }
+
+  detailDoor(door: Door | undefined) {
+    this.selectedDoor = door;
   }
 
 

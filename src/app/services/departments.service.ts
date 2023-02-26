@@ -35,7 +35,7 @@ export class DepartmentsService {
 }
 
 export interface Department {
-  id?: number;
+  id: number;
   name: string;
 }
 

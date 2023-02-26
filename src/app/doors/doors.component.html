@@ -22,52 +22,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Door 1</td>
-                        <td>Department 2 </td>
+                    <tr *ngFor="let door of doors">
+                        <th scope="row">{{door.id}}</th>
+                        <td>{{door.name}}</td>
+                        <!-- <td>{{door.department.name}}</td> -->
+                        <td>department1</td>
                         <td style="text-align:center;">
-                            <button type="button" cButton color="light" (click)="deleteDoor(1)">
+                            <button type="button" cButton color="light" (click)="detailDoor(door)">
+                                <svg [cIcon]="icons.cilFullscreen" width="15" title="detail Icon"></svg>
+
+                            </button> &nbsp;
+                            <button type="button" cButton color="light" (click)="editDoor(door)">
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                             </button> &nbsp;
-                            <button type="button"cButton color="light"
-                                >
+                            <button type="button" cButton color="light" (click)="deleteDoor(door.id)">
                                 <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                             </button>
                         </td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Door 2</td>
-                        <td>Department 3 </td>
-                        <td style="text-align:center;">
-                            <button type="button" cButton color="light" (click)="deleteDoor(1)">
-                                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
-                            </button> &nbsp;
-                            <button type="button"cButton color="light"
-                                >
-                                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Door 3</td>
-                        <td>Department 1</td>
-                        <td style="text-align:center;">
-                            <button type="button" cButton color="light" (click)="deleteDoor(1)">
-                                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
-                            </button> &nbsp;
-                            <button type="button"cButton color="light"
-                                >
-                                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-                            </button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
