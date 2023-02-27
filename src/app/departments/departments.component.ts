@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { cilPencil, cilPlus, cilTrash, cilFullscreen } from '@coreui/icons';
+import { cilPencil, cilPlus, cilTrash, cilInfo } from '@coreui/icons';
 import {
   DepartmentsService,
   Department,
@@ -18,15 +18,15 @@ export class DepartmentsComponent implements OnInit {
   departments: Department[] = [
     {
       id: 1,
-      name: 'department1',
+      name: 'Department 1',
     },
     {
       id: 2,
-      name: 'department2',
+      name: 'Department 2',
     },
   ];
   selectedDepartment: Department | undefined ;
-  icons = { cilPencil, cilTrash, cilPlus, cilFullscreen };
+  icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
   public viewModalVisible: boolean = false
   constructor(

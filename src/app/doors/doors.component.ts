@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { cilPencil, cilPlus, cilTrash , cilFullscreen} from '@coreui/icons';
+import { cilPencil, cilPlus, cilTrash , cilInfo} from '@coreui/icons';
 import {DoorsService,Door} from '../services/doors.service'
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -26,7 +26,7 @@ export class DoorsComponent {
     }
   ];
   selectedDoor : Door | undefined;
-  icons = { cilPencil, cilTrash ,cilPlus,cilFullscreen};
+  icons = { cilPencil, cilTrash ,cilPlus,cilInfo};
   public visible = false;
   public viewModalVisible: boolean = false
   constructor(private DoorService: DoorsService, private fb: FormBuilder) { }

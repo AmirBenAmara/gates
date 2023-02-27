@@ -16,10 +16,10 @@ export class CamerasComponent implements OnInit {
     doorId: [null, Validators.required],
   });
   camera: Camera = { 
-    id: 1,
-    ipAddress: '172.53.3.6',
+    id: 0,
+    ipAddress: '0.0.0.2',
     serialNumber: 'N552854AG654657',
-    name: 'Camera 1',
+    name: 'Undefined',
     doorId:0 
   }
   cameras: Camera[] | undefined;
@@ -28,6 +28,7 @@ export class CamerasComponent implements OnInit {
   public viewModalVisible: boolean = false
   constructor(private cameraService: CamerasService, private fb: FormBuilder) { }
   ngOnInit(): void {
+    this.getCameras();
     this.cameraForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
@@ -38,7 +39,8 @@ export class CamerasComponent implements OnInit {
 
 
   //TODO: finish implementation
-  deleteCamera(id: number) {
+  deleteCamera(id?: number) {
+    if(id)
     this.cameraService.deleteCamera(id).subscribe();
   }
   //TODO: finish implementation
@@ -72,7 +74,8 @@ export class CamerasComponent implements OnInit {
     this.upsertModalVisible = true;
   }
 
-  openViewCameraDetailsModal() {
+  openViewCameraDetailsModal(camera: Camera) {
+    this.camera = camera;
     this.viewModalVisible = true;
   }
 

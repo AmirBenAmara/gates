@@ -6,12 +6,25 @@
   <div class="tab-content rounded-bottom">
       <div class="tab-pane active show p-3 preview fade">
 
-          <h2 style="float:left"><strong> Manage Control Panels</strong></h2>
-          <button cButton type="button" style="float:right"  color="dark"  (click)="openCtrPanelModal()">
-              <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
-              <strong> Add Control Panel</strong>
-          </button>
-<h1>&nbsp;</h1>
+        <div class="row">
+          <div class="col-6 mb-3">
+            <h2><strong> Manage Control Panels</strong></h2>
+        
+          </div>
+          <div class="col-6 mt-3">
+            <c-input-group>
+              <input aria-label="Search"
+                     cFormControl
+                     placeholder="Search"
+              />
+              
+              <button cButton color="dark" type="button" variant="outline" (click)="openCtrPanelModal()">
+                <svg [cIcon]="icons.cilPlus"  title="Plus Icon"></svg> New Control Panel 
+              </button>
+            </c-input-group>
+          </div>
+        
+        </div>
           <table cTable>
               <thead class="table-dark">
                   <tr>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,9 @@ export class CamerasService {
   }
   // GetCameras function with an HTTP GET request
   getCameras(): Observable<Camera[]> {
-    return this.http.get<Camera[]>(this.apiUrl);
+    // remove this line and uncomment the 2nd line when implementing with real api
+    return of(CamerasDATA);
+    // return this.http.get<Camera[]>(this.apiUrl);
   }
   // UpdateCamera function with an HTTP PUT request
   updateCamera(camera: Camera): Observable<Camera> {
@@ -40,3 +43,25 @@ export interface Camera {
   name?: string;
   doorId?: number;
 }
+
+export const CamerasDATA: Camera[] = [{ 
+  id: 1,
+  ipAddress: '172.53.3.6',
+  serialNumber: 'N552854AG654657',
+  name: 'Camera 1',
+  doorId:0 
+},
+{ 
+  id: 2,
+  ipAddress: '172.53.3.7',
+  serialNumber: 'N552854AG654658',
+  name: 'Camera 2',
+  doorId:1 
+},
+{ 
+  id: 3,
+  ipAddress: '172.53.3.8',
+  serialNumber: 'N552854AG654659',
+  name: 'Camera 3',
+  doorId:2
+}]
