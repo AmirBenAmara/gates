@@ -189,3 +189,26 @@
     </button>
   </c-modal-footer>
 </c-modal>
+
+
+<c-modal id="viewCameraDeleteModal" [visible]="viewModalDeleteVisible">
+  <c-modal-header>
+      <h5 cModalTitle>Confirmation</h5>
+      <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+
+      <div class="container">
+          <h5>Are you sure you want to delete?</h5>
+      </div>
+
+  </c-modal-body>
+  <c-modal-footer>
+      <button size="lg" class="float-left" (click)="viewModalDeleteVisible = false" cButton color="secondary">
+          No
+      </button>
+      <button size="lg" class="float-right" (click)="cancel()" cButton color="danger">
+          Yes
+      </button>
+  </c-modal-footer>
+</c-modal>

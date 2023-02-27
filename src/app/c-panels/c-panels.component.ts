@@ -26,6 +26,8 @@ export class CPanelsComponent implements OnInit {
   ctrPanels: CtrPanel[] | undefined;
   public viewModalVisible: boolean = false;
   public upsertModalVisible: boolean = false;
+  public viewModalDeleteVisible = false;
+
   constructor(private ctrPanelService: CPanelsService, private fb: FormBuilder) { }
   
   ngOnInit(): void {

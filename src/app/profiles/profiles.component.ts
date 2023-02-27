@@ -60,6 +60,7 @@ export class ProfilesComponent {
   icons = { cilPencil, cilTrash ,cilPlus ,cilInfo};
   public visible = false;
   public viewModalVisible = false;
+  public viewModalDeleteVisible = false;
   
   constructor(private ProfileService: ProfileService, private fb: FormBuilder) { }
   ngOnInit(): void {
@@ -107,6 +108,11 @@ export class ProfilesComponent {
   detailProfile(profile: Profile | undefined) {
     this.viewModalVisible = true
     this.selectedProfile = profile;
+  }
+
+  openModalDelete(profile: Profile | undefined){
+    this.selectedProfile = profile;
+    this.viewModalDeleteVisible = true
   }
   //TODO: finish implementation
 

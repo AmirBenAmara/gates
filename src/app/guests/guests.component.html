@@ -23,10 +23,16 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
+
+                        <th scope="col">Father name</th>
                         <th scope="col">SurName</th>
+                        <th scope="col">cin</th>
                         <th scope="col">Birthdate</th>
+                        <th scope="col">Birth place</th>
+                        <th scope="col">Mother name</th>
                         <th scope="col">Occupation</th>
+                        <th scope="col">Actual address</th>
+                        <th scope="col">Cin delevery date</th>
                         <th scope="col"></th>
 
                     </tr>
@@ -34,10 +40,15 @@
                 <tbody>
                     <tr *ngFor="let guest of guests">
                         <th scope="row">{{guest.id}}</th>
-                        <td>{{guest.name}}</td>
+                        <td>{{guest.fatherName}}</td>
                         <td>{{guest.surname}}</td>
+                        <td>{{guest.cin}}</td>
                         <td>{{guest.birthDate}}</td>
-                        <td>Occupation</td>
+                        <td>{{guest.birthPlace}}</td>
+                        <td>{{guest.motherName}}</td>
+                        <td>{{guest.occupation}}</td>
+                        <td>{{guest.actualAddress}}</td>
+                        <td>{{guest.cinDeliverDate}}</td>
 
                         <td style="text-align:center;">
                             <button type="button" cButton color="light" (click)="detailGuest(guest)">
@@ -48,7 +59,7 @@
                                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                             </button> &nbsp;
-                            <button type="button" cButton color="light" (click)="deleteGuest(1)">
+                            <button type="button" cButton color="light" (click)="openModalDelete(guest)">
                                 <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                             </button>
                         </td>
@@ -68,52 +79,40 @@
     <c-modal-body>
         <form [formGroup]="guestForm">
             <div class="form-group mb-3">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+                <label for="name">Father name:</label>
+                <input type="text" class="form-control" cFormControl formControlName="fatherName" id="fatherName" placeholder="Name">
             </div>
             <div class="form-group mb-3">
                 <label for="surname">Surname:</label>
                 <input type="text" class="form-control" cFormControl formControlName="surname" id="surname" placeholder="Surname">
             </div>
             <div class="form-group mb-3">
-                <label for="birthDate">Birth Date:</label>
-                <input type="date" class="form-control" cFormControl formControlName="birthDate" id="birthDate" placeholder="Birth Date">
+                <label for="birthDate">Cin:</label>
+                <input type="date" class="form-control" cFormControl formControlName="cin" id="cin" placeholder="cin">
             </div>
             <div class="form-group mb-3">
-                <label for="documentNumber">Document Number:</label>
-                <input type="number" class="form-control" cFormControl formControlName="documentNumber" id="documentNumber" placeholder="Document Number">
+                <label for="documentNumber">Birthdate:</label>
+                <input type="number" class="form-control" cFormControl formControlName="birthDate" id="birthDate" placeholder="Birthdate">
             </div>
             <div class="form-group mb-3">
-                <label for="sex">Sex:</label>
-                <input type="text" class="form-control" cFormControl formControlName="sex" id="sex" placeholder="Sex">
+                <label for="sex">Birth place:</label>
+                <input type="text" class="form-control" cFormControl formControlName="birthPlace" id="birthPlace" placeholder="Birth place">
             </div>
             <div class="form-group mb-3">
-                <label for="nationality">Nationality:</label>
-                <input type="text" class="form-control" cFormControl formControlName="nationality" id="nationality" placeholder="Nationality">
+                <label for="nationality">Mother name:</label>
+                <input type="text" class="form-control" cFormControl formControlName="motherName" id="motherName" placeholder="Mother name">
             </div>
             <div class="form-group mb-3">
-                <label for="expiryDate">Expiry Date:</label>
-                <input type="date" class="form-control" cFormControl formControlName="expiryDate" id="expiryDate" placeholder="Expiry Date">
+                <label for="expiryDate">occupation:</label>
+                <input type="date" class="form-control" cFormControl formControlName="occupation" id="occupation" placeholder="occupation">
             </div>
             <div class="form-group mb-3">
-                <label for="personalData">Personal Data:</label>
-                <input type="text" class="form-control" cFormControl formControlName="personalData" id="personalData" placeholder="Personal Data">
+                <label for="personalData">Actual address:</label>
+                <input type="text" class="form-control" cFormControl formControlName="actualAddress" id="actualAddress" placeholder="Actual address">
             </div>
             <div class="form-group mb-3">
-                <label for="MRZ1">MRZ1:</label>
-                <input type="text" class="form-control" cFormControl formControlName="MRZ1" id="MRZ1" placeholder="MRZ1">
-            </div>
-            <div class="form-group mb-3">
-                <label for="MRZ2">MRZ2:</label>
-                <input type="text" class="form-control" cFormControl formControlName="MRZ2" id="MRZ2" placeholder="MRZ2">
-            </div>
-            <div class="form-group mb-3">
-                <label for="MRZ3">MRZ3:</label>
-                <input type="text" class="form-control" cFormControl formControlName="MRZ3" id="MRZ3" placeholder="MRZ3">
-            </div>
-            <div class="form-group mb-3">
-                <label for="issueCountry">Issue Country:</label>
-                <input type="text" class="form-control" cFormControl formControlName="issueCountry" id="issueCountry" placeholder="Issue Country">
+                <label for="MRZ1">Cin deliver date:</label>
+                <input type="text" class="form-control" cFormControl formControlName="cinDeliverDate" id="cinDeliverDate" placeholder="Cin deliver date">
             </div>
         </form>
     </c-modal-body>
@@ -127,69 +126,75 @@
 
 <c-modal id="viewGuestDetailsModal" [visible]="viewModalVisible">
     <c-modal-header>
-      <h5 cModalTitle>Guest details</h5>
-      <button (click)="cancel()" cButtonClose></button>
+        <h5 cModalTitle>Guest details</h5>
+        <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
-  
-      <div class="container" *ngIf="selectedGuest">
-        <div class="text-center">
-          <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 150px;"
-          alt="Avatar" />
-        </div>
-        
-        <div class="row">
-          
-          <div class="col-sm-12">
-            <p><strong>Name:</strong> {{ selectedGuest.name}}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Surname:</strong> {{ selectedGuest.surname }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Birthdate:</strong> {{ selectedGuest.birthDate }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Document number:</strong> {{ selectedGuest.documentNumber }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Sex:</strong> {{ selectedGuest.sex }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Nationality:</strong> {{ selectedGuest.nationality }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Expiry date:</strong> {{ selectedGuest.expiryDate }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Personal data:</strong> {{ selectedGuest.personalData }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>MRZ1:</strong> {{ selectedGuest.mrZ1 }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>MRZ2:</strong> {{ selectedGuest.mrZ2 }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>MRZ3:</strong> {{ selectedGuest.mrZ3 }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Issue country:</strong> {{ selectedGuest.issueCountry }}</p>
-          </div>
-        </div>
-        <!-- <div class="row">
+
+        <div class="container" *ngIf="selectedGuest">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p><strong>Father name:</strong> {{ selectedGuest.fatherName}}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>Surname:</strong> {{ selectedGuest.surname }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>cin:</strong> {{ selectedGuest.cin }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>Birthdate:</strong> {{ selectedGuest.birthDate }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>Birth place:</strong> {{ selectedGuest.birthPlace }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>Mother name:</strong> {{ selectedGuest.motherName }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>Occupation:</strong> {{ selectedGuest.occupation }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>Actual address:</strong> {{ selectedGuest.actualAddress }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>Cin deliver date:</strong> {{ selectedGuest.cinDeliverDate }}</p>
+                </div>
+
+            </div>
+            <!-- <div class="row">
           <div class="col-sm-12">
             <p><strong>Guest:</strong> Guest {{ camera.GuestId }}</p>
           </div>
         </div> -->
-      </div>
-  
+        </div>
+
     </c-modal-body>
     <c-modal-footer>
-      <button (click)="cancel()" cButton color="secondary">
-        Close
-      </button>
+        <button (click)="cancel()" cButton color="secondary">
+            Close
+        </button>
     </c-modal-footer>
-  </c-modal>
+</c-modal>
 
+<c-modal id="viewGuestDeleteModal" [visible]="viewModalDeleteVisible">
+    <c-modal-header>
+        <h5 cModalTitle>Confirmation</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
 
+        <div class="container">
+            <h5>Are you sure you want to delete?</h5>
+        </div>
+
+    </c-modal-body>
+    <c-modal-footer>
+        <button size="lg" class="float-left" (click)="viewModalDeleteVisible = false" cButton color="secondary">
+            No
+        </button>
+        <button size="lg" class="float-right" (click)="cancel()" cButton color="danger">
+            Yes
+        </button>
+    </c-modal-footer>
+</c-modal>

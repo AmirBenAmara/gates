@@ -26,6 +26,7 @@ export class WaveSharesComponent implements OnInit{
   waveShares: WaveShare[] | undefined;
   public viewModalVisible: boolean = false;
   public upsertModalVisible: boolean = false;
+  public viewModalDeleteVisible: boolean = false;
 
   constructor(private waveShareService: WaveShareService, private fb: FormBuilder) { }
   

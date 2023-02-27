@@ -26,6 +26,8 @@ export class ReadersComponent implements OnInit {
   icons = { cilPencil, cilTrash ,cilPlus,cilInfo};
   public visible: boolean = false;
   public viewModalVisible: boolean = false;
+  public viewModalDeleteVisible = false;
+
 
   constructor(private readerService: ReadersService, private fb: FormBuilder) { }
   

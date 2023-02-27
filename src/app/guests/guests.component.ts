@@ -10,75 +10,75 @@ import { GuestService, Guest } from '../services/guest.service';
 })
 export class GuestsComponent implements OnInit {
   guestForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
+    fatherName: ['', Validators.required],
     surname: ['', Validators.required],
-    birthDate: ['', Validators.required],
-    documentNumber: [null, Validators.required],
-    sex: ['', Validators.required],
-    nationality: ['', Validators.required],
-    expiryDate: ['', Validators.required],
-    personalData: ['', Validators.required],
-    MRZ1: ['', Validators.required],
-    MRZ2: ['', Validators.required],
-    MRZ3: ['', Validators.required],
-    issueCountry: ['', Validators.required],
+    cin: ['', Validators.required],
+    birthDate: [null, Validators.required],
+    birthPlace: ['', Validators.required],
+    motherName: ['', Validators.required],
+    occupation: ['', Validators.required],
+    actualAddress: ['', Validators.required],
+    cinDeliverDate: ['', Validators.required],
   });
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
   public viewModalVisible = false;
+  public viewModalDeleteVisible = false;
 
   guests: Guest[] = [
     {
       id: 0,
-      name: "mlak",
-      surname: "dhif",
-      birthDate: " 21/01/1989 ",
-      documentNumber: 245345,
-      sex: "Male",
-      nationality: "Tunisia",
-      expiryDate: "21/01/2023",
-      personalData: "string",
-      mrZ1: "85376537453",
-      mrZ2: "5346379634",
-      mrZ3: "3897937983",
-      issueCountry: "Tunisia"
+      fatherName: 'rjab',
+      surname: 'ahmed',
+      cin: 464511651,
+      birthDate: '01/01/1999',
+      birthPlace: 'Tunisia',
+      motherName: 'jhbjhbj;',
+      occupation: 'CTO',
+      actualAddress: 'Tunis,',
+      cinDeliverDate: '01/01/2020',
     },
     {
       id: 0,
-      name: "amir",
-      surname: "ben amara",
-      birthDate: " 07/01/1989 ",
-      documentNumber: 245345,
-      sex: "Male",
-      nationality: "Tunisia",
-      expiryDate: "21/01/2023",
-      personalData: "string",
-      mrZ1: "85376537453",
-      mrZ2: "5346379634",
-      mrZ3: "552378357",
-      issueCountry: "France"
-    }
-    
+      fatherName: 'rjab',
+      surname: 'ahmed',
+      cin: 464511651,
+      birthDate: '01/01/1999',
+      birthPlace: 'Tunisia',
+      motherName: 'jhbjhbj;',
+      occupation: 'CTO',
+      actualAddress: 'Tunis,',
+      cinDeliverDate: '01/01/2020',
+    },
+    {
+      id: 0,
+      fatherName: 'rjab',
+      surname: 'ahmed',
+      cin: 464511651,
+      birthDate: '01/01/1999',
+      birthPlace: 'Tunisia',
+      motherName: 'jhbjhbj;',
+      occupation: 'CTO',
+      actualAddress: 'Tunis,',
+      cinDeliverDate: '01/01/2020',
+    },
   ];
 
-  selectedGuest : Guest | undefined;
+  selectedGuest: Guest | undefined;
 
   constructor(private guestervice: GuestService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.guestForm = this.fb.group({
-      name: ['', Validators.required],
+      fatherName: ['', Validators.required],
       surname: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      documentNumber: [null, Validators.required],
-      sex: ['', Validators.required],
-      nationality: ['', Validators.required],
-      expiryDate: ['', Validators.required],
-      personalData: ['', Validators.required],
-      MRZ1: ['', Validators.required],
-      MRZ2: ['', Validators.required],
-      MRZ3: ['', Validators.required],
-      issueCountry: ['', Validators.required],
+      cin: ['', Validators.required],
+      birthDate: [null, Validators.required],
+      birthPlace: ['', Validators.required],
+      motherName: ['', Validators.required],
+      occupation: ['', Validators.required],
+      actualAddress: ['', Validators.required],
+      cinDeliverDate: ['', Validators.required],
     });
   }
 
@@ -102,19 +102,24 @@ export class GuestsComponent implements OnInit {
     // this.GuestService.createGuest(Guest).subscribe();
   }
 
-  editGuest(guest: Guest | undefined){
+  editGuest(guest: Guest | undefined) {
     this.selectedGuest = guest;
   }
 
   detailGuest(guest: Guest | undefined) {
-    this.viewModalVisible = true
+    this.viewModalVisible = true;
     this.selectedGuest = guest;
+  }
+
+  openModalDelete(guest: Guest | undefined){
+    this.selectedGuest = guest
+    this.viewModalDeleteVisible = true
   }
   //TODO: finish implementation
 
   cancel() {
     this.visible = false;
-    this.viewModalVisible = false
+    this.viewModalVisible = false;
   }
   //TODO: finish implementation
 

@@ -40,17 +40,14 @@ export class GuestService {
 
 export interface Guest {
   id?: number;
-  name?: string;
+  fatherName?: string;
   surname?: string;
+  cin?: number;
   birthDate?: string;
-  documentNumber?: number;
-  sex?: string;
-  nationality?: string;
-  expiryDate?:string;
-  personalData?:string;
-  mrZ1?:string;
-  mrZ2?:string;
-  mrZ3?:string;
-  issueCountry?:string;
+  birthPlace?: string;
+  motherName?:string;
+  occupation?:string;
+  actualAddress?:string;
+  cinDeliverDate?:string;
 }
 

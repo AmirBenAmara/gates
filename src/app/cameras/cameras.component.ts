@@ -26,6 +26,8 @@ export class CamerasComponent implements OnInit {
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public upsertModalVisible:boolean = false;
   public viewModalVisible: boolean = false
+  public viewModalDeleteVisible = false;
+
   constructor(private cameraService: CamerasService, private fb: FormBuilder) { }
   ngOnInit(): void {
     this.getCameras();
