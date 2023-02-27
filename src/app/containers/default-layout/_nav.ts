@@ -9,54 +9,60 @@ export const navItems: INavData[] = [
   {
     name: 'Monitoring',
     url: '/monitoring',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-audio-spectrum' },
   },
   {
     name: 'Users',
     url: '/users',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-group' },
   },
   {
     name: 'Profiles',
     url: '/profiles',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-voice-over-record' },
   },
   {
     name: 'Guests',
     url: '/guests',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-user-plus' },
   },
   {
     name: 'Doors',
     url: '/devices/doors',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-double-quote-sans-right' },
 
   },
   {
     name: 'Departments',
     url: '/departments',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-building' },
   },
   {
     name: 'Devices',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-lan' },
     children: [
      
       {
         name: 'Cameras',
-        url: '/devices/cameras'
+        url: '/devices/cameras',
+        iconComponent: { name: 'cil-camera-roll' },
+
       },
       {
         name: 'Readers',
-        url: '/devices/readers'
+        url: '/devices/readers',
+        iconComponent: { name: 'cil-camera-control' },
       },
       {
         name: 'Control Panels',
-        url: '/devices/c-panels'
+        url: '/devices/c-panels',
+        iconComponent: { name: 'cil-barcode' },
       },
       {
         name: 'Wave Shares',
-        url: '/devices/wave-shares'
+        url: '/devices/wave-shares',
+        iconComponent: { name: 'cil-stream' },
+       
       },
     ]
   },
