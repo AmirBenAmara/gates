@@ -9,6 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./cameras.component.scss']
 })
 export class CamerasComponent implements OnInit {
+  p: number = 1;
   cameraForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
@@ -17,7 +18,7 @@ export class CamerasComponent implements OnInit {
   });
   camera: Camera = { 
     id: 0,
-    ipAddress: '0.0.0.2',
+    ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
     name: 'Undefined',
     doorId:0 

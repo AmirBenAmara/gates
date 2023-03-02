@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class ReadersService {
 
   // GetReaders function with an HTTP GET request
   getReaders(): Observable<Reader[]> {
-    return this.http.get<Reader[]>(this.apiUrl);
+    return of(ReadersDATA);
+    // return this.http.get<Reader[]>(this.apiUrl);
   }
   // GetReaderById function with an HTTP GET request
   getReaderById(readerId: number): Observable<Reader> {
@@ -43,3 +45,31 @@ export interface Reader {
   name: string;
   doorId: number;
 }
+export const ReadersDATA: Reader[] = [{ 
+  id: 1,
+  ipAddress: '172.53.3.6',
+  serialNumber: 'N552854AG654657',
+  name: 'Reader 1',
+  doorId:0 
+},
+{ 
+  id: 2,
+  ipAddress: '172.53.3.7',
+  serialNumber: 'N552854AG654658',
+  name: 'Reader 2',
+  doorId:1 
+},
+{ 
+  id: 3,
+  ipAddress: '172.53.3.8',
+  serialNumber: 'N552854AG654659',
+  name: 'Reader 3',
+  doorId:2
+},
+{ 
+  id: 4,
+  ipAddress: '172.53.3.9',
+  serialNumber: 'N552854AG654660',
+  name: 'Reader 4',
+  doorId:3
+}]

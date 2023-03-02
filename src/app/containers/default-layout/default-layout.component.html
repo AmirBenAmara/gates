@@ -29,20 +29,16 @@
   >
   </c-sidebar-nav>
     </perfect-scrollbar>
-  <c-sidebar-toggler
-    *ngIf="!sidebar.narrow"
-    toggle="unfoldable"
-    cSidebarToggle="sidebar"
-  ></c-sidebar-toggler>
+
 </c-sidebar>
 
 <!--main-->
 <div class="wrapper d-flex flex-column min-vh-100 bg-light bg-opacity-50 dark:bg-transparent">
   <!--app-header-->
-  <app-default-header class="header header-sticky mb-4" position="sticky" sidebarId="sidebar"></app-default-header>
+  <app-default-header class="header header-sticky mb-1" position="sticky" sidebarId="sidebar"></app-default-header>
   <!--app-body-->
   <div class="body flex-grow-1 px-3">
-    <c-container breakpoint="lg" class="h-auto">
+    <c-container [fluid]="true">
       <router-outlet></router-outlet>
     </c-container>
   </div>

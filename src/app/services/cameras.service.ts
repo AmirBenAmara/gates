@@ -64,4 +64,11 @@ export const CamerasDATA: Camera[] = [{
   serialNumber: 'N552854AG654659',
   name: 'Camera 3',
   doorId:2
+},
+{ 
+  id: 4,
+  ipAddress: '172.53.3.9',
+  serialNumber: 'N552854AG654660',
+  name: 'Camera 4',
+  doorId:3
 }]

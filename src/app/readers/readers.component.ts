@@ -15,21 +15,22 @@ export class ReadersComponent implements OnInit {
     name: ['', Validators.required],
     doorId: [null, Validators.required],
   });
-  reader: Reader = { 
+  reader: Reader = {
     id: 1,
     ipAddress: '172.53.3.6',
     serialNumber: 'N552854AG654657',
     name: 'Reader 1',
-    doorId:0 
+    doorId: 0
   }
   readers: Reader[] | undefined;
-  icons = { cilPencil, cilTrash ,cilPlus,cilInfo};
+  icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible: boolean = false;
   public viewModalVisible: boolean = false;
 
   constructor(private readerService: ReadersService, private fb: FormBuilder) { }
-  
+
   ngOnInit(): void {
+    this.getReaders();
     this.readerForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
@@ -50,8 +51,8 @@ export class ReadersComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateReader(id:number, reader: Reader) {
-    this.readerService.updateReader(id,reader).subscribe();
+  updateReader(id: number, reader: Reader) {
+    this.readerService.updateReader(id, reader).subscribe();
   }
 
   //TODO: finish implementation
@@ -77,7 +78,6 @@ export class ReadersComponent implements OnInit {
   openViewReaderDetailsModal() {
     this.viewModalVisible = true;
   }
-
-  
+ 
 
 }

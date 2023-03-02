@@ -14,26 +14,27 @@ export class CPanelsComponent implements OnInit {
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
     name: ['', Validators.required],
-    ctrPanelId: [null, Validators.required],
+    doorId: [null, Validators.required],
   });
-  ctrPanel:CtrPanel = { 
+  ctrPanel: CtrPanel = {
     id: 1,
     ipAddress: '172.53.3.6',
     serialNumber: 'N552854AG654657',
     name: 'C Panel 1',
-    doorId:0 
+    doorId: 0
   }
   ctrPanels: CtrPanel[] | undefined;
   public viewModalVisible: boolean = false;
   public upsertModalVisible: boolean = false;
   constructor(private ctrPanelService: CPanelsService, private fb: FormBuilder) { }
-  
+
   ngOnInit(): void {
+    this.getCtrPanels();
     this.ctrPanelForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
       name: ['', Validators.required],
-      ctrPanelId: [null, Validators.required],
+      doorId: [null, Validators.required],
     });
   }
 
@@ -49,8 +50,8 @@ export class CPanelsComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateCtrPanel(id:number, ctrPanel: CtrPanel) {
-    this.ctrPanelService.updateCtrPanel(id,ctrPanel).subscribe();
+  updateCtrPanel(id: number, ctrPanel: CtrPanel) {
+    this.ctrPanelService.updateCtrPanel(id, ctrPanel).subscribe();
   }
 
   //TODO: finish implementation

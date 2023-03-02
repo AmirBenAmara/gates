@@ -30,6 +30,7 @@ export class WaveSharesComponent implements OnInit{
   constructor(private waveShareService: WaveShareService, private fb: FormBuilder) { }
   
   ngOnInit(): void {
+    this.getWaveShares();
     this.waveShareForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
