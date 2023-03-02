@@ -6,21 +6,18 @@
       <div class="row">
         <div class="col-6 mb-3">
           <h2><strong> Manage Profiles</strong></h2>
-      
+
         </div>
         <div class="col-6 mt-3">
           <c-input-group>
-            <input aria-label="Search"
-                   cFormControl
-                   placeholder="Search"
-            />
-            
+            <input aria-label="Search" cFormControl placeholder="Search" />
+
             <button cButton color="dark" type="button" variant="outline" (click)="openProfileModal()">
-              <svg [cIcon]="icons.cilPlus"  title="Plus Icon"></svg> New Profile 
+              <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Profile
             </button>
           </c-input-group>
         </div>
-      
+
       </div>
       <table cTable>
         <thead class="table-dark">
@@ -35,46 +32,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Amir</td>
-            <td>Ben Amara</td>
-            <td>23/02/1990</td>
-            <td>Employee</td>
+          <tr *ngFor="let profile of profiles">
+            <th scope="row">{{profile.id}}</th>
+            <td>{{profile.name}}</td>
+            <td>{{profile.surname}}</td>
+            <td>{{profile.birthDate}}</td>
+            <td>Occupation??</td>
             <td style="text-align:center;">
-              <button type="button" cButton color="light" (click)="detailProfile()">
-                <svg [cIcon]="icons.cilFullscreen" width="15" title="detail Icon"></svg>
+              <button type="button" cButton color="light" (click)="detailProfile(profile)">
+                <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
 
               </button> &nbsp;
-              <button type="button" cButton color="light" (click)="deleteProfile(1)">
+              <button type="button" cButton color="light" (click)="editProfile(profile)">
                 <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
               </button> &nbsp;
-              <button type="button" cButton color="light" (click)="updateProfile({})">
+              <button type="button" cButton color="light" (click)="openModalDelete(profile)">
                 <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-              </button>
+            </button>
             </td>
 
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Mlak</td>
-            <td>Dhif</td>
-            <td>23/02/1990</td>
-            <td>employee</td>
-            <td style="text-align:center;">
-              <button type="button" cButton color="light" (click)="detailProfile()">
-                <svg [cIcon]="icons.cilFullscreen" width="15" title="detail Icon"></svg>
-
-              </button> &nbsp;
-              <button type="button" cButton color="light" (click)="deleteProfile(1)">
-                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
-              </button> &nbsp;
-              <button type="button" cButton color="light" (click)="updateProfile({})">
-                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-              </button>
-            </td>
           </tr>
         </tbody>
       </table>
@@ -149,5 +126,97 @@
       Close
     </button>
     <button (click)="cancel()" cButton color="primary">Submit</button>
+  </c-modal-footer>
+</c-modal>
+
+
+<c-modal id="viewProfileDetailsModal" [visible]="viewModalVisible">
+  <c-modal-header>
+    <h5 cModalTitle>Profile details</h5>
+    <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+
+    <div class="container" *ngIf="selectedProfile">
+      <div class="text-center">
+        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 150px;"
+        alt="Avatar" />
+      </div>
+      
+      <div class="row">
+        
+        <div class="col-sm-12">
+          <p><strong>Name:</strong> {{ selectedProfile.name}}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Surname:</strong> {{ selectedProfile.surname }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Birthdate:</strong> {{ selectedProfile.birthDate }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Document number:</strong> {{ selectedProfile.documentNumber }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Sex:</strong> {{ selectedProfile.sex }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Nationality:</strong> {{ selectedProfile.nationality }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Expiry date:</strong> {{ selectedProfile.expiryDate }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Personal data:</strong> {{ selectedProfile.personalData }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>MRZ1:</strong> {{ selectedProfile.mrZ1 }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>MRZ2:</strong> {{ selectedProfile.mrZ2 }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>MRZ3:</strong> {{ selectedProfile.mrZ3 }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Issue country:</strong> {{ selectedProfile.issueCountry }}</p>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <p><strong>Profile:</strong> Profile {{ camera.ProfileId }}</p>
+        </div>
+      </div> -->
+    </div>
+
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="cancel()" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+
+
+<c-modal id="viewProfileDeleteModal" [visible]="viewModalDeleteVisible">
+  <c-modal-header>
+      <h5 cModalTitle>Confirmation</h5>
+      <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+
+      <div class="container">
+          <h5>Are you sure you want to delete?</h5>
+      </div>
+
+  </c-modal-body>
+  <c-modal-footer>
+      <button size="lg" class="float-left" (click)="viewModalDeleteVisible = false" cButton color="secondary">
+          No
+      </button>
+      <button size="lg" class="float-right" (click)="cancel()" cButton color="danger">
+          Yes
+      </button>
   </c-modal-footer>
 </c-modal>

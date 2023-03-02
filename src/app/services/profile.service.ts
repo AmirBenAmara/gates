@@ -42,10 +42,10 @@ export interface Profile {
   documentNumber?: number;
   sex?: string;
   nationality?: string;
-  expiryDate?:Date;
-  personalData?:String;
-  MRZ1?:String;
-  MRZ2?:String;
-  MRZ3?:String;
-  issueCountry?:String;
+  expiryDate?:string;
+  personalData?:string;
+  mrZ1?:string;
+  mrZ2?:string;
+  mrZ3?:string;
+  issueCountry?:string;
 }

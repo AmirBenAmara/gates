@@ -9,6 +9,7 @@ import { cilPencil, cilTrash, cilPlus } from '@coreui/icons';
 export class UsersComponent {
   icons = { cilPencil, cilTrash ,cilPlus};
   public visible = false;
+  public viewModalDeleteVisible = false;
 
   openUserModal() {
     this.visible = true;

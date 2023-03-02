@@ -29,6 +29,8 @@ export class DoorsComponent {
   icons = { cilPencil, cilTrash ,cilPlus,cilInfo};
   public visible = false;
   public viewModalVisible: boolean = false
+  public viewModalDeleteVisible = false;
+
   constructor(private DoorService: DoorsService, private fb: FormBuilder) { }
   
   ngOnInit(): void {
@@ -66,6 +68,11 @@ export class DoorsComponent {
   detailDoor(door: Door | undefined) {
     this.viewModalVisible = true
     this.selectedDoor = door;
+  }
+
+  openModalDelete(door: Door | undefined){
+    this.selectedDoor = door;
+    this.viewModalDeleteVisible = true
   }
 
 
