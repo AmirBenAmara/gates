@@ -1,55 +1,98 @@
-<div class="example ">
+<c-container fluid>
+    <c-row>
+        <c-col lg="12">
+            <div class="example">
 
-    <div class="tab-content rounded-bottom">
-        <div class="tab-pane active show p-3 preview fade">
+                <div class="card  mt-4 mb-2">
+                    <div class="card-header bg-white">
+                        <div class="fs-2 fw-semibold bg-white "><strong>Manage Users</strong></div>
+                        <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
+                    </div>
+                    <div class="card-body">
 
-            <div class="row">
-                <div class="col-6 mb-3">
-                  <h2><strong> Manage Users</strong></h2>
-              
+                        <div class="tab-content rounded-bottom">
+                            <div class="tab-pane active show p-3 preview fade">
+
+                                <div class="row">
+                                    <div class="col-6">
+
+
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <c-input-group>
+                                            <input aria-label="Search" cFormControl placeholder="Search" />
+
+                                            <button cButton color="dark" type="button" variant="outline"
+                                                (click)="openUserModal()">
+                                                <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New User
+                                            </button>
+                                        </c-input-group>
+                                    </div>
+
+                                </div>
+
+                                <table cTable>
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">email</th>
+                                            <th scope="col">Role</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto@otto.com</td>
+                                            <td>Admin</td>
+                                            <td style="text-align:center;">
+                                                <button type="button" cButton  color="light">
+                                                  <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+                        
+                                                </button> &nbsp;
+                                                <button type="button" cButton color="light" >
+                                                  <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+                        
+                                                </button> &nbsp;
+                                                <button type="button" cButton color="light" >
+                                                  <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                                                </button>
+                                              </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton@otto.com</td>
+                                            <td>User</td>
+                                            <td style="text-align:center;">
+                                                <button type="button" cButton  color="light">
+                                                  <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+                        
+                                                </button> &nbsp;
+                                                <button type="button" cButton color="light" >
+                                                  <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+                        
+                                                </button> &nbsp;
+                                                <button type="button" cButton color="light" >
+                                                  <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                                                </button>
+                                              </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+
+                    </div>
                 </div>
-                <div class="col-6 mt-3">
-                  <c-input-group>
-                    <input aria-label="Search"
-                           cFormControl
-                           placeholder="Search"
-                    />
-                    
-                    <button cButton color="dark" type="button" variant="outline" (click)="openUserModal()">
-                      <svg [cIcon]="icons.cilPlus"  title="Plus Icon"></svg> New User 
-                    </button>
-                  </c-input-group>
-                </div>
-              
-              </div>
-            <table cTable>
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">email</th>
-                        <th scope="col">Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto@otto.com</td>
-                        <td>Admin</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton@otto.com</td>
-                        <td>User</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
+            </div>
+        </c-col>
+    </c-row>
+</c-container>
 
 <c-modal id="UserModal" [visible]="visible" (visibleChange)="handleUserModalVisbilityChange($event)">
     <c-modal-header>
@@ -68,7 +111,7 @@
 
 <c-modal id="viewUserDeleteModal" [visible]="viewModalDeleteVisible">
     <c-modal-header>
-        <h5 cModalTitle>Confirmation</h5>
+        <h5 cModalTitle>Delete Confirmation</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
@@ -79,11 +122,10 @@
 
     </c-modal-body>
     <c-modal-footer>
-        <button size="lg" class="float-left" (click)="viewModalDeleteVisible = false" cButton color="secondary">
-            No
+        <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
+          Close
         </button>
-        <button size="lg" class="float-right" (click)="cancel()" cButton color="danger">
-            Yes
-        </button>
-    </c-modal-footer>
+        <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
+      </c-modal-footer>
+  
 </c-modal>

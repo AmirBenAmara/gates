@@ -1,151 +1,150 @@
+<c-container fluid>
+  <c-row>
+    <c-col lg="12">
+      <div class="example">
+
+        <div class="card  mt-4 mb-2">
+          <div class="card-header bg-white">
+            <div class="fs-2 fw-semibold bg-white "><strong>Manage Doors</strong></div>
+            <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
+          </div>
+          <div class="card-body">
+
+            <div class="tab-content rounded-bottom">
+              <div class="tab-pane active show p-3 preview fade">
+
+                <div class="row">
+                  <div class="col-6">
 
 
-<div class="example ">
+                  </div>
+                  <div class="col-6 mb-3">
+                    <c-input-group>
+                      <input aria-label="Search" cFormControl placeholder="Search" />
 
-    <div class="tab-content rounded-bottom">
-        <div class="tab-pane active show p-3 preview fade">
+                      <button cButton color="dark" type="button" variant="outline" (click)="openDoorModal()">
+                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Door
+                      </button>
+                    </c-input-group>
+                  </div>
 
-            <div class="row">
-                <div class="col-6 mb-3">
-                  <h2><strong> Manage Doors</strong></h2>
-              
                 </div>
-                <div class="col-6 mt-3">
-                  <c-input-group>
-                    <input aria-label="Search"
-                           cFormControl
-                           placeholder="Search"
-                    />
-                    
-                    <button cButton color="dark" type="button" variant="outline" (click)="openDoorModal()">
-                      <svg [cIcon]="icons.cilPlus"  title="Plus Icon"></svg> New Door 
-                    </button>
-                  </c-input-group>
-                </div>
-              
-              </div>
-            <table cTable>
-                <thead class="table-dark">
+                <table cTable>
+                  <thead class="table-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Department</th>
-                        <th scope="col"></th>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Department</th>
+                      <th scope="col"></th>
 
                     </tr>
-                </thead>
-                <tbody>
+                  </thead>
+                  <tbody>
                     <tr *ngFor="let door of doors">
-                        <th scope="row">{{door.id}}</th>
-                        <td>{{door.name}}</td>
-                        <!-- <td>{{door.department.name}}</td> -->
-                        <td>department1</td>
-                        <td style="text-align:center;">
-                            <button type="button" cButton color="light" (click)="detailDoor(door)">
-                                <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+                      <th scope="row">{{door.id}}</th>
+                      <td>{{door.name}}</td>
+                      <!-- <td>{{door.department.name}}</td> -->
+                      <td>department1</td>
+                      <td style="text-align:center;">
+                        <button type="button" cButton color="light" (click)="detailDoor(door)">
+                          <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
 
-                            </button> &nbsp;
-                            <button type="button" cButton color="light" (click)="editDoor(door)">
-                                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+                        </button> &nbsp;
+                        <button type="button" cButton color="light" (click)="editDoor(door)">
+                          <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
-                            </button> &nbsp;
-                            <button type="button" cButton color="light" (click)="openModalDelete(door)">
-                              <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-                          </button>
-                        </td>
-                </tbody>
-            </table>
+                        </button> &nbsp;
+                        <button type="button" cButton color="light" (click)="openModalDelete(door)">
+                          <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                        </button>
+                      </td>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+
+          </div>
         </div>
-    </div>
-</div>
-<!-- </c-card-body>
-        </c-card>
+      </div>
     </c-col>
-</c-row> -->
+  </c-row>
+</c-container>
 
 <c-modal id="DoorModal" [visible]="visible" size="lg" (visibleChange)="handleDoorModalVisbilityChange($event)">
-    <c-modal-header>
-        <h5 cModalTitle>New Door</h5>
-        <button (click)="cancel()" cButtonClose></button>
-    </c-modal-header>
-    <c-modal-body><form [formGroup]="doorForm" class="form-horizontal">
-        
-        <div class="form-group row mb-3">
-          <label for="name" class="col-md-3 col-form-label">Name</label>
-          <div class="col-md-9">
-            <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
-          </div>
+  <c-modal-header>
+    <h5 cModalTitle>New Door</h5>
+    <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form [formGroup]="doorForm" class="form-horizontal">
+
+      <div class="form-group row mb-3">
+        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
         </div>
-        <div class="form-group row mb-3">
-          <label for="departmentId" class="col-md-3 col-form-label">Department ID</label>
-          <div class="col-md-9">
-            <input type="number" class="form-control" cFormControl formControlName="departmentId" id="departmentId" placeholder="Department ID">
-          </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="departmentId" class="col-md-3 col-form-label">Department ID</label>
+        <div class="col-md-9">
+          <input type="number" class="form-control" cFormControl formControlName="departmentId" id="departmentId"
+            placeholder="Department ID">
         </div>
-      </form></c-modal-body>
-    <c-modal-footer>
-        <button (click)="cancel()" cButton color="secondary">
-            Close
-        </button>
-        <button (click)="cancel()" cButton color="primary">Submit</button>
-    </c-modal-footer>
+      </div>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="cancel()" cButton color="secondary">
+      Close
+    </button>
+    <button (click)="cancel()" cButton color="primary">Submit</button>
+  </c-modal-footer>
 </c-modal>
 
 <c-modal id="viewDoorDetailsModal" [visible]="viewModalVisible">
-    <c-modal-header>
-        <h5 cModalTitle>Door details</h5>
-        <button (click)="cancel()" cButtonClose></button>
-    </c-modal-header>
-    <c-modal-body>
+  <c-modal-header>
+    <h5 cModalTitle>Door details</h5>
+    <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
 
-        <div class="container" *ngIf="selectedDoor">
-            <div class="row">
-                <div class="col-sm-12">
-                  <p><strong>Name:</strong> {{ selectedDoor.name}}</p>
-                </div>
-                <!-- <div class="col-sm-12">
-                  <p><strong>IP Address:</strong> {{ camera.ipAddress }}</p>
-                </div>
-                <div class="col-sm-12">
-                  <p><strong>Serial Number:</strong> {{ camera.serialNumber }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <p><strong>Door:</strong> Door {{ camera.doorId }}</p>
-                </div> -->
-            </div>
+    <div class="container" *ngIf="selectedDoor">
+      <div class="row">
+        <div class="col-sm-12">
+          <p><strong>Name:</strong> {{ selectedDoor.name}}</p>
         </div>
+      </div>
+    </div>
 
-    </c-modal-body>
-    <c-modal-footer>
-        <button (click)="cancel()" cButton color="secondary">
-            Close
-        </button>
-    </c-modal-footer>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="cancel()" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
 </c-modal>
 
 
 <c-modal id="viewDoorDeleteModal" [visible]="viewModalDeleteVisible">
   <c-modal-header>
-      <h5 cModalTitle>Confirmation</h5>
-      <button (click)="cancel()" cButtonClose></button>
+    <h5 cModalTitle>Delete Confirmation</h5>
+    <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
 
-      <div class="container">
-          <h5>Are you sure you want to delete?</h5>
-      </div>
+    <div class="container">
+      <h5>Are you sure you want to delete?</h5>
+    </div>
 
   </c-modal-body>
   <c-modal-footer>
-      <button size="lg" class="float-left" (click)="viewModalDeleteVisible = false" cButton color="secondary">
-          No
-      </button>
-      <button size="lg" class="float-right" (click)="cancel()" cButton color="danger">
-          Yes
-      </button>
+    <button size="lg" class="float-left" (click)="viewModalDeleteVisible = false" cButton color="secondary">
+      No
+    </button>
+    <button size="lg" class="float-right" (click)="cancel()" cButton color="danger">
+      Yes
+    </button>
   </c-modal-footer>
 </c-modal>
-
-

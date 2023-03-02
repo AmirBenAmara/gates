@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { cilPencil, cilTrash, cilPlus } from '@coreui/icons';
+import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 
 @Component({
   selector: 'app-users',
@@ -7,7 +7,7 @@ import { cilPencil, cilTrash, cilPlus } from '@coreui/icons';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
-  icons = { cilPencil, cilTrash ,cilPlus};
+  icons = { cilPencil, cilTrash ,cilPlus ,cilInfo};
   public visible = false;
   public viewModalDeleteVisible = false;
 
