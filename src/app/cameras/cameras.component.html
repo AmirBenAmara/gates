@@ -1,108 +1,130 @@
-<div class="example ">
 
+
+<div class="example ">
+  <div class="fs-2 fw-semibold"><strong>Manage Cameras</strong></div>
+  <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
+  <div class="card mt-4 mb-2">
+    <!-- <div class="card-header bg-white">
+     
+
+    </div> -->
+    <div class="card-body">
   <div class="tab-content rounded-bottom">
     <div class="tab-pane active show p-3 preview fade">
-<div class="row">
+<!-- <div class="row">
   <div class="col-6 mb-3">
-    <h2><strong> Manage Cameras</strong></h2>
+    <div class="fs-2 fw-semibold">Manage Cameras</div>
+    <c-breadcrumb-router class="ms-2"></c-breadcrumb-router>
 
   </div>
-  <div class="col-6 mt-3">
-    <c-input-group>
-      <input aria-label="Search"
-             cFormControl
-             placeholder="Search"
-      />
-      
-      <button cButton color="dark" type="button" variant="outline" (click)="openCameraModal()">
-        <svg [cIcon]="icons.cilPlus"  title="Plus Icon"></svg> New Camera 
-      </button>
-    </c-input-group>
-  </div>
-
-</div>
+  
+</div> -->
       
       <!-- <button cButton type="button" style="float:right" color="dark" (click)="openCameraModal()">
         <svg [cIcon]="icons.cilPlus" width="16" title="Plus Icon"></svg>
         <strong> Add Camera</strong>
       </button> -->
       <!-- <h1>&nbsp;</h1> -->
-      <table cTable>
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">IP Address</th>
-            <th scope="col">Serial Number</th>
-            <th scope="col">Door</th>
-            <th scope="col"></th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cam of cameras">
-            <th scope="row">{{ cam.id }}</th>
-            <td>{{ cam.name }}</td>
-            <td>{{ cam.ipAddress }}</td>
-            <td>{{ cam.serialNumber }}</td>
-            <td>Door {{ cam.doorId }}</td>
-            <td style="text-align:center;">
-              <button type="button" cButton (click)="openViewCameraDetailsModal(cam)" color="light">
-                <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
-
-              </button> &nbsp;
-              <button type="button" cButton color="light" (click)="deleteCamera(cam.id)">
-                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
-              </button> &nbsp;
-              <button type="button" cButton color="light" (click)="updateCamera(cam)">
-                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-              </button>
-            </td>
-
-          </tr>
-          <!-- <tr>
-            <th scope="row">2</th>
-            <td>Camera 2</td>
-            <td>172.53.3.6</td>
-            <td>N552854AG654657</td>
-            <td>Door 2</td>
-            <td style="text-align:center;">
-              <button type="button" cButton (click)="openViewCameraDetailsModal()" color="light">
-                <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
-
-              </button> &nbsp;
-              <button type="button" cButton color="light" (click)="deleteCamera(1)">
-                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
-              </button> &nbsp;
-              <button type="button" cButton color="light" (click)="updateCamera({})">
-                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Camera 3</td>
-            <td>172.53.3.7</td>
-            <td>N552854AG654670</td>
-            <td>Door 3</td>
-            <td style="text-align:center;">
-              <button type="button" cButton (click)="openViewCameraDetailsModal()" color="light">
-                <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
-
-              </button> &nbsp;
-              <button type="button" cButton color="light" (click)="deleteCamera(1)">
-                <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
-              </button> &nbsp;
-              <button type="button" cButton color="light" (click)="updateCamera({})">
-                <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-              </button>
-            </td>
-          </tr> -->
-        </tbody>
-      </table>
+      
+          <div class="row">
+            <div class="col-6">
+              
+          
+            </div>
+            <div class="col-6 mb-3">
+              <c-input-group>
+                <input aria-label="Search"
+                       cFormControl
+                       placeholder="Search"
+                />
+                
+                <button cButton color="dark" type="button" variant="outline" (click)="openCameraModal()">
+                  <svg [cIcon]="icons.cilPlus"  title="Plus Icon"></svg> New Camera 
+                </button>
+              </c-input-group>
+            </div>
+          
+          </div>
+          <table cTable>
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">IP Address</th>
+                <th scope="col">Serial Number</th>
+                <th scope="col">Door</th>
+                <th scope="col"></th>
+    
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cam of cameras">
+                <th scope="row">{{ cam.id }}</th>
+                <td>{{ cam.name }}</td>
+                <td>{{ cam.ipAddress }}</td>
+                <td>{{ cam.serialNumber }}</td>
+                <td>Door {{ cam.doorId }}</td>
+                <td style="text-align:center;">
+                  <button type="button" cButton (click)="openViewCameraDetailsModal(cam)" color="light">
+                    <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+    
+                  </button> &nbsp;
+                  <button type="button" cButton color="light" (click)="updateCamera(cam.id)">
+                    <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+    
+                  </button> &nbsp;
+                  <button type="button" cButton color="light" (click)="deleteCameraupdateCamera(cam)">
+                    <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                  </button>
+                </td>
+    
+              </tr>
+              <!-- <tr>
+                <th scope="row">2</th>
+                <td>Camera 2</td>
+                <td>172.53.3.6</td>
+                <td>N552854AG654657</td>
+                <td>Door 2</td>
+                <td style="text-align:center;">
+                  <button type="button" cButton (click)="openViewCameraDetailsModal()" color="light">
+                    <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+    
+                  </button> &nbsp;
+                  <button type="button" cButton color="light" (click)="deleteCamera(1)">
+                    <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+    
+                  </button> &nbsp;
+                  <button type="button" cButton color="light" (click)="updateCamera({})">
+                    <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Camera 3</td>
+                <td>172.53.3.7</td>
+                <td>N552854AG654670</td>
+                <td>Door 3</td>
+                <td style="text-align:center;">
+                  <button type="button" cButton (click)="openViewCameraDetailsModal()" color="light">
+                    <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+    
+                  </button> &nbsp;
+                  <button type="button" cButton color="light" (click)="deleteCamera(1)">
+                    <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+    
+                  </button> &nbsp;
+                  <button type="button" cButton color="light" (click)="updateCamera({})">
+                    <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                  </button>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+      
     </div>
   </div>
 </div>
