@@ -1,19 +1,15 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-
-
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GuestService {
+  apiUrl: string = environment.apiUrl + 'Guest';
 
-  apiUrl: string = 'ChangeWithApiUrL';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   createGuest(Guest: Guest): Observable<Guest> {
     return this.http.post<Guest>(this.apiUrl, Guest);
@@ -45,9 +41,8 @@ export interface Guest {
   cin?: number;
   birthDate?: string;
   birthPlace?: string;
-  motherName?:string;
-  occupation?:string;
-  actualAddress?:string;
-  cinDeliverDate?:string;
+  motherName?: string;
+  occupation?: string;
+  actualAddress?: string;
+  cinDeliverDate?: string;
 }
-
