@@ -34,7 +34,9 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Name</th>
+                      <th scope="col">Description</th>
                       <th scope="col">Department</th>
+
                       <th scope="col"></th>
 
                     </tr>
@@ -43,8 +45,10 @@
                     <tr *ngFor="let door of doors">
                       <th scope="row">{{door.id}}</th>
                       <td>{{door.name}}</td>
+                      <td>{{door.description}}</td>
                       <!-- <td>{{door.department.name}}</td> -->
-                      <td>department1</td>
+                      <td>{{door.departmentId}}</td>
+
                       <td style="text-align:center;">
                         <button type="button" cButton color="light" (click)="detailDoor(door)">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
@@ -87,12 +91,39 @@
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label for="departmentId" class="col-md-3 col-form-label">Department ID</label>
+        <label for="cameras" class="col-md-3 col-form-label">Department</label>
         <div class="col-md-9">
-          <input type="number" class="form-control" cFormControl formControlName="departmentId" id="departmentId"
-            placeholder="Department ID">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="departmentId" placeholder="Cameras">
+            <option *ngFor="let department of departments">{{department.name}}</option>
+          </select>
         </div>
       </div>
+      <div class="form-group row mb-3">
+        <label for="cameras" class="col-md-3 col-form-label">Cameras</label>
+        <div class="col-md-9">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="departmentId" placeholder="Cameras">
+            <option *ngFor="let camera of cameras">{{camera.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="cameras" class="col-md-3 col-form-label">Readers</label>
+        <div class="col-md-9">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="departmentId" placeholder="Cameras">
+            <option *ngFor="let reader of readers">{{reader.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="cameras" class="col-md-3 col-form-label">Wave Share</label>
+        <div class="col-md-9">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="departmentId" placeholder="Cameras">
+            <option *ngFor="let waveShare of waveShares">{{waveShare.name}}</option>
+          </select>
+        </div>
+      </div>
+      
+
     </form>
   </c-modal-body>
   <c-modal-footer>
@@ -114,6 +145,26 @@
       <div class="row">
         <div class="col-sm-12">
           <p><strong>Name:</strong> {{ selectedDoor.name}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <p><strong>Department:</strong> <span >department 1 </span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <p><strong>Cameras:</strong> <span *ngFor="let camera of selectedDoor.cameras">{{camera.name}},</span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <p><strong>Readers:</strong> <span *ngFor="let reader of selectedDoor.readers">{{reader.name}},</span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <p><strong>Wave Share:</strong> {{ selectedDoor.waveShare.name}}</p>
         </div>
       </div>
     </div>

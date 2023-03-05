@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { Reader, ReadersDATA } from './readers.service';
+import { Camera, CamerasDATA } from './cameras.service';
+import { WaveShare } from './wave-share.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +15,12 @@ export class DoorsService {
   constructor(private http: HttpClient) { }
 
   
+  // getDoors(): Observable<Door[]> {
+  //   return this.http.get<Door[]>(`${this.apiUrl}`);
+  // }
   getDoors(): Observable<Door[]> {
-    return this.http.get<Door[]>(`${this.apiUrl}`);
+    return of (DoorsDATA);
+    // return this.http.get<Reader[]>(this.apiUrl);
   }
 
   getDoorById(doorId: number): Observable<Door[]> {
@@ -37,5 +45,27 @@ export class DoorsService {
 export interface Door {
   id: number;
   name: string;
+  description : string;
   departmentId?: number;
+  readers : Reader[],
+  cameras : Camera[],
+  waveShare : WaveShare,
 }
+
+export const DoorsDATA: Door[] = [
+  {
+    id: 0,
+    name: 'door1',
+    description: 'door1description',
+    departmentId: 0,
+    readers: ReadersDATA,
+    cameras: CamerasDATA,
+    waveShare: { 
+      id: 1,
+      ipAddress: '172.53.3.6',
+      serialNumber: 'N552854AG654657',
+      name: 'W Share 1',
+      doorId:0 
+    },
+  },
+]

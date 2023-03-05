@@ -1,45 +1,76 @@
 import { Component } from '@angular/core';
-import { cilPencil, cilPlus, cilTrash , cilInfo} from '@coreui/icons';
-import {DoorsService,Door} from '../services/doors.service'
+import { cilPencil, cilPlus, cilTrash, cilInfo } from '@coreui/icons';
+import { DoorsService, Door } from '../services/doors.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Department, DepartmentsService } from '../services/departments.service';
+import { Camera, CamerasService } from '../services/cameras.service';
+import { Reader, ReadersService } from '../services/readers.service';
+import { WaveShare, WaveShareService } from '../services/wave-share.service';
 
 @Component({
   selector: 'app-doors',
   templateUrl: './doors.component.html',
-  styleUrls: ['./doors.component.scss']
+  styleUrls: ['./doors.component.scss'],
 })
 export class DoorsComponent {
   doorForm = this.fb.group({
     name: ['', Validators.required],
     departmentId: [null, Validators.required],
   });
-  doors: Door[] =[
-    {
-      id : 1,
-      name : 'door1',
-      departmentId : 2
-    },
-    {
-      id : 2,
-      name : 'door2',
-      departmentId : 1
-    }
-  ];
-  selectedDoor : Door | undefined;
-  icons = { cilPencil, cilTrash ,cilPlus,cilInfo};
+  doors: Door[] | undefined;
+  departments: Department[] | undefined;
+  cameras: Camera[] | undefined;
+  readers: Reader[] | undefined;
+  waveShares : WaveShare[] | undefined;
+  selectedDoor: Door | undefined;
+  icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
-  public viewModalVisible: boolean = false
+  public viewModalVisible: boolean = false;
   public viewModalDeleteVisible = false;
 
-  constructor(private DoorService: DoorsService, private fb: FormBuilder) { }
-  
+  constructor(
+    private DoorService: DoorsService,
+     private departmentService: DepartmentsService,
+     private readerService: ReadersService,
+     private cameraService: CamerasService,
+     private waveShareService: WaveShareService,
+     private fb: FormBuilder,
+
+     ) {}
+
   ngOnInit(): void {
+    this.getDepartments()
+    this.getDoors();
+    this.getReaders();
+    this.getCameras();
+    this.getWaveShares();
     this.doorForm = this.fb.group({
       name: ['', Validators.required],
       departmentId: [null, Validators.required],
     });
   }
 
+  getWaveShares() {
+    this.waveShareService.getWaveShares().subscribe(waveShares => {
+      this.waveShares = waveShares;
+    });
+  }
+  getDepartments() {
+    this.departmentService.getDepartments().subscribe((departments) => {
+      this.departments = departments;
+    });
+  }
+  getReaders() {
+    this.readerService.getReaders().subscribe(readers => {
+      this.readers = readers;
+    });
+  }
+  getCameras() {
+    this.cameraService.getCameras().subscribe(cameras => {
+      this.cameras = cameras;
+    });
+  }
+  
 
   //TODO: finish implementation
   deleteDoor(id: number) {
@@ -47,13 +78,13 @@ export class DoorsComponent {
   }
   //TODO: finish implementation
   getDoors() {
-    this.DoorService.getDoors().subscribe(Doors => {
+    this.DoorService.getDoors().subscribe((Doors) => {
       this.doors = Doors;
     });
   }
   //TODO: finish implementation
-  updateDoor(id:number, Door: Door) {
-    this.DoorService.updateDoor(id,Door).subscribe();
+  updateDoor(id: number, Door: Door) {
+    this.DoorService.updateDoor(id, Door).subscribe();
   }
 
   //TODO: finish implementation
@@ -61,26 +92,25 @@ export class DoorsComponent {
     this.DoorService.createDoor(Door).subscribe();
   }
 
-  editDoor(door: Door | undefined){
+  editDoor(door: Door | undefined) {
     this.selectedDoor = door;
   }
 
   detailDoor(door: Door | undefined) {
-    this.viewModalVisible = true
+    this.viewModalVisible = true;
     this.selectedDoor = door;
   }
 
-  openModalDelete(door: Door | undefined){
+  openModalDelete(door: Door | undefined) {
     this.selectedDoor = door;
-    this.viewModalDeleteVisible = true
+    this.viewModalDeleteVisible = true;
   }
-
 
   //TODO: finish implementation
 
   cancel() {
     this.visible = false;
-    this.viewModalVisible = false
+    this.viewModalVisible = false;
   }
   //TODO: finish implementation
 
@@ -91,5 +121,4 @@ export class DoorsComponent {
   openDoorModal() {
     this.visible = true;
   }
-  
 }

@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DepartmentsService {
   apiUrl: string = 'ChangeWithApiUrL';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  
   getDepartments(): Observable<Department[]> {
-    return this.http.get<Department[]>(`${this.apiUrl}`);
+    // return this.http.get<Department[]>(`${this.apiUrl}`);
+    return of(DepartmentsDATA);
   }
 
   getDepartmentById(departmentId: number): Observable<Department[]> {
@@ -23,11 +23,14 @@ export class DepartmentsService {
     return this.http.post<Department>(this.apiUrl, department);
   }
 
-  updateDepartment(departmentId: number, department: Department): Observable<void> {
+  updateDepartment(
+    departmentId: number,
+    department: Department
+  ): Observable<void> {
     const url = `${this.apiUrl}/${departmentId}`;
     return this.http.put<void>(url, department);
   }
-  
+
   deleteDepartment(departmentId: number): Observable<void> {
     const url = `${this.apiUrl}/${departmentId}`;
     return this.http.delete<void>(url);
@@ -39,3 +42,21 @@ export interface Department {
   name: string;
 }
 
+export const DepartmentsDATA: Department[] = [
+  {
+    id: 1,
+    name: 'department 1',
+  },
+  {
+    id: 2,
+    name: 'department 2',
+  },
+  {
+    id: 3,
+    name: 'department 3',
+  },
+  {
+    id: 4,
+    name: 'department 4',
+  },
+];

@@ -15,16 +15,7 @@ export class DepartmentsComponent implements OnInit {
   departmentForm = this.fb.group({
     name: ['', Validators.required],
   });
-  departments: Department[] = [
-    {
-      id: 1,
-      name: 'Department 1',
-    },
-    {
-      id: 2,
-      name: 'Department 2',
-    },
-  ];
+  departments: Department[] | undefined;
   selectedDepartment: Department | undefined ;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
@@ -37,6 +28,7 @@ export class DepartmentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getDepartments()
     this.departmentForm = this.fb.group({
       name: ['', Validators.required],
     });
