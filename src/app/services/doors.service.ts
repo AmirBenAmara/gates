@@ -5,12 +5,14 @@ import { Reader, ReadersDATA } from './readers.service';
 import { Camera, CamerasDATA } from './cameras.service';
 import { WaveShare } from './wave-share.service';
 import { of } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Department, DepartmentsDATA } from './departments.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DoorsService {
-  apiUrl: string = 'ChangeWithApiUrL';
+  apiUrl: string = environment.apiUrl + 'Door';
 
   constructor(private http: HttpClient) { }
 
@@ -46,9 +48,9 @@ export interface Door {
   id: number;
   name: string;
   description : string;
-  departmentId?: number;
-  readers : Reader[],
-  cameras : Camera[],
+  department?: Department;
+  reader : Reader,
+  camera : Camera,
   waveShare : WaveShare,
 }
 
@@ -57,9 +59,9 @@ export const DoorsDATA: Door[] = [
     id: 0,
     name: 'door1',
     description: 'door1description',
-    departmentId: 0,
-    readers: ReadersDATA,
-    cameras: CamerasDATA,
+    department: DepartmentsDATA[0],
+    reader: ReadersDATA[0],
+    camera: CamerasDATA[0],
     waveShare: { 
       id: 1,
       ipAddress: '172.53.3.6',

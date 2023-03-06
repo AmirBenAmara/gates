@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { cilPencil, cilPlus, cilTrash, cilInfo } from '@coreui/icons';
 import { DoorsService, Door } from '../services/doors.service';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Department, DepartmentsService } from '../services/departments.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Department,
+  DepartmentsService,
+} from '../services/departments.service';
 import { Camera, CamerasService } from '../services/cameras.service';
 import { Reader, ReadersService } from '../services/readers.service';
 import { WaveShare, WaveShareService } from '../services/wave-share.service';
@@ -13,15 +16,12 @@ import { WaveShare, WaveShareService } from '../services/wave-share.service';
   styleUrls: ['./doors.component.scss'],
 })
 export class DoorsComponent {
-  doorForm = this.fb.group({
-    name: ['', Validators.required],
-    departmentId: [null, Validators.required],
-  });
+  doorForm: FormGroup;
   doors: Door[] | undefined;
   departments: Department[] | undefined;
   cameras: Camera[] | undefined;
   readers: Reader[] | undefined;
-  waveShares : WaveShare[] | undefined;
+  waveShares: WaveShare[] | undefined;
   selectedDoor: Door | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
@@ -30,28 +30,32 @@ export class DoorsComponent {
 
   constructor(
     private DoorService: DoorsService,
-     private departmentService: DepartmentsService,
-     private readerService: ReadersService,
-     private cameraService: CamerasService,
-     private waveShareService: WaveShareService,
-     private fb: FormBuilder,
-
-     ) {}
+    private departmentService: DepartmentsService,
+    private readerService: ReadersService,
+    private cameraService: CamerasService,
+    private waveShareService: WaveShareService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.getDepartments()
+    this.getDepartments();
     this.getDoors();
     this.getReaders();
     this.getCameras();
     this.getWaveShares();
     this.doorForm = this.fb.group({
       name: ['', Validators.required],
-      departmentId: [null, Validators.required],
+      department: [null, Validators.required],
+      waveshare: ['', Validators.required],
+      cameraEntry: [null, Validators.required],
+      readerEntry: ['', Validators.required],
+      cameraExit: [null, Validators.required],
+      ReaderExit: [null, Validators.required],
     });
   }
 
   getWaveShares() {
-    this.waveShareService.getWaveShares().subscribe(waveShares => {
+    this.waveShareService.getWaveShares().subscribe((waveShares) => {
       this.waveShares = waveShares;
     });
   }
@@ -61,16 +65,15 @@ export class DoorsComponent {
     });
   }
   getReaders() {
-    this.readerService.getReaders().subscribe(readers => {
+    this.readerService.getReaders().subscribe((readers) => {
       this.readers = readers;
     });
   }
   getCameras() {
-    this.cameraService.getCameras().subscribe(cameras => {
+    this.cameraService.getCameras().subscribe((cameras) => {
       this.cameras = cameras;
     });
   }
-  
 
   //TODO: finish implementation
   deleteDoor(id: number) {
@@ -120,5 +123,9 @@ export class DoorsComponent {
 
   openDoorModal() {
     this.visible = true;
+  }
+
+  submitDoorModal(){
+    console.log(this.doorForm.value)
   }
 }
