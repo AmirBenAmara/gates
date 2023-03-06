@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  apiUrl: string = 'ChangeWithApiUrL';
+  apiUrl: string = environment.apiUrl + 'Profile';
 
   constructor(private http: HttpClient) { }
 
