@@ -6,10 +6,32 @@ export const navItems: INavData[] = [
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' },
   },
+  // {
+  //   name: 'Monitoring',
+  //   url: '/monitoring',
+  //   iconComponent: { name: 'cil-audio-spectrum' },
+  // },
   {
     name: 'Monitoring',
-    url: '/monitoring',
     iconComponent: { name: 'cil-audio-spectrum' },
+    children: [
+     
+      {
+        name: 'Real Time Log',
+        url: 'monitoring/real-time-log',
+        iconComponent: { name: 'cil-camera-roll' },
+      },
+      {
+        name: 'Doors Status',
+        url: 'monitoring/doors-status',
+        iconComponent: { name: 'cil-double-quote-sans-right' },
+      },
+      {
+        name: 'Device Status',
+        url: 'monitoring/device-status',
+        iconComponent: { name: 'cil-lan' },
+      },
+    ]
   },
   {
     name: 'Users',

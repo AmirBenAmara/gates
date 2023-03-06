@@ -49,8 +49,10 @@ export class GuestsComponent implements OnInit {
   }
 
   //TODO: finish implementation
-  deleteGuest(id: number) {
-    // this.guestservice.deleteGuest(id).subscribe();
+  deleteGuest() {
+    if(this.selectedGuest){
+      this.guestservice.deleteGuest(this.selectedGuest.id? this.selectedGuest.id : 0).subscribe();
+    }
   }
   //TODO: finish implementation
   getGuests() {
