@@ -26,7 +26,7 @@ export class CamerasService {
     // return this.http.get<Camera[]>(this.apiUrl);
   }
   // UpdateCamera function with an HTTP PUT request
-  updateCamera(camera: Camera): Observable<Camera> {
+  updateCamera(camera: Partial<Camera>): Observable<Camera> {
     const url = `${this.apiUrl}/${camera.id}`;
     return this.http.put<Camera>(url, camera);
   }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CamerasService } from '../services/cameras.service'
 import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Door, DoorsService } from '../services/doors.service';
 
 @Component({
   selector: 'app-cameras',
@@ -10,11 +11,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class CamerasComponent implements OnInit {
   p: number = 1;
+  doors: Door[];
   cameraForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
     name: ['', Validators.required],
-    doorId: [null, Validators.required],
+    doorId: [0, Validators.required],
   });
   camera: Camera = { 
     id: 0,
@@ -27,14 +29,15 @@ export class CamerasComponent implements OnInit {
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public upsertModalVisible:boolean = false;
   public viewModalVisible: boolean = false
-  constructor(private cameraService: CamerasService, private fb: FormBuilder) { }
+  constructor(private cameraService: CamerasService, private fb: FormBuilder, private doorsService: DoorsService) { }
   ngOnInit(): void {
+    this.getDoors();
     this.getCameras();
     this.cameraForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
       name: ['', Validators.required],
-      doorId: [null, Validators.required],
+      doorId: [0, Validators.required],
     });
   }
 
@@ -50,10 +53,21 @@ export class CamerasComponent implements OnInit {
       this.cameras = cameras;
     });
   }
-  //TODO: finish implementation
-  updateCamera(camera: Camera) {
-    this.cameraService.updateCamera(camera).subscribe();
+  getDoors() {
+    this.doorsService.getDoors().subscribe(doors => {
+      this.doors = doors;
+    })
   }
+  //TODO: finish implementation
+  updateCamera() {
+    if (this.cameraForm.valid) {
+  
+      const updatedCamera = this.cameraForm.value;
+  
+      this.cameraService.updateCamera(updatedCamera).subscribe(data =>  this.getCameras() );
+    }
+  }
+  
 
   //TODO: finish implementation
   newCamera(camera: Camera) {
@@ -71,7 +85,11 @@ export class CamerasComponent implements OnInit {
     this.upsertModalVisible = event;
   }
 
-  openCameraModal() {
+  openCameraModal(camera?:Camera) {
+    if (camera) {
+      this.camera = camera;
+      this.cameraForm.patchValue(this.camera);
+    }
     this.upsertModalVisible = true;
   }
 
