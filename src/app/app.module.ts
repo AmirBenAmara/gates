@@ -59,6 +59,9 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { DoorsComponent } from './doors/doors.component';
 import { GuestsComponent } from './guests/guests.component';
 import { WaveSharesComponent } from './wave-shares/wave-shares.component';
+import { RealTimeLogComponent } from './real-time-log/real-time-log.component';
+import { DoorsStatusComponent } from './doors-status/doors-status.component';
+import { DeviceStatusComponent } from './device-status/device-status.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -71,7 +74,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, MonitoringComponent, UsersComponent, DepartmentsComponent, DevicesComponent, CamerasComponent, ReadersComponent, CPanelsComponent, ProfilesComponent, DoorsComponent, GuestsComponent, WaveSharesComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, MonitoringComponent, UsersComponent, DepartmentsComponent, DevicesComponent, CamerasComponent, ReadersComponent, CPanelsComponent, ProfilesComponent, DoorsComponent, GuestsComponent, WaveSharesComponent, RealTimeLogComponent, DoorsStatusComponent, DeviceStatusComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

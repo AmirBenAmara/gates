@@ -24,52 +24,18 @@ export class GuestsComponent implements OnInit {
   public visible = false;
   public viewModalVisible = false;
   public viewModalDeleteVisible = false;
+  editMode: boolean = false;
 
-  guests: Guest[] = [
-    {
-      id: 0,
-      fatherName: 'rjab',
-      surname: 'ahmed',
-      cin: 464511651,
-      birthDate: '01/01/1999',
-      birthPlace: 'Tunisia',
-      motherName: 'jhbjhbj;',
-      occupation: 'CTO',
-      actualAddress: 'Tunis,',
-      cinDeliverDate: '01/01/2020',
-    },
-    {
-      id: 0,
-      fatherName: 'rjab',
-      surname: 'ahmed',
-      cin: 464511651,
-      birthDate: '01/01/1999',
-      birthPlace: 'Tunisia',
-      motherName: 'jhbjhbj;',
-      occupation: 'CTO',
-      actualAddress: 'Tunis,',
-      cinDeliverDate: '01/01/2020',
-    },
-    {
-      id: 0,
-      fatherName: 'rjab',
-      surname: 'ahmed',
-      cin: 464511651,
-      birthDate: '01/01/1999',
-      birthPlace: 'Tunisia',
-      motherName: 'jhbjhbj;',
-      occupation: 'CTO',
-      actualAddress: 'Tunis,',
-      cinDeliverDate: '01/01/2020',
-    },
-  ];
+  guests: Guest[] | undefined;
 
   selectedGuest: Guest | undefined;
 
-  constructor(private guestervice: GuestService, private fb: FormBuilder) {}
+  constructor(private guestservice: GuestService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.getGuests()
     this.guestForm = this.fb.group({
+      id: [''],
       fatherName: ['', Validators.required],
       surname: ['', Validators.required],
       cin: ['', Validators.required],
@@ -83,27 +49,34 @@ export class GuestsComponent implements OnInit {
   }
 
   //TODO: finish implementation
-  deleteGuest(id: number) {
-    // this.GuestService.deleteGuest(id).subscribe();
+  deleteGuest() {
+    if(this.selectedGuest){
+      this.guestservice.deleteGuest(this.selectedGuest.id? this.selectedGuest.id : 0).subscribe();
+    }
   }
   //TODO: finish implementation
   getGuests() {
-    // this.GuestService.getGuests().subscribe(Guests => {
-    //   this.Guests = Guests;
-    // });
+    this.guestservice.getGuests().subscribe(Guests => {
+      this.guests = Guests;
+    });
   }
   //TODO: finish implementation
   updateGuest(Guest: any) {
-    // this.GuestService.updateGuest(Guest).subscribe();
+    // this.guestservice.updateGuest(Guest).subscribe();
   }
 
   //TODO: finish implementation
   newGuest(Guest: any) {
-    // this.GuestService.createGuest(Guest).subscribe();
+    // this.guestservice.createGuest(Guest).subscribe();
   }
 
   editGuest(guest: Guest | undefined) {
-    this.selectedGuest = guest;
+    if (guest) {
+      this.editMode = true;
+      this.selectedGuest = guest;
+      this.guestForm.setValue(guest);
+      this.visible = true;
+    }
   }
 
   detailGuest(guest: Guest | undefined) {
@@ -111,9 +84,9 @@ export class GuestsComponent implements OnInit {
     this.selectedGuest = guest;
   }
 
-  openModalDelete(guest: Guest | undefined){
-    this.selectedGuest = guest
-    this.viewModalDeleteVisible = true
+  openModalDelete(guest: Guest | undefined) {
+    this.selectedGuest = guest;
+    this.viewModalDeleteVisible = true;
   }
   //TODO: finish implementation
 
@@ -129,5 +102,35 @@ export class GuestsComponent implements OnInit {
 
   openGuestModal() {
     this.visible = true;
+  }
+
+  submitAddModal() {
+    let guest: Guest;
+    if (this.guestForm.valid) {
+      console.log(this.guestForm.value);
+      guest = this.guestForm.value;
+      // guest.birthDate = this.formatDate(this.guestForm.value.birthDate);
+      // guest.cinDeliverDate = this.formatDate(
+      //   this.guestForm.value.cinDeliverDate
+      // );
+
+      console.log(guest);
+
+      if (this.editMode) {
+        this.guestservice.updateGuest(guest).subscribe((res) => {
+          this.getGuests();
+          this.editMode = false;
+        });
+      } else {
+        this.guestservice.createGuest(guest).subscribe((res) => {
+          this.getGuests();
+        });
+      }
+    }
+  }
+
+  formatDate(date: string) {
+    let dateArray = date.split('-');
+    return dateArray[2] + '/' + dateArray[1] + '/' + dateArray[0];
   }
 }

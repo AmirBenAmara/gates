@@ -18,6 +18,9 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { DoorsComponent } from './doors/doors.component';
 import { GuestsComponent } from './guests/guests.component';
 import { WaveSharesComponent } from './wave-shares/wave-shares.component';
+import { RealTimeLogComponent } from './real-time-log/real-time-log.component';
+import { DoorsStatusComponent } from './doors-status/doors-status.component';
+import { DeviceStatusComponent } from './device-status/device-status.component';
 
 const routes: Routes = [
   {
@@ -87,6 +90,27 @@ const routes: Routes = [
         component: MonitoringComponent,
         data: {
           title: 'Monitoring'
+        }
+      },
+      {
+        path: 'monitoring/real-time-log',
+        component: RealTimeLogComponent,
+        data: {
+          title: 'Real Time Log'
+        }
+      },
+      {
+        path: 'monitoring/doors-status',
+        component: DoorsStatusComponent,
+        data: {
+          title: 'Doors Status'
+        }
+      },
+      {
+        path: 'monitoring/device-status',
+        component: DeviceStatusComponent,
+        data: {
+          title: 'Device Status'
         }
       },
       {

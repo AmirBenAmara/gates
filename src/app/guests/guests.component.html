@@ -111,11 +111,11 @@
             </div>
             <div class="form-group mb-3">
                 <label for="birthDate">Cin:</label>
-                <input type="date" class="form-control" cFormControl formControlName="cin" id="cin" placeholder="cin">
+                <input type="number" class="form-control" cFormControl formControlName="cin" id="cin" placeholder="cin">
             </div>
             <div class="form-group mb-3">
                 <label for="documentNumber">Birthdate:</label>
-                <input type="number" class="form-control" cFormControl formControlName="birthDate" id="birthDate"
+                <input type="text" class="form-control" cFormControl formControlName="birthDate" id="birthDate"
                     placeholder="Birthdate">
             </div>
             <div class="form-group mb-3">
@@ -130,7 +130,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="expiryDate">occupation:</label>
-                <input type="date" class="form-control" cFormControl formControlName="occupation" id="occupation"
+                <input type="text" class="form-control" cFormControl formControlName="occupation" id="occupation"
                     placeholder="occupation">
             </div>
             <div class="form-group mb-3">
@@ -149,7 +149,7 @@
         <button (click)="cancel()" cButton color="secondary">
             Close
         </button>
-        <button (click)="cancel()" cButton color="primary">Submit</button>
+        <button (click)="submitAddModal()" cButton color="primary">Submit</button>
     </c-modal-footer>
 </c-modal>
 
@@ -222,7 +222,7 @@
         <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
           Close
         </button>
-        <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
+        <button (click)="deleteGuest()" class="text-white" cButton color="danger">Confirm</button>
       </c-modal-footer>
    
 </c-modal>

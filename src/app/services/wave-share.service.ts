@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WaveShareService {
-  apiUrl: string = 'ChangeWithApiUrL';
+  apiUrl: string = environment + '/waveshare';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +19,7 @@ export class WaveShareService {
   }
 
   getWaveShareById(ctrPanelId: number): Observable<WaveShare[]> {
-    const url = `${this.apiUrl}/${ctrPanelId}`;
+    const url = `${this.apiUrl}${ctrPanelId}`;
     return this.http.get<WaveShare[]>(url);
   }
   createWaveShare(ctrPanel: WaveShare): Observable<WaveShare> {
