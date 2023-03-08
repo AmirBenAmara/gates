@@ -21,16 +21,16 @@ export class DoorsService {
   //   return this.http.get<Door[]>(`${this.apiUrl}`);
   // }
   getDoors(): Observable<Door[]> {
-    return of (DoorsDATA);
-    // return this.http.get<Reader[]>(this.apiUrl);
+    // return of (DoorsDATA);
+    return this.http.get<Door[]>(this.apiUrl);
   }
 
   getDoorById(doorId: number): Observable<Door[]> {
     const url = `${this.apiUrl}/${doorId}`;
     return this.http.get<Door[]>(url);
   }
-  createDoor(door: Door): Observable<Door> {
-    return this.http.post<Door>(this.apiUrl, door);
+  createDoor(doors: Door[]): Observable<Door> {
+    return this.http.post<Door>(this.apiUrl, doors);
   }
 
   updateDoor(doorId: number, door: Door): Observable<void> {

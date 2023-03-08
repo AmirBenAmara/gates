@@ -4,7 +4,8 @@ import {
   DepartmentsService,
   Department,
 } from '../services/departments.service';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { CtrPanel, CPanelsService } from '../services/c-panels.service';
 
 @Component({
   selector: 'app-departments',
@@ -12,25 +13,36 @@ import { Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./departments.component.scss'],
 })
 export class DepartmentsComponent implements OnInit {
-  departmentForm = this.fb.group({
-    name: ['', Validators.required],
-  });
+  departmentForm: FormGroup;
   departments: Department[] | undefined;
-  selectedDepartment: Department | undefined ;
+  ctrPannels: CtrPanel[] | undefined;
+  selectedDepartment: Department | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
-  public viewModalVisible: boolean = false
+  public viewModalVisible: boolean = false;
   public viewModalDeleteVisible = false;
-
+  public editMode = false;
+  
   constructor(
     private departmentService: DepartmentsService,
+    private cPannelsService: CPanelsService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.getDepartments()
+    this.getDepartments();
+    this.getCtrPannels();
     this.departmentForm = this.fb.group({
+      id : [''],
       name: ['', Validators.required],
+      ctrPannels: [[], Validators.required],
+      doors : ['']
+    });
+  }
+
+  getCtrPannels() {
+    this.cPannelsService.getCtrPanels().subscribe((cpannels) => {
+      this.ctrPannels = cpannels;
     });
   }
 
@@ -54,25 +66,31 @@ export class DepartmentsComponent implements OnInit {
     this.departmentService.createDepartment(department).subscribe();
   }
 
-  editDepartment(department: Department | undefined){
-    this.selectedDepartment = department;
+  editDepartment(department: Department | undefined) {
+    if(department){
+      this.selectedDepartment = department;
+      this.editMode = true;
+      this.departmentForm.setValue(department)
+      this.departmentForm.controls['ctrPannels'].setValue(department.ctrPannels.map(el=> el.id))
+      this.visible = true
+    }
   }
 
   detailDepartment(department: Department | undefined) {
     this.selectedDepartment = department;
-    this.viewModalVisible = true
+    this.viewModalVisible = true;
   }
 
-  openModalDelete(department: Department | undefined){
+  openModalDelete(department: Department | undefined) {
     this.selectedDepartment = department;
-    this.viewModalDeleteVisible = true
+    this.viewModalDeleteVisible = true;
   }
 
   //TODO: finish implementation
 
   cancel() {
     this.visible = false;
-    this.viewModalVisible = false
+    this.viewModalVisible = false;
   }
   //TODO: finish implementation
 
@@ -82,5 +100,12 @@ export class DepartmentsComponent implements OnInit {
 
   openDepartmentModal() {
     this.visible = true;
+  }
+
+  submitDepartmentModal() {
+    console.log(this.departmentForm.value);
+    this.departmentService.createDepartment(this.departmentForm.value).subscribe(res=> {
+      this.getDepartments();
+    })
   }
 }

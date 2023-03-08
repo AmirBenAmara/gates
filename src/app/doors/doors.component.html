@@ -102,7 +102,7 @@
       <div class="form-group row mb-3">
         <label for="cameras" class="col-md-3 col-form-label">Wave Share</label>
         <div class="col-md-9">
-          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveshare" placeholder="Cameras">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" placeholder="waveshare">
             <option *ngFor="let waveShare of waveShares" [value]="waveShare.id">{{waveShare.name}}</option>
           </select>
         </div>
@@ -161,6 +161,71 @@
       Close
     </button>
     <button (click)="submitDoorModal()" cButton color="primary">Submit</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal id="editDoorModal" [visible]="editModalVisible" size="lg" (visibleChange)="handleeditDoorModalVisbilityChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>New Door</h5>
+    <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form [formGroup]="editDoorForm" class="form-horizontal">
+
+      <div class="form-group row mb-3">
+        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="name" class="col-md-3 col-form-label">Type</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="description" id="name" placeholder="Description" readonly>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="cameras" class="col-md-3 col-form-label">Department</label>
+        <div class="col-md-9">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" placeholder="Cameras">
+            <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
+          </select>
+        </div>
+      </div>
+      <h5>Devices Configuration</h5>
+      <br>
+      <div class="form-group row mb-3">
+        <label for="cameras" class="col-md-3 col-form-label">Wave Share</label>
+        <div class="col-md-9">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" placeholder="Cameras">
+            <option *ngFor="let waveShare of waveShares" [value]="waveShare.id">{{waveShare.name}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="form-group row mb-3">
+        <label for="cameras" class="col-md-3 col-form-label">Camera</label>
+        <div class="col-md-9">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="camera" placeholder="Cameras">
+            <option *ngFor="let camera of cameras" [value]="camera.id">{{camera.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="cameras" class="col-md-3 col-form-label">Reader</label>
+        <div class="col-md-9">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="reader" placeholder="Cameras">
+            <option *ngFor="let reader of readers" [value]="reader.id">{{reader.name}}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="cancel()" cButton color="secondary">
+      Close
+    </button>
+    <button (click)="submitEditDoor()" cButton color="primary">Submit</button>
   </c-modal-footer>
 </c-modal>
 
@@ -232,7 +297,7 @@
     <button size="lg" class="float-left" (click)="viewModalDeleteVisible = false" cButton color="secondary">
       No
     </button>
-    <button size="lg" class="float-right" (click)="cancel()" cButton color="danger">
+    <button size="lg" class="float-right" (click)="deleteDoor()" cButton color="danger">
       Yes
     </button>
   </c-modal-footer>

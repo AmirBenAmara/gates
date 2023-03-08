@@ -22,8 +22,7 @@
                                         <c-input-group>
                                             <input aria-label="Search" cFormControl placeholder="Search" />
 
-                                            <button cButton color="dark" type="button" variant="outline"
-                                                (click)="openDepartmentModal()">
+                                            <button cButton color="dark" type="button" variant="outline" (click)="openDepartmentModal()">
                                                 <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Department
                                             </button>
                                         </c-input-group>
@@ -46,20 +45,16 @@
                                             <th scope="row">{{department.id}}</th>
                                             <td>{{department.name}}</td>
                                             <td style="text-align:center;">
-                                                <button type="button" cButton color="light"
-                                                    (click)="detailDepartment(department)">
+                                                <button type="button" cButton color="light" (click)="detailDepartment(department)">
                                                     <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
 
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light"
-                                                    (click)="editDepartment(department)">
+                                                <button type="button" cButton color="light" (click)="editDepartment(department)">
                                                     <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light"
-                                                    (click)="openModalDelete(department)">
-                                                    <svg [cIcon]="icons.cilTrash" width="15"
-                                                        title="Trash bin Icon"></svg>
+                                                <button type="button" cButton color="light" (click)="openModalDelete(department)">
+                                                    <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                                                 </button>
                                             </td>
                                         </tr>
@@ -77,8 +72,7 @@
     </c-row>
 </c-container>
 
-<c-modal id="DepartmentModal" [visible]="visible" size="lg"
-    (visibleChange)="handleDepartmentModalVisbilityChange($event)">
+<c-modal id="DepartmentModal" [visible]="visible" size="lg" (visibleChange)="handleDepartmentModalVisbilityChange($event)">
     <c-modal-header>
         <h5 cModalTitle>New Department</h5>
         <button (click)="cancel()" cButtonClose></button>
@@ -87,16 +81,12 @@
         <form [formGroup]="departmentForm">
             <div class="form-group  mb-3">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" cFormControl formControlName="name"
-                    placeholder="Name">
+                <input type="text" class="form-control" id="name" cFormControl formControlName="name" placeholder="Name">
             </div>
             <div class="form-group  mb-3">
-                <label for="name">Controllers</label>
-                <select cSelect id="inputGroupSelect01">
-                    <option>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <label for="controllers">Controllers</label>
+                <select cSelect id="controllers" formControlName="ctrPannels" multiple>
+                    <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel.id">{{ctrPannel.name}}</option>
                 </select>
             </div>
         </form>
@@ -110,7 +100,7 @@
         <button (click)="cancel()" cButton color="secondary">
             Close
         </button>
-        <button (click)="cancel()" cButton color="primary">Submit</button>
+        <button (click)="submitDepartmentModal()" cButton color="primary">Submit</button>
     </c-modal-footer>
 </c-modal>
 
@@ -126,17 +116,12 @@
                 <div class="col-sm-12">
                     <p><strong>Name:</strong> {{ selectedDepartment.name}}</p>
                 </div>
-                <!-- <div class="col-sm-12">
-                  <p><strong>IP Address:</strong> {{ camera.ipAddress }}</p>
+                <div class="col-sm-12">
+                    <p><strong>Doors:</strong> <span *ngFor="let door of selectedDepartment.doors">{{ door.name }}</span></p>
                 </div>
                 <div class="col-sm-12">
-                  <p><strong>Serial Number:</strong> {{ camera.serialNumber }}</p>
+                    <p><strong>Control Panels:</strong><span *ngFor="let ctPanel of selectedDepartment.ctrPannels">{{ ctPanel.name }}</span></p>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <p><strong>Door:</strong> Door {{ camera.doorId }}</p>
-                </div> -->
             </div>
         </div>
 
@@ -164,8 +149,8 @@
     </c-modal-body>
     <c-modal-footer>
         <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
-          Close
+            Close
         </button>
         <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
-      </c-modal-footer>
+    </c-modal-footer>
 </c-modal>
