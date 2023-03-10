@@ -107,14 +107,14 @@ export class GuestsComponent implements OnInit {
   submitAddModal() {
     let guest: Guest;
     if (this.guestForm.valid) {
-      console.log(this.guestForm.value);
+      // console.log(this.guestForm.value);
       guest = this.guestForm.value;
       // guest.birthDate = this.formatDate(this.guestForm.value.birthDate);
       // guest.cinDeliverDate = this.formatDate(
       //   this.guestForm.value.cinDeliverDate
       // );
 
-      console.log(guest);
+      // console.log(guest);
 
       if (this.editMode) {
         this.guestservice.updateGuest(guest).subscribe((res) => {
@@ -122,10 +122,13 @@ export class GuestsComponent implements OnInit {
           this.editMode = false;
         });
       } else {
+        delete guest['id']
+        console.log(guest)
         this.guestservice.createGuest(guest).subscribe((res) => {
           this.getGuests();
         });
       }
+      this.cancel()
     }
   }
 
