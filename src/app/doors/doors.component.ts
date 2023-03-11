@@ -88,7 +88,10 @@ export class DoorsComponent {
 
   //TODO: finish implementation
   deleteDoor() {
-    this.doorService.deleteDoor(this.selectedDoor.id).subscribe();
+    this.doorService.deleteDoor(this.selectedDoor.id).subscribe(res => {
+      this.viewModalDeleteVisible = false
+      this.getDoors();
+    });
   }
   //TODO: finish implementation
   getDoors() {

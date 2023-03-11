@@ -47,8 +47,11 @@ export class DepartmentsComponent implements OnInit {
   }
 
   //TODO: finish implementation
-  deleteDepartment(id: number) {
-    this.departmentService.deleteDepartment(id).subscribe();
+  deleteDepartment() {
+    this.departmentService.deleteDepartment(this.selectedDepartment.id).subscribe(res => {
+      this.viewModalDeleteVisible = false
+      this.getDepartments()
+    });
   }
   //TODO: finish implementation
   getDepartments() {

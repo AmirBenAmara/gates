@@ -54,7 +54,10 @@ export class ProfilesComponent {
 
   //TODO: finish implementation
   deleteProfile() {
-    this.ProfileService.deleteProfile(this.selectedProfile.id).subscribe();
+    this.ProfileService.deleteProfile(this.selectedProfile.id).subscribe(res => {
+      this.viewModalDeleteVisible ; 
+      this.getProfiles()
+    });
   }
   //TODO: finish implementation
   getProfiles() {

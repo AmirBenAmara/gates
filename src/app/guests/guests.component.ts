@@ -51,7 +51,10 @@ export class GuestsComponent implements OnInit {
   //TODO: finish implementation
   deleteGuest() {
     if(this.selectedGuest){
-      this.guestservice.deleteGuest(this.selectedGuest.id? this.selectedGuest.id : 0).subscribe();
+      this.guestservice.deleteGuest(this.selectedGuest.id? this.selectedGuest.id : 0).subscribe(res => {
+        this.viewModalDeleteVisible = false; 
+        this.getGuests()
+      });
     }
   }
   //TODO: finish implementation
