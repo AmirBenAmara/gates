@@ -2,30 +2,31 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CPanelsService {
-  apiUrl: string = 'ChangeWithApiUrL';
+  apiUrl: string = environment.apiUrl + 'CtrPannel';
 
   constructor(private http: HttpClient) { }
 
   
   getCtrPanels(): Observable<CtrPanel[]> {
-    return of(CtrPanelsDATA)
-    // return this.http.get<CtrPanel[]>(`${this.apiUrl}`);
+    // return of(CtrPanelsDATA)
+    return this.http.get<CtrPanel[]>(`${this.apiUrl}`);
   }
 
   getCtrPanelById(ctrPanelId: number): Observable<CtrPanel[]> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.get<CtrPanel[]>(url);
   }
-  createCtrPanel(ctrPanel: CtrPanel): Observable<CtrPanel> {
+  createCtrPanel(ctrPanel: Partial<CtrPanel>): Observable<CtrPanel> {
     return this.http.post<CtrPanel>(this.apiUrl, ctrPanel);
   }
 
-  updateCtrPanel(ctrPanelId: number, ctrPanel: CtrPanel): Observable<void> {
+  updateCtrPanel(ctrPanelId: number, ctrPanel: Partial<CtrPanel>): Observable<void> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.put<void>(url, ctrPanel);
   }

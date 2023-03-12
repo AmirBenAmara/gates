@@ -11,6 +11,7 @@ import { Door, DoorsService } from '../services/doors.service';
 })
 export class CamerasComponent implements OnInit {
   p: number = 1;
+  isEditMode = false;
   doors: Door[];
   cameraForm = this.fb.group({
     ipAddress: ['', Validators.required],
@@ -30,6 +31,7 @@ export class CamerasComponent implements OnInit {
   public upsertModalVisible:boolean = false;
   public viewModalVisible: boolean = false
   constructor(private cameraService: CamerasService, private fb: FormBuilder, private doorsService: DoorsService) { }
+
   ngOnInit(): void {
     this.getDoors();
     this.getCameras();
@@ -41,11 +43,9 @@ export class CamerasComponent implements OnInit {
     });
   }
 
-
   //TODO: finish implementation
-  deleteCamera(id?: number) {
-    if(id)
-    this.cameraService.deleteCamera(id).subscribe();
+  confirmDeleteCamera(id: number) {
+    this.cameraService.deleteCamera(id).subscribe(data =>  this.getCameras());
   }
   //TODO: finish implementation
   getCameras() {
@@ -70,12 +70,16 @@ export class CamerasComponent implements OnInit {
   
 
   //TODO: finish implementation
-  newCamera(camera: Camera) {
-    this.cameraService.createCamera(camera).subscribe();
+  newCamera() {
+    if (this.cameraForm.valid) {
+      const newCamera = this.cameraForm.value;
+      this.cameraService.createCamera(newCamera).subscribe(data =>  this.getCameras());
+    }
   }
 
   //TODO: finish implementation
   cancel() {
+    this.isEditMode = false;
     this.upsertModalVisible = false;
     this.viewModalVisible = false;
   }
@@ -86,6 +90,7 @@ export class CamerasComponent implements OnInit {
   }
 
   openCameraModal(camera?:Camera) {
+    this.cameraForm.reset();
     if (camera) {
       this.camera = camera;
       this.cameraForm.patchValue(this.camera);

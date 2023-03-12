@@ -1,88 +1,120 @@
 <c-container fluid>
   <c-row>
-  <c-col lg="12">
-    <div class="example">
+    <c-col lg="12">
+      <div class="example">
 
-      <div class="card  mt-4 mb-2">
-        <div class="card-header bg-white">
-          <div class="fs-2 fw-semibold"><strong>Manage Readers</strong></div>
-          <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
-        </div>
-        <div class="card-body">
+        <div class="card  mt-4 mb-2">
+          <div class="card-header bg-white">
+            <div class="fs-2 fw-semibold bg-white "><strong>Manage Readers</strong></div>
+            <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
+          </div>
+          <div class="card-body">
 
-          <div class="tab-content rounded-bottom">
-            <div class="tab-pane active show p-3 preview fade">
+            <div class="tab-content rounded-bottom">
+              <div class="tab-pane active show p-3 preview fade">
 
-              <div class="row">
-                <div class="col-6">
+                <div class="row">
+                  <div class="col-6">
 
+
+                  </div>
+                  <div class="col-6 mb-3">
+                    <c-input-group>
+                      <input aria-label="Search" cFormControl placeholder="Search" />
+
+                      <button cButton color="dark" type="button" variant="outline" (click)="isEditMode = false;openReaderModal()">
+                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Reader
+                      </button>
+                    </c-input-group>
+                  </div>
 
                 </div>
-                <div class="col-6 mb-3">
-                  <c-input-group>
-                    <input aria-label="Search" cFormControl placeholder="Search" />
+                <table cTable>
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">IP Address</th>
+                      <th scope="col">Serial Number</th>
+                      <th scope="col">Door</th>
+                      <th scope="col"></th>
 
-                    <button cButton color="dark" type="button" variant="outline" (click)="openReaderModal()">
-                      <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Reader
-                    </button>
-                  </c-input-group>
-                </div>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let rdr of readers">
+                      <th scope="row">{{ rdr.id }}</th>
+                      <td>{{ rdr.name }}</td>
+                      <td>{{ rdr.ipAddress }}</td>
+                      <td>{{ rdr.serialNumber }}</td>
+                      <td>Door {{ rdr.doorId }}</td>
+                      <td style="text-align:center;">
+                        <button type="button" cButton (click)="openViewReaderDetailsModal(rdr)" color="light">
+                          <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+
+                        </button> &nbsp;
+                        <button type="button" cButton color="light" (click)="isEditMode = true; openReaderModal(rdr)">
+                          <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
+                        </button> &nbsp;
+                        <button type="button" cButton color="light" (click)="reader = rdr"
+                          [cModalToggle]="deleteReader.id">
+                          <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                        </button>
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
 
               </div>
-              <table cTable>
-                <thead class="table-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Serial Number</th>
-                    <th scope="col">IP Address</th>
-                    <th scope="col"></th>
 
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let readr of readers">
-                    <th scope="row">{{ readr.id }}</th>
-                    <td>{{ readr.serialNumber }}</td>
-                    <td>{{ readr.ipAddress }}</td>
-                    <td style="text-align:center;">
-                      <button type="button" cButton (click)="openViewReaderDetailsModal()" color="light">
-                        <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
-
-                      </button> &nbsp;
-                      <button type="button" cButton color="light">
-                        <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
-                      </button> &nbsp;
-                      <button type="button" cButton (click)="reader = readr" color="light"
-                        [cModalToggle]="deleteReaderModal.id">
-                        <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
-                      </button>
-                    </td>
-
-                  </tr>
-                </tbody>
-              </table>
             </div>
 
-          </div>
 
+          </div>
         </div>
       </div>
-    </div>
-  </c-col>
-</c-row>
+    </c-col>
+  </c-row>
 </c-container>
 
 
-
-<c-modal id="upsertReaderModal" [visible]="visible" size="lg"
-  (visibleChange)="handleReaderModalVisbilityChange($event)">
+<c-modal #deleteReader id="deleteReader">
   <c-modal-header>
-    <h5 cModalTitle>New Reader</h5>
+    <h5 cModalTitle>Delete Confirmation</h5>
+    <button [cModalToggle]="deleteReader.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <p class="fw-semibold">Are you sure you want to delete this Reader? This action cannot be undone.</p>
+    <p><strong> {{reader.name }} </strong></p>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button [cModalToggle]="deleteReader.id" cButton color="secondary">
+      Close
+    </button>
+    <button (click)="confirmDeleteReader(reader.id)" class="text-white" cButton color="danger">Confirm</button>
+  </c-modal-footer>
+</c-modal>
+
+
+<c-modal id="upsertReaderModal" size="lg" [visible]="upsertModalVisible">
+  <c-modal-header>
+    <h5 cModalTitle *ngIf="!isEditMode">New Reader</h5>
+    <h5 cModalTitle *ngIf="isEditMode">Edit Reader</h5>
+
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-    <form cForm [formGroup]="readerForm" class="form-horizontal">
+    <form [formGroup]="readerForm" class="form-horizontal">
+      <div class="form-group row mb-3">
+        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+        </div>
+      </div>
       <div class="form-group row mb-3">
         <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
         <div class="col-md-9">
@@ -97,17 +129,14 @@
             placeholder="Serial Number">
         </div>
       </div>
+
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <label for="doorId" class="col-md-3 col-form-label">Door</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
-        </div>
-      </div>
-      <div class="form-group row mb-3">
-        <label for="doorId" class="col-md-3 col-form-label">Door ID</label>
-        <div class="col-md-9">
-          <input type="number" class="form-control" cFormControl formControlName="doorId" id="doorId"
-            placeholder="Door ID">
+          <select cSelect id="door-id" class="form-control" cFormControl formControlName="doorId"
+            placeholder="Door">
+            <option *ngFor="let door of doors" [value]="door.id">{{door.name}}</option>
+          </select>
         </div>
       </div>
     </form>
@@ -117,7 +146,8 @@
     <button (click)="cancel()" cButton color="secondary">
       Close
     </button>
-    <button (click)="cancel()" cButton color="primary">Submit</button>
+    <button  *ngIf="isEditMode" (click)="newReader()" cButton color="primary">Submit</button>
+    <button  *ngIf="!isEditMode" (click)="updateReader(reader.id)" cButton color="primary">Submit</button>
   </c-modal-footer>
 </c-modal>
 
@@ -152,24 +182,5 @@
     <button (click)="cancel()" cButton color="secondary">
       Close
     </button>
-    <button (click)="cancel()" cButton color="primary">Submit</button>
-  </c-modal-footer>
-</c-modal>
-
-<c-modal #deleteReaderModal id="deleteReaderModal">
-  <c-modal-header>
-    <h5 cModalTitle>Delete Confirmation</h5>
-    <button [cModalToggle]="deleteReaderModal.id" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>
-    <p class="fw-semibold">Are you sure you want to delete this Reader? This action cannot be undone.</p>
-    <p><strong> {{reader.name }} </strong></p>
-  </c-modal-body>
-
-  <c-modal-footer>
-    <button [cModalToggle]="deleteReaderModal.id" cButton color="secondary">
-      Close
-    </button>
-    <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
   </c-modal-footer>
 </c-modal>

@@ -22,14 +22,13 @@
                     <c-input-group>
                       <input aria-label="Search" cFormControl placeholder="Search" />
 
-                      <button cButton color="dark" type="button" variant="outline" (click)="openCtrPanelModal()">
+                      <button cButton color="dark" type="button" variant="outline" (click)="isEditMode = false;openCtrPanelModal()">
                         <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Control Panel
                       </button>
                     </c-input-group>
                   </div>
 
                 </div>
-
                 <table cTable>
                   <thead class="table-dark">
                     <tr>
@@ -42,35 +41,37 @@
 
                     </tr>
                   </thead>
-                  <tbody *ngFor="let cp of ctrPanels">
-                    <tr>
-                      <th scope="row">{{ cp.id }}</th>
-                      <td>{{ cp.name }}</td>
-                      <td>{{ cp.ipAddress }}</td>
-                      <td>{{ cp.serialNumber }}</td>
-                      <td>Door {{ cp.doorId }}</td>
+                  <tbody>
+                    <tr *ngFor="let ctrPnl of ctrPanels">
+                      <th scope="row">{{ ctrPnl.id }}</th>
+                      <td>{{ ctrPnl.name }}</td>
+                      <td>{{ ctrPnl.ipAddress }}</td>
+                      <td>{{ ctrPnl.serialNumber }}</td>
+                      <td>Door {{ ctrPnl.doorId }}</td>
                       <td style="text-align:center;">
-                        <button type="button" cButton (click)="openViewCtrPanelDetailsModal()" color="light">
+                        <button type="button" cButton (click)="openViewCtrPanelDetailsModal(ctrPnl)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
 
                         </button> &nbsp;
-                        <button type="button" cButton color="light" (click)="updateCtrPanel(1,ctrPanel)">
+                        <button type="button" cButton color="light" (click)="isEditMode = true; openCtrPanelModal(ctrPnl)">
                           <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                         </button> &nbsp;
-                        <button type="button" cButton color="light" (click)="ctrPanel = cp"
-                          [cModalToggle]="deleteCPanelModal.id">
-
+                        <button type="button" cButton color="light" (click)="ctrPanel = ctrPnl"
+                          [cModalToggle]="deleteCtrPanel.id">
                           <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                         </button>
                       </td>
 
                     </tr>
+
                   </tbody>
                 </table>
+
               </div>
 
             </div>
+
 
           </div>
         </div>
@@ -80,13 +81,40 @@
 </c-container>
 
 
+<c-modal #deleteCtrPanel id="deleteCtrPanel">
+  <c-modal-header>
+    <h5 cModalTitle>Delete Confirmation</h5>
+    <button [cModalToggle]="deleteCtrPanel.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <p class="fw-semibold">Are you sure you want to delete this Control Panel? This action cannot be undone.</p>
+    <p><strong> {{ctrPanel.name }} </strong></p>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button [cModalToggle]="deleteCtrPanel.id" cButton color="secondary">
+      Close
+    </button>
+    <button (click)="confirmDeleteCtrPanel(ctrPanel.id)" class="text-white" cButton color="danger">Confirm</button>
+  </c-modal-footer>
+</c-modal>
+
+
 <c-modal id="upsertCtrPanelModal" size="lg" [visible]="upsertModalVisible">
   <c-modal-header>
-    <h5 cModalTitle>New Control Panel</h5>
+    <h5 cModalTitle *ngIf="!isEditMode">New Control Panel</h5>
+    <h5 cModalTitle *ngIf="isEditMode">Edit Control Panel</h5>
+
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="ctrPanelForm" class="form-horizontal">
+      <div class="form-group row mb-3">
+        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+        </div>
+      </div>
       <div class="form-group row mb-3">
         <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
         <div class="col-md-9">
@@ -101,17 +129,14 @@
             placeholder="Serial Number">
         </div>
       </div>
+
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <label for="doorId" class="col-md-3 col-form-label">Door</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
-        </div>
-      </div>
-      <div class="form-group row mb-3">
-        <label for="doorId" class="col-md-3 col-form-label">Door ID</label>
-        <div class="col-md-9">
-          <input type="number" class="form-control" cFormControl formControlName="doorId" id="doorId"
-            placeholder="Door ID">
+          <select cSelect id="door-id" class="form-control" cFormControl formControlName="doorId"
+            placeholder="Door">
+            <option *ngFor="let door of doors" [value]="door.id">{{door.name}}</option>
+          </select>
         </div>
       </div>
     </form>
@@ -121,13 +146,14 @@
     <button (click)="cancel()" cButton color="secondary">
       Close
     </button>
-    <button (click)="cancel()" cButton color="primary">Submit</button>
+    <button  *ngIf="isEditMode" (click)="newCtrPanel()" cButton color="primary">Submit</button>
+    <button  *ngIf="!isEditMode" (click)="updateCtrPanel(ctrPanel.id)" cButton color="primary">Submit</button>
   </c-modal-footer>
 </c-modal>
 
 <c-modal id="viewCtrPanelDetailsModal" [visible]="viewModalVisible">
   <c-modal-header>
-    <h5 cModalTitle>Control panel details</h5>
+    <h5 cModalTitle>CtrPanel details</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
@@ -156,24 +182,5 @@
     <button (click)="cancel()" cButton color="secondary">
       Close
     </button>
-    <button (click)="cancel()" cButton color="primary">Submit</button>
-  </c-modal-footer>
-</c-modal>
-
-<c-modal #deleteCPanelModal id="deleteCPanelModalv">
-  <c-modal-header>
-    <h5 cModalTitle>Delete Confirmation</h5>
-    <button [cModalToggle]="deleteCPanelModal.id" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>
-    <p class="fw-semibold">Are you sure you want to delete this Control panel? This action cannot be undone.</p>
-    <p><strong> {{ctrPanel.name }} </strong></p>
-  </c-modal-body>
-
-  <c-modal-footer>
-    <button [cModalToggle]="deleteCPanelModal.id" cButton color="secondary">
-      Close
-    </button>
-    <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
   </c-modal-footer>
 </c-modal>

@@ -22,7 +22,7 @@
                     <c-input-group>
                       <input aria-label="Search" cFormControl placeholder="Search" />
 
-                      <button cButton color="dark" type="button" variant="outline" (click)="openCameraModal()">
+                      <button cButton color="dark" type="button" variant="outline" (click)="isEditMode = false;openCameraModal()">
                         <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Camera
                       </button>
                     </c-input-group>
@@ -53,7 +53,7 @@
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
 
                         </button> &nbsp;
-                        <button type="button" cButton color="light" (click)="openCameraModal(cam)">
+                        <button type="button" cButton color="light" (click)="isEditMode = true; openCameraModal(cam)">
                           <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                         </button> &nbsp;
@@ -76,105 +76,111 @@
           </div>
         </div>
       </div>
-        </c-col>
-      </c-row>
-      </c-container>
+    </c-col>
+  </c-row>
+</c-container>
 
 
-  <c-modal #deleteCamera id="deleteCamera">
-    <c-modal-header>
-      <h5 cModalTitle>Delete Confirmation</h5>
-      <button [cModalToggle]="deleteCamera.id" cButtonClose></button>
-    </c-modal-header>
-    <c-modal-body>
-      <p class="fw-semibold">Are you sure you want to delete this Camera? This action cannot be undone.</p>
-      <p><strong> {{camera.name }} </strong></p>
-    </c-modal-body>
+<c-modal #deleteCamera id="deleteCamera">
+  <c-modal-header>
+    <h5 cModalTitle>Delete Confirmation</h5>
+    <button [cModalToggle]="deleteCamera.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <p class="fw-semibold">Are you sure you want to delete this Camera? This action cannot be undone.</p>
+    <p><strong> {{camera.name }} </strong></p>
+  </c-modal-body>
 
-    <c-modal-footer>
-      <button [cModalToggle]="deleteCamera.id" cButton color="secondary">
-        Close
-      </button>
-      <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
-    </c-modal-footer>
-  </c-modal>
+  <c-modal-footer>
+    <button [cModalToggle]="deleteCamera.id" cButton color="secondary">
+      Close
+    </button>
+    <button (click)="confirmDeleteCamera(camera.id)" class="text-white" cButton color="danger">Confirm</button>
+  </c-modal-footer>
+</c-modal>
 
 
-  <c-modal id="upsertCameraModal" size="lg" [visible]="upsertModalVisible">
-    <c-modal-header>
-      <h5 cModalTitle>New Camera</h5>
-      <button (click)="cancel()" cButtonClose></button>
-    </c-modal-header>
-    <c-modal-body>
-      <form [formGroup]="cameraForm" class="form-horizontal">
-        <div class="form-group row mb-3">
-          <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
-          <div class="col-md-9">
-            <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress"
-              placeholder="IP Address">
-          </div>
+<c-modal id="upsertCameraModal" size="lg" [visible]="upsertModalVisible">
+  <c-modal-header>
+    <h5 cModalTitle *ngIf="!isEditMode">New Camera</h5>
+    <h5 cModalTitle *ngIf="isEditMode">Edit Camera</h5>
+
+    <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form [formGroup]="cameraForm" class="form-horizontal">
+      <div class="form-group row mb-3">
+        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
         </div>
-        <div class="form-group row mb-3">
-          <label for="serialNumber" class="col-md-3 col-form-label">Serial Number</label>
-          <div class="col-md-9">
-            <input type="text" class="form-control" cFormControl formControlName="serialNumber" id="serialNumber"
-              placeholder="Serial Number">
-          </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress"
+            placeholder="IP Address">
         </div>
-        <div class="form-group row mb-3">
-          <label for="name" class="col-md-3 col-form-label">Name</label>
-          <div class="col-md-9">
-            <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
-          </div>
-        </div>
-        <div class="form-group row mb-3">
-          <label for="doorId" class="col-md-3 col-form-label">Door ID</label>
-          <div class="col-md-9">
-            <input type="number" class="form-control" cFormControl formControlName="doorId" id="doorId"
-              placeholder="Door ID">
-          </div>
-        </div>
-      </form>
-
-    </c-modal-body>
-    <c-modal-footer>
-      <button (click)="cancel()" cButton color="secondary">
-        Close
-      </button>
-      <button (click)="updateCamera()" cButton color="primary">Submit</button>
-    </c-modal-footer>
-  </c-modal>
-
-  <c-modal id="viewCameraDetailsModal" [visible]="viewModalVisible">
-    <c-modal-header>
-      <h5 cModalTitle>Camera details</h5>
-      <button (click)="cancel()" cButtonClose></button>
-    </c-modal-header>
-    <c-modal-body>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <p><strong>Name:</strong> {{ camera.name }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>IP Address:</strong> {{ camera.ipAddress }}</p>
-          </div>
-          <div class="col-sm-12">
-            <p><strong>Serial Number:</strong> {{ camera.serialNumber }}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <p><strong>Door:</strong> Door {{ camera.doorId }}</p>
-          </div>
+      </div>
+      <div class="form-group row mb-3">
+        <label for="serialNumber" class="col-md-3 col-form-label">Serial Number</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="serialNumber" id="serialNumber"
+            placeholder="Serial Number">
         </div>
       </div>
 
-    </c-modal-body>
-    <c-modal-footer>
-      <button (click)="cancel()" cButton color="secondary">
-        Close
-      </button>
-    </c-modal-footer>
-  </c-modal>
+      <div class="form-group row mb-3">
+        <label for="doorId" class="col-md-3 col-form-label">Door</label>
+        <div class="col-md-9">
+          <select cSelect id="door-id" class="form-control" cFormControl formControlName="doorId"
+            placeholder="Door">
+            <option *ngFor="let door of doors" [value]="door.id">{{door.name}}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="cancel()" cButton color="secondary">
+      Close
+    </button>
+    <button  *ngIf="isEditMode" (click)="updateCamera()" cButton color="primary">Submit</button>
+    <button  *ngIf="!isEditMode" (click)="newCamera()" cButton color="primary">Submit</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal id="viewCameraDetailsModal" [visible]="viewModalVisible">
+  <c-modal-header>
+    <h5 cModalTitle>Camera details</h5>
+    <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <p><strong>Name:</strong> {{ camera.name }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>IP Address:</strong> {{ camera.ipAddress }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>Serial Number:</strong> {{ camera.serialNumber }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <p><strong>Door:</strong> Door {{ camera.doorId }}</p>
+        </div>
+      </div>
+    </div>
+
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="cancel()" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>

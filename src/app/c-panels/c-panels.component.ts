@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CPanelsService, CtrPanel } from '../services/c-panels.service'
 import { Validators, FormBuilder } from '@angular/forms';
 import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
+import { Door, DoorsService } from '../services/doors.service';
 
 @Component({
   selector: 'app-c-panels',
@@ -9,39 +10,42 @@ import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
   styleUrls: ['./c-panels.component.scss']
 })
 export class CPanelsComponent implements OnInit {
-  icons = { cilPencil, cilTrash, cilPlus, cilInfo };
+  p: number = 1;
+  isEditMode = false;
+  doors: Door[];
   ctrPanelForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
     name: ['', Validators.required],
-    doorId: [null, Validators.required],
+    doorId: [0, Validators.required],
   });
-  ctrPanel: CtrPanel = {
-    id: 1,
-    ipAddress: '172.53.3.6',
+  ctrPanel: CtrPanel = { 
+    id: 0,
+    ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
-    name: 'C Panel 1',
-    doorId: 0
+    name: 'Undefined',
+    doorId:0 
   }
   ctrPanels: CtrPanel[] | undefined;
-  public viewModalVisible: boolean = false;
-  public upsertModalVisible: boolean = false;
-  constructor(private ctrPanelService: CPanelsService, private fb: FormBuilder) { }
+  icons = { cilPencil, cilTrash, cilPlus, cilInfo };
+  public upsertModalVisible:boolean = false;
+  public viewModalVisible: boolean = false
+  constructor(private ctrPanelService: CPanelsService, private fb: FormBuilder, private doorsService: DoorsService) { }
 
   ngOnInit(): void {
+    this.getDoors();
     this.getCtrPanels();
     this.ctrPanelForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
       name: ['', Validators.required],
-      doorId: [null, Validators.required],
+      doorId: [0, Validators.required],
     });
   }
 
-
   //TODO: finish implementation
-  deleteCtrPanel(id: number) {
-    this.ctrPanelService.deleteCtrPanel(id).subscribe();
+  confirmDeleteCtrPanel(id: number) {
+    this.ctrPanelService.deleteCtrPanel(id).subscribe(data =>  this.getCtrPanels());
   }
   //TODO: finish implementation
   getCtrPanels() {
@@ -49,16 +53,31 @@ export class CPanelsComponent implements OnInit {
       this.ctrPanels = ctrPanels;
     });
   }
+  getDoors() {
+    this.doorsService.getDoors().subscribe(doors => {
+      this.doors = doors;
+    })
+  }
   //TODO: finish implementation
-  updateCtrPanel(id: number, ctrPanel: CtrPanel) {
-    this.ctrPanelService.updateCtrPanel(id, ctrPanel).subscribe();
+  updateCtrPanel(ctrPanelId:number) {
+    if (this.ctrPanelForm.valid) {
+        const updatedCtrPanel = this.ctrPanelForm.value;
+      this.ctrPanelService.updateCtrPanel(ctrPanelId, updatedCtrPanel).subscribe(data =>  this.getCtrPanels() );
+    }
+  }
+  
+
+  //TODO: finish implementation
+  newCtrPanel() {
+    if (this.ctrPanelForm.valid) {
+      const newCtrPanel = this.ctrPanelForm.value;
+      this.ctrPanelService.createCtrPanel(newCtrPanel).subscribe(data =>  this.getCtrPanels());
+    }
   }
 
   //TODO: finish implementation
-  newCtrPanel(ctrPanel: CtrPanel) {
-    this.ctrPanelService.createCtrPanel(ctrPanel).subscribe();
-  }
   cancel() {
+    this.isEditMode = false;
     this.upsertModalVisible = false;
     this.viewModalVisible = false;
   }
@@ -68,12 +87,17 @@ export class CPanelsComponent implements OnInit {
     this.upsertModalVisible = event;
   }
 
-  openCtrPanelModal() {
+  openCtrPanelModal(ctrPanel?:CtrPanel) {
+    this.ctrPanelForm.reset();
+    if (ctrPanel) {
+      this.ctrPanel = ctrPanel;
+      this.ctrPanelForm.patchValue(this.ctrPanel);
+    }
     this.upsertModalVisible = true;
   }
 
-  openViewCtrPanelDetailsModal() {
+  openViewCtrPanelDetailsModal(ctrPanel: CtrPanel) {
+    this.ctrPanel = ctrPanel;
     this.viewModalVisible = true;
   }
-
 }

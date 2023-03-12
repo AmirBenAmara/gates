@@ -8,25 +8,25 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class WaveShareService {
-  apiUrl: string = environment + '/waveshare';
+  apiUrl: string = environment.apiUrl + 'WaveShare';
 
   constructor(private http: HttpClient) { }
 
   
   getWaveShares(): Observable<WaveShare[]> {
-    return of(WaveSharesDATA)
-    // return this.http.get<WaveShare[]>(`${this.apiUrl}`);
+    // return of(WaveSharesDATA)
+    return this.http.get<WaveShare[]>(`${this.apiUrl}`);
   }
 
   getWaveShareById(ctrPanelId: number): Observable<WaveShare[]> {
     const url = `${this.apiUrl}${ctrPanelId}`;
     return this.http.get<WaveShare[]>(url);
   }
-  createWaveShare(ctrPanel: WaveShare): Observable<WaveShare> {
+  createWaveShare(ctrPanel: Partial<WaveShare>): Observable<WaveShare> {
     return this.http.post<WaveShare>(this.apiUrl, ctrPanel);
   }
 
-  updateWaveShare(ctrPanelId: number, ctrPanel: WaveShare): Observable<void> {
+  updateWaveShare(ctrPanelId: number, ctrPanel: Partial<WaveShare>): Observable<void> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.put<void>(url, ctrPanel);
   }

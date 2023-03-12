@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs/internal/observable/of';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CamerasService {
-  apiUrl: string = 'ChangeWithApiUrL';
+  apiUrl: string = environment.apiUrl + 'Camera';
 
   constructor(private http: HttpClient) { }
 
@@ -22,8 +23,8 @@ export class CamerasService {
   // GetCameras function with an HTTP GET request
   getCameras(): Observable<Camera[]> {
     // remove this line and uncomment the 2nd line when implementing with real api
-    return of(CamerasDATA);
-    // return this.http.get<Camera[]>(this.apiUrl);
+    // return of(CamerasDATA);
+    return this.http.get<Camera[]>(this.apiUrl);
   }
   // UpdateCamera function with an HTTP PUT request
   updateCamera(camera: Partial<Camera>): Observable<Camera> {

@@ -2,19 +2,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs/internal/observable/of';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReadersService {
-  apiUrl: string = 'ChangeWithApiUrL';
+  apiUrl: string = environment.apiUrl + 'Reader';
 
   constructor(private http: HttpClient) { }
 
   // GetReaders function with an HTTP GET request
   getReaders(): Observable<Reader[]> {
-    return of(ReadersDATA);
-    // return this.http.get<Reader[]>(this.apiUrl);
+    // return of(ReadersDATA);
+    return this.http.get<Reader[]>(this.apiUrl);
   }
   // GetReaderById function with an HTTP GET request
   getReaderById(readerId: number): Observable<Reader> {
@@ -23,11 +24,11 @@ export class ReadersService {
   }
 
   // CreateReader function with an HTTP POST request
-  createReader(reader: Reader): Observable<void> {
+  createReader(reader: Partial<Reader>): Observable<void> {
     return this.http.post<void>(this.apiUrl, reader);
   }
 
-  updateReader(readerId: number, reader: Reader): Observable<void> {
+  updateReader(readerId: number, reader: Partial<Reader>): Observable<void> {
     return this.http.put<void>(this.apiUrl, reader);
   }
 

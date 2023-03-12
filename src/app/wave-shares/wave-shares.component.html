@@ -5,7 +5,7 @@
 
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
-            <div class="fs-2 fw-semibold bg-white "><strong>Manage Wave Sahres</strong></div>
+            <div class="fs-2 fw-semibold bg-white "><strong>Manage Wave Shares</strong></div>
             <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
           </div>
           <div class="card-body">
@@ -22,14 +22,13 @@
                     <c-input-group>
                       <input aria-label="Search" cFormControl placeholder="Search" />
 
-                      <button cButton color="dark" type="button" variant="outline" (click)="openWaveShareModal()">
-                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Wave Sahre
+                      <button cButton color="dark" type="button" variant="outline" (click)="isEditMode = false;openWaveShareModal()">
+                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Wave Share
                       </button>
                     </c-input-group>
                   </div>
 
                 </div>
-
                 <table cTable>
                   <thead class="table-dark">
                     <tr>
@@ -43,33 +42,36 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let wshare of waveShares">
-                      <th scope="row">{{ wshare.id }}</th>
-                      <td>{{ wshare.name }}</td>
-                      <td>{{ wshare.ipAddress }}</td>
-                      <td>{{ wshare.serialNumber }}</td>
-                      <td>Door {{ wshare.doorId }}</td>
+                    <tr *ngFor="let wavShre of waveShares">
+                      <th scope="row">{{ wavShre.id }}</th>
+                      <td>{{ wavShre.name }}</td>
+                      <td>{{ wavShre.ipAddress }}</td>
+                      <td>{{ wavShre.serialNumber }}</td>
+                      <td>Door {{ wavShre.doorId }}</td>
                       <td style="text-align:center;">
-                        <button type="button" cButton (click)="openViewWaveShareDetailsModal()" color="light">
+                        <button type="button" cButton (click)="openViewWaveShareDetailsModal(wavShre)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
 
                         </button> &nbsp;
-                        <button type="button" cButton color="light" (click)="updateWaveShare(1,waveShare)">
+                        <button type="button" cButton color="light" (click)="isEditMode = true; openWaveShareModal(wavShre)">
                           <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                         </button> &nbsp;
-                        <button type="button" cButton color="light" [cModalToggle]="deleteWaveShareModal.id"
-                          (click)="waveShare = wshare">
+                        <button type="button" cButton color="light" (click)="waveShare = wavShre"
+                          [cModalToggle]="deleteWaveShare.id">
                           <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                         </button>
                       </td>
 
                     </tr>
+
                   </tbody>
                 </table>
+
               </div>
 
             </div>
+
 
           </div>
         </div>
@@ -79,13 +81,40 @@
 </c-container>
 
 
+<c-modal #deleteWaveShare id="deleteWaveShare">
+  <c-modal-header>
+    <h5 cModalTitle>Delete Confirmation</h5>
+    <button [cModalToggle]="deleteWaveShare.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <p class="fw-semibold">Are you sure you want to delete this Wave Share? This action cannot be undone.</p>
+    <p><strong> {{waveShare.name }} </strong></p>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button [cModalToggle]="deleteWaveShare.id" cButton color="secondary">
+      Close
+    </button>
+    <button (click)="confirmDeleteWaveShare(waveShare.id)" class="text-white" cButton color="danger">Confirm</button>
+  </c-modal-footer>
+</c-modal>
+
+
 <c-modal id="upsertWaveShareModal" size="lg" [visible]="upsertModalVisible">
   <c-modal-header>
-    <h5 cModalTitle>New Wave Share</h5>
+    <h5 cModalTitle *ngIf="!isEditMode">New Wave Share</h5>
+    <h5 cModalTitle *ngIf="isEditMode">Edit Wave Share</h5>
+
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="waveShareForm" class="form-horizontal">
+      <div class="form-group row mb-3">
+        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+        </div>
+      </div>
       <div class="form-group row mb-3">
         <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
         <div class="col-md-9">
@@ -100,17 +129,14 @@
             placeholder="Serial Number">
         </div>
       </div>
+
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <label for="doorId" class="col-md-3 col-form-label">Door</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
-        </div>
-      </div>
-      <div class="form-group row mb-3">
-        <label for="doorId" class="col-md-3 col-form-label">Door ID</label>
-        <div class="col-md-9">
-          <input type="number" class="form-control" cFormControl formControlName="doorId" id="doorId"
-            placeholder="Door ID">
+          <select cSelect id="door-id" class="form-control" cFormControl formControlName="doorId"
+            placeholder="Door">
+            <option *ngFor="let door of doors" [value]="door.id">{{door.name}}</option>
+          </select>
         </div>
       </div>
     </form>
@@ -120,13 +146,14 @@
     <button (click)="cancel()" cButton color="secondary">
       Close
     </button>
-    <button (click)="cancel()" cButton color="primary">Submit</button>
+    <button  *ngIf="isEditMode" (click)="newWaveShare()" cButton color="primary">Submit</button>
+    <button  *ngIf="!isEditMode" (click)="updateWaveShare(waveShare.id)" cButton color="primary">Submit</button>
   </c-modal-footer>
 </c-modal>
 
 <c-modal id="viewWaveShareDetailsModal" [visible]="viewModalVisible">
   <c-modal-header>
-    <h5 cModalTitle>Wave Share details</h5>
+    <h5 cModalTitle>WaveShare details</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
@@ -155,24 +182,5 @@
     <button (click)="cancel()" cButton color="secondary">
       Close
     </button>
-    <button (click)="cancel()" cButton color="primary">Submit</button>
-  </c-modal-footer>
-</c-modal>
-
-<c-modal #deleteWaveShareModal id="deleteWaveShareModal">
-  <c-modal-header>
-    <h5 cModalTitle>Delete Confirmation</h5>
-    <button [cModalToggle]="deleteWaveShareModal.id" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>
-    <p class="fw-semibold">Are you sure you want to delete this Wave share? This action cannot be undone.</p>
-    <p><strong> {{waveShare.name }} </strong></p>
-  </c-modal-body>
-
-  <c-modal-footer>
-    <button [cModalToggle]="deleteWaveShareModal.id" cButton color="secondary">
-      Close
-    </button>
-    <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
   </c-modal-footer>
 </c-modal>
