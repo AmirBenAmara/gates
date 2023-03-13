@@ -137,6 +137,8 @@ export class DoorsComponent {
   cancel() {
     this.visible = false;
     this.viewModalVisible = false;
+    this.editModalVisible = false;
+    this.viewModalDeleteVisible = false;
   }
   //TODO: finish implementation
 
@@ -175,6 +177,7 @@ export class DoorsComponent {
     console.log([door1,door2])
     this.doorService.createDoor([door1, door2]).subscribe(res => {
       this.getDoors()
+      this.cancel()
     })
   }
 
@@ -182,6 +185,7 @@ export class DoorsComponent {
     console.log(this.editDoorForm.value)
     this.doorService.updateDoor(this.editDoorForm.value.id, this.editDoorForm.value).subscribe(res => {
       this.getDoors()
+      this.cancel()
     })
   }
 }

@@ -107,8 +107,17 @@ export class DepartmentsComponent implements OnInit {
 
   submitDepartmentModal() {
     console.log(this.departmentForm.value);
-    this.departmentService.createDepartment(this.departmentForm.value).subscribe(res=> {
-      this.getDepartments();
-    })
+    if(this.editMode){
+      this.departmentService.updateDepartment(this.selectedDepartment.id,this.departmentForm.value).subscribe(res=> {
+        this.getDepartments();
+        this.cancel()
+      })
+    }else{
+      this.departmentService.createDepartment(this.departmentForm.value).subscribe(res=> {
+        this.getDepartments();
+        this.cancel()
+      })
+    }
+    
   }
 }

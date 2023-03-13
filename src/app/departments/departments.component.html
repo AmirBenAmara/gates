@@ -117,10 +117,12 @@
                     <p><strong>Name:</strong> {{ selectedDepartment.name}}</p>
                 </div>
                 <div class="col-sm-12">
-                    <p><strong>Doors:</strong> <span *ngFor="let door of selectedDepartment.doors">{{ door.name }}</span></p>
+                    <p><strong>Doors:</strong> </p>
+                    <p style="text-align: center;" *ngFor="let door of selectedDepartment.doors">{{ door.name }}</p>
                 </div>
                 <div class="col-sm-12">
-                    <p><strong>Control Panels:</strong><span *ngFor="let ctPanel of selectedDepartment.ctrPannels">{{ ctPanel.name }}</span></p>
+                    <p><strong>Control Panels:</strong> </p>
+                    <p style="text-align: center;" *ngFor="let ctPanel of selectedDepartment.ctrPannels">{{ ctPanel.name }}</p>
                 </div>
             </div>
         </div>
@@ -134,11 +136,10 @@
 </c-modal>
 
 
-
 <c-modal id="viewDepartmentDeleteModal" [visible]="viewModalDeleteVisible">
     <c-modal-header>
         <h5 cModalTitle>Delete Confirmation</h5>
-        <button (click)="cancel()" cButtonClose></button>
+        <button (click)="viewModalDeleteVisible = false" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
 
@@ -151,6 +152,6 @@
         <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
             Close
         </button>
-        <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
+        <button (click)="deleteDepartment()" class="text-white" cButton color="danger">Confirm</button>
     </c-modal-footer>
 </c-modal>
