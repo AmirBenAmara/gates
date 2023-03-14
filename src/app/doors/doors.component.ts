@@ -157,7 +157,6 @@ export class DoorsComponent {
   submitDoorModal(){
     console.log(this.doorForm.value)
     const door1 = {
-      id:0,
       name: this.doorForm.value.name,
       description : 'Entry',
       department: this.doorForm.value.department ,
@@ -166,7 +165,6 @@ export class DoorsComponent {
       waveShare : this.doorForm.value.waveShare,
     }
     const door2 ={
-      id:0,
       name: this.doorForm.value.name,
       description : 'Exit',
       department: this.doorForm.value.department,

@@ -45,7 +45,7 @@ export class DoorsService {
 }
 
 export interface Door {
-  id: number;
+  id?: number;
   name: string;
   description : string;
   department?: Department;
