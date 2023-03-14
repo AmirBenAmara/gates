@@ -159,18 +159,18 @@ export class DoorsComponent {
     const door1 = {
       name: this.doorForm.value.name,
       description : 'Entry',
-      department: this.doorForm.value.department ,
-      reader : this.doorForm.value.readerEntry,
-      camera : this.doorForm.value.cameraEntry,
-      waveShare : this.doorForm.value.waveShare,
+      departmentId: this.doorForm.value.department ,
+      readerId : this.doorForm.value.readerEntry,
+      cameraId : this.doorForm.value.cameraEntry,
+      waveShareId : this.doorForm.value.waveShare,
     }
     const door2 ={
       name: this.doorForm.value.name,
       description : 'Exit',
-      department: this.doorForm.value.department,
-      reader : this.doorForm.value.readerExit,
-      camera : this.doorForm.value.cameraExit,
-      waveShare : this.doorForm.value.waveShare,
+      departmentId: this.doorForm.value.department,
+      readerId : this.doorForm.value.readerExit,
+      cameraId : this.doorForm.value.cameraExit,
+      waveShareId : this.doorForm.value.waveShare,
     }
     console.log([door1,door2])
     this.doorService.createDoor([door1, door2]).subscribe(res => {
