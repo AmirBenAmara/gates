@@ -45,13 +45,13 @@ export class DoorsService {
 }
 
 export interface Door {
-  id: number;
-  name: string;
-  description : string;
+  id?: number;
+  name?: string;
+  description? : string;
   department?: Department;
-  reader : Reader,
-  camera : Camera,
-  waveShare : WaveShare,
+  reader? : Reader,
+  camera? : Camera,
+  waveShare? : WaveShare,
 }
 
 export const DoorsDATA: Door[] = [

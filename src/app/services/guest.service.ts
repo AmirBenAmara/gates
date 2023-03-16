@@ -38,7 +38,7 @@ export interface Guest {
   id?: number;
   fatherName?: string;
   surname?: string;
-  cin?: number;
+  cin?: string;
   birthDate?: string;
   birthPlace?: string;
   motherName?: string;

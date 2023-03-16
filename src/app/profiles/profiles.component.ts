@@ -57,6 +57,7 @@ export class ProfilesComponent {
     this.ProfileService.deleteProfile(this.selectedProfile.id).subscribe(res => {
       this.viewModalDeleteVisible ; 
       this.getProfiles()
+      this.cancel()
     });
   }
   //TODO: finish implementation
@@ -93,6 +94,7 @@ export class ProfilesComponent {
   cancel() {
     this.visible = false;
     this.viewModalVisible = false;
+    this.viewModalDeleteVisible = true;
   }
   //TODO: finish implementation
 
