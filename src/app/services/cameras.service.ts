@@ -42,7 +42,6 @@ export interface Camera {
   ipAddress?: string;
   serialNumber?: string;
   name?: string;
-  doorId?: number;
 }
 
 export const CamerasDATA: Camera[] = [{ 
@@ -50,26 +49,22 @@ export const CamerasDATA: Camera[] = [{
   ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
   name: 'Camera 1',
-  doorId:0 
 },
 { 
   id: 2,
   ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
   name: 'Camera 2',
-  doorId:1 
 },
 { 
   id: 3,
   ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
   name: 'Camera 3',
-  doorId:2
 },
 { 
   id: 4,
   ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
   name: 'Camera 4',
-  doorId:3
 }]

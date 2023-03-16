@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CPanelsService, CtrPanel } from '../services/c-panels.service'
 import { Validators, FormBuilder } from '@angular/forms';
 import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
-import { Door, DoorsService } from '../services/doors.service';
 
 @Component({
   selector: 'app-c-panels',
@@ -12,34 +11,29 @@ import { Door, DoorsService } from '../services/doors.service';
 export class CPanelsComponent implements OnInit {
   p: number = 1;
   isEditMode = false;
-  doors: Door[];
   ctrPanelForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
     name: ['', Validators.required],
-    doorId: [0, Validators.required],
   });
   ctrPanel: CtrPanel = { 
     id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
     name: 'Undefined',
-    doorId:0 
   }
   ctrPanels: CtrPanel[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public upsertModalVisible:boolean = false;
   public viewModalVisible: boolean = false
-  constructor(private ctrPanelService: CPanelsService, private fb: FormBuilder, private doorsService: DoorsService) { }
+  constructor(private ctrPanelService: CPanelsService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getDoors();
     this.getCtrPanels();
     this.ctrPanelForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
       name: ['', Validators.required],
-      doorId: [0, Validators.required],
     });
   }
 
@@ -52,11 +46,6 @@ export class CPanelsComponent implements OnInit {
     this.ctrPanelService.getCtrPanels().subscribe(ctrPanels => {
       this.ctrPanels = ctrPanels;
     });
-  }
-  getDoors() {
-    this.doorsService.getDoors().subscribe(doors => {
-      this.doors = doors;
-    })
   }
   //TODO: finish implementation
   updateCtrPanel(ctrPanelId:number) {

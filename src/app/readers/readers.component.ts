@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { cilInfo, cilPencil, cilPlus, cilTrash } from '@coreui/icons';
 import { ReadersService, Reader } from '../services/readers.service'
 import { Validators, FormBuilder } from '@angular/forms';
-import { Door, DoorsService } from '../services/doors.service';
 
 @Component({
   selector: 'app-readers',
@@ -12,34 +11,29 @@ import { Door, DoorsService } from '../services/doors.service';
 export class ReadersComponent implements OnInit {
   p: number = 1;
   isEditMode = false;
-  doors: Door[];
   readerForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
     name: ['', Validators.required],
-    doorId: [0, Validators.required],
   });
   reader: Reader = { 
     id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
     name: 'Undefined',
-    doorId:0 
   }
   readers: Reader[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public upsertModalVisible:boolean = false;
   public viewModalVisible: boolean = false
-  constructor(private readerService: ReadersService, private fb: FormBuilder, private doorsService: DoorsService) { }
+  constructor(private readerService: ReadersService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getDoors();
     this.getReaders();
     this.readerForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
       name: ['', Validators.required],
-      doorId: [0, Validators.required],
     });
   }
 
@@ -52,11 +46,6 @@ export class ReadersComponent implements OnInit {
     this.readerService.getReaders().subscribe(readers => {
       this.readers = readers;
     });
-  }
-  getDoors() {
-    this.doorsService.getDoors().subscribe(doors => {
-      this.doors = doors;
-    })
   }
   //TODO: finish implementation
   updateReader(readerId:number) {

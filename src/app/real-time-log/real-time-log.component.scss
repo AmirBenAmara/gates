@@ -1,0 +1,41 @@
+/* Apply basic table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Highlight the log level column based on the log level */
+  td.log-level {
+    font-weight: bold;
+  }
+  
+  td.log-level.error {
+    color: #ea3465;
+  }
+  td.log-level.success {
+    color: #08b592;
+  }
+  td.log-level.warning {
+    color: orange;
+  }
+  
+  td.log-level.info {
+    color: blue;
+  }
+  
+  /* Add background color to alternating rows */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Add hover effect to rows */
+  tr:hover {
+    background-color: #ddd;
+  }
+  

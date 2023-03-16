@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Camera, CamerasService } from '../services/cameras.service'
 import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Door, DoorsService } from '../services/doors.service';
 
 @Component({
   selector: 'app-cameras',
@@ -12,34 +11,29 @@ import { Door, DoorsService } from '../services/doors.service';
 export class CamerasComponent implements OnInit {
   p: number = 1;
   isEditMode = false;
-  doors: Door[];
   cameraForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
     name: ['', Validators.required],
-    doorId: [0, Validators.required],
   });
   camera: Camera = { 
     id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
     name: 'Undefined',
-    doorId:0 
   }
   cameras: Camera[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public upsertModalVisible:boolean = false;
   public viewModalVisible: boolean = false
-  constructor(private cameraService: CamerasService, private fb: FormBuilder, private doorsService: DoorsService) { }
+  constructor(private cameraService: CamerasService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getDoors();
     this.getCameras();
     this.cameraForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
       name: ['', Validators.required],
-      doorId: [0, Validators.required],
     });
   }
 
@@ -52,11 +46,6 @@ export class CamerasComponent implements OnInit {
     this.cameraService.getCameras().subscribe(cameras => {
       this.cameras = cameras;
     });
-  }
-  getDoors() {
-    this.doorsService.getDoors().subscribe(doors => {
-      this.doors = doors;
-    })
   }
   //TODO: finish implementation
   updateCamera() {

@@ -43,7 +43,6 @@ export interface WaveShare {
   ipAddress: string;
   serialNumber: string;
   name: string;
-  doorId?: number;
 }
 
 export const WaveSharesDATA: WaveShare[] = [{ 
@@ -51,26 +50,22 @@ export const WaveSharesDATA: WaveShare[] = [{
   ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
   name: 'W Share 1',
-  doorId:0 
 },
 { 
   id: 2,
   ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
-  name: 'W Share 2',
-  doorId:1 
+  name: 'W Share 2', 
 },
 { 
   id: 3,
   ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
   name: 'W Share 3',
-  doorId:2
 },
 { 
   id: 4,
   ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
   name: 'W Share 4',
-  doorId:3
 }]

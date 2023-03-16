@@ -36,7 +36,6 @@
                       <th scope="col">Name</th>
                       <th scope="col">IP Address</th>
                       <th scope="col">Serial Number</th>
-                      <th scope="col">Door</th>
                       <th scope="col"></th>
 
                     </tr>
@@ -47,7 +46,6 @@
                       <td>{{ rdr.name }}</td>
                       <td>{{ rdr.ipAddress }}</td>
                       <td>{{ rdr.serialNumber }}</td>
-                      <td>Door {{ rdr.doorId }}</td>
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewReaderDetailsModal(rdr)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
@@ -95,7 +93,7 @@
     <button [cModalToggle]="deleteReader.id" cButton color="secondary">
       Close
     </button>
-    <button (click)="confirmDeleteReader(reader.id)" class="text-white" cButton color="danger">Confirm</button>
+    <button (click)="confirmDeleteReader(reader.id)" class="text-white" [cModalToggle]="deleteReader.id" cButton color="danger">Confirm</button>
   </c-modal-footer>
 </c-modal>
 
@@ -130,15 +128,6 @@
         </div>
       </div>
 
-      <div class="form-group row mb-3">
-        <label for="doorId" class="col-md-3 col-form-label">Door</label>
-        <div class="col-md-9">
-          <select cSelect id="door-id" class="form-control" cFormControl formControlName="doorId"
-            placeholder="Door">
-            <option *ngFor="let door of doors" [value]="door.id">{{door.name}}</option>
-          </select>
-        </div>
-      </div>
     </form>
 
   </c-modal-body>
@@ -170,11 +159,7 @@
           <p><strong>Serial Number:</strong> {{ reader.serialNumber }}</p>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <p><strong>Door:</strong> Door {{ reader.doorId }}</p>
-        </div>
-      </div>
+      
     </div>
 
   </c-modal-body>
