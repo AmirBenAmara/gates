@@ -29,19 +29,3 @@ $enable-rtl: true;
 @import "custom";
 
 
-/* Import Space Mono font family */
-@font-face {
-    font-family: 'Space Mono';
-    src: url('assets/fonts/Space_Mono/SpaceMono-Regular.ttf') format('truetype'),
-         url('assets/fonts/Space_Mono/SpaceMono-Bold.ttf') format('truetype'),
-         url('assets/fonts/Space_Mono/SpaceMono-Italic.ttf') format('truetype'),
-         url('assets/fonts/Space_Mono/SpaceMono-BoldItalic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  /* Set font family for various elements */
-  .logs {
-    font-family: 'Space Mono', monospace;
-  }
-  

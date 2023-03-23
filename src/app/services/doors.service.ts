@@ -67,7 +67,6 @@ export const DoorsDATA: Door[] = [
       ipAddress: '172.53.3.6',
       serialNumber: 'N552854AG654657',
       name: 'W Share 1',
-      doorId:0 
     },
   },
 ]
