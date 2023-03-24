@@ -134,8 +134,8 @@
     <button (click)="cancel()" cButton color="secondary">
       Close
     </button>
-    <button  *ngIf="isEditMode" (click)="newCtrPanel()" cButton color="primary">Submit</button>
-    <button  *ngIf="!isEditMode" (click)="updateCtrPanel(ctrPanel.id)" cButton color="primary">Submit</button>
+    <button  *ngIf="!isEditMode" (click)="newCtrPanel()" cButton color="primary">Submit</button>
+    <button  *ngIf="isEditMode" (click)="updateCtrPanel(ctrPanel.id)" cButton color="primary">Submit</button>
   </c-modal-footer>
 </c-modal>
 

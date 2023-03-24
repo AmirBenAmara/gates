@@ -16,7 +16,7 @@ export class CPanelsComponent implements OnInit {
     serialNumber: ['', Validators.required],
     name: ['', Validators.required],
   });
-  ctrPanel: CtrPanel = { 
+  ctrPanel: CtrPanel = {
     id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
@@ -24,7 +24,7 @@ export class CPanelsComponent implements OnInit {
   }
   ctrPanels: CtrPanel[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
-  public upsertModalVisible:boolean = false;
+  public upsertModalVisible: boolean = false;
   public viewModalVisible: boolean = false
   constructor(private ctrPanelService: CPanelsService, private fb: FormBuilder) { }
 
@@ -39,7 +39,7 @@ export class CPanelsComponent implements OnInit {
 
   //TODO: finish implementation
   confirmDeleteCtrPanel(id: number) {
-    this.ctrPanelService.deleteCtrPanel(id).subscribe(data =>  this.getCtrPanels());
+    this.ctrPanelService.deleteCtrPanel(id).subscribe(data => this.getCtrPanels());
   }
   //TODO: finish implementation
   getCtrPanels() {
@@ -48,19 +48,19 @@ export class CPanelsComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateCtrPanel(ctrPanelId:number) {
+  updateCtrPanel(ctrPanelId: number) {
     if (this.ctrPanelForm.valid) {
-        const updatedCtrPanel = this.ctrPanelForm.value;
-      this.ctrPanelService.updateCtrPanel(ctrPanelId, updatedCtrPanel).subscribe(data =>  this.getCtrPanels() );
+      const updatedCtrPanel = { id: this.ctrPanel.id, ...this.ctrPanelForm.value };
+      this.ctrPanelService.updateCtrPanel(ctrPanelId, updatedCtrPanel).subscribe(data => this.getCtrPanels());
     }
   }
-  
+
 
   //TODO: finish implementation
   newCtrPanel() {
     if (this.ctrPanelForm.valid) {
       const newCtrPanel = this.ctrPanelForm.value;
-      this.ctrPanelService.createCtrPanel(newCtrPanel).subscribe(data =>  this.getCtrPanels());
+      this.ctrPanelService.createCtrPanel(newCtrPanel).subscribe(data => this.getCtrPanels());
     }
   }
 
@@ -76,7 +76,7 @@ export class CPanelsComponent implements OnInit {
     this.upsertModalVisible = event;
   }
 
-  openCtrPanelModal(ctrPanel?:CtrPanel) {
+  openCtrPanelModal(ctrPanel?: CtrPanel) {
     this.ctrPanelForm.reset();
     if (ctrPanel) {
       this.ctrPanel = ctrPanel;

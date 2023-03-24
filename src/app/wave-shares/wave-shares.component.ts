@@ -50,7 +50,7 @@ export class WaveSharesComponent implements OnInit {
   //TODO: finish implementation
   updateWaveShare(waveShareId: number) {
     if (this.waveShareForm.valid) {
-      const updatedWaveShare = this.waveShareForm.value;
+      const updatedWaveShare = { id: this.waveShare.id, ...this.waveShareForm.value };
       this.waveShareService.updateWaveShare(waveShareId, updatedWaveShare).subscribe(data => this.getWaveShares());
     }
   }

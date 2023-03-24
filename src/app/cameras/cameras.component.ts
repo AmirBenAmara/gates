@@ -51,8 +51,8 @@ export class CamerasComponent implements OnInit {
   updateCamera() {
     if (this.cameraForm.valid) {
   
-      const updatedCamera = this.cameraForm.value;
-  
+      const updatedCamera  = { id: this.camera.id, ...this.cameraForm.value };
+
       this.cameraService.updateCamera(updatedCamera).subscribe(data =>  this.getCameras() );
     }
   }

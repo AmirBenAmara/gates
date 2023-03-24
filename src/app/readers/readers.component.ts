@@ -16,7 +16,7 @@ export class ReadersComponent implements OnInit {
     serialNumber: ['', Validators.required],
     name: ['', Validators.required],
   });
-  reader: Reader = { 
+  reader: Reader = {
     id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
@@ -24,7 +24,7 @@ export class ReadersComponent implements OnInit {
   }
   readers: Reader[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
-  public upsertModalVisible:boolean = false;
+  public upsertModalVisible: boolean = false;
   public viewModalVisible: boolean = false
   constructor(private readerService: ReadersService, private fb: FormBuilder) { }
 
@@ -39,7 +39,7 @@ export class ReadersComponent implements OnInit {
 
   //TODO: finish implementation
   confirmDeleteReader(id: number) {
-    this.readerService.deleteReader(id).subscribe(data =>  this.getReaders());
+    this.readerService.deleteReader(id).subscribe(data => this.getReaders());
   }
   //TODO: finish implementation
   getReaders() {
@@ -48,19 +48,19 @@ export class ReadersComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateReader(readerId:number) {
+  updateReader(readerId: number) {
     if (this.readerForm.valid) {
-        const updatedReader = this.readerForm.value;
-      this.readerService.updateReader(readerId,updatedReader).subscribe(data =>  this.getReaders() );
+      const updatedReader = { id: readerId, ...this.readerForm.value };
+      this.readerService.updateReader(readerId, updatedReader).subscribe(data => this.getReaders());
     }
   }
-  
+
 
   //TODO: finish implementation
   newReader() {
     if (this.readerForm.valid) {
       const newReader = this.readerForm.value;
-      this.readerService.createReader(newReader).subscribe(data =>  this.getReaders());
+      this.readerService.createReader(newReader).subscribe(data => this.getReaders());
     }
   }
 
@@ -76,7 +76,7 @@ export class ReadersComponent implements OnInit {
     this.upsertModalVisible = event;
   }
 
-  openReaderModal(reader?:Reader) {
+  openReaderModal(reader?: Reader) {
     this.readerForm.reset();
     if (reader) {
       this.reader = reader;
