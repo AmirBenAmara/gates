@@ -37,62 +37,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th class="log-level" scope="row">20/11/2020 14:56:06</th>
-                                            <td>Mark klar</td>
-                                            <td>RD46</td>
-                                            <td>Recherche et Développement</td>
-                                            <td class="log-level error">Authentification failed</td>
+                                       
+                                        <tr *ngFor="let log of logs">
+                                            <th class="log-level" scope="row">{{log.Date}}</th>
+                                            <td>{{log.Name}}</td>
+                                            <td>{{log.Door}}</td>
+                                            <td>{{log.Department}}</td>
+                                            <td class="log-level error">{{log.Event}}</td>
                                             <td>
-                                                <button type="button" cButton color="light">
-                                                    <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="log-level" scope="row">20/11/2020 14:56:06</th>
-                                            <td>John Doe</td>
-                                            <td>RD05</td>
-                                            <td>Recherche et Développement</td>
-                                            <td class="log-level success">Authentification succes</td>
-                                            <td>
-                                                <button type="button" cButton color="light">
-                                                    <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="log-level" scope="row">20/11/2020 14:56:06</th>
-                                            <td>John Doe</td>
-                                            <td>RD05</td>
-                                            <td>Recherche et Développement</td>
-                                            <td class="log-level success">Authentification succes</td>
-                                            <td>
-                                                <button type="button" cButton color="light">
-                                                    <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="log-level" scope="row">20/11/2020 14:56:06</th>
-                                            <td>John Doe</td>
-                                            <td>RD05</td>
-                                            <td>Recherche et Développement</td>
-                                            <td class="log-level success">Authentification succes</td>
-                                            <td>
-                                                <button type="button" cButton color="light">
-                                                    <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="log-level" scope="row">20/11/2020 14:56:06</th>
-                                            <td>John Doe</td>
-                                            <td>RD05</td>
-                                            <td>Recherche et Développement</td>
-                                            <td class="log-level success">Authentification succes</td>
-                                            <td>
-                                                <button type="button" cButton color="light">
+                                                <button type="button" (click)="viewProfile(log.Profile)" cButton color="light">
                                                     <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
                                                 </button>
                                             </td>
@@ -145,3 +98,70 @@
     </c-modal-footer>
 
 </c-modal>
+<c-modal id="viewProfileDetailsModal" [visible]="viewProfileModelVisible">
+    <c-modal-header>
+      <h5 cModalTitle>Profile details</h5>
+      <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+  
+      <div class="container" *ngIf="selectedProfile">
+        <div class="text-center">
+          <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 150px;"
+            alt="Avatar" />
+        </div>
+  
+        <div class="row">
+  
+          <div class="col-sm-12">
+            <p><strong>Name:</strong> {{ selectedProfile.name}}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>Surname:</strong> {{ selectedProfile.surname }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>Birthdate:</strong> {{ selectedProfile.birthDate }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>Document number:</strong> {{ selectedProfile.documentNumber }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>Sex:</strong> {{ selectedProfile.sex }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>Nationality:</strong> {{ selectedProfile.nationality }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>Expiry date:</strong> {{ selectedProfile.expiryDate }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>Personal data:</strong> {{ selectedProfile.personalData }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>MRZ1:</strong> {{ selectedProfile.mrZ1 }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>MRZ2:</strong> {{ selectedProfile.mrZ2 }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>MRZ3:</strong> {{ selectedProfile.mrZ3 }}</p>
+          </div>
+          <div class="col-sm-12">
+            <p><strong>Issue country:</strong> {{ selectedProfile.issueCountry }}</p>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-sm-12">
+            <p><strong>Profile:</strong> Profile {{ camera.ProfileId }}</p>
+          </div>
+        </div> -->
+      </div>
+  
+    </c-modal-body>
+    <c-modal-footer>
+      <button (click)="cancel()" cButton color="secondary">
+        Close
+      </button>
+    </c-modal-footer>
+  </c-modal>
+  

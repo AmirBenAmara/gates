@@ -1,1 +1,60 @@
-<p>device-status works!</p>
+<c-container fluid>
+    <c-row>
+        <c-col lg="12">
+            <div class="example">
+
+                <div class="card  mt-4 mb-2">
+                    <div class="card-header bg-white">
+                        <!-- <div class="fs-2 fw-semibold bg-white "><strong>Manage Users</strong></div> -->
+                        <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="tab-content rounded-bottom">
+                            <div class="tab-pane active show p-3 preview fade">
+
+                                <div class="row">
+                                    <div class="col-6">
+
+
+                                    </div>
+                                    <div class="col-6 mb-3">
+
+                                    </div>
+
+                                </div>
+
+                                <table cTable>
+                                    <thead class="table-dark logs">
+                                        <tr>
+                                            <th scope="col">Device Name</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Alaram</th>
+                                            <th scope="col">Last event</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                        <tr *ngFor="let drs of deviceStatuses">
+                                            <th class="log-level" scope="row">{{drs.deviceName}}</th>
+                                            <td>{{drs.deviceStatus}}</td>
+                                            <td>
+                                                {{drs.Alarm}}
+                                            </td>
+                                            <td>
+                                                {{drs.lastEvent}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </c-col>
+    </c-row>
+</c-container>
