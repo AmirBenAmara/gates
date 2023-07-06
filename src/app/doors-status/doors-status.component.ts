@@ -1,5 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { SocketService } from '../services/socket.service';
+import { cilMediaPause, cilClearAll, cilX } from '@coreui/icons';
+
 
 @Component({
   selector: 'app-doors-status',
@@ -8,7 +10,7 @@ import { SocketService } from '../services/socket.service';
 })
 export class DoorsStatusComponent implements OnInit {
   constructor(private socketService: SocketService) {}
-
+  icons = { cilMediaPause, cilClearAll, cilX };
   doorStatuses:  any;
 
   ngOnInit(): void {

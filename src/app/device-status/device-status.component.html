@@ -15,14 +15,27 @@
 
                                 <div class="row">
                                     <div class="col-6">
-
-
+                                        <c-input-group>
+                                            <button cButton color="dark" type="button" variant="outline" >
+                                                <svg [cIcon]="icons.cilClearAll" title="Clear"></svg> Export
+                                              </button>                  
+                                           
+                                          </c-input-group>
+                  
                                     </div>
-                                    <div class="col-6 mb-3">
-
+                                    <div class="col-3"></div>
+                                    <div class="col-md-3 col-xs-1 mb-3 d-flex justify-content-end">
+                                      <c-input-group>
+                                        <button cButton color="dark" style="margin-left: auto;" type="button" variant="outline" >
+                                            <svg [cIcon]="icons.cilX" title="Clear"></svg> Clear
+                                          </button>                  
+                                        <button cButton color="dark" type="button" variant="outline" >
+                                          <svg [cIcon]="icons.cilMediaPause" title="Pause"></svg> Pause
+                                        </button>
+                                      </c-input-group>
                                     </div>
-
-                                </div>
+                  
+                                  </div>
 
                                 <table cTable>
                                     <thead class="table-dark logs">

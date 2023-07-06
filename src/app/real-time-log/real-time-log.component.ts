@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { cilPencil, cilTrash, cilPlus, cilInfo, cilUser } from '@coreui/icons';
+import { cilPencil, cilTrash, cilPlus, cilInfo, cilUser, cilClearAll, cilMediaPause, cilX } from '@coreui/icons';
 import { SocketService } from '../services/socket.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-real-time-log',
@@ -11,7 +10,8 @@ import { map } from 'rxjs/operators';
 export class RealTimeLogComponent implements OnInit{
   constructor(private socketService: SocketService) {}
   selectedProfile: any = null;
-  icons = { cilPencil, cilTrash, cilPlus, cilInfo, cilUser };
+  icons = { cilPencil, cilTrash, cilPlus, cilInfo, cilUser, cilMediaPause, cilClearAll, cilX };
+
   public visible = false;
   public viewModalDeleteVisible = false;
   public viewProfileModelVisible = false;
