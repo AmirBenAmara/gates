@@ -1,7 +1,20 @@
-:host {
-  .legend {
-    small {
-      font-size: x-small;
-    }
-  }
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  margin-bottom: 30px;
+}
+
+.card {
+  width: 150px;
+  height: 150px;
+
+  border-radius: 5px;
+}
+.centered-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
