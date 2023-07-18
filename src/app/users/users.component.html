@@ -26,6 +26,10 @@
                                                 (click)="openUserModal()">
                                                 <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New User
                                             </button>
+                                            <button cButton color="dark" type="button" variant="outline"
+                                                (click)="openAdminModal()">
+                                                <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Admin
+                                            </button>
                                         </c-input-group>
                                     </div>
 
@@ -48,14 +52,15 @@
                                             <td>Otto@otto.com</td>
                                             <td>Admin</td>
                                             <td style="text-align:center;">
-                                                <button type="button" cButton color="light" >
-                                                  <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-                        
+                                                <button type="button" cButton color="light">
+                                                    <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light" >
-                                                  <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                                                <button type="button" cButton color="light">
+                                                    <svg [cIcon]="icons.cilTrash" width="15"
+                                                        title="Trash bin Icon"></svg>
                                                 </button>
-                                              </td>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
@@ -63,14 +68,15 @@
                                             <td>Thornton@otto.com</td>
                                             <td>User</td>
                                             <td style="text-align:center;">
-                                                <button type="button" cButton color="light" >
-                                                  <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-                        
+                                                <button type="button" cButton color="light">
+                                                    <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light" >
-                                                  <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                                                <button type="button" cButton color="light">
+                                                    <svg [cIcon]="icons.cilTrash" width="15"
+                                                        title="Trash bin Icon"></svg>
                                                 </button>
-                                              </td>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -91,12 +97,62 @@
         <h5 cModalTitle>New User</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
-    <c-modal-body>New User form Here</c-modal-body>
+    <c-modal-body>
+        <form [formGroup]="userForm">
+            <div class="form-group  mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" cFormControl formControlName="name"
+                    placeholder="Name">
+            </div>
+            <div class="form-group  mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="email" cFormControl formControlName="email"
+                    placeholder="email">
+            </div>
+            <div class="form-group  mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="password" cFormControl formControlName="password"
+                    placeholder="password">
+            </div>
+        </form>
+    </c-modal-body>
     <c-modal-footer>
         <button (click)="cancel()" cButton color="secondary">
             Close
         </button>
-        <button (click)="cancel()" cButton color="primary">Submit</button>
+        <button (click)="submitUser()" cButton color="primary">Submit</button>
+    </c-modal-footer>
+</c-modal>
+
+<c-modal id="AdminModal" [visible]="visibleAdmin" (visibleChange)="handleAdminModalVisbilityChange($event)">
+    <c-modal-header>
+        <h5 cModalTitle>New Admin</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+        <form [formGroup]="adminForm">
+            <div class="form-group  mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="nameAdmin" cFormControl formControlName="name"
+                    placeholder="Name">
+            </div>
+            <div class="form-group  mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="emailAdmin" cFormControl formControlName="email"
+                    placeholder="email">
+            </div>
+            <div class="form-group  mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="passwordAdmin" cFormControl formControlName="password"
+                    placeholder="password">
+            </div>
+        </form>
+    </c-modal-body>
+    <c-modal-footer>
+        <button (click)="cancel()" cButton color="secondary">
+            Close
+        </button>
+        <button (click)="submitAdmin()" cButton color="primary">Submit</button>
     </c-modal-footer>
 </c-modal>
 
@@ -115,9 +171,9 @@
     </c-modal-body>
     <c-modal-footer>
         <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
-          Close
+            Close
         </button>
         <button (click)="cancel()" class="text-white" cButton color="danger">Confirm</button>
-      </c-modal-footer>
-  
+    </c-modal-footer>
+
 </c-modal>
