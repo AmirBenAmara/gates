@@ -30,7 +30,7 @@ export class UsersService {
     return this.http.post<User>(this.apiUrl + 'addUser', user);
   }
   createAdmin(admin: Admin): Observable<Admin> {
-    return this.http.post<User>(this.apiUrl+ 'addAdmin', admin);
+    return this.http.post<Admin>(this.apiUrl+ 'addAdmin', admin);
   }
 
   updateUser(
