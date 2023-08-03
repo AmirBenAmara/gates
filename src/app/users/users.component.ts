@@ -23,12 +23,12 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.userForm = new FormGroup({
-      name: new FormControl(''),
+      username: new FormControl(''),
       email: new FormControl(''),
       password: new FormControl('')
     });
     this.adminForm = new FormGroup({
-      name: new FormControl(''),
+      username: new FormControl(''),
       email: new FormControl(''),
       password: new FormControl('')
     });

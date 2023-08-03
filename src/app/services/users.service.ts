@@ -48,12 +48,12 @@ export class UsersService {
 }
 
 export interface User {
-  name: string;
+  username: string;
   email: String;
   password: String;
 }
 export interface Admin {
-  name: string;
+  username: string;
   email: String;
   password: String;
 }
