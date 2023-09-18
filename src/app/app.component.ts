@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from './icons/icon-subset';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,16 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent implements OnInit {
   title = 'CoreUI Free Angular Admin Template';
 
-  constructor(
-    private router: Router,
-    private titleService: Title,
-    private iconSetService: IconSetService
-  ) {
+  constructor
+    (translate: TranslateService,
+      private router: Router,
+      private titleService: Title,
+      private iconSetService: IconSetService
+    ) {
+    translate.setDefaultLang('en');
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('fr');
     titleService.setTitle(this.title);
     // iconSet singleton
     iconSetService.icons = { ...iconSubset };
@@ -24,9 +30,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-    });
+    if (!(evt instanceof NavigationEnd)) {
+      return;
+    }
+  });
   }
 }

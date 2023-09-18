@@ -5,7 +5,7 @@
 
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
-            <div class="fs-2 fw-semibold bg-white "><strong>Manage Doors</strong></div>
+            <div class="fs-2 fw-semibold bg-white "><strong>{{ 'doorsComp.manageDoors' | translate }}</strong></div>
             <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
           </div>
           <div class="card-body">
@@ -20,10 +20,10 @@
                   </div>
                   <div class="col-6 mb-3">
                     <c-input-group>
-                      <input aria-label="Search" cFormControl placeholder="Search" />
+                      <input aria-label="Search" cFormControl placeholder="{{ 'doorsComp.search' | translate }}" />
 
                       <button cButton color="dark" type="button" variant="outline" (click)="openDoorModal()">
-                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Door
+                        <svg [cIcon]="icons.cilPlus" title="{{ 'doorsComp.plusIcon' | translate }}"></svg> {{ 'doorsComp.newDoor' | translate }}
                       </button>
                     </c-input-group>
                   </div>
@@ -33,9 +33,9 @@
                   <thead class="table-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Department</th>
+                      <th scope="col">{{ 'doorsComp.name' | translate }}</th>
+                      <th scope="col">{{ 'doorsComp.type' | translate }}</th>
+                      <th scope="col">{{ 'doorsComp.department' | translate }}</th>
 
                       <th scope="col"></th>
 
@@ -50,17 +50,18 @@
 
                       <td style="text-align:center;">
                         <button type="button" cButton color="light" (click)="detailDoor(door)">
-                          <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
+                          <svg [cIcon]="icons.cilInfo" width="15" title="{{ 'doorsComp.detailIcon' | translate }}"></svg>
 
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="editDoor(door)">
-                          <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+                          <svg [cIcon]="icons.cilPencil" width="15" title="{{ 'doorsComp.pencilIcon' | translate }}"></svg>
 
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="openModalDelete(door)">
-                          <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                          <svg [cIcon]="icons.cilTrash" width="15" title="{{ 'doorsComp.trashIcon' | translate }}"></svg>
                         </button>
                       </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -77,32 +78,32 @@
 
 <c-modal id="DoorModal" [visible]="visible" size="lg" (visibleChange)="handleDoorModalVisbilityChange($event)">
   <c-modal-header>
-    <h5 cModalTitle>New Door</h5>
+    <h5 cModalTitle>{{ 'doorsComp.newDoor' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="doorForm" class="form-horizontal">
 
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <label for="name" class="col-md-3 col-form-label">{{ 'doorsComp.name' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'doorsComp.namePlaceholder' | translate }}">
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label for="cameras" class="col-md-3 col-form-label">Department</label>
+        <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.department' | translate }}</label>
         <div class="col-md-9">
-          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" placeholder="Cameras">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" >
             <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
           </select>
         </div>
       </div>
-      <h5>Devices Configuration</h5>
+      <h5>{{ 'doorsComp.devicesConfiguration' | translate }}</h5>
       <br>
       <div class="form-group row mb-3">
-        <label for="cameras" class="col-md-3 col-form-label">Wave Share</label>
+        <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.waveShare' | translate }}</label>
         <div class="col-md-9">
-          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" placeholder="waveshare">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" >
             <option *ngFor="let waveShare of waveShares" [value]="waveShare.id">{{waveShare.name}}</option>
           </select>
         </div>
@@ -110,26 +111,26 @@
       <br>
       <div class="row">
         <div class="col-6">
-          <h6>Entry Devices</h6>
+          <h6>{{ 'doorsComp.entryDevices' | translate }}</h6>
         </div>
         <div class="col-6">
-          <h6>Exit Devices</h6>
+          <h6>{{ 'doorsComp.exitDevices' | translate }}</h6>
         </div>
       </div>
       <div class="row">
         <div class="col-6">
           <div class="form-group row mb-3">
-            <label for="cameras" class="col-md-3 col-form-label">Camera</label>
+            <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.camera' | translate }}</label>
             <div class="col-md-9">
-              <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraEntry" placeholder="Cameras">
+              <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraEntry" >
                 <option *ngFor="let camera of cameras" [value]="camera.id">{{camera.name}}</option>
               </select>
             </div>
           </div>
           <div class="form-group row mb-3">
-            <label for="cameras" class="col-md-3 col-form-label">Reader</label>
+            <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
             <div class="col-md-9">
-              <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerEntry" placeholder="Cameras">
+              <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerEntry" >
                 <option *ngFor="let reader of readers" [value]="reader.id">{{reader.name}}</option>
               </select>
             </div>
@@ -137,17 +138,18 @@
         </div>
         <div class="col-6">
           <div class="form-group row mb-3">
-            <label for="cameras" class="col-md-3 col-form-label">Camera</label>
+            <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.camera' | translate }}</label>
             <div class="col-md-9">
-              <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraExit" placeholder="Cameras">
+              <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraExit"> 
+             
                 <option *ngFor="let camera of cameras" [value]="camera.id">{{camera.name}}</option>
               </select>
             </div>
           </div>
           <div class="form-group row mb-3">
-            <label for="cameras" class="col-md-3 col-form-label">Reader</label>
+            <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
             <div class="col-md-9">
-              <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerExit" placeholder="Cameras">
+              <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerExit"> 
                 <option *ngFor="let reader of readers" [value]="reader.id">{{reader.name}}</option>
               </select>
             </div>
@@ -158,63 +160,63 @@
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="secondary">
-      Close
+      {{ 'doorsComp.close' | translate }}
     </button>
-    <button (click)="submitDoorModal()" cButton color="primary">Submit</button>
+    <button (click)="submitDoorModal()" cButton color="primary">{{ 'doorsComp.submit' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 
 <c-modal id="editDoorModal" [visible]="editModalVisible" size="lg" (visibleChange)="handleeditDoorModalVisbilityChange($event)">
   <c-modal-header>
-    <h5 cModalTitle>New Door</h5>
+    <h5 cModalTitle>{{ 'doorsComp.editDoor' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="editDoorForm" class="form-horizontal">
 
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <label for="name" class="col-md-3 col-form-label">{{ 'doorsComp.name' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'doorsComp.namePlaceholder' | translate }}">
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">Type</label>
+        <label for="name" class="col-md-3 col-form-label">{{ 'doorsComp.type' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="description" id="name" placeholder="Description" readonly>
+          <input type="text" class="form-control" cFormControl formControlName="description" id="name" placeholder="{{ 'doorsComp.descriptionPlaceholder' | translate }}" readonly>
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label for="cameras" class="col-md-3 col-form-label">Department</label>
+        <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.department' | translate }}</label>
         <div class="col-md-9">
-          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" placeholder="Cameras">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" >
             <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
           </select>
         </div>
       </div>
-      <h5>Devices Configuration</h5>
+      <h5>{{ 'doorsComp.devicesConfiguration' | translate }}</h5>
       <br>
       <div class="form-group row mb-3">
-        <label for="cameras" class="col-md-3 col-form-label">Wave Share</label>
+        <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.waveShare' | translate }}</label>
         <div class="col-md-9">
-          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" placeholder="Cameras">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" >
             <option *ngFor="let waveShare of waveShares" [value]="waveShare.id">{{waveShare.name}}</option>
           </select>
         </div>
       </div>
       <br>
       <div class="form-group row mb-3">
-        <label for="cameras" class="col-md-3 col-form-label">Camera</label>
+        <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.camera' | translate }}</label>
         <div class="col-md-9">
-          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="camera" placeholder="Cameras">
+          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="camera"  >
             <option *ngFor="let camera of cameras" [value]="camera.id">{{camera.name}}</option>
           </select>
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label for="cameras" class="col-md-3 col-form-label">Reader</label>
+        <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
         <div class="col-md-9">
-          <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="reader" placeholder="Cameras">
+          <select  cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="reader"  >
             <option *ngFor="let reader of readers" [value]="reader.id">{{reader.name}}</option>
           </select>
         </div>
@@ -223,15 +225,15 @@
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="secondary">
-      Close
+      {{ 'doorsComp.close' | translate }}
     </button>
-    <button (click)="submitEditDoor()" cButton color="primary">Submit</button>
+    <button (click)="submitEditDoor()" cButton color="primary">{{ 'doorsComp.submit' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 
 <c-modal id="viewDoorDetailsModal" [visible]="viewModalVisible">
   <c-modal-header>
-    <h5 cModalTitle>Door details</h5>
+    <h5 cModalTitle>{{ 'doorsComp.doorDetails' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
@@ -239,35 +241,35 @@
     <div class="container" *ngIf="selectedDoor">
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>Name:</strong> {{ selectedDoor.name}}</p>
+          <p><strong>{{ 'doorsComp.name' | translate }}:</strong> {{ selectedDoor.name}}</p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>Department:</strong> <span>{{ selectedDoor.department.name}} </span></p>
+          <p><strong>{{ 'doorsComp.department' | translate }}:</strong> <span>{{ selectedDoor.department.name}} </span></p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>Type:</strong> Entry </p>
+          <p><strong>{{ 'doorsComp.type' | translate }}:</strong> {{ 'doorsComp.entry' | translate }} </p>
         </div>
       </div>
       <br>
-      <h6><strong>Associated Devices:</strong></h6>
+      <h6><strong>{{ 'doorsComp.associatedDevices' | translate }}:</strong></h6>
 
       <div class="row">
         <div class="col-sm-12">
-          <p style="text-align: center;"><strong>Reader:</strong> {{ selectedDoor.reader.name}} </p>
+          <p style="text-align: center;"><strong>{{ 'doorsComp.reader' | translate }}:</strong> {{ selectedDoor.reader.name}} </p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <p style="text-align: center;"><strong>Camera:</strong> {{ selectedDoor.camera.name}} </p>
+          <p style="text-align: center;"><strong>{{ 'doorsComp.camera' | translate }}:</strong> {{ selectedDoor.camera.name}} </p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <p style="text-align: center;"><strong>Wave Share:</strong> {{ selectedDoor.waveShare.name}}</p>
+          <p style="text-align: center;"><strong>{{ 'doorsComp.waveShare' | translate }}:</strong> {{ selectedDoor.waveShare.name}}</p>
         </div>
       </div>
     </div>
@@ -275,7 +277,7 @@
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="secondary">
-      Close
+      {{ 'doorsComp.close' | translate }}
     </button>
   </c-modal-footer>
 </c-modal>
@@ -283,22 +285,22 @@
 
 <c-modal id="viewDoorDeleteModal" [visible]="viewModalDeleteVisible">
   <c-modal-header>
-    <h5 cModalTitle>Delete Confirmation</h5>
+    <h5 cModalTitle>{{ 'doorsComp.deleteConfirmation' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
 
     <div class="container">
-      <h5>Are you sure you want to delete?</h5>
+      <h5>{{ 'doorsComp.areYouSureDelete' | translate }}</h5>
     </div>
 
   </c-modal-body>
   <c-modal-footer>
     <button size="lg" class="float-left" (click)="viewModalDeleteVisible = false" cButton color="secondary">
-      No
+      {{ 'doorsComp.no' | translate }}
     </button>
     <button size="lg" class="float-right" (click)="deleteDoor()" cButton color="danger">
-      Yes
+      {{ 'doorsComp.yes' | translate }}
     </button>
   </c-modal-footer>
 </c-modal>

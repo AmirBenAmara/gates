@@ -5,7 +5,6 @@
 
                 <div class="card  mt-4 mb-2">
                     <div class="card-header bg-white">
-                        <!-- <div class="fs-2 fw-semibold bg-white "><strong>Manage Users</strong></div> -->
                         <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
                     </div>
                     <div class="card-body">
@@ -17,20 +16,19 @@
                                     <div class="col-6">
                                         <c-input-group>
                                             <button cButton color="dark" type="button" variant="outline" >
-                                                <svg [cIcon]="icons.cilClearAll" title="Clear"></svg> Export
+                                                <svg [cIcon]="icons.cilClearAll" title="{{ 'deviceStatus.export' | translate }}"></svg> {{ 'deviceStatus.export' | translate }}
                                               </button>                  
                                            
                                           </c-input-group>
-                  
                                     </div>
                                     <div class="col-3"></div>
                                     <div class="col-md-3 col-xs-1 mb-3 d-flex justify-content-end">
                                       <c-input-group>
                                         <button cButton color="dark" style="margin-left: auto;" type="button" variant="outline" >
-                                            <svg [cIcon]="icons.cilX" title="Clear"></svg> Clear
+                                            <svg [cIcon]="icons.cilX" title="{{ 'deviceStatus.clear' | translate }}"></svg> {{ 'deviceStatus.clear' | translate }}
                                           </button>                  
                                         <button cButton color="dark" type="button" variant="outline" >
-                                          <svg [cIcon]="icons.cilMediaPause" title="Pause"></svg> Pause
+                                          <svg [cIcon]="icons.cilMediaPause" title="{{ 'deviceStatus.pause' | translate }}"></svg> {{ 'deviceStatus.pause' | translate }}
                                         </button>
                                       </c-input-group>
                                     </div>
@@ -40,10 +38,10 @@
                                 <table cTable>
                                     <thead class="table-dark logs">
                                         <tr>
-                                            <th scope="col">Device Name</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Alaram</th>
-                                            <th scope="col">Last event</th>
+                                            <th scope="col">{{ 'deviceStatus.deviceName' | translate }}</th>
+                                            <th scope="col">{{ 'deviceStatus.status' | translate }}</th>
+                                            <th scope="col">{{ 'deviceStatus.alarm' | translate }}</th>
+                                            <th scope="col">{{ 'deviceStatus.lastEvent' | translate }}</th>
                                             <th></th>
                                         </tr>
                                     </thead>

@@ -40,7 +40,20 @@
       <c-nav-item>
         <a routerLink="./" cNavLink>
           <svg cIcon name="cilEnvelopeOpen" size="lg"></svg>
+
         </a>
+      </c-nav-item>
+      <c-nav-item>
+        <c-dropdown>
+          <button cButton cDropdownToggle color="transparent">
+            <svg [cIcon]="icons.cilLanguage" size="lg"></svg>
+          </button>
+          <ul cDropdownMenu>
+            <li><a role="button" (click)="changeTo('en')" cDropdownItem>English</a></li>
+            <li><a  role="button" (click)="changeTo('fr')"cDropdownItem>French</a></li>
+            <li><a role="button" (click)="changeTo('ar')"  cDropdownItem>Arabic</a></li>
+          </ul>
+        </c-dropdown>
       </c-nav-item>
     </c-header-nav>
     <c-header-nav class="ms-3">

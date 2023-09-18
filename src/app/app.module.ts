@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Import app component
 import { AppComponent } from './app.component';
-
+import {TranslateModule} from '@ngx-translate/core';
 // Import containers
 import {
   DefaultFooterComponent,
@@ -62,7 +62,17 @@ import { WaveSharesComponent } from './wave-shares/wave-shares.component';
 import { RealTimeLogComponent } from './real-time-log/real-time-log.component';
 import { DoorsStatusComponent } from './doors-status/doors-status.component';
 import { DeviceStatusComponent } from './device-status/device-status.component';
+import { HttpClient} from '@angular/common/http';
+import {TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -104,7 +114,14 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    ModalModule
+    ModalModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+    }),
   ],
   providers: [
     {

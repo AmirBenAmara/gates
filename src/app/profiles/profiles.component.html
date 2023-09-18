@@ -5,7 +5,7 @@
 
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
-            <div class="fs-2 fw-semibold bg-white "><strong>Manage Profiles</strong></div>
+            <div class="fs-2 fw-semibold bg-white "><strong>{{ 'profileComp.title' | translate }}</strong></div>
             <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
           </div>
           <div class="card-body">
@@ -20,10 +20,10 @@
                   </div>
                   <div class="col-6 mb-3">
                     <c-input-group>
-                      <input aria-label="Search" cFormControl placeholder="Search" />
+                      <input aria-label="Search" cFormControl placeholder="{{ 'profileComp.searchPlaceholder' | translate }}" />
 
                       <button cButton color="dark" type="button" variant="outline" (click)="openProfileModal()">
-                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Profile
+                        <svg [cIcon]="icons.cilPlus" title="{{ 'profileComp.newProfileTitle' | translate }}"></svg> {{ 'profileComp.newProfileButton' | translate }}
                       </button>
                     </c-input-group>
                   </div>
@@ -33,10 +33,10 @@
                   <thead class="table-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">SurName</th>
-                      <th scope="col">Birthdate</th>
-                      <th scope="col">Occupation</th>
+                      <th scope="col">{{ 'profileComp.nameColumn' | translate }}</th>
+                      <th scope="col">{{ 'profileComp.surnameColumn' | translate }}</th>
+                      <th scope="col">{{ 'profileComp.birthDateColumn' | translate }}</th>
+                      <th scope="col">{{ 'profileComp.occupationColumn' | translate }}</th>
                       <th scope="col"></th>
 
                     </tr>
@@ -47,18 +47,16 @@
                       <td>{{profile.name}}</td>
                       <td>{{profile.surname}}</td>
                       <td>{{profile.birthDate}}</td>
-                      <td>Occupation??</td>
+                      <td>{{ 'profileComp.occupationValue' | translate }}</td>
                       <td style="text-align:center;">
                         <button type="button" cButton color="light" (click)="detailProfile(profile)">
-                          <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
-
+                          <svg [cIcon]="icons.cilInfo" width="15" title="{{ 'profileComp.detailIconTitle' | translate }}"></svg>
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="editProfile(profile)">
-                          <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
+                          <svg [cIcon]="icons.cilPencil" width="15" title="{{ 'profileComp.pencilIconTitle' | translate }}"></svg>
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="openModalDelete(profile)">
-                          <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                          <svg [cIcon]="icons.cilTrash" width="15" title="{{ 'profileComp.trashIconTitle' | translate }}"></svg>
                         </button>
                       </td>
 
@@ -79,81 +77,85 @@
 
 <c-modal id="ProfileModal" [visible]="visible" size="lg" (visibleChange)="handleProfileModalVisbilityChange($event)">
   <c-modal-header>
-    <h5 cModalTitle>New Profile</h5>
+    <h5 cModalTitle>{{ 'profileComp.newProfileModalTitle' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="profileForm">
       <div class="form-group mb-3">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+        <label for="name">{{ 'profileComp.nameLabel' | translate }}:</label>
+        <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'profileComp.namePlaceholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="surname">Surname:</label>
+        <label for="surname">{{ 'profileComp.surnameLabel' | translate }}:</label>
         <input type="text" class="form-control" cFormControl formControlName="surname" id="surname"
-          placeholder="Surname">
+          placeholder="{{ 'profileComp.surnamePlaceholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="birthDate">Birth Date:</label>
+        <label for="birthDate">{{ 'profileComp.birthDateLabel' | translate }}:</label>
         <input type="date" class="form-control" cFormControl formControlName="birthDate" id="birthDate"
-          placeholder="Birth Date">
+          placeholder="{{ 'profileComp.birthDatePlaceholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="documentNumber">Document Number:</label>
+        <label for="documentNumber">{{ 'profileComp.documentNumberLabel' | translate }}:</label>
         <input type="number" class="form-control" cFormControl formControlName="documentNumber" id="documentNumber"
-          placeholder="Document Number">
+          placeholder="{{ 'profileComp.documentNumberPlaceholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="sex">Sex:</label>
-        <input type="text" class="form-control" cFormControl formControlName="sex" id="sex" placeholder="Sex">
+        <label for="sex">{{ 'profileComp.sexLabel' | translate }}:</label>
+        <input type="text" class="form-control" cFormControl formControlName="sex" id="sex"
+          placeholder="{{ 'profileComp.sexPlaceholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="nationality">Nationality:</label>
+        <label for="nationality">{{ 'profileComp.nationalityLabel' | translate }}:</label>
         <input type="text" class="form-control" cFormControl formControlName="nationality" id="nationality"
-          placeholder="Nationality">
+          placeholder="{{ 'profileComp.nationalityPlaceholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="expiryDate">Expiry Date:</label>
+        <label for="expiryDate">{{ 'profileComp.expiryDateLabel' | translate }}:</label>
         <input type="date" class="form-control" cFormControl formControlName="expiryDate" id="expiryDate"
-          placeholder="Expiry Date">
+          placeholder="{{ 'profileComp.expiryDatePlaceholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="personalData">Personal Data:</label>
+        <label for="personalData">{{ 'profileComp.personalDataLabel' | translate }}:</label>
         <input type="text" class="form-control" cFormControl formControlName="personalData" id="personalData"
-          placeholder="Personal Data">
+          placeholder="{{ 'profileComp.personalDataPlaceholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="MRZ1">MRZ1:</label>
-        <input type="text" class="form-control" cFormControl formControlName="MRZ1" id="MRZ1" placeholder="MRZ1">
+        <label for="MRZ1">{{ 'profileComp.mrz1Label' | translate }}:</label>
+        <input type="text" class="form-control" cFormControl formControlName="MRZ1" id="MRZ1"
+          placeholder="{{ 'profileComp.mrz1Placeholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="MRZ2">MRZ2:</label>
-        <input type="text" class="form-control" cFormControl formControlName="MRZ2" id="MRZ2" placeholder="MRZ2">
+        <label for="MRZ2">{{ 'profileComp.mrz2Label' | translate }}:</label>
+        <input type="text" class="form-control" cFormControl formControlName="MRZ2" id="MRZ2"
+          placeholder="{{ 'profileComp.mrz2Placeholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="MRZ3">MRZ3:</label>
-        <input type="text" class="form-control" cFormControl formControlName="MRZ3" id="MRZ3" placeholder="MRZ3">
+        <label for="MRZ3">{{ 'profileComp.mrz3Label' | translate }}:</label>
+        <input type="text" class="form-control" cFormControl formControlName="MRZ3" id="MRZ3"
+          placeholder="{{ 'profileComp.mrz3Placeholder' | translate }}">
       </div>
       <div class="form-group mb-3">
-        <label for="issueCountry">Issue Country:</label>
+        <label for="issueCountry">{{ 'profileComp.issueCountryLabel' | translate }}:</label>
         <input type="text" class="form-control" cFormControl formControlName="issueCountry" id="issueCountry"
-          placeholder="Issue Country">
+          placeholder="{{ 'profileComp.issueCountryPlaceholder' | translate }}">
       </div>
     </form>
 
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="secondary">
-      Close
+      {{ 'profileComp.closeButton' | translate }}
     </button>
-    <button (click)="cancel()" cButton color="primary">Submit</button>
+    <button (click)="cancel()" cButton color="primary">{{ 'profileComp.submitButton' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 
 
 <c-modal id="viewProfileDetailsModal" [visible]="viewModalVisible">
   <c-modal-header>
-    <h5 cModalTitle>Profile details</h5>
+    <h5 cModalTitle>{{ 'profileComp.profileDetailsTitle' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
@@ -167,53 +169,48 @@
       <div class="row">
 
         <div class="col-sm-12">
-          <p><strong>Name:</strong> {{ selectedProfile.name}}</p>
+          <p><strong>{{ 'profileComp.nameLabel' | translate }}:</strong> {{ selectedProfile.name}}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Surname:</strong> {{ selectedProfile.surname }}</p>
+          <p><strong>{{ 'profileComp.surnameLabel' | translate }}:</strong> {{ selectedProfile.surname }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Birthdate:</strong> {{ selectedProfile.birthDate }}</p>
+          <p><strong>{{ 'profileComp.birthDateLabel' | translate }}:</strong> {{ selectedProfile.birthDate }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Document number:</strong> {{ selectedProfile.documentNumber }}</p>
+          <p><strong>{{ 'profileComp.documentNumberLabel' | translate }}:</strong> {{ selectedProfile.documentNumber }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Sex:</strong> {{ selectedProfile.sex }}</p>
+          <p><strong>{{ 'profileComp.sexLabel' | translate }}:</strong> {{ selectedProfile.sex }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Nationality:</strong> {{ selectedProfile.nationality }}</p>
+          <p><strong>{{ 'profileComp.nationalityLabel' | translate }}:</strong> {{ selectedProfile.nationality }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Expiry date:</strong> {{ selectedProfile.expiryDate }}</p>
+          <p><strong>{{ 'profileComp.expiryDateLabel' | translate }}:</strong> {{ selectedProfile.expiryDate }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Personal data:</strong> {{ selectedProfile.personalData }}</p>
+          <p><strong>{{ 'profileComp.personalDataLabel' | translate }}:</strong> {{ selectedProfile.personalData }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>MRZ1:</strong> {{ selectedProfile.mrZ1 }}</p>
+          <p><strong>{{ 'profileComp.mrz1Label' | translate }}:</strong> {{ selectedProfile.mrZ1 }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>MRZ2:</strong> {{ selectedProfile.mrZ2 }}</p>
+          <p><strong>{{ 'profileComp.mrz2Label' | translate }}:</strong> {{ selectedProfile.mrZ2 }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>MRZ3:</strong> {{ selectedProfile.mrZ3 }}</p>
+          <p><strong>{{ 'profileComp.mrz3Label' | translate }}:</strong> {{ selectedProfile.mrZ3 }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Issue country:</strong> {{ selectedProfile.issueCountry }}</p>
+          <p><strong>{{ 'profileComp.issueCountryLabel' | translate }}:</strong> {{ selectedProfile.issueCountry }}</p>
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="col-sm-12">
-          <p><strong>Profile:</strong> Profile {{ camera.ProfileId }}</p>
-        </div>
-      </div> -->
     </div>
 
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="secondary">
-      Close
+      {{ 'profileComp.closeButton' | translate }}
     </button>
   </c-modal-footer>
 </c-modal>
@@ -222,20 +219,20 @@
 
 <c-modal id="viewProfileDeleteModal" [visible]="viewModalDeleteVisible">
   <c-modal-header>
-    <h5 cModalTitle>Delete Confirmation</h5>
+    <h5 cModalTitle>{{ 'profileComp.deleteConfirmationTitle' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
 
     <div class="container">
-      <h5>Are you sure you want to delete?</h5>
+      <h5>{{ 'profileComp.deleteConfirmationMessage' | translate }}</h5>
     </div>
 
   </c-modal-body>
   <c-modal-footer>
     <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
-      Close
+      {{ 'profileComp.closeButton' | translate }}
     </button>
-    <button (click)="deleteProfile()" class="text-white" cButton color="danger">Confirm</button>
+    <button (click)="deleteProfile()" class="text-white" cButton color="danger">{{ 'profileComp.confirmButton' | translate }}</button>
   </c-modal-footer>
 </c-modal>

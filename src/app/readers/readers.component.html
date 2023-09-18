@@ -2,42 +2,34 @@
   <c-row>
     <c-col lg="12">
       <div class="example">
-
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
-            <div class="fs-2 fw-semibold bg-white "><strong>Manage Readers</strong></div>
+            <div class="fs-2 fw-semibold bg-white "><strong>{{ 'readers.manageReaders' | translate }}</strong></div>
             <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
           </div>
           <div class="card-body">
-
             <div class="tab-content rounded-bottom">
               <div class="tab-pane active show p-3 preview fade">
-
                 <div class="row">
                   <div class="col-6">
-
-
                   </div>
                   <div class="col-6 mb-3">
                     <c-input-group>
-                      <input aria-label="Search" cFormControl placeholder="Search" />
-
+                      <input aria-label="Search" cFormControl placeholder="{{ 'readers.search' | translate }}" />
                       <button cButton color="dark" type="button" variant="outline" (click)="isEditMode = false;openReaderModal()">
-                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Reader
+                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> {{ 'readers.newReader' | translate }}
                       </button>
                     </c-input-group>
                   </div>
-
                 </div>
                 <table cTable>
                   <thead class="table-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">IP Address</th>
-                      <th scope="col">Serial Number</th>
+                      <th scope="col">{{ 'readers.name' | translate }}</th>
+                      <th scope="col">{{ 'readers.ipAddress' | translate }}</th>
+                      <th scope="col">{{ 'readers.serialNumber' | translate }}</th>
                       <th scope="col"></th>
-
                     </tr>
                   </thead>
                   <tbody>
@@ -49,28 +41,19 @@
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewReaderDetailsModal(rdr)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
-
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="isEditMode = true; openReaderModal(rdr)">
                           <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
                         </button> &nbsp;
-                        <button type="button" cButton color="light" (click)="reader = rdr"
-                          [cModalToggle]="deleteReader.id">
+                        <button type="button" cButton color="light" (click)="reader = rdr" [cModalToggle]="deleteReader.id">
                           <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                         </button>
                       </td>
-
                     </tr>
-
                   </tbody>
                 </table>
-
               </div>
-
             </div>
-
-
           </div>
         </div>
       </div>
@@ -78,94 +61,83 @@
   </c-row>
 </c-container>
 
-
 <c-modal #deleteReader id="deleteReader">
   <c-modal-header>
-    <h5 cModalTitle>Delete Confirmation</h5>
+    <h5 cModalTitle>{{ 'readers.deleteConfirmation' | translate }}</h5>
     <button [cModalToggle]="deleteReader.id" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-    <p class="fw-semibold">Are you sure you want to delete this Reader? This action cannot be undone.</p>
+    <p class="fw-semibold">{{ 'readers.deleteConfirmationMessage' | translate }}</p>
     <p><strong> {{reader.name }} </strong></p>
   </c-modal-body>
-
   <c-modal-footer>
     <button [cModalToggle]="deleteReader.id" cButton color="secondary">
-      Close
+      {{ 'readers.close' | translate }}
     </button>
-    <button (click)="confirmDeleteReader(reader.id)" class="text-white" [cModalToggle]="deleteReader.id" cButton color="danger">Confirm</button>
+    <button (click)="confirmDeleteReader(reader.id)" class="text-white" [cModalToggle]="deleteReader.id" cButton color="danger">{{ 'readers.confirm' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 
-
 <c-modal id="upsertReaderModal" size="lg" [visible]="upsertModalVisible">
   <c-modal-header>
-    <h5 cModalTitle *ngIf="!isEditMode">New Reader</h5>
-    <h5 cModalTitle *ngIf="isEditMode">Edit Reader</h5>
-
+    <h5 cModalTitle *ngIf="!isEditMode">{{ 'readers.newReader' | translate }}</h5>
+    <h5 cModalTitle *ngIf="isEditMode">{{ 'readers.editReader' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="readerForm" class="form-horizontal">
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">Name</label>
+        <label for="name" class="col-md-3 col-form-label">{{ 'readers.name' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'readers.name' | translate }}">
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label for="ipAddress" class="col-md-3 col-form-label">IP Address</label>
+        <label for="ipAddress" class="col-md-3 col-form-label">{{ 'readers.ipAddress' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress"
-            placeholder="IP Address">
+          <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress" placeholder="{{ 'readers.ipAddress' | translate }}">
         </div>
       </div>
       <div class="form-group row mb-3">
-        <label for="serialNumber" class="col-md-3 col-form-label">Serial Number</label>
+        <label for="serialNumber" class="col-md-3 col-form-label">{{ 'readers.serialNumber' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="serialNumber" id="serialNumber"
-            placeholder="Serial Number">
+          <input type="text" class="form-control" cFormControl formControlName="serialNumber" id="serialNumber" placeholder="{{ 'readers.serialNumber' | translate }}">
         </div>
       </div>
-
     </form>
-
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="secondary">
-      Close
+      {{ 'readers.close' | translate }}
     </button>
-    <button  *ngIf="!isEditMode" (click)="newReader()" cButton color="primary">Submit</button>
-    <button  *ngIf="isEditMode" (click)="updateReader(reader.id)" cButton color="primary">Submit</button>
+    <button  *ngIf="!isEditMode" (click)="newReader()" cButton color="primary">{{ 'readers.submit' | translate }}</button>
+    <button  *ngIf="isEditMode" (click)="updateReader(reader.id)" cButton color="primary">{{ 'readers.submit' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 
 <c-modal id="viewReaderDetailsModal" [visible]="viewModalVisible">
   <c-modal-header>
-    <h5 cModalTitle>Reader details</h5>
+    <h5 cModalTitle>{{ 'readers.readerDetails' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>Name:</strong> {{ reader.name }}</p>
+          <p><strong>{{ 'readers.name' | translate }}:</strong> {{ reader.name }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>IP Address:</strong> {{ reader.ipAddress }}</p>
+          <p><strong>{{ 'readers.ipAddress' | translate }}:</strong> {{ reader.ipAddress }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>Serial Number:</strong> {{ reader.serialNumber }}</p>
+          <p><strong>{{ 'readers.serialNumber' | translate }}:</strong> {{ reader.serialNumber }}</p>
         </div>
       </div>
-      
     </div>
-
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="secondary">
-      Close
+      {{ 'readers.close' | translate }}
     </button>
   </c-modal-footer>
 </c-modal>

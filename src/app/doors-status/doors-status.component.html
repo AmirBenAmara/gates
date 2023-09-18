@@ -1,77 +1,70 @@
 <c-container fluid>
     <c-row>
-        <c-col lg="12">
-            <div class="example">
-
-                <div class="card  mt-4 mb-2">
-                    <div class="card-header bg-white">
-                        <!-- <div class="fs-2 fw-semibold bg-white "><strong>Manage Users</strong></div> -->
-                        <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
-                    </div>
-                    <div class="card-body">
-
-                        <div class="tab-content rounded-bottom">
-                            <div class="tab-pane active show p-3 preview fade">
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <c-input-group>
-                                            <button cButton color="dark" type="button" variant="outline" >
-                                                <svg [cIcon]="icons.cilClearAll" title="Clear"></svg> Export
-                                              </button>                  
-                                           
-                                          </c-input-group>
-                  
-                                    </div>
-                                    <div class="col-3"></div>
-                                    <div class="col-md-3 col-xs-1 mb-3 d-flex justify-content-end">
-                                      <c-input-group>
-                                        <button cButton color="dark" style="margin-left: auto;" type="button" variant="outline" >
-                                            <svg [cIcon]="icons.cilX" title="Clear"></svg> Clear
-                                          </button>                  
-                                        <button cButton color="dark" type="button" variant="outline" >
-                                          <svg [cIcon]="icons.cilMediaPause" title="Pause"></svg> Pause
-                                        </button>
-                                      </c-input-group>
-                                    </div>
-                  
-                                  </div>
-
-                                <table cTable>
-                                    <thead class="table-dark logs">
-                                        <tr>
-                                            <th scope="col">Door Name</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Status type</th>
-                                            <th scope="col">Door relay</th>
-                                            <th scope="col">Alaram</th>
-                                            <th scope="col">Last event</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                        <tr *ngFor="let drs of doorStatuses">
-                                            <th class="log-level" scope="row">{{drs.doorName}}</th>
-                                            <td>{{drs.doorStatus}}</td>
-                                            <td>{{drs.doorStatusType}}</td>
-                                            <td >{{drs.doorRelay}}</td>
-                                            <td>
-                                                {{drs.Alaram}}
-                                            </td>
-                                            <td>
-                                                {{drs.lastEvent}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
+      <c-col lg="12">
+        <div class="example">
+  
+          <div class="card  mt-4 mb-2">
+            <div class="card-header bg-white">
+              <!-- <div class="fs-2 fw-semibold bg-white "><strong>Manage Users</strong></div> -->
+              <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
             </div>
-        </c-col>
+            <div class="card-body">
+  
+              <div class="tab-content rounded-bottom">
+                <div class="tab-pane active show p-3 preview fade">
+  
+                  <div class="row">
+                    <div class="col-6">
+                      <c-input-group>
+                        <button cButton color="dark" type="button" variant="outline" >
+                          <svg [cIcon]="icons.cilClearAll" title="{{ 'doorsStatus.clear' | translate }}"></svg> {{ 'doorsStatus.export' | translate }}
+                        </button>
+                      </c-input-group>
+                    </div>
+                    <div class="col-3"></div>
+                    <div class="col-md-3 col-xs-1 mb-3 d-flex justify-content-end">
+                      <c-input-group>
+                        <button cButton color="dark" style="margin-left: auto;" type="button" variant="outline" >
+                          <svg [cIcon]="icons.cilX" title="{{ 'doorsStatus.clear' | translate }}"></svg> {{ 'doorsStatus.clear' | translate }}
+                        </button>
+                        <button cButton color="dark" type="button" variant="outline" >
+                          <svg [cIcon]="icons.cilMediaPause" title="{{ 'doorsStatus.pause' | translate }}"></svg> {{ 'doorsStatus.pause' | translate }}
+                        </button>
+                      </c-input-group>
+                    </div>
+                  </div>
+  
+                  <table cTable>
+                    <thead class="table-dark logs">
+                      <tr>
+                        <th scope="col">{{ 'doorsStatus.doorName' | translate }}</th>
+                        <th scope="col">{{ 'doorsStatus.status' | translate }}</th>
+                        <th scope="col">{{ 'doorsStatus.statusType' | translate }}</th>
+                        <th scope="col">{{ 'doorsStatus.doorRelay' | translate }}</th>
+                        <th scope="col">{{ 'doorsStatus.alarm' | translate }}</th>
+                        <th scope="col">{{ 'doorsStatus.lastEvent' | translate }}</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let drs of doorStatuses">
+                        <th class="log-level" scope="row">{{drs.doorName}}</th>
+                        <td>{{drs.doorStatus}}</td>
+                        <td>{{drs.doorStatusType}}</td>
+                        <td>{{drs.doorRelay}}</td>
+                        <td>{{drs.Alaram}}</td>
+                        <td>{{drs.lastEvent}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </c-col>
     </c-row>
-</c-container>
+  </c-container>
+  

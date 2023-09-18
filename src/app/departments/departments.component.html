@@ -1,70 +1,62 @@
+<!-- Manage Departments Component HTML -->
 <c-container fluid>
     <c-row>
         <c-col lg="12">
             <div class="example">
-
                 <div class="card  mt-4 mb-2">
                     <div class="card-header bg-white">
-                        <div class="fs-2 fw-semibold bg-white "><strong>Manage Departments</strong></div>
+                        <div class="fs-2 fw-semibold bg-white "><strong>{{ 'departments.manageDepartments' | translate }}</strong></div>
                         <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
                     </div>
                     <div class="card-body">
-
                         <div class="tab-content rounded-bottom">
                             <div class="tab-pane active show p-3 preview fade">
-
                                 <div class="row">
                                     <div class="col-6">
-
-
                                     </div>
                                     <div class="col-6 mb-3">
                                         <c-input-group>
-                                            <input aria-label="Search" cFormControl placeholder="Search" />
+                                            <input aria-label="Search" cFormControl placeholder="{{ 'departments.search' | translate }}" />
 
-                                            <button cButton color="dark" type="button" variant="outline" (click)="openDepartmentModal()">
-                                                <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> New Department
+                                            <button cButton color="dark" type="button" variant="outline"
+                                                (click)="openDepartmentModal()">
+                                                <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> {{ 'departments.newDepartment' | translate }}
                                             </button>
                                         </c-input-group>
                                     </div>
-
                                 </div>
-
-
                                 <table cTable>
                                     <thead class="table-dark">
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Name</th>
+                                            <th scope="col">{{ 'departments.name' | translate }}</th>
                                             <th scope="col"></th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let department of departments">
-                                            <th scope="row">{{department.id}}</th>
-                                            <td>{{department.name}}</td>
+                                            <th scope="row">{{ department.id }}</th>
+                                            <td>{{ department.name }}</td>
                                             <td style="text-align:center;">
-                                                <button type="button" cButton color="light" (click)="detailDepartment(department)">
-                                                    <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
-
+                                                <button type="button" cButton color="light"
+                                                    (click)="detailDepartment(department)">
+                                                    <svg [cIcon]="icons.cilInfo" width="15" title="Detail Icon"></svg>
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light" (click)="editDepartment(department)">
+                                                <button type="button" cButton color="light"
+                                                    (click)="editDepartment(department)">
                                                     <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light" (click)="openModalDelete(department)">
-                                                    <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
+                                                <button type="button" cButton color="light"
+                                                    (click)="openModalDelete(department)">
+                                                    <svg [cIcon]="icons.cilTrash" width="15"
+                                                        title="Trash bin Icon"></svg>
                                                 </button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -72,86 +64,81 @@
     </c-row>
 </c-container>
 
-<c-modal id="DepartmentModal" [visible]="visible" size="lg" (visibleChange)="handleDepartmentModalVisbilityChange($event)">
+<!-- Department Modal -->
+<c-modal id="DepartmentModal" [visible]="visible" size="lg"
+    (visibleChange)="handleDepartmentModalVisbilityChange($event)">
     <c-modal-header>
-        <h5 cModalTitle>New Department</h5>
+        <h5 cModalTitle>{{ 'departments.newDepartment' | translate }}</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
         <form [formGroup]="departmentForm">
             <div class="form-group  mb-3">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" cFormControl formControlName="name" placeholder="Name">
+                <label for="name">{{ 'departments.name' | translate }}</label>
+                <input type="text" class="form-control" id="name" cFormControl formControlName="name"
+                    placeholder="{{ 'departments.name' | translate }}">
             </div>
             <div class="form-group  mb-3">
-                <label for="controllers">Controllers</label>
+                <label for="controllers">{{ 'departments.controllers' | translate }}</label>
                 <select cSelect id="controllers" formControlName="ctrPannels" multiple>
-                    <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel.id">{{ctrPannel.name}}</option>
+                    <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel.id">{{ ctrPannel.name }}</option>
                 </select>
             </div>
         </form>
-        <!-- <c-input-group class="mb-3">
-            <span cInputGroupText id="inputGroup-sizing-default">Name</span>
-            <input aria-describedby="inputGroup-sizing-default" aria-label="Sizing example input" cFormControl />
-        </c-input-group> -->
-
     </c-modal-body>
     <c-modal-footer>
         <button (click)="cancel()" cButton color="secondary">
-            Close
+            {{ 'departments.close' | translate }}
         </button>
-        <button (click)="submitDepartmentModal()" cButton color="primary">Submit</button>
+        <button (click)="submitDepartmentModal()" cButton color="primary">{{ 'departments.submit' | translate }}</button>
     </c-modal-footer>
 </c-modal>
 
+<!-- View Department Details Modal -->
 <c-modal id="viewDepartmentDetailsModal" [visible]="viewModalVisible">
     <c-modal-header>
-        <h5 cModalTitle>Department details</h5>
+        <h5 cModalTitle>{{ 'departments.departmentDetails' | translate }}</h5>
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
-
         <div class="container" *ngIf="selectedDepartment">
             <div class="row">
                 <div class="col-sm-12">
-                    <p><strong>Name:</strong> {{ selectedDepartment.name}}</p>
+                    <p><strong>{{ 'departments.name' | translate }}:</strong> {{ selectedDepartment.name }}</p>
                 </div>
                 <div class="col-sm-12">
-                    <p><strong>Doors:</strong> </p>
+                    <p><strong>{{ 'departments.doors' | translate }}:</strong> </p>
                     <p style="text-align: center;" *ngFor="let door of selectedDepartment.doors">{{ door.name }}</p>
                 </div>
                 <div class="col-sm-12">
-                    <p><strong>Control Panels:</strong> </p>
+                    <p><strong>{{ 'departments.controlPanels' | translate }}:</strong> </p>
                     <p style="text-align: center;" *ngFor="let ctPanel of selectedDepartment.ctrPannels">{{ ctPanel.name }}</p>
                 </div>
             </div>
         </div>
-
     </c-modal-body>
     <c-modal-footer>
         <button (click)="cancel()" cButton color="secondary">
-            Close
+            {{ 'departments.close' | translate }}
         </button>
     </c-modal-footer>
 </c-modal>
 
-
+<!-- Delete Department Confirmation Modal -->
 <c-modal id="viewDepartmentDeleteModal" [visible]="viewModalDeleteVisible">
     <c-modal-header>
-        <h5 cModalTitle>Delete Confirmation</h5>
+        <h5 cModalTitle>{{ 'departments.deleteConfirmation' | translate }}</h5>
         <button (click)="viewModalDeleteVisible = false" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
-
         <div class="container">
-            <h5>Are you sure you want to delete?</h5>
+            <h5>{{ 'departments.deleteConfirmationMessage' | translate }}</h5>
         </div>
-
     </c-modal-body>
     <c-modal-footer>
         <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
-            Close
+            {{ 'departments.close' | translate }}
         </button>
-        <button (click)="deleteDepartment()" class="text-white" cButton color="danger">Confirm</button>
+        <button (click)="deleteDepartment()" class="text-white" cButton color="danger">{{ 'departments.confirm' | translate }}</button>
     </c-modal-footer>
 </c-modal>

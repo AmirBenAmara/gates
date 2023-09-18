@@ -12,7 +12,7 @@ export const navItems: INavData[] = [
   //   iconComponent: { name: 'cil-audio-spectrum' },
   // },
   {
-    name: 'Monitoring',
+    name: "Monitoring",
     iconComponent: { name: 'cil-audio-spectrum' },
     children: [
      
