@@ -65,6 +65,9 @@ import { DeviceStatusComponent } from './device-status/device-status.component';
 import { HttpClient} from '@angular/common/http';
 import {TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { WidgetsModule } from './views/widgets/widgets.module';
+import { PagesModule } from './views/pages/pages.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -84,11 +87,13 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, MonitoringComponent, UsersComponent, DepartmentsComponent, DevicesComponent, CamerasComponent, ReadersComponent, CPanelsComponent, ProfilesComponent, DoorsComponent, GuestsComponent, WaveSharesComponent, RealTimeLogComponent, DoorsStatusComponent, DeviceStatusComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, MonitoringComponent, UsersComponent, DepartmentsComponent, DevicesComponent, CamerasComponent, ReadersComponent, CPanelsComponent, ProfilesComponent, DoorsComponent, GuestsComponent, WaveSharesComponent, RealTimeLogComponent, DoorsStatusComponent, DeviceStatusComponent, DashboardComponent],
   imports: [
     BrowserModule,
+    WidgetsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    PagesModule,
     AvatarModule,
     BreadcrumbModule,
     FooterModule,

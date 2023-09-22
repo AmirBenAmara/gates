@@ -1,50 +1,66 @@
-<div class="container bg-white">
-  <div class="row ">
-    <div class="fs-2 fw-semibold text-center"><strong>Dashboard</strong></div>
-
-    <div class="col-md-4 offset-md-2 card-container">
-      <div class="card">
-        <button cButton color="dark" class="centered-button" type="button" variant="outline">Users</button>
-      </div>
-    </div>
-    <div class="col-md-4 card-container">
-      <div class="card">
-        <button cButton color="dark" class="centered-button" type="button" variant="outline">Profiles</button>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 offset-md-1 card-container">
-      <div class="card">
-        <button cButton color="dark" class="centered-button" type="button" variant="outline">Monitoring</button>
-      </div>
-    </div>
-    <div class="col-md-2 card-container">
-      <div class="card">
-        <button cButton color="dark" class="centered-button" type="button" variant="outline">EasyTek ACS Management</button>
-      </div>
-    </div>
-    <div class="col-md-2 card-container">
-      <div class="card">
-        <button cButton color="dark" class="centered-button" type="button" variant="outline">Guests</button>
-      </div>
-    </div>
-    <div class="col-md-3 card-container">
-      <div class="card">
-        <button cButton color="dark" class="centered-button" type="button" variant="outline">Doors</button>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 offset-md-2 card-container">
-      <div class="card">
-        <button cButton color="dark" class="centered-button" type="button" variant="outline">Devices</button>
-      </div>
-    </div>
-    <div class="col-md-4 card-container">
-      <div class="card">
-        <button cButton color="dark" class="centered-button" type="button" variant="outline">Departments</button>
-      </div>
-    </div>
-  </div>
-</div>
+<c-container fluid>
+  <c-row>
+      <c-col lg="12">
+          <div class="example">
+              <div class="card  mt-4 mb-2">
+                  <div class="card-header bg-white">
+                      <!-- <c-breadcrumb-router class="sm-2"></c-breadcrumb-router> -->
+                  </div>
+                  <div class="card-body">
+                      <div class="tab-content rounded-bottom">
+                          <div class="tab-pane active show p-3 preview fade">
+                              <div class="row">
+                                  <div class="col-6">
+                                      <c-input-group>
+                                          <button cButton color="dark" type="button" variant="outline">
+                                              <svg [cIcon]="icons.cilClearAll" title="Clear"></svg> {{ 'manageLogs.export' | translate }}
+                                          </button>
+                                      </c-input-group>
+                                  </div>
+                                  <div class="col-3"></div>
+                                  <div class="col-md-3 col-xs-1 mb-3 d-flex justify-content-end">
+                                      <c-input-group>
+                                          <button cButton color="dark" style="margin-left: auto;" type="button" variant="outline">
+                                              <svg [cIcon]="icons.cilX" title="Clear"></svg> {{ 'manageLogs.clear' | translate }}
+                                          </button>
+                                          <button cButton color="dark" type="button" variant="outline">
+                                              <svg [cIcon]="icons.cilMediaPause" title="Pause"></svg> {{ 'manageLogs.pause' | translate }}
+                                          </button>
+                                      </c-input-group>
+                                  </div>
+                              </div>
+                              <table cTable>
+                                  <thead class="table-dark logs">
+                                      <tr>
+                                          <th scope="col">{{ 'manageLogs.dateColumn' | translate }}</th>
+                                          <th scope="col">{{ 'manageLogs.nameColumn' | translate }}</th>
+                                          <th scope="col">{{ 'manageLogs.doorColumn' | translate }}</th>
+                                          <th scope="col">{{ 'manageLogs.departmentColumn' | translate }}</th>
+                                          <th scope="col">{{ 'manageLogs.eventColumn' | translate }}</th>
+                                          <th scope="col">{{ 'manageLogs.viewProfileColumn' | translate }}</th>
+                                          <th></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let log of logs">
+                                          <th class="log-level" scope="row">{{ log.Date }}</th>
+                                          <td>{{ log.Name }}</td>
+                                          <td>{{ log.Door }}</td>
+                                          <td>{{ log.Department }}</td>
+                                          <td class="log-level error">{{ log.Event }}</td>
+                                          <td>
+                                              <button type="button" cButton color="light">
+                                                  <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
+                                              </button>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </c-col>
+  </c-row>
+</c-container>

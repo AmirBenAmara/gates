@@ -1,0 +1,81 @@
+<c-container fluid>
+    <c-row>
+        <c-col lg="12">     
+            <div class="example">
+                <div class="card  mt-4 mb-2">
+                    <div class="card-header bg-white">
+                        <div class="fs-2 fw-semibold bg-white "><strong>{{ 'dashboard.title' | translate }}</strong></div>
+                        <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
+                    </div>
+                    <div class="card-body row">
+                        <app-widgets-dropdown></app-widgets-dropdown>
+
+                        <c-col lg="12">
+                            <div class="tab-content rounded-bottom">
+                                <div class="tab-pane active show p-3 preview fade">
+                                <p> RT LOG</p>
+                                <table cTable>
+                                    <thead class="table-dark logs">
+                                        <tr>
+                                            <th scope="col">{{ 'manageLogs.dateColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.nameColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.doorColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.departmentColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.eventColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.viewProfileColumn' | translate }}</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let log of logs">
+                                            <th class="log-level" scope="row">{{ log.Date }}</th>
+                                            <td>{{ log.Name }}</td>
+                                            <td>{{ log.Door }}</td>
+                                            <td>{{ log.Department }}</td>
+                                            <td class="log-level error">{{ log.Event }}</td>
+                                            <td>
+                                                <button type="button" cButton color="light">
+                                                    <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                        </c-col>
+                   
+                        <c-col lg="12">
+                              <div class="tab-content rounded-bottom">
+                                <div class="tab-pane active show p-3 preview fade">
+                                    <p class="title"> Missed Alarms</p>
+                             <table cTable>
+                                <thead class="table-dark logs">
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Door</th>
+                                        <th scope="col">User</th>
+                                        <th scope="col">Alarm Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let log of logs">
+                                        <th class="log-level" scope="row">{{ log.Date }}</th>
+                                        <td>{{ log.Door }}</td>
+                                        <td>{{ log.Name }}</td>
+                                        <td>{{ log.Event }}</td>
+                                    </tr>
+                                </tbody>
+                                
+                             </table>
+                                </div></div>
+                            </c-col>
+                        <c-row></c-row>
+
+                    </div>
+                </div>
+            </div>
+        </c-col>
+        <c-col lg="4"></c-col>
+    </c-row>
+  </c-container>

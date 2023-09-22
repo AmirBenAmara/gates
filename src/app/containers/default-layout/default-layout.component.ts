@@ -18,19 +18,19 @@ export class DefaultLayoutComponent {
   ngOnInit(): void {
     this.translateService.setDefaultLang('en');
     this.translateService.use('fr');
-    this.navItems = this.navItems.map((item) => {
-      // map items with translate service
-          if (item.name) {
-            item.name = this.translateService.instant(item.name);
-          }
-          if (item.children) {
-            item.children = item.children.map((child) => {
-              child.name = this.translateService.instant(child.name);
-              return child;
-            });
-          }
-          return item;
-        });
+    // this.navItems = this.navItems.map((item) => {
+    //   // map items with translate service
+    //       if (item.name) {
+    //         item.name = this.translateService.instant(item.name);
+    //       }
+    //       if (item.children) {
+    //         item.children = item.children.map((child) => {
+    //           child.name = this.translateService.instant(child.name);
+    //           return child;
+    //         });
+    //       }
+    //       return item;
+    //     });
       
   }
 }

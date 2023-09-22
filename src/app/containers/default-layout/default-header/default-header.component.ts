@@ -20,7 +20,15 @@ export class DefaultHeaderComponent extends HeaderComponent {
     private translateService: TranslateService) {
     super();
   }
-  changeTo(lang: string) {
+  changeTo(lang: string) { 
+      this.setHTMLDir(lang === 'ar' ? 'rtl' : 'ltr');
     this.translateService.use(lang);
+  
+  }
+
+  setHTMLDir(dir:string) {
+    // adds dir to html tag
+    document.documentElement.dir = dir;
+
   }
 }

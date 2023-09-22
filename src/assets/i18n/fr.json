@@ -236,5 +236,8 @@
         "readers": "Lecteurs",
         "controlPanels": "Panneaux de contrôle",
         "waveShares": "Partages Wave"
+    },
+    "dashboard": {
+        "title":"Dashboard"
     }
 }

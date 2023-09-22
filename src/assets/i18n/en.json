@@ -237,5 +237,8 @@
         "readers": "Readers",
         "controlPanels": "Control Panels",
         "waveShares": "Wave Shares"
+    },
+    "dashboard": {
+        "title":"Dashboard"
     }
 }

@@ -31,7 +31,7 @@ import { WidgetsEComponent } from './widgets-e/widgets-e.component';
   ],
   imports: [
     CommonModule,
-    WidgetsRoutingModule,
+    // WidgetsRoutingModule,
     GridModule,
     WidgetModule,
     IconModule,
