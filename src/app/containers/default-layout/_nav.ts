@@ -2,7 +2,8 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
-    name: 'Dashboard',
+    class: "menu.dashboard",
+    name: "menu.dashboard",
     url: '/dashboard',
     iconComponent: { name: 'cil-speedometer' },
   },
@@ -12,79 +13,93 @@ export const navItems: INavData[] = [
   //   iconComponent: { name: 'cil-audio-spectrum' },
   // },
   {
-    name: "Monitoring",
+    class: "menu.monitoring",
+    name: "menu.monitoring",
     iconComponent: { name: 'cil-audio-spectrum' },
     children: [
-     
+
       {
-        name: 'Real Time Log',
+        class: "menu.realTimeLog",
+        name: "menu.realTimeLog",
         url: 'monitoring/real-time-log',
         iconComponent: { name: 'cil-camera-roll' },
       },
       {
-        name: 'Doors Status',
+        class: "menu.doorsStatus",
+        name: "menu.doorsStatus",
         url: 'monitoring/doors-status',
         iconComponent: { name: 'cil-double-quote-sans-right' },
       },
       {
-        name: 'Device Status',
+        class: "menu.deviceStatus",
+        name: "menu.deviceStatus",
         url: 'monitoring/device-status',
         iconComponent: { name: 'cil-lan' },
       },
     ]
   },
   {
-    name: 'Users',
+    class: "menu.users",
+    name: "menu.users",
     url: '/users',
     iconComponent: { name: 'cil-group' },
   },
   {
-    name: 'Profiles',
+    class: "menu.profiles",
+    name: "menu.profiles",
     url: '/profiles',
     iconComponent: { name: 'cil-voice-over-record' },
   },
   {
-    name: 'Guests',
+    class: "menu.guests",
+    name: "menu.guests",
     url: '/guests',
     iconComponent: { name: 'cil-user-plus' },
   },
   {
-    name: 'Doors',
+    class: "menu.doors",
+    name: "menu.doors",
     url: '/devices/doors',
     iconComponent: { name: 'cil-double-quote-sans-right' },
 
   },
   {
-    name: 'Departments',
+    class: "menu.departments",
+    name: "menu.departments",
     url: '/departments',
     iconComponent: { name: 'cil-building' },
   },
   {
-    name: 'Devices',
+    class: "menu.devices",
+    name: "menu.devices",
     iconComponent: { name: 'cil-lan' },
     children: [
-     
+
       {
-        name: 'Cameras',
+        class: "menu.cameras",
+        name: "menu.cameras",
         url: '/devices/cameras',
         iconComponent: { name: 'cil-camera-roll' },
 
       },
       {
-        name: 'Readers',
+        class: "menu.readers",
+        name: "menu.readers",
         url: '/devices/readers',
         iconComponent: { name: 'cil-camera-control' },
       },
       {
-        name: 'Control Panels',
+        class: "menu.controlPanels",
+        name: "menu.controlPanels",
         url: '/devices/c-panels',
         iconComponent: { name: 'cil-barcode' },
       },
       {
-        name: 'Wave Shares',
+        class: "menu.waveShares",
+        name: "menu.waveShares",
         url: '/devices/wave-shares',
         iconComponent: { name: 'cil-stream' },
-       
+
       },
     ]
   },
