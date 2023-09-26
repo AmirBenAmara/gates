@@ -145,7 +145,9 @@
         "trashBinIcon": "أيقونة سلة المهملات",
         "name": "الاسم",
         "close": "إغلاق",
-        "submit": "إرسال"
+        "submit": "إرسال",
+        "reason": "",
+        "telNumber": ""
     },
     "profileComp": {
         "title": "إدارة الملفات الشخصية",
@@ -155,6 +157,7 @@
         "nameColumn": "الاسم",
         "surnameColumn": "اللقب",
         "birthDateColumn": "تاريخ الولادة",
+        "cinColumn": "",
         "occupationColumn": "المهنة",
         "occupationValue": "المهنة",
         "detailIconTitle": "أيقونة التفاصيل",
@@ -168,9 +171,11 @@
         "nationalityLabel": "الجنسية",
         "expiryDateLabel": "تاريخ الانتهاء",
         "personalDataLabel": "البيانات الشخصية",
-        "mrz1Label": "MRZ1",
-        "mrz2Label": "MRZ2",
-        "mrz3Label": "MRZ3",
+        "cinLabel": "cin",
+        "telNumberLabel": "tel",
+        "addressLabel": "address",
+        "emailLabel": "email",
+        "occupationLabel": "occupation",
         "issueCountryLabel": "بلد الإصدار",
         "namePlaceholder": "الاسم",
         "surnamePlaceholder": "اللقب",

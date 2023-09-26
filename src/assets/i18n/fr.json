@@ -144,7 +144,9 @@
         "trashBinIcon": "Icône Corbeille",
         "name": "Nom",
         "close": "Fermer",
-        "submit": "Soumettre"
+        "submit": "Soumettre",
+        "reason": "Raison",
+        "telNumber": "Téléphone"
     },
     "profileComp": {
         "title": "Gérer les profils",
@@ -154,6 +156,7 @@
         "nameColumn": "Nom",
         "surnameColumn": "Prénom",
         "birthDateColumn": "Date de naissance",
+        "cinColumn":"cin",
         "occupationColumn": "Profession",
         "occupationValue": "Profession",
         "detailIconTitle": "Icône de détail",
@@ -167,9 +170,11 @@
         "nationalityLabel": "Nationalité",
         "expiryDateLabel": "Date d'expiration",
         "personalDataLabel": "Données personnelles",
-        "mrz1Label": "MRZ1",
-        "mrz2Label": "MRZ2",
-        "mrz3Label": "MRZ3",
+        "cinLabel": "cin",
+        "telNumberLabel": "tel",
+        "addressLabel": "address",
+        "emailLabel": "email",
+        "occupationLabel": "occupation",
         "issueCountryLabel": "Pays de délivrance",
         "namePlaceholder": "Nom",
         "surnamePlaceholder": "Prénom",

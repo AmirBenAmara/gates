@@ -39,22 +39,19 @@ export class ProfilesComponent {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      documentNumber: [null, Validators.required],
-      sex: ['', Validators.required],
-      nationality: ['', Validators.required],
-      expiryDate: ['', Validators.required],
-      personalData: ['', Validators.required],
-      MRZ1: ['', Validators.required],
-      MRZ2: ['', Validators.required],
-      MRZ3: ['', Validators.required],
-      issueCountry: ['', Validators.required],
+      occupation: ['', Validators.required],
+      cin:['', Validators.required],
+      address:['', Validators.required],
+      email:['', Validators.required],
+      telephoneNumber:['', Validators.required],
+      departments:[[], Validators.required],
+      doors:[[], Validators.required],
     });
   }
 
   //TODO: finish implementation
   deleteProfile() {
-    this.ProfileService.deleteProfile(this.selectedProfile.id).subscribe(res => {
+    this.ProfileService.deleteProfile(this.selectedProfile._id).subscribe(res => {
       this.viewModalDeleteVisible ; 
       this.getProfiles()
       this.cancel()

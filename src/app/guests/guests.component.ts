@@ -30,29 +30,26 @@ export class GuestsComponent implements OnInit {
 
   selectedGuest: Guest | undefined;
 
-  constructor(private guestservice: GuestService, private fb: FormBuilder) {}
+  constructor(private guestservice: GuestService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getGuests()
     this.guestForm = this.fb.group({
-      id: [''],
-      fatherName: ['', Validators.required],
+      name: ['', Validators.required],
       surname: ['', Validators.required],
       cin: ['', Validators.required],
-      birthDate: [null, Validators.required],
-      birthPlace: ['', Validators.required],
-      motherName: ['', Validators.required],
-      occupation: ['', Validators.required],
-      actualAddress: ['', Validators.required],
-      cinDeliverDate: ['', Validators.required],
+      telephoneNumber: [null, Validators.required],
+      reason: ['', Validators.required],
+      departments: ['', Validators.required],
+      doors: ['', Validators.required],
     });
   }
 
   //TODO: finish implementation
   deleteGuest() {
-    if(this.selectedGuest){
-      this.guestservice.deleteGuest(this.selectedGuest.id? this.selectedGuest.id : 0).subscribe(res => {
-        this.viewModalDeleteVisible = false; 
+    if (this.selectedGuest) {
+      this.guestservice.deleteGuest(this.selectedGuest._id ? this.selectedGuest._id : 0).subscribe(res => {
+        this.viewModalDeleteVisible = false;
         this.getGuests()
       });
     }

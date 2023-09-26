@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
+import { Department } from './departments.service';
+import { Door } from './doors.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +27,7 @@ export class ProfileService {
   }
   // UpdateProfile function with an HTTP PUT request
   updateProfile(Profile: Profile): Observable<Profile> {
-    const url = `${this.apiUrl}/${Profile.id}`;
+    const url = `${this.apiUrl}/${Profile._id}`;
     return this.http.put<Profile>(url, Profile);
   }
   deleteProfile(ProfileId: number): Observable<void> {
@@ -35,17 +37,14 @@ export class ProfileService {
 }
 
 export interface Profile {
-  id?: number;
+  _id?: number;
   name?: string;
   surname?: string;
-  birthDate?: string;
-  documentNumber?: number;
-  sex?: string;
-  nationality?: string;
-  expiryDate?:string;
-  personalData?:string;
-  mrZ1?:string;
-  mrZ2?:string;
-  mrZ3?:string;
-  issueCountry?:string;
+  occupation?: string;
+  cin?:string;
+  address?:string;
+  email?:string;
+  telephoneNumber?:string;
+  departments?:[Department];
+  doors?:[Door];
 }

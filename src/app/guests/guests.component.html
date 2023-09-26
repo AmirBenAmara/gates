@@ -1,136 +1,128 @@
 <c-container fluid>
-    <c-row>
-      <c-col lg="12">
-        <div class="example">
-          <div class="card mt-4 mb-2">
-            <div class="card-header bg-white">
-              <div class="fs-2 fw-semibold bg-white"><strong>{{ 'guestsComp.manageGuests' | translate }}</strong></div>
-              <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
-            </div>
-            <div class="card-body">
-              <div class="tab-content rounded-bottom">
-                <div class="tab-pane active show p-3 preview fade">
-                  <div class="row">
-                    <div class="col-6"></div>
-                    <div class="col-6 mb-3">
-                      <c-input-group>
-                        <input aria-label="search" cFormControl placeholder="{{ 'guestsComp.search' | translate }}" />
-                        <button cButton color="dark" type="button" variant="outline" (click)="openGuestModal()">
-                          <svg [cIcon]="icons.cilPlus" title="{{ 'guestsComp.plusIcon' | translate }}"></svg> {{ 'guestsComp.newGuest' | translate }}
-                        </button>
-                      </c-input-group>
-                    </div>
+  <c-row>
+    <c-col lg="12">
+      <div class="example">
+        <div class="card mt-4 mb-2">
+          <div class="card-header bg-white">
+            <div class="fs-2 fw-semibold bg-white"><strong>{{ 'guestsComp.manageGuests' | translate }}</strong></div>
+            <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
+          </div>
+          <div class="card-body">
+            <div class="tab-content rounded-bottom">
+              <div class="tab-pane active show p-3 preview fade">
+                <div class="row">
+                  <div class="col-6"></div>
+                  <div class="col-6 mb-3">
+                    <c-input-group>
+                      <input aria-label="search" cFormControl placeholder="{{ 'guestsComp.search' | translate }}" />
+                      <button cButton color="dark" type="button" variant="outline" (click)="openGuestModal()">
+                        <svg [cIcon]="icons.cilPlus" title="{{ 'guestsComp.plusIcon' | translate }}"></svg> {{
+                        'guestsComp.newGuest' | translate }}
+                      </button>
+                    </c-input-group>
                   </div>
-                  <table cTable>
-                    <thead class="table-dark">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">{{ 'guestsComp.fatherName' | translate }}</th>
-                        <th scope="col">{{ 'guestsComp.surName' | translate }}</th>
-                        <th scope="col">{{ 'guestsComp.cin' | translate }}</th>
-                        <th scope="col">{{ 'guestsComp.birthDate' | translate }}</th>
-                        <th scope="col">{{ 'guestsComp.birthPlace' | translate }}</th>
-                        <th scope="col">{{ 'guestsComp.motherName' | translate }}</th>
-                        <th scope="col">{{ 'guestsComp.occupation' | translate }}</th>
-                        <th scope="col">{{ 'guestsComp.actualAddress' | translate }}</th>
-                        <th scope="col">{{ 'guestsComp.cinDeliverDate' | translate }}</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let guest of guests">
-                        <th scope="row">{{ guest.id }}</th>
-                        <td>{{ guest.fatherName }}</td>
-                        <td>{{ guest.surname }}</td>
-                        <td>{{ guest.cin }}</td>
-                        <td>{{ guest.birthDate }}</td>
-                        <td>{{ guest.birthPlace }}</td>
-                        <td>{{ guest.motherName }}</td>
-                        <td>{{ guest.occupation }}</td>
-                        <td>{{ guest.actualAddress }}</td>
-                        <td>{{ guest.cinDeliverDate }}</td>
-                        <td style="text-align:center;">
-                          <button type="button" cButton color="light" (click)="detailGuest(guest)">
-                            <svg [cIcon]="icons.cilInfo" width="15" title="{{ 'guestsComp.detailIcon' | translate }}"></svg>
-                          </button> &nbsp;
-                          <button type="button" cButton color="light" (click)="editGuest(guest)">
-                            <svg [cIcon]="icons.cilPencil" width="15" title="{{ 'guestsComp.pencilIcon' | translate }}"></svg>
-                          </button> &nbsp;
-                          <button type="button" cButton color="light" (click)="openModalDelete(guest)">
-                            <svg [cIcon]="icons.cilTrash" width="15" title="{{ 'guestsComp.trashBinIcon' | translate }}"></svg>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
+                <table cTable>
+                  <thead class="table-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">{{ 'guestsComp.fatherName' | translate }}</th>
+                      <th scope="col">{{ 'guestsComp.surName' | translate }}</th>
+                      <th scope="col">{{ 'guestsComp.cin' | translate }}</th>
+                      <th scope="col">{{ 'guestsComp.reason' | translate }}</th>
+                      <th scope="col">{{ 'guestsComp.telNumber' | translate }}</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let guest of guests">
+                      <th scope="row">{{ guest._id }}</th>
+                      <td>{{ guest.name }}</td>
+                      <td>{{ guest.surname }}</td>
+                      <td>{{ guest.cin }}</td>
+                      <td>{{ guest.reason }}</td>
+                      <td>{{ guest.telephoneNumber }}</td>
+
+                      <td style="text-align:center;">
+                        <button type="button" cButton color="light" (click)="detailGuest(guest)">
+                          <svg [cIcon]="icons.cilInfo" width="15"
+                            title="{{ 'guestsComp.detailIcon' | translate }}"></svg>
+                        </button> &nbsp;
+                        <button type="button" cButton color="light" (click)="editGuest(guest)">
+                          <svg [cIcon]="icons.cilPencil" width="15"
+                            title="{{ 'guestsComp.pencilIcon' | translate }}"></svg>
+                        </button> &nbsp;
+                        <button type="button" cButton color="light" (click)="openModalDelete(guest)">
+                          <svg [cIcon]="icons.cilTrash" width="15"
+                            title="{{ 'guestsComp.trashBinIcon' | translate }}"></svg>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-      </c-col>
-    </c-row>
-  </c-container>
-  
-  <c-modal id="GuestModal" [visible]="visible" size="lg" (visibleChange)="handleGuestModalVisbilityChange($event)">
-    <c-modal-header>
-      <h5 cModalTitle>{{ 'guestsComp.newGuest' | translate }}</h5>
-      <button (click)="cancel()" cButtonClose></button>
-    </c-modal-header>
-    <c-modal-body>
-      <form [formGroup]="guestForm">
-        <div class="form-group mb-3">
-          <label for="name">{{ 'guestsComp.fatherName' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="fatherName" id="fatherName"
-            placeholder="{{ 'guestsComp.name' | translate }}">
+      </div>
+    </c-col>
+  </c-row>
+</c-container>
+
+<c-modal id="GuestModal" [visible]="visible" size="lg" (visibleChange)="handleGuestModalVisbilityChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>{{ 'guestsComp.newGuest' | translate }}</h5>
+    <button (click)="cancel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form [formGroup]="guestForm">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group mb-3">
+            <label for="name">{{ 'guestsComp.name' | translate }}:</label>
+            <input type="text" class="form-control" cFormControl formControlName="name" id="name"
+              placeholder="{{ 'guestsComp.name' | translate }}">
+          </div>
+          <div class="form-group mb-3">
+            <label for="surname">{{ 'guestsComp.surName' | translate }}:</label>
+            <input type="text" class="form-control" cFormControl formControlName="surname" id="surname"
+              placeholder="{{ 'guestsComp.surName' | translate }}">
+          </div>
+          <div class="form-group mb-3">
+            <label for="cin">{{ 'guestsComp.cin' | translate }}:</label>
+            <input type="text" class="form-control" cFormControl formControlName="cin" id="cin"
+              placeholder="{{ 'guestsComp.cin' | translate }}">
+          </div>
+          <div class="form-group mb-3">
+            <label for="documentNumber">{{ 'guestsComp.telNumber' | translate }}:</label>
+            <input type="text" class="form-control" cFormControl formControlName="telephoneNumber" id="birthDate"
+              placeholder="{{ 'guestsComp.telNumber' | translate }}">
+          </div>
         </div>
-        <div class="form-group mb-3">
-          <label for="surname">{{ 'guestsComp.surName' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="surname" id="surname"
-            placeholder="{{ 'guestsComp.surname' | translate }}">
+        <div class="col-6">
+          <div class="form-group mb-3">
+            <label for="cin">{{ 'guestsComp.reason' | translate }}:</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="reason" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Visitor
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="reason" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Supplier
+                </label>
+              </div>
+          </div>
         </div>
-        <div class="form-group mb-3">
-          <label for="cin">{{ 'guestsComp.cin' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="cin" id="cin"
-            placeholder="{{ 'guestsComp.cin' | translate }}">
-        </div>
-        <div class="form-group mb-3">
-          <label for="documentNumber">{{ 'guestsComp.birthDate' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="birthDate" id="birthDate"
-            placeholder="{{ 'guestsComp.birthDate' | translate }}">
-        </div>
-        <div class="form-group mb-3">
-          <label for="sex">{{ 'guestsComp.birthPlace' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="birthPlace" id="birthPlace"
-            placeholder="{{ 'guestsComp.birthPlace' | translate }}">
-        </div>
-        <div class="form-group mb-3">
-          <label for="nationality">{{ 'guestsComp.motherName' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="motherName" id="motherName"
-            placeholder="{{ 'guestsComp.motherName' | translate }}">
-        </div>
-        <div class="form-group mb-3">
-          <label for="expiryDate">{{ 'guestsComp.occupation' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="occupation" id="occupation"
-            placeholder="{{ 'guestsComp.occupation' | translate }}">
-        </div>
-        <div class="form-group mb-3">
-          <label for="personalData">{{ 'guestsComp.actualAddress' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="actualAddress" id="actualAddress"
-            placeholder="{{ 'guestsComp.actualAddress' | translate }}">
-        </div>
-        <div class="form-group mb-3">
-          <label for="MRZ1">{{ 'guestsComp.cinDeliverDate' | translate }}:</label>
-          <input type="text" class="form-control" cFormControl formControlName="cinDeliverDate" id="cinDeliverDate"
-            placeholder="{{ 'guestsComp.cinDeliverDate' | translate }}">
-        </div>
-      </form>
-    </c-modal-body>
-    <c-modal-footer>
-      <button (click)="cancel()">
-        {{ 'guestsComp.close' | translate }}
-      </button>
-      <button (click)="submitAddModal()" cButton color="primary">{{ 'guestsComp.submit' | translate }}</button>
-    </c-modal-footer>
-  </c-modal>
-  
+      </div>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="cancel()">
+      {{ 'guestsComp.close' | translate }}
+    </button>
+    <button (click)="submitAddModal()" cButton color="primary">{{ 'guestsComp.submit' | translate }}</button>
+  </c-modal-footer>
+</c-modal>

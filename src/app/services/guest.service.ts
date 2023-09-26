@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
+import { Department } from './departments.service';
+import { Door } from './doors.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +27,7 @@ export class GuestService {
   }
   // UpdateGuest function with an HTTP PUT request
   updateGuest(Guest: Guest): Observable<Guest> {
-    const url = `${this.apiUrl}/${Guest.id}`;
+    const url = `${this.apiUrl}/${Guest._id}`;
     return this.http.put<Guest>(url, Guest);
   }
   deleteGuest(GuestId: number): Observable<void> {
@@ -35,14 +37,12 @@ export class GuestService {
 }
 
 export interface Guest {
-  id?: number;
-  fatherName?: string;
+  _id?: number;
+  name?: string;
   surname?: string;
   cin?: string;
-  birthDate?: string;
-  birthPlace?: string;
-  motherName?: string;
-  occupation?: string;
-  actualAddress?: string;
-  cinDeliverDate?: string;
+  reason?: string;
+  telephoneNumber?: string;
+  departments?:[Department];
+  doors?:[Door];
 }
