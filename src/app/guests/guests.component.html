@@ -76,7 +76,7 @@
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="guestForm">
-      <div class="row">
+      <div class="row" *ngIf="page1">
         <div class="col-6">
           <div class="form-group mb-3">
             <label for="name">{{ 'guestsComp.name' | translate }}:</label>
@@ -102,27 +102,65 @@
         <div class="col-6">
           <div class="form-group mb-3">
             <label for="cin">{{ 'guestsComp.reason' | translate }}:</label>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" formControlName="reason" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Visitor
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" formControlName="reason" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Supplier
-                </label>
-              </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="reason"
+                id="flexRadioDefault1">
+              <label class="form-check-label">
+                Visitor
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="reason"
+                id="flexRadioDefault2" checked>
+              <label class="form-check-label">
+                Supplier
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div *ngIf="page2">
+        <div class="row">
+          <h3>Authorized Departments:</h3>
+          <div class="form-check col-3" *ngFor="let department of departments">
+            <input class="form-check-input" type="radio" [checked]="departmentExist(department.id)" (click)="selectDepartment(department.id)">
+            <label class="form-check-label">
+              {{department.name}}
+            </label>
+          </div>
+          
+          <div class="form-check col-3">
+            <input class="form-check-input" type="radio" [checked]="departments.length == selectedDepartments.length" (click)="selectAllDepartments()">
+            <label class="form-check-label">
+              All
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <h3>Authorized Doors:</h3>
+          <div class="form-check col-3" *ngFor="let door of doors">
+            <input class="form-check-input" type="radio" [checked]="doorExist(door.id)" (click)="selectDoor(door.id)">
+            <label class="form-check-label">
+              {{door.name}}
+            </label>
+          </div>
+          
+          <div class="form-check col-3">
+            <input class="form-check-input" type="radio" [checked]="doors.length == selectedDoors.length" (click)="selectAllDoors()">
+            <label class="form-check-label">
+              All
+            </label>
           </div>
         </div>
       </div>
     </form>
   </c-modal-body>
   <c-modal-footer>
-    <button (click)="cancel()">
-      {{ 'guestsComp.close' | translate }}
-    </button>
-    <button (click)="submitAddModal()" cButton color="primary">{{ 'guestsComp.submit' | translate }}</button>
+    <button (click)="cancel()" cButton color="danger">{{ 'guestsComp.close' | translate }}</button>
+    <button *ngIf="page1" (click)="page1 = false ; page2 = true" cButton color="primary">Next</button>
+    <button *ngIf="page2" (click)="page1 = true ; page2 = false" cButton color="primary">Previous</button>
+    <button *ngIf="page2" (click)="submitAddModal()" cButton color="primary">{{ 'guestsComp.submit' | translate
+      }}</button>
   </c-modal-footer>
 </c-modal>
