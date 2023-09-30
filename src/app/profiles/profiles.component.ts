@@ -110,32 +110,28 @@ export class ProfilesComponent {
   }
 
   submitAddModal() {
-    let guest: Profile;
+    let profile: Profile;
     if (this.profileForm.valid) {
       console.log(this.profileForm.value);
-      guest = this.profileForm.value;
-      guest.departments = this.selectedDepartments;
-      guest.doors = this.selectedDoors;
-      // guest.birthDate = this.formatDate(this.guestForm.value.birthDate);
-      // guest.cinDeliverDate = this.formatDate(
-      //   this.guestForm.value.cinDeliverDate
-      // );
+      profile = this.profileForm.value;
+      profile.departments = this.selectedDepartments;
+      profile.doors = this.selectedDoors;
 
-      console.log(guest);
+      console.log(profile);
 
-      // if (this.editMode) {
-      //   this.ProfileService.updateProfile(guest).subscribe((res) => {
-      //     this.getProfiles();
-      //     this.editMode = false;
-      //   });
-      // } else {
-      //   delete guest['id']
-      //   console.log(guest)
-      //   this.ProfileService.createProfile(guest).subscribe((res) => {
-      //     this.getProfiles();
-      //   });
-      // }
-      // this.cancel()
+      if (this.editMode) {
+        this.ProfileService.updateProfile(profile).subscribe((res) => {
+          this.getProfiles();
+          this.editMode = false;
+        });
+      } else {
+        delete profile['_id']
+        console.log(profile)
+        this.ProfileService.createProfile(profile).subscribe((res) => {
+          this.getProfiles();
+        });
+      }
+      this.cancel()
     }
   }
 

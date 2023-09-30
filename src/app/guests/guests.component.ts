@@ -30,10 +30,8 @@ export class GuestsComponent implements OnInit {
   page1 = true;
   page2 = false;
   departments: Department[] | undefined;
-  // departments = [{ id: "1", name: "department1" }, { id: "2", name: "department2" }];
   selectedDepartments = [];
   doors: Door[] | undefined;
-  // doors = [{ id: "1", name: "door1" }, { id: "2", name: "door2" }];
   selectedDoors = [];
 
 
@@ -51,10 +49,8 @@ export class GuestsComponent implements OnInit {
       name: ['', Validators.required],
       surname: ['', Validators.required],
       cin: ['', Validators.required],
-      telephoneNumber: [null, Validators.required],
+      telephoneNumber: ['', Validators.required],
       reason: ['', Validators.required],
-      departments: ['', Validators.required],
-      doors: ['', Validators.required],
     });
   }
 
@@ -136,10 +132,6 @@ export class GuestsComponent implements OnInit {
       guest = this.guestForm.value;
       guest.departments = this.selectedDepartments;
       guest.doors = this.selectedDoors;
-      // guest.birthDate = this.formatDate(this.guestForm.value.birthDate);
-      // guest.cinDeliverDate = this.formatDate(
-      //   this.guestForm.value.cinDeliverDate
-      // );
 
       console.log(guest);
 
@@ -149,7 +141,7 @@ export class GuestsComponent implements OnInit {
           this.editMode = false;
         });
       } else {
-        delete guest['id']
+        delete guest['_id']
         console.log(guest)
         this.guestservice.createGuest(guest).subscribe((res) => {
           this.getGuests();
