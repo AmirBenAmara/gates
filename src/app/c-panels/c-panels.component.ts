@@ -17,7 +17,7 @@ export class CPanelsComponent implements OnInit {
     name: ['', Validators.required],
   });
   ctrPanel: CtrPanel = {
-    id: 0,
+    _id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
     name: 'Undefined',
@@ -50,7 +50,7 @@ export class CPanelsComponent implements OnInit {
   //TODO: finish implementation
   updateCtrPanel(ctrPanelId: number) {
     if (this.ctrPanelForm.valid) {
-      const updatedCtrPanel = { id: this.ctrPanel.id, ...this.ctrPanelForm.value };
+      const updatedCtrPanel = { id: this.ctrPanel._id, ...this.ctrPanelForm.value };
       this.ctrPanelService.updateCtrPanel(ctrPanelId, updatedCtrPanel).subscribe(data => this.getCtrPanels());
     }
   }

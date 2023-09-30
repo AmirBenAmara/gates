@@ -82,7 +82,7 @@
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="profileForm">
-      <div class="row">
+      <div class="row" *ngIf="page1">
         <div class="col-6">
           <div class="form-group mb-3">
             <label for="name">{{ 'profileComp.nameLabel' | translate }}:</label>
@@ -112,7 +112,7 @@
           </div>
           <div class="form-group mb-3">
             <label for="telNumber">{{ 'profileComp.telNumberLabel' | translate }}:</label>
-            <input type="text" class="form-control" cFormControl formControlName="telNumber" id="telNumber"
+            <input type="text" class="form-control" cFormControl formControlName="telephoneNumber" id="telNumber"
               placeholder="{{ 'profileComp.telNumberLabel' | translate }}">
           </div>
           <div class="form-group mb-3">
@@ -122,14 +122,49 @@
           </div>
         </div>
       </div>
+      <div *ngIf="page2">
+        <div class="row">
+          <h3>Authorized Departments:</h3>
+          <div class="form-check col-3" *ngFor="let department of departments">
+            <input class="form-check-input" type="radio" [checked]="departmentExist(department._id)" (click)="selectDepartment(department._id)">
+            <label class="form-check-label">
+              {{department.name}}
+            </label>
+          </div>
+          
+          <div class="form-check col-3">
+            <input class="form-check-input" type="radio" [checked]="departments.length == selectedDepartments.length" (click)="selectAllDepartments()">
+            <label class="form-check-label">
+              All
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <h3>Authorized Doors:</h3>
+          <div class="form-check col-3" *ngFor="let door of doors">
+            <input class="form-check-input" type="radio" [checked]="doorExist(door._id)" (click)="selectDoor(door._id)">
+            <label class="form-check-label">
+              {{door.name}}
+            </label>
+          </div>
+          
+          <div class="form-check col-3">
+            <input class="form-check-input" type="radio" [checked]="doors.length == selectedDoors.length" (click)="selectAllDoors()">
+            <label class="form-check-label">
+              All
+            </label>
+          </div>
+        </div>
+      </div>
     </form>
 
   </c-modal-body>
   <c-modal-footer>
-    <button (click)="cancel()" cButton color="secondary">
-      {{ 'profileComp.closeButton' | translate }}
-    </button>
-    <button (click)="cancel()" cButton color="primary">{{ 'profileComp.submitButton' | translate }}</button>
+    <button (click)="cancel()" cButton color="danger">{{ 'profileComp.closeButton' | translate }}</button>
+    <button *ngIf="page1" (click)="page1 = false ; page2 = true" cButton color="primary">Next</button>
+    <button *ngIf="page2" (click)="page1 = true ; page2 = false" cButton color="primary">Previous</button>
+    <button *ngIf="page2" (click)="submitAddModal()" cButton color="primary">{{ 'profileComp.submitButton' | translate
+      }}</button>
   </c-modal-footer>
 </c-modal>
 

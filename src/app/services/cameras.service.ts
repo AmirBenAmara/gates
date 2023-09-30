@@ -28,7 +28,7 @@ export class CamerasService {
   }
   // UpdateCamera function with an HTTP PUT request
   updateCamera(camera: Partial<Camera>): Observable<Camera> {
-    const url = `${this.apiUrl}/${camera.id}`;
+    const url = `${this.apiUrl}/${camera._id}`;
     return this.http.put<Camera>(url, camera);
   }
   deleteCamera(cameraId: number): Observable<void> {
@@ -38,32 +38,32 @@ export class CamerasService {
 }
 
 export interface Camera {
-  id?: number;
+  _id?: number;
   ipAddress?: string;
   serialNumber?: string;
   name?: string;
 }
 
 export const CamerasDATA: Camera[] = [{ 
-  id: 1,
+  _id: 1,
   ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
   name: 'Camera 1',
 },
 { 
-  id: 2,
+  _id: 2,
   ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
   name: 'Camera 2',
 },
 { 
-  id: 3,
+  _id: 3,
   ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
   name: 'Camera 3',
 },
 { 
-  id: 4,
+  _id: 4,
   ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
   name: 'Camera 4',

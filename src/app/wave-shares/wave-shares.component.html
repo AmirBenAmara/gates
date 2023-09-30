@@ -42,7 +42,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let wavShre of waveShares">
-                      <th scope="row">{{ wavShre.id }}</th>
+                      <th scope="row">{{ wavShre._id }}</th>
                       <td>{{ wavShre.name }}</td>
                       <td>{{ wavShre.ipAddress }}</td>
                       <td>{{ wavShre.serialNumber }}</td>
@@ -93,7 +93,7 @@
     <button [cModalToggle]="deleteWaveShare.id" cButton color="secondary">
       {{ 'waveshares.close' | translate }}
     </button>
-    <button (click)="confirmDeleteWaveShare(waveShare.id)" [cModalToggle]="deleteWaveShare.id" class="text-white" cButton color="danger">{{ 'waveshares.confirm' | translate }}</button>
+    <button (click)="confirmDeleteWaveShare(waveShare._id)" [cModalToggle]="deleteWaveShare.id" class="text-white" cButton color="danger">{{ 'waveshares.confirm' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 
@@ -136,7 +136,7 @@
       {{ 'waveshares.close' | translate }}
     </button>
     <button  *ngIf="!isEditMode" (click)="newWaveShare()" cButton color="primary">{{ 'waveshares.submit' | translate }}</button>
-    <button  *ngIf="isEditMode" (click)="updateWaveShare(waveShare.id)" cButton color="primary">{{ 'waveshares.submit' | translate }}</button>
+    <button  *ngIf="isEditMode" (click)="updateWaveShare(waveShare._id)" cButton color="primary">{{ 'waveshares.submit' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 

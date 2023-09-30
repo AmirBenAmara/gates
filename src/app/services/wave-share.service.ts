@@ -39,32 +39,32 @@ export class WaveShareService {
   
 }
 export interface WaveShare {
-  id: number;
+  _id: number;
   ipAddress: string;
   serialNumber: string;
   name: string;
 }
 
 export const WaveSharesDATA: WaveShare[] = [{ 
-  id: 1,
+  _id: 1,
   ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
   name: 'W Share 1',
 },
 { 
-  id: 2,
+  _id: 2,
   ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
   name: 'W Share 2', 
 },
 { 
-  id: 3,
+  _id: 3,
   ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
   name: 'W Share 3',
 },
 { 
-  id: 4,
+  _id: 4,
   ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
   name: 'W Share 4',

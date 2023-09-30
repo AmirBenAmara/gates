@@ -39,32 +39,32 @@ export class CPanelsService {
   
 }
 export interface CtrPanel {
-  id: number;
+  _id: number;
   ipAddress: string;
   serialNumber: string;
   name: string;
 }
 
 export const CtrPanelsDATA: CtrPanel[] = [{ 
-  id: 1,
+  _id: 1,
   ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
   name: 'C Panel 1',
 },
 { 
-  id: 2,
+  _id: 2,
   ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
   name: 'C Panel 2',
 },
 { 
-  id: 3,
+  _id: 3,
   ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
   name: 'C Panel 3',
 },
 { 
-  id: 4,
+  _id: 4,
   ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
   name: 'C Panel 4',

@@ -41,7 +41,7 @@ export class DepartmentsService {
 }
 
 export interface Department {
-  id: number;
+  _id: number;
   name: string;
   doors: Door[];
   ctrPannels: CtrPanel[];
@@ -49,19 +49,19 @@ export interface Department {
 
 export const DepartmentsDATA: Department[] = [
   {
-    id: 1,
+    _id: 1,
     name: 'department 1',
     doors: [],
     ctrPannels: CtrPanelsDATA,
   },
   {
-    id: 2,
+    _id: 2,
     name: 'department 2',
     doors: [],
     ctrPannels: [],
   },
   {
-    id: 3,
+    _id: 3,
     name: 'department 3',
     doors: [],
     ctrPannels: [],

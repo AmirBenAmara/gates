@@ -48,7 +48,7 @@ export class DepartmentsComponent implements OnInit {
 
   //TODO: finish implementation
   deleteDepartment() {
-    this.departmentService.deleteDepartment(this.selectedDepartment.id).subscribe(res => {
+    this.departmentService.deleteDepartment(this.selectedDepartment._id).subscribe(res => {
       this.viewModalDeleteVisible = false
       this.getDepartments()
     });
@@ -74,7 +74,7 @@ export class DepartmentsComponent implements OnInit {
       this.selectedDepartment = department;
       this.editMode = true;
       this.departmentForm.setValue(department)
-      this.departmentForm.controls['ctrPannels'].setValue(department.ctrPannels.map(el=> el.id))
+      this.departmentForm.controls['ctrPannels'].setValue(department.ctrPannels.map(el=> el._id))
       this.visible = true
     }
   }
@@ -108,7 +108,7 @@ export class DepartmentsComponent implements OnInit {
   submitDepartmentModal() {
     console.log(this.departmentForm.value);
     if(this.editMode){
-      this.departmentService.updateDepartment(this.selectedDepartment.id,this.departmentForm.value).subscribe(res=> {
+      this.departmentService.updateDepartment(this.selectedDepartment._id,this.departmentForm.value).subscribe(res=> {
         this.getDepartments();
         this.cancel()
       })

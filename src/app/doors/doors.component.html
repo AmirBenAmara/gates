@@ -43,7 +43,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let door of doors">
-                      <th scope="row">{{door.id}}</th>
+                      <th scope="row">{{door._id}}</th>
                       <td>{{door.name}}</td>
                       <td>{{door.description}}</td>
                       <td>{{door.department.name}}</td>
@@ -94,7 +94,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.department' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" >
-            <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
+            <option *ngFor="let department of departments" [value]="department._id">{{department.name}}</option>
           </select>
         </div>
       </div>
@@ -104,7 +104,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.waveShare' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" >
-            <option *ngFor="let waveShare of waveShares" [value]="waveShare.id">{{waveShare.name}}</option>
+            <option *ngFor="let waveShare of waveShares" [value]="waveShare._id">{{waveShare.name}}</option>
           </select>
         </div>
       </div>
@@ -123,7 +123,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.camera' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraEntry" >
-                <option *ngFor="let camera of cameras" [value]="camera.id">{{camera.name}}</option>
+                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.name}}</option>
               </select>
             </div>
           </div>
@@ -131,7 +131,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerEntry" >
-                <option *ngFor="let reader of readers" [value]="reader.id">{{reader.name}}</option>
+                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.name}}</option>
               </select>
             </div>
           </div>
@@ -142,7 +142,7 @@
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraExit"> 
              
-                <option *ngFor="let camera of cameras" [value]="camera.id">{{camera.name}}</option>
+                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.name}}</option>
               </select>
             </div>
           </div>
@@ -150,7 +150,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerExit"> 
-                <option *ngFor="let reader of readers" [value]="reader.id">{{reader.name}}</option>
+                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.name}}</option>
               </select>
             </div>
           </div>
@@ -190,7 +190,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.department' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" >
-            <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
+            <option *ngFor="let department of departments" [value]="department._id">{{department.name}}</option>
           </select>
         </div>
       </div>
@@ -200,7 +200,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.waveShare' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" >
-            <option *ngFor="let waveShare of waveShares" [value]="waveShare.id">{{waveShare.name}}</option>
+            <option *ngFor="let waveShare of waveShares" [value]="waveShare._id">{{waveShare.name}}</option>
           </select>
         </div>
       </div>
@@ -209,7 +209,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.camera' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="camera"  >
-            <option *ngFor="let camera of cameras" [value]="camera.id">{{camera.name}}</option>
+            <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.name}}</option>
           </select>
         </div>
       </div>
@@ -217,7 +217,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
         <div class="col-md-9">
           <select  cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="reader"  >
-            <option *ngFor="let reader of readers" [value]="reader.id">{{reader.name}}</option>
+            <option *ngFor="let reader of readers" [value]="reader._id">{{reader.name}}</option>
           </select>
         </div>
       </div>

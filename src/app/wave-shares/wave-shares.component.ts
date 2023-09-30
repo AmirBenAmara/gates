@@ -17,7 +17,7 @@ export class WaveSharesComponent implements OnInit {
     name: ['', Validators.required],
   });
   waveShare: WaveShare = {
-    id: 0,
+    _id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
     name: 'Undefined',
@@ -38,7 +38,7 @@ export class WaveSharesComponent implements OnInit {
   }
 
   //TODO: finish implementation
-  confirmDeleteWaveShare(id: number) {
+  confirmDeleteWaveShare(id) {
     this.waveShareService.deleteWaveShare(id).subscribe(data => this.getWaveShares());
   }
   //TODO: finish implementation
@@ -50,7 +50,7 @@ export class WaveSharesComponent implements OnInit {
   //TODO: finish implementation
   updateWaveShare(waveShareId: number) {
     if (this.waveShareForm.valid) {
-      const updatedWaveShare = { id: this.waveShare.id, ...this.waveShareForm.value };
+      const updatedWaveShare = { _id: this.waveShare._id, ...this.waveShareForm.value };
       this.waveShareService.updateWaveShare(waveShareId, updatedWaveShare).subscribe(data => this.getWaveShares());
     }
   }

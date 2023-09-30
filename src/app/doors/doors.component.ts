@@ -88,7 +88,7 @@ export class DoorsComponent {
 
   //TODO: finish implementation
   deleteDoor() {
-    this.doorService.deleteDoor(this.selectedDoor.id).subscribe(res => {
+    this.doorService.deleteDoor(this.selectedDoor._id).subscribe(res => {
       this.viewModalDeleteVisible = false
       this.getDoors();
     });
@@ -113,10 +113,10 @@ export class DoorsComponent {
     if(door){
       this.selectedDoor = door;
       this.editDoorForm.setValue(door);
-      this.editDoorForm.controls['department'].setValue(door.department.id)
-      this.editDoorForm.controls['waveShare'].setValue(door.waveShare.id)
-      this.editDoorForm.controls['camera'].setValue(door.camera.id)
-      this.editDoorForm.controls['reader'].setValue(door.reader.id)
+      this.editDoorForm.controls['department'].setValue(door.department._id)
+      this.editDoorForm.controls['waveShare'].setValue(door.waveShare._id)
+      this.editDoorForm.controls['camera'].setValue(door.camera._id)
+      this.editDoorForm.controls['reader'].setValue(door.reader._id)
       this.editModalVisible = true;
     }
     console.log(this.editDoorForm.value)
@@ -181,7 +181,7 @@ export class DoorsComponent {
 
   submitEditDoor(){
     console.log(this.editDoorForm.value)
-    this.doorService.updateDoor(this.editDoorForm.value.id, this.editDoorForm.value).subscribe(res => {
+    this.doorService.updateDoor(this.editDoorForm.value._id, this.editDoorForm.value).subscribe(res => {
       this.getDoors()
       this.cancel()
     })

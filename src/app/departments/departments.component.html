@@ -35,7 +35,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let department of departments">
-                                            <th scope="row">{{ department.id }}</th>
+                                            <th scope="row">{{ department._id }}</th>
                                             <td>{{ department.name }}</td>
                                             <td style="text-align:center;">
                                                 <button type="button" cButton color="light"
@@ -81,7 +81,7 @@
             <div class="form-group  mb-3">
                 <label for="controllers">{{ 'departments.controllers' | translate }}</label>
                 <select cSelect id="controllers" formControlName="ctrPannels" multiple>
-                    <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel.id">{{ ctrPannel.name }}</option>
+                    <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel._id">{{ ctrPannel.name }}</option>
                 </select>
             </div>
         </form>

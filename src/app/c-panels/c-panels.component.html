@@ -42,7 +42,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let ctrPnl of ctrPanels">
-                      <th scope="row">{{ ctrPnl.id }}</th>
+                      <th scope="row">{{ ctrPnl._id }}</th>
                       <td>{{ ctrPnl.name }}</td>
                       <td>{{ ctrPnl.ipAddress }}</td>
                       <td>{{ ctrPnl.serialNumber }}</td>
@@ -93,7 +93,7 @@
     <button [cModalToggle]="deleteCtrPanel.id" cButton color="secondary">
       {{ 'controlPanel.close' | translate }}
     </button>
-    <button (click)="confirmDeleteCtrPanel(ctrPanel.id)" [cModalToggle]="deleteCtrPanel.id" class="text-white" cButton color="danger">Confirm</button>
+    <button (click)="confirmDeleteCtrPanel(ctrPanel._id)" [cModalToggle]="deleteCtrPanel.id" class="text-white" cButton color="danger">Confirm</button>
   </c-modal-footer>
 </c-modal>
 
@@ -138,7 +138,7 @@
 
     </button>
     <button  *ngIf="!isEditMode" (click)="newCtrPanel()" cButton color="primary">{{ 'controlPanel.submit' | translate }}</button>
-    <button  *ngIf="isEditMode" (click)="updateCtrPanel(ctrPanel.id)" cButton color="primary">{{ 'controlPanel.submit' | translate }}</button>
+    <button  *ngIf="isEditMode" (click)="updateCtrPanel(ctrPanel._id)" cButton color="primary">{{ 'controlPanel.submit' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 

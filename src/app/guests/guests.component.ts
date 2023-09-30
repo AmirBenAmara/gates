@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 import { GuestService, Guest } from '../services/guest.service';
+import { Department, DepartmentsService } from '../services/departments.service';
+import { Door, DoorsService } from '../services/doors.service';
 
 @Component({
   selector: 'app-guests',
@@ -10,15 +12,10 @@ import { GuestService, Guest } from '../services/guest.service';
 })
 export class GuestsComponent implements OnInit {
   guestForm: FormGroup = this.fb.group({
-    fatherName: ['', Validators.required],
+    name: ['', Validators.required],
     surname: ['', Validators.required],
     cin: ['', Validators.required],
-    birthDate: [null, Validators.required],
-    birthPlace: ['', Validators.required],
-    motherName: ['', Validators.required],
-    occupation: ['', Validators.required],
-    actualAddress: ['', Validators.required],
-    cinDeliverDate: ['', Validators.required],
+    telephoneNumber: ['', Validators.required],
   });
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
@@ -30,15 +27,23 @@ export class GuestsComponent implements OnInit {
 
   selectedGuest: Guest | undefined;
 
-  page1 = true; 
+  page1 = true;
   page2 = false;
-  departments = [{id : "1" , name : "department1"},{id : "2" , name : "department2"}];
+  departments: Department[] | undefined;
+  // departments = [{ id: "1", name: "department1" }, { id: "2", name: "department2" }];
   selectedDepartments = [];
-  doors = [{id : "1" , name : "door1"},{id : "2" , name : "door2"}];
+  doors: Door[] | undefined;
+  // doors = [{ id: "1", name: "door1" }, { id: "2", name: "door2" }];
   selectedDoors = [];
 
 
-  constructor(private guestservice: GuestService, private fb: FormBuilder) { }
+  constructor(
+    private guestservice: GuestService,
+    private fb: FormBuilder,
+    private departmentService: DepartmentsService,
+    private doorService: DoorsService,
+
+    ) { }
 
   ngOnInit(): void {
     this.getGuests()
@@ -53,7 +58,18 @@ export class GuestsComponent implements OnInit {
     });
   }
 
-  //TODO: finish implementation
+  getDepartments() {
+    this.departmentService.getDepartments().subscribe((departments) => {
+      this.departments = departments;
+    });
+  }
+
+  getDoors() {
+    this.doorService.getDoors().subscribe((Doors) => {
+      this.doors = Doors;
+    });
+  }
+
   deleteGuest() {
     if (this.selectedGuest) {
       this.guestservice.deleteGuest(this.selectedGuest._id ? this.selectedGuest._id : 0).subscribe(res => {
@@ -116,14 +132,16 @@ export class GuestsComponent implements OnInit {
   submitAddModal() {
     let guest: Guest;
     if (this.guestForm.valid) {
-      // console.log(this.guestForm.value);
+      console.log(this.guestForm.value);
       guest = this.guestForm.value;
+      guest.departments = this.selectedDepartments;
+      guest.doors = this.selectedDoors;
       // guest.birthDate = this.formatDate(this.guestForm.value.birthDate);
       // guest.cinDeliverDate = this.formatDate(
       //   this.guestForm.value.cinDeliverDate
       // );
 
-      // console.log(guest);
+      console.log(guest);
 
       if (this.editMode) {
         this.guestservice.updateGuest(guest).subscribe((res) => {
@@ -146,42 +164,42 @@ export class GuestsComponent implements OnInit {
     return dateArray[2] + '/' + dateArray[1] + '/' + dateArray[0];
   }
 
-  selectDepartment(departmentId){
-    if(this.departmentExist(departmentId)){
+  selectDepartment(departmentId) {
+    if (this.departmentExist(departmentId)) {
       this.selectedDepartments = this.selectedDepartments.filter(depId => depId !== departmentId)
-    }else{
+    } else {
       this.selectedDepartments.push(departmentId);
     }
   }
 
-  selectAllDepartments(){
-    this.selectedDepartments = this.departments.map(dep => dep.id);
-    console.log("selectedDepartments",this.selectedDepartments)
+  selectAllDepartments() {
+    this.selectedDepartments = this.departments.map(dep => dep._id);
+    console.log("selectedDepartments", this.selectedDepartments)
   }
 
-  departmentExist(departmentId){
+  departmentExist(departmentId) {
     return this.selectedDepartments.includes(departmentId);
   }
 
-  selectDoor(doorId){
-    if(this.doorExist(doorId)){
+  selectDoor(doorId) {
+    if (this.doorExist(doorId)) {
       this.selectedDoors = this.selectedDoors.filter(doId => doId !== doorId)
-    }else{
+    } else {
       this.selectedDoors.push(doorId);
     }
   }
 
-  selectAllDoors(){
-    this.selectedDoors = this.doors.map(door => door.id);
+  selectAllDoors() {
+    this.selectedDoors = this.doors.map(door => door._id);
   }
 
-  doorExist(doorId){
+  doorExist(doorId) {
     return this.selectedDoors.includes(doorId);
   }
 
-  initAddGuestForm(){
+  initAddGuestForm() {
     this.page1 = true;
-    this.page2 = false; 
+    this.page2 = false;
     this.selectedDepartments = [];
     this.selectedDoors = [];
   }

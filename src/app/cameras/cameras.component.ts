@@ -17,7 +17,7 @@ export class CamerasComponent implements OnInit {
     name: ['', Validators.required],
   });
   camera: Camera = { 
-    id: 0,
+    _id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
     name: 'Undefined',
@@ -51,7 +51,7 @@ export class CamerasComponent implements OnInit {
   updateCamera() {
     if (this.cameraForm.valid) {
   
-      const updatedCamera  = { id: this.camera.id, ...this.cameraForm.value };
+      const updatedCamera  = { id: this.camera._id, ...this.cameraForm.value };
 
       this.cameraService.updateCamera(updatedCamera).subscribe(data =>  this.getCameras() );
     }

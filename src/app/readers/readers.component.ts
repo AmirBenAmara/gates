@@ -17,7 +17,7 @@ export class ReadersComponent implements OnInit {
     name: ['', Validators.required],
   });
   reader: Reader = {
-    id: 0,
+    _id: 0,
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
     name: 'Undefined',

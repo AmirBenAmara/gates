@@ -43,6 +43,6 @@ export interface Guest {
   cin?: string;
   reason?: string;
   telephoneNumber?: string;
-  departments?:[Department];
-  doors?:[Door];
+  departments?:any[];
+  doors?:any[];
 }

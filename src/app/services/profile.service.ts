@@ -45,6 +45,6 @@ export interface Profile {
   address?:string;
   email?:string;
   telephoneNumber?:string;
-  departments?:[Department];
-  doors?:[Door];
+  departments?:any[];
+  doors?:any[];
 }

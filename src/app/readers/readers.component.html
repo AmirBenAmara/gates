@@ -34,7 +34,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let rdr of readers">
-                      <th scope="row">{{ rdr.id }}</th>
+                      <th scope="row">{{ rdr._id }}</th>
                       <td>{{ rdr.name }}</td>
                       <td>{{ rdr.ipAddress }}</td>
                       <td>{{ rdr.serialNumber }}</td>
@@ -74,7 +74,7 @@
     <button [cModalToggle]="deleteReader.id" cButton color="secondary">
       {{ 'readers.close' | translate }}
     </button>
-    <button (click)="confirmDeleteReader(reader.id)" class="text-white" [cModalToggle]="deleteReader.id" cButton color="danger">{{ 'readers.confirm' | translate }}</button>
+    <button (click)="confirmDeleteReader(reader._id)" class="text-white" [cModalToggle]="deleteReader.id" cButton color="danger">{{ 'readers.confirm' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 
@@ -111,7 +111,7 @@
       {{ 'readers.close' | translate }}
     </button>
     <button  *ngIf="!isEditMode" (click)="newReader()" cButton color="primary">{{ 'readers.submit' | translate }}</button>
-    <button  *ngIf="isEditMode" (click)="updateReader(reader.id)" cButton color="primary">{{ 'readers.submit' | translate }}</button>
+    <button  *ngIf="isEditMode" (click)="updateReader(reader._id)" cButton color="primary">{{ 'readers.submit' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 

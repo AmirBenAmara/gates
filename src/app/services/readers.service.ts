@@ -40,31 +40,31 @@ export class ReadersService {
 
 // Example Reader interface
 export interface Reader {
-  id: number;
+  _id: number;
   ipAddress: string;
   serialNumber: string;
   name: string;
 }
 export const ReadersDATA: Reader[] = [{ 
-  id: 1,
+  _id: 1,
   ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
   name: 'Reader 1',
 },
 { 
-  id: 2,
+  _id: 2,
   ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
   name: 'Reader 2',
 },
 { 
-  id: 3,
+  _id: 3,
   ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
   name: 'Reader 3',
 },
 { 
-  id: 4,
+  _id: 4,
   ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
   name: 'Reader 4',
