@@ -46,7 +46,7 @@
                       <th scope="row">{{door._id}}</th>
                       <td>{{door.name}}</td>
                       <td>{{door.description}}</td>
-                      <td>{{door.department.name}}</td>
+                      <td>{{door.department.nameDepartment}}</td>
 
                       <td style="text-align:center;">
                         <button type="button" cButton color="light" (click)="detailDoor(door)">
@@ -94,7 +94,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.department' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" >
-            <option *ngFor="let department of departments" [value]="department._id">{{department.name}}</option>
+            <option *ngFor="let department of departments" [value]="department._id">{{department.nameDepartment}}</option>
           </select>
         </div>
       </div>
@@ -190,7 +190,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.department' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" >
-            <option *ngFor="let department of departments" [value]="department._id">{{department.name}}</option>
+            <option *ngFor="let department of departments" [value]="department._id">{{department.nameDepartment}}</option>
           </select>
         </div>
       </div>
@@ -246,7 +246,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>{{ 'doorsComp.department' | translate }}:</strong> <span>{{ selectedDoor.department.name}} </span></p>
+          <p><strong>{{ 'doorsComp.department' | translate }}:</strong> <span>{{ selectedDoor.department.nameDepartment}} </span></p>
         </div>
       </div>
       <div class="row">

@@ -60,7 +60,7 @@ export class DepartmentsComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateDepartment(id: number, department: Department) {
+  updateDepartment(id: string, department: Department) {
     this.departmentService.updateDepartment(id, department).subscribe();
   }
 

@@ -9,7 +9,7 @@ import { Door } from './doors.service';
 })
 export class ProfileService {
 
-  apiUrl: string = environment.apiUrl + 'Profile';
+  apiUrl: string = environment.apiUrl + 'profiles';
 
   constructor(private http: HttpClient) { }
 
@@ -41,7 +41,7 @@ export interface Profile {
   name?: string;
   surname?: string;
   occupation?: string;
-  cin?:string;
+  cin?:number;
   address?:string;
   email?:string;
   telephoneNumber?:string;

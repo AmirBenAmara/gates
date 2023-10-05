@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs/internal/observable/of';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CPanelsService {
-  apiUrl: string = environment.apiUrl + 'CtrPannel';
+  apiUrl: string = environment.apiUrl + 'controlPanels';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +17,7 @@ export class CPanelsService {
     return this.http.get<CtrPanel[]>(`${this.apiUrl}`);
   }
 
-  getCtrPanelById(ctrPanelId: number): Observable<CtrPanel[]> {
+  getCtrPanelById(ctrPanelId: string): Observable<CtrPanel[]> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.get<CtrPanel[]>(url);
   }
@@ -26,12 +25,12 @@ export class CPanelsService {
     return this.http.post<CtrPanel>(this.apiUrl, ctrPanel);
   }
 
-  updateCtrPanel(ctrPanelId: number, ctrPanel: Partial<CtrPanel>): Observable<void> {
+  updateCtrPanel(ctrPanelId: string, ctrPanel: Partial<CtrPanel>): Observable<void> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.put<void>(url, ctrPanel);
   }
   
-  deleteCtrPanel(ctrPanelId: number): Observable<void> {
+  deleteCtrPanel(ctrPanelId: string): Observable<void> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.delete<void>(url);
   }
@@ -39,33 +38,28 @@ export class CPanelsService {
   
 }
 export interface CtrPanel {
-  _id: number;
-  ipAddress: string;
-  serialNumber: string;
-  name: string;
+  _id: string;
+  serialNumber: string,
+  nameControlPanel: string;
 }
 
 export const CtrPanelsDATA: CtrPanel[] = [{ 
-  _id: 1,
-  ipAddress: '172.53.3.6',
-  serialNumber: 'N552854AG654657',
-  name: 'C Panel 1',
+  _id: 'jfkbjfbjb',
+  serialNumber: '172.53.3.6',
+  nameControlPanel: 'C Panel 1'
 },
 { 
-  _id: 2,
-  ipAddress: '172.53.3.7',
-  serialNumber: 'N552854AG654658',
-  name: 'C Panel 2',
+  _id: 'kbvjbdkdfj',
+  serialNumber: '172.53.3.7',
+  nameControlPanel: 'C Panel 2'
 },
 { 
-  _id: 3,
-  ipAddress: '172.53.3.8',
-  serialNumber: 'N552854AG654659',
-  name: 'C Panel 3',
+  _id: 'hbfvjhbdbv',
+  serialNumber: '172.53.3.8',
+  nameControlPanel: 'C Panel 3'
 },
 { 
-  _id: 4,
-  ipAddress: '172.53.3.9',
-  serialNumber: 'N552854AG654660',
-  name: 'C Panel 4',
+  _id: 'bfhbjdbhdb',
+  serialNumber: '172.53.3.9',
+  nameControlPanel: 'C Panel 4'
 }]

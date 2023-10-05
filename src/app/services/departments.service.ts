@@ -9,16 +9,15 @@ import { Door, DoorsDATA } from './doors.service';
   providedIn: 'root',
 })
 export class DepartmentsService {
-  apiUrl: string = environment.apiUrl + 'Department';
+  apiUrl: string = environment.apiUrl + 'departments';
 
   constructor(private http: HttpClient) {}
 
   getDepartments(): Observable<Department[]> {
     return this.http.get<Department[]>(`${this.apiUrl}`);
-    // return of(DepartmentsDATA);
   }
 
-  getDepartmentById(departmentId: number): Observable<Department[]> {
+  getDepartmentById(departmentId: string): Observable<Department[]> {
     const url = `${this.apiUrl}/${departmentId}`;
     return this.http.get<Department[]>(url);
   }
@@ -27,42 +26,42 @@ export class DepartmentsService {
   }
 
   updateDepartment(
-    departmentId: number,
+    departmentId: string,
     department: Department
   ): Observable<void> {
     const url = `${this.apiUrl}/${departmentId}`;
     return this.http.put<void>(url, department);
   }
 
-  deleteDepartment(departmentId: number): Observable<void> {
+  deleteDepartment(departmentId: string): Observable<void> {
     const url = `${this.apiUrl}/${departmentId}`;
     return this.http.delete<void>(url);
   }
 }
 
 export interface Department {
-  _id: number;
-  name: string;
+  _id: string;
+  nameDepartment: string;
   doors: Door[];
   ctrPannels: CtrPanel[];
 }
 
 export const DepartmentsDATA: Department[] = [
   {
-    _id: 1,
-    name: 'department 1',
+    _id: '',
+    nameDepartment: 'department 1',
     doors: [],
     ctrPannels: CtrPanelsDATA,
   },
   {
-    _id: 2,
-    name: 'department 2',
+    _id: '',
+    nameDepartment: 'department 2',
     doors: [],
     ctrPannels: [],
   },
   {
-    _id: 3,
-    name: 'department 3',
+    _id: '',
+    nameDepartment: 'department 3',
     doors: [],
     ctrPannels: [],
   },

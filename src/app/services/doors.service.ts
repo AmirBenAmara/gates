@@ -12,7 +12,7 @@ import { Department, DepartmentsDATA } from './departments.service';
   providedIn: 'root'
 })
 export class DoorsService {
-  apiUrl: string = environment.apiUrl + 'Door';
+  apiUrl: string = environment.apiUrl + 'gates';
 
   constructor(private http: HttpClient) { }
 
