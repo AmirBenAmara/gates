@@ -6,7 +6,7 @@ import { Camera, CamerasDATA } from './cameras.service';
 import { WaveShare } from './wave-share.service';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Department, DepartmentsDATA } from './departments.service';
+import { Department} from './departments.service';
 
 @Injectable({
   providedIn: 'root'
@@ -54,19 +54,19 @@ export interface Door {
   waveShare? : WaveShare,
 }
 
-export const DoorsDATA: Door[] = [
-  {
-    _id: 0,
-    name: 'door1',
-    description: 'door1description',
-    department: DepartmentsDATA[0],
-    reader: ReadersDATA[0],
-    camera: CamerasDATA[0],
-    waveShare: { 
-      _id: 1,
-      ipAddress: '172.53.3.6',
-      serialNumber: 'N552854AG654657',
-      name: 'W Share 1',
-    },
-  },
-]
+// export const DoorsDATA: Door[] = [
+//   {
+//     _id: 0,
+//     name: 'door1',
+//     description: 'door1description',
+//     department: DepartmentsDATA[0],
+//     reader: ReadersDATA[0],
+//     camera: CamerasDATA[0],
+//     waveShare: { 
+//       _id: 1,
+//       ipAddress: '172.53.3.6',
+//       serialNumber: 'N552854AG654657',
+//       name: 'W Share 1',
+//     },
+//   },
+// ]

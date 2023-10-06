@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CtrPanel, CtrPanelsDATA } from './c-panels.service';
-import { Door, DoorsDATA } from './doors.service';
+import { Door} from './doors.service';
 
 @Injectable({
   providedIn: 'root',
@@ -40,29 +40,25 @@ export class DepartmentsService {
 }
 
 export interface Department {
-  _id: string;
-  nameDepartment: string;
-  doors: Door[];
-  ctrPannels: CtrPanel[];
+  _id: string,
+  nameDepartment: string,
+  ctrDepartment: CtrPanel
 }
 
-export const DepartmentsDATA: Department[] = [
-  {
-    _id: '',
-    nameDepartment: 'department 1',
-    doors: [],
-    ctrPannels: CtrPanelsDATA,
-  },
-  {
-    _id: '',
-    nameDepartment: 'department 2',
-    doors: [],
-    ctrPannels: [],
-  },
-  {
-    _id: '',
-    nameDepartment: 'department 3',
-    doors: [],
-    ctrPannels: [],
-  },
-];
+// export const DepartmentsDATA: Department[] = [
+//   {
+//     _id: '',
+//     nameDepartment: '',
+//     ctrDepartment: 
+//   },
+//   {
+//     _id: '',
+//     nameDepartment: '',
+//     ctrDepartment: CtrPanel
+//   },
+//   {
+//     _id: '',
+//     nameDepartment: '',
+//     ctrDepartment: CtrPanel
+//   },
+// ];

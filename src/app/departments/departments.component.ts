@@ -33,10 +33,8 @@ export class DepartmentsComponent implements OnInit {
     this.getDepartments();
     this.getCtrPannels();
     this.departmentForm = this.fb.group({
-      id : [''],
-      name: ['', Validators.required],
-      ctrPannels: [[], Validators.required],
-      doors : ['']
+      nameDepartment: [''],
+      ctrDepartment: ['']
     });
   }
 
@@ -69,15 +67,15 @@ export class DepartmentsComponent implements OnInit {
     this.departmentService.createDepartment(department).subscribe();
   }
 
-  editDepartment(department: Department | undefined) {
-    if(department){
-      this.selectedDepartment = department;
-      this.editMode = true;
-      this.departmentForm.setValue(department)
-      this.departmentForm.controls['ctrPannels'].setValue(department.ctrPannels.map(el=> el._id))
-      this.visible = true
-    }
-  }
+  // editDepartment(department: Department | undefined) {
+  //   if(department){
+  //     this.selectedDepartment = department;
+  //     this.editMode = true;
+  //     this.departmentForm.setValue(department)
+  //     this.departmentForm.controls['ctrDepartment'].setValue(department.ctrDepartment.map(el=> el._id))
+  //     this.visible = true
+  //   }
+  // }
 
   detailDepartment(department: Department | undefined) {
     this.selectedDepartment = department;

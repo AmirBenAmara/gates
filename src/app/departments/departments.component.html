@@ -42,10 +42,10 @@
                                                     (click)="detailDepartment(department)">
                                                     <svg [cIcon]="icons.cilInfo" width="15" title="Detail Icon"></svg>
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light"
+                                                <!-- <button type="button" cButton color="light"
                                                     (click)="editDepartment(department)">
                                                     <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-                                                </button> &nbsp;
+                                                </button> &nbsp; -->
                                                 <button type="button" cButton color="light"
                                                     (click)="openModalDelete(department)">
                                                     <svg [cIcon]="icons.cilTrash" width="15"
@@ -75,12 +75,12 @@
         <form [formGroup]="departmentForm">
             <div class="form-group  mb-3">
                 <label for="name">{{ 'departments.name' | translate }}</label>
-                <input type="text" class="form-control" id="name" cFormControl formControlName="name"
+                <input type="text" class="form-control" id="nameDepartment" cFormControl formControlName="nameDepartment"
                     placeholder="{{ 'departments.name' | translate }}">
             </div>
             <div class="form-group  mb-3">
                 <label for="controllers">{{ 'departments.controllers' | translate }}</label>
-                <select cSelect id="controllers" formControlName="ctrPannels" multiple>
+                <select cSelect id="controllers" formControlName="ctrDepartment">
                     <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel._id">{{ ctrPannel.nameControlPanel }}</option>
                 </select>
             </div>
@@ -106,13 +106,13 @@
                 <div class="col-sm-12">
                     <p><strong>{{ 'departments.name' | translate }}:</strong> {{ selectedDepartment.nameDepartment }}</p>
                 </div>
-                <div class="col-sm-12">
+                <!-- <div class="col-sm-12">
                     <p><strong>{{ 'departments.doors' | translate }}:</strong> </p>
                     <p style="text-align: center;" *ngFor="let door of selectedDepartment.doors">{{ door.name }}</p>
-                </div>
+                </div> -->
                 <div class="col-sm-12">
                     <p><strong>{{ 'departments.controlPanels' | translate }}:</strong> </p>
-                    <p style="text-align: center;" *ngFor="let ctPanel of selectedDepartment.ctrPannels">{{ ctPanel.nameControlPanel }}</p>
+                    <p style="text-align: center;" *ngFor="let ctPanel of selectedDepartment.ctrDepartment.nameControlPanel">{{ ctPanel }}</p>
                 </div>
             </div>
         </div>
