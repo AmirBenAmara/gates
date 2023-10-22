@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { cilPencil, cilPlus, cilTrash, cilInfo } from '@coreui/icons';
-import { DoorsService, Door } from '../services/doors.service';
+import { Gate, GatesService } from '../services/gates.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   Department,
@@ -18,12 +18,12 @@ import { WaveShare, WaveShareService } from '../services/wave-share.service';
 export class DoorsComponent {
   doorForm: FormGroup;
   editDoorForm: FormGroup;
-  doors: Door[] | undefined;
+  doors: Gate[] | undefined;
   departments: Department[] | undefined;
   cameras: Camera[] | undefined;
   readers: Reader[] | undefined;
   waveShares: WaveShare[] | undefined;
-  selectedDoor: Door | undefined;
+  selectedDoor: Gate | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
   public viewModalVisible: boolean = false;
@@ -31,7 +31,7 @@ export class DoorsComponent {
   public viewModalDeleteVisible = false;
 
   constructor(
-    private doorService: DoorsService,
+    private doorService: GatesService,
     private departmentService: DepartmentsService,
     private readerService: ReadersService,
     private cameraService: CamerasService,
@@ -100,34 +100,34 @@ export class DoorsComponent {
     });
   }
   //TODO: finish implementation
-  updateDoor(id: number, Door: Door) {
+  updateDoor(id: string, Door: Gate) {
     this.doorService.updateDoor(id, Door).subscribe();
   }
 
   //TODO: finish implementation
-  newDoor(Door: Door) {
+  newDoor(Door: Gate) {
     // this.doorService.createDoor(Door).subscribe();
   }
 
-  editDoor(door: Door | undefined) {
+  editDoor(door: Gate | undefined) {
     if(door){
       this.selectedDoor = door;
       this.editDoorForm.setValue(door);
-      this.editDoorForm.controls['department'].setValue(door.department._id)
+      this.editDoorForm.controls['department'].setValue(door.departmentGate._id)
       this.editDoorForm.controls['waveShare'].setValue(door.waveShare._id)
-      this.editDoorForm.controls['camera'].setValue(door.camera._id)
-      this.editDoorForm.controls['reader'].setValue(door.reader._id)
+      // this.editDoorForm.controls['camera'].setValue(door.camera._id)
+      // this.editDoorForm.controls['reader'].setValue(door.reader._id)
       this.editModalVisible = true;
     }
     console.log(this.editDoorForm.value)
   }
 
-  detailDoor(door: Door | undefined) {
+  detailDoor(door: Gate | undefined) {
     this.viewModalVisible = true;
     this.selectedDoor = door;
   }
 
-  openModalDelete(door: Door | undefined) {
+  openModalDelete(door: Gate | undefined) {
     this.selectedDoor = door;
     this.viewModalDeleteVisible = true;
   }
@@ -173,10 +173,10 @@ export class DoorsComponent {
       waveShareId : this.doorForm.value.waveShare,
     }
     console.log([door1,door2])
-    this.doorService.createDoor([door1, door2]).subscribe(res => {
-      this.getDoors()
-      this.cancel()
-    })
+    // this.doorService.createDoor([door1, door2]).subscribe(res => {
+    //   this.getDoors()
+    //   this.cancel()
+    // })
   }
 
   submitEditDoor(){

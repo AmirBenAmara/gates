@@ -18,7 +18,7 @@ export class ReadersService {
     return this.http.get<Reader[]>(this.apiUrl);
   }
   // GetReaderById function with an HTTP GET request
-  getReaderById(readerId: number): Observable<Reader> {
+  getReaderById(readerId: string): Observable<Reader> {
     const url = `${this.apiUrl}/${readerId}`;
     return this.http.get<Reader>(url);
   }
@@ -28,11 +28,11 @@ export class ReadersService {
     return this.http.post<void>(this.apiUrl, reader);
   }
 
-  updateReader(readerId: number, reader: Partial<Reader>): Observable<void> {
+  updateReader(readerId: string, reader: Partial<Reader>): Observable<void> {
     return this.http.put<void>(this.apiUrl, reader);
   }
 
-  deleteReader(readerId: number): Observable<void> {
+  deleteReader(readerId: string): Observable<void> {
     const url = `${this.apiUrl}/${readerId}`;
     return this.http.delete<void>(url);
   }
@@ -40,32 +40,32 @@ export class ReadersService {
 
 // Example Reader interface
 export interface Reader {
-  _id: number;
+  _id: string;
   ipAddress: string;
   serialNumber: string;
-  name: string;
+  nameReader: string;
 }
 export const ReadersDATA: Reader[] = [{ 
-  _id: 1,
+  _id: "1",
+  nameReader: 'Reader 1',
   ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
-  name: 'Reader 1',
 },
 { 
-  _id: 2,
+  _id: "2",
   ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
-  name: 'Reader 2',
+  nameReader: 'Reader 2',
 },
 { 
-  _id: 3,
+  _id: "3",
   ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
-  name: 'Reader 3',
+  nameReader: 'Reader 3',
 },
 { 
-  _id: 4,
+  _id: "4",
   ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
-  name: 'Reader 4',
+  nameReader: 'Reader 4',
 }]

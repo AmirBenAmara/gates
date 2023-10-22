@@ -22,7 +22,7 @@ export class UsersService {
     // return of(DepartmentsDATA);
   }
 
-  getUserById(userId: number): Observable<User[]> {
+  getUserById(userId: string): Observable<User[]> {
     const url = `${this.apiUrl}/${userId}`;
     return this.http.get<User[]>(url);
   }
@@ -41,7 +41,7 @@ export class UsersService {
     return this.http.put<void>(url, user);
   }
 
-  deleteUser(userId: number): Observable<void> {
+  deleteUser(userId: string): Observable<void> {
     const url = `${this.apiUrl}/${userId}`;
     return this.http.delete<void>(url);
   }

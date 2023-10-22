@@ -26,7 +26,7 @@
                   <thead class="table-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">{{ 'readers.name' | translate }}</th>
+                      <th scope="col">{{ 'readers.nameReader' | translate }}</th>
                       <th scope="col">{{ 'readers.ipAddress' | translate }}</th>
                       <th scope="col">{{ 'readers.serialNumber' | translate }}</th>
                       <th scope="col"></th>
@@ -35,7 +35,7 @@
                   <tbody>
                     <tr *ngFor="let rdr of readers">
                       <th scope="row">{{ rdr._id }}</th>
-                      <td>{{ rdr.name }}</td>
+                      <td>{{ rdr.nameReader }}</td>
                       <td>{{ rdr.ipAddress }}</td>
                       <td>{{ rdr.serialNumber }}</td>
                       <td style="text-align:center;">
@@ -68,7 +68,7 @@
   </c-modal-header>
   <c-modal-body>
     <p class="fw-semibold">{{ 'readers.deleteConfirmationMessage' | translate }}</p>
-    <p><strong> {{reader.name }} </strong></p>
+    <p><strong> {{reader.nameReader }} </strong></p>
   </c-modal-body>
   <c-modal-footer>
     <button [cModalToggle]="deleteReader.id" cButton color="secondary">
@@ -87,9 +87,9 @@
   <c-modal-body>
     <form [formGroup]="readerForm" class="form-horizontal">
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">{{ 'readers.name' | translate }}</label>
+        <label for="name" class="col-md-3 col-form-label">{{ 'readers.nameReader' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'readers.name' | translate }}">
+          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'readers.nameReader' | translate }}">
         </div>
       </div>
       <div class="form-group row mb-3">
@@ -124,7 +124,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>{{ 'readers.name' | translate }}:</strong> {{ reader.name }}</p>
+          <p><strong>{{ 'readers.nameReader' | translate }}:</strong> {{ reader.nameReader }}</p>
         </div>
         <div class="col-sm-12">
           <p><strong>{{ 'readers.ipAddress' | translate }}:</strong> {{ reader.ipAddress }}</p>

@@ -36,7 +36,7 @@
                                     <tbody>
                                         <tr *ngFor="let department of departments">
                                             <th scope="row">{{ department._id }}</th>
-                                            <td>{{ department.name }}</td>
+                                            <td>{{ department.nameDepartment }}</td>
                                             <td style="text-align:center;">
                                                 <button type="button" cButton color="light"
                                                     (click)="detailDepartment(department)">
@@ -81,7 +81,7 @@
             <div class="form-group  mb-3">
                 <label for="controllers">{{ 'departments.controllers' | translate }}</label>
                 <select cSelect id="controllers" formControlName="ctrPannels" multiple>
-                    <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel._id">{{ ctrPannel.name }}</option>
+                    <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel._id">{{ ctrPannel.nameControlPanel }}</option>
                 </select>
             </div>
         </form>
@@ -104,15 +104,15 @@
         <div class="container" *ngIf="selectedDepartment">
             <div class="row">
                 <div class="col-sm-12">
-                    <p><strong>{{ 'departments.name' | translate }}:</strong> {{ selectedDepartment.name }}</p>
+                    <p><strong>{{ 'departments.name' | translate }}:</strong> {{ selectedDepartment.nameDepartment }}</p>
                 </div>
                 <div class="col-sm-12">
                     <p><strong>{{ 'departments.doors' | translate }}:</strong> </p>
-                    <p style="text-align: center;" *ngFor="let door of selectedDepartment.doors">{{ door.name }}</p>
+                    <p style="text-align: center;" *ngFor="let door of selectedDepartment.gates">{{ door.nameGate }}</p>
                 </div>
                 <div class="col-sm-12">
                     <p><strong>{{ 'departments.controlPanels' | translate }}:</strong> </p>
-                    <p style="text-align: center;" *ngFor="let ctPanel of selectedDepartment.ctrPannels">{{ ctPanel.name }}</p>
+                    <p style="text-align: center;">{{ selectedDepartment.ctrDepartment.nameControlPanel }}</p>
                 </div>
             </div>
         </div>

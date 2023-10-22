@@ -14,13 +14,13 @@ export class WaveSharesComponent implements OnInit {
   waveShareForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
-    name: ['', Validators.required],
+    nameWaveShare: ['', Validators.required],
   });
   waveShare: WaveShare = {
-    _id: 0,
+    _id: "0",
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
-    name: 'Undefined',
+    nameWaveShare: 'Undefined',
   }
   waveShares: WaveShare[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
@@ -33,7 +33,7 @@ export class WaveSharesComponent implements OnInit {
     this.waveShareForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
-      name: ['', Validators.required],
+      nameWaveShare: ['', Validators.required],
     });
   }
 
@@ -48,7 +48,7 @@ export class WaveSharesComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateWaveShare(waveShareId: number) {
+  updateWaveShare(waveShareId: string) {
     if (this.waveShareForm.valid) {
       const updatedWaveShare = { _id: this.waveShare._id, ...this.waveShareForm.value };
       this.waveShareService.updateWaveShare(waveShareId, updatedWaveShare).subscribe(data => this.getWaveShares());

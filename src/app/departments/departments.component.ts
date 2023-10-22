@@ -60,7 +60,7 @@ export class DepartmentsComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateDepartment(id: number, department: Department) {
+  updateDepartment(id: string, department: Department) {
     this.departmentService.updateDepartment(id, department).subscribe();
   }
 
@@ -74,7 +74,7 @@ export class DepartmentsComponent implements OnInit {
       this.selectedDepartment = department;
       this.editMode = true;
       this.departmentForm.setValue(department)
-      this.departmentForm.controls['ctrPannels'].setValue(department.ctrPannels.map(el=> el._id))
+      this.departmentForm.controls['ctrPannels'].setValue(department.ctrDepartment.map(el=> el._id))
       this.visible = true
     }
   }

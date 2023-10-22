@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 import { GuestService, Guest } from '../services/guest.service';
 import { Department, DepartmentsService } from '../services/departments.service';
-import { Door, DoorsService } from '../services/doors.service';
+import { Gate, GatesService } from '../services/gates.service';
 
 @Component({
   selector: 'app-guests',
@@ -31,7 +31,7 @@ export class GuestsComponent implements OnInit {
   page2 = false;
   departments: Department[] | undefined;
   selectedDepartments = [];
-  doors: Door[] | undefined;
+  doors: Gate[] | undefined;
   selectedDoors = [];
 
 
@@ -39,7 +39,7 @@ export class GuestsComponent implements OnInit {
     private guestservice: GuestService,
     private fb: FormBuilder,
     private departmentService: DepartmentsService,
-    private doorService: DoorsService,
+    private doorService: GatesService,
 
     ) { }
 
@@ -68,7 +68,7 @@ export class GuestsComponent implements OnInit {
 
   deleteGuest() {
     if (this.selectedGuest) {
-      this.guestservice.deleteGuest(this.selectedGuest._id ? this.selectedGuest._id : 0).subscribe(res => {
+      this.guestservice.deleteGuest(this.selectedGuest._id ? this.selectedGuest._id : "0").subscribe(res => {
         this.viewModalDeleteVisible = false;
         this.getGuests()
       });
@@ -131,7 +131,7 @@ export class GuestsComponent implements OnInit {
       console.log(this.guestForm.value);
       guest = this.guestForm.value;
       guest.departments = this.selectedDepartments;
-      guest.doors = this.selectedDoors;
+      guest.gates = this.selectedDoors;
 
       console.log(guest);
 

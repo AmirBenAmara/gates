@@ -36,7 +36,7 @@
                   <tbody>
                     <tr *ngFor="let cam of cameras">
                       <th scope="row">{{ cam._id }}</th>
-                      <td>{{ cam.name }}</td>
+                      <td>{{ cam.nameCamera }}</td>
                       <td>{{ cam.ipAddress }}</td>
                       <td>{{ cam.serialNumber }}</td>
                       <td style="text-align:center;">
@@ -70,7 +70,7 @@
   </c-modal-header>
   <c-modal-body>
     <p class="fw-semibold">{{ 'cameras.deleteCameraConfirmation' | translate }}</p>
-    <p><strong>{{ camera.name }}</strong></p>
+    <p><strong>{{ camera.nameCamera }}</strong></p>
   </c-modal-body>
   <c-modal-footer>
     <button [cModalToggle]="deleteCamera.id" cButton color="secondary">{{ 'cameras.close' | translate }}</button>
@@ -124,7 +124,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>{{ 'cameras.name' | translate }}:</strong> {{ camera.name }}</p>
+          <p><strong>{{ 'cameras.name' | translate }}:</strong> {{ camera.nameCamera }}</p>
         </div>
         <div class="col-sm-12">
           <p><strong>{{ 'cameras.ipAddress' | translate }}:</strong> {{ camera.ipAddress }}</p>

@@ -17,10 +17,10 @@ export class ReadersComponent implements OnInit {
     name: ['', Validators.required],
   });
   reader: Reader = {
-    _id: 0,
+    _id: "0",
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
-    name: 'Undefined',
+    nameReader: 'Undefined',
   }
   readers: Reader[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
@@ -38,7 +38,7 @@ export class ReadersComponent implements OnInit {
   }
 
   //TODO: finish implementation
-  confirmDeleteReader(id: number) {
+  confirmDeleteReader(id: string) {
     this.readerService.deleteReader(id).subscribe(data => this.getReaders());
   }
   //TODO: finish implementation
@@ -48,7 +48,7 @@ export class ReadersComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateReader(readerId: number) {
+  updateReader(readerId: string) {
     if (this.readerForm.valid) {
       const updatedReader = { id: readerId, ...this.readerForm.value };
       this.readerService.updateReader(readerId, updatedReader).subscribe(data => this.getReaders());

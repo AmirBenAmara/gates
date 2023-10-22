@@ -34,7 +34,6 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">{{ 'doorsComp.name' | translate }}</th>
-                      <th scope="col">{{ 'doorsComp.type' | translate }}</th>
                       <th scope="col">{{ 'doorsComp.department' | translate }}</th>
 
                       <th scope="col"></th>
@@ -44,9 +43,8 @@
                   <tbody>
                     <tr *ngFor="let door of doors">
                       <th scope="row">{{door._id}}</th>
-                      <td>{{door.name}}</td>
-                      <td>{{door.description}}</td>
-                      <td>{{door.department.name}}</td>
+                      <td>{{door.nameGate}}</td>
+                      <td>{{door.departmentGate.nameDepartment}}</td>
 
                       <td style="text-align:center;">
                         <button type="button" cButton color="light" (click)="detailDoor(door)">
@@ -94,7 +92,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.department' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" >
-            <option *ngFor="let department of departments" [value]="department._id">{{department.name}}</option>
+            <option *ngFor="let department of departments" [value]="department._id">{{department.nameDepartment}}</option>
           </select>
         </div>
       </div>
@@ -104,7 +102,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.waveShare' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" >
-            <option *ngFor="let waveShare of waveShares" [value]="waveShare._id">{{waveShare.name}}</option>
+            <option *ngFor="let waveShare of waveShares" [value]="waveShare._id">{{waveShare.nameWaveShare}}</option>
           </select>
         </div>
       </div>
@@ -123,7 +121,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.camera' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraEntry" >
-                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.name}}</option>
+                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.nameCamera}}</option>
               </select>
             </div>
           </div>
@@ -131,7 +129,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerEntry" >
-                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.name}}</option>
+                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.nameReader}}</option>
               </select>
             </div>
           </div>
@@ -142,7 +140,7 @@
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraExit"> 
              
-                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.name}}</option>
+                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.nameCamera}}</option>
               </select>
             </div>
           </div>
@@ -150,7 +148,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerExit"> 
-                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.name}}</option>
+                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.nameReader}}</option>
               </select>
             </div>
           </div>
@@ -190,7 +188,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.department' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="department" >
-            <option *ngFor="let department of departments" [value]="department._id">{{department.name}}</option>
+            <option *ngFor="let department of departments" [value]="department._id">{{department.nameDepartment}}</option>
           </select>
         </div>
       </div>
@@ -200,7 +198,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.waveShare' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare" >
-            <option *ngFor="let waveShare of waveShares" [value]="waveShare._id">{{waveShare.name}}</option>
+            <option *ngFor="let waveShare of waveShares" [value]="waveShare._id">{{waveShare.nameWaveShare}}</option>
           </select>
         </div>
       </div>
@@ -209,7 +207,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.camera' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="camera"  >
-            <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.name}}</option>
+            <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.nameCamera}}</option>
           </select>
         </div>
       </div>
@@ -217,7 +215,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
         <div class="col-md-9">
           <select  cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="reader"  >
-            <option *ngFor="let reader of readers" [value]="reader._id">{{reader.name}}</option>
+            <option *ngFor="let reader of readers" [value]="reader._id">{{reader.nameReader}}</option>
           </select>
         </div>
       </div>
@@ -241,12 +239,12 @@
     <div class="container" *ngIf="selectedDoor">
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>{{ 'doorsComp.name' | translate }}:</strong> {{ selectedDoor.name}}</p>
+          <p><strong>{{ 'doorsComp.name' | translate }}:</strong> {{ selectedDoor.nameGate}}</p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>{{ 'doorsComp.department' | translate }}:</strong> <span>{{ selectedDoor.department.name}} </span></p>
+          <p><strong>{{ 'doorsComp.department' | translate }}:</strong> <span>{{ selectedDoor.departmentGate.nameDepartment}} </span></p>
         </div>
       </div>
       <div class="row">
@@ -257,19 +255,19 @@
       <br>
       <h6><strong>{{ 'doorsComp.associatedDevices' | translate }}:</strong></h6>
 
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-sm-12">
           <p style="text-align: center;"><strong>{{ 'doorsComp.reader' | translate }}:</strong> {{ selectedDoor.reader.name}} </p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <p style="text-align: center;"><strong>{{ 'doorsComp.camera' | translate }}:</strong> {{ selectedDoor.camera.name}} </p>
+          <p style="text-align: center;"><strong>{{ 'doorsComp.camera' | translate }}:</strong> {{ selectedDoor.camera.nameCamera}} </p>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-sm-12">
-          <p style="text-align: center;"><strong>{{ 'doorsComp.waveShare' | translate }}:</strong> {{ selectedDoor.waveShare.name}}</p>
+          <p style="text-align: center;"><strong>{{ 'doorsComp.waveShare' | translate }}:</strong> {{ selectedDoor.waveShare.nameWaveShare}}</p>
         </div>
       </div>
     </div>

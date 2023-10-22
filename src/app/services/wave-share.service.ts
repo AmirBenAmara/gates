@@ -18,7 +18,7 @@ export class WaveShareService {
     return this.http.get<WaveShare[]>(`${this.apiUrl}`);
   }
 
-  getWaveShareById(ctrPanelId: number): Observable<WaveShare[]> {
+  getWaveShareById(ctrPanelId: string): Observable<WaveShare[]> {
     const url = `${this.apiUrl}${ctrPanelId}`;
     return this.http.get<WaveShare[]>(url);
   }
@@ -26,12 +26,12 @@ export class WaveShareService {
     return this.http.post<WaveShare>(this.apiUrl, ctrPanel);
   }
 
-  updateWaveShare(ctrPanelId: number, ctrPanel: Partial<WaveShare>): Observable<void> {
+  updateWaveShare(ctrPanelId: string, ctrPanel: Partial<WaveShare>): Observable<void> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.put<void>(url, ctrPanel);
   }
   
-  deleteWaveShare(ctrPanelId: number): Observable<void> {
+  deleteWaveShare(ctrPanelId: string): Observable<void> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.delete<void>(url);
   }
@@ -39,33 +39,33 @@ export class WaveShareService {
   
 }
 export interface WaveShare {
-  _id: number;
+  _id: string;
+  nameWaveShare: string;
   ipAddress: string;
   serialNumber: string;
-  name: string;
 }
 
 export const WaveSharesDATA: WaveShare[] = [{ 
-  _id: 1,
+  _id: "1",
   ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
-  name: 'W Share 1',
+  nameWaveShare: 'W Share 1',
 },
 { 
-  _id: 2,
+  _id: "2",
   ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
-  name: 'W Share 2', 
+  nameWaveShare: 'W Share 2', 
 },
 { 
-  _id: 3,
+  _id: "3",
   ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
-  name: 'W Share 3',
+  nameWaveShare: 'W Share 3',
 },
 { 
-  _id: 4,
+  _id: "4",
   ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
-  name: 'W Share 4',
+  nameWaveShare: 'W Share 4',
 }]

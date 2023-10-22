@@ -17,10 +17,10 @@ export class CamerasComponent implements OnInit {
     name: ['', Validators.required],
   });
   camera: Camera = { 
-    _id: 0,
+    _id: "0",
     ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
-    name: 'Undefined',
+    nameCamera: 'Undefined',
   }
   cameras: Camera[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
@@ -38,7 +38,7 @@ export class CamerasComponent implements OnInit {
   }
 
   //TODO: finish implementation
-  confirmDeleteCamera(id: number) {
+  confirmDeleteCamera(id: string) {
     this.cameraService.deleteCamera(id).subscribe(data =>  this.getCameras());
   }
   //TODO: finish implementation

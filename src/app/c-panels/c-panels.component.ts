@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CPanelsService, CtrPanel } from '../services/c-panels.service'
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 
 @Component({
@@ -11,16 +11,11 @@ import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 export class CPanelsComponent implements OnInit {
   p: number = 1;
   isEditMode = false;
-  ctrPanelForm = this.fb.group({
-    ipAddress: ['', Validators.required],
-    serialNumber: ['', Validators.required],
-    name: ['', Validators.required],
-  });
+  ctrPanelForm : FormGroup
   ctrPanel: CtrPanel = {
-    _id: 0,
-    ipAddress: '0.0.0.0',
+    _id: "0",
     serialNumber: 'N552854AG654657',
-    name: 'Undefined',
+    nameControlPanel: 'Undefined',
   }
   ctrPanels: CtrPanel[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
@@ -31,14 +26,13 @@ export class CPanelsComponent implements OnInit {
   ngOnInit(): void {
     this.getCtrPanels();
     this.ctrPanelForm = this.fb.group({
-      ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
       name: ['', Validators.required],
     });
   }
 
   //TODO: finish implementation
-  confirmDeleteCtrPanel(id: number) {
+  confirmDeleteCtrPanel(id: string) {
     this.ctrPanelService.deleteCtrPanel(id).subscribe(data => this.getCtrPanels());
   }
   //TODO: finish implementation
@@ -48,7 +42,7 @@ export class CPanelsComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateCtrPanel(ctrPanelId: number) {
+  updateCtrPanel(ctrPanelId: string) {
     if (this.ctrPanelForm.valid) {
       const updatedCtrPanel = { id: this.ctrPanel._id, ...this.ctrPanelForm.value };
       this.ctrPanelService.updateCtrPanel(ctrPanelId, updatedCtrPanel).subscribe(data => this.getCtrPanels());

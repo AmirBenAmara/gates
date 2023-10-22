@@ -3,7 +3,7 @@ import { cilPencil, cilPlus, cilTrash, cilInfo } from '@coreui/icons';
 import { Profile, ProfileService } from '../services/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Department, DepartmentsService } from '../services/departments.service';
-import { Door, DoorsService } from '../services/doors.service';
+import { Gate, GatesService } from '../services/gates.service';
 
 @Component({
   selector: 'app-profiles',
@@ -26,14 +26,14 @@ export class ProfilesComponent {
   page2 = false;
   departments: Department[] | undefined;
   selectedDepartments = [];
-  doors: Door[] | undefined;
+  doors: Gate[] | undefined;
   selectedDoors = [];
 
   constructor(
     private ProfileService: ProfileService,
     private fb: FormBuilder,
     private departmentService: DepartmentsService,
-    private doorService: DoorsService,
+    private doorService: GatesService,
   ) { }
   ngOnInit(): void {
     this.getProfiles()
@@ -115,7 +115,7 @@ export class ProfilesComponent {
       console.log(this.profileForm.value);
       profile = this.profileForm.value;
       profile.departments = this.selectedDepartments;
-      profile.doors = this.selectedDoors;
+      profile.gates = this.selectedDoors;
 
       console.log(profile);
 

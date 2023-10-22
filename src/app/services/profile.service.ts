@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { Department } from './departments.service';
-import { Door } from './doors.service';
+import { Gate } from './gates.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +17,7 @@ export class ProfileService {
     return this.http.post<Profile>(this.apiUrl, Profile);
   }
   // GetProfileById function with an HTTP GET request
-  getProfileById(ProfileId: number): Observable<Profile> {
+  getProfileById(ProfileId: string): Observable<Profile> {
     const url = `${this.apiUrl}/${ProfileId}`;
     return this.http.get<Profile>(url);
   }
@@ -30,14 +30,14 @@ export class ProfileService {
     const url = `${this.apiUrl}/${Profile._id}`;
     return this.http.put<Profile>(url, Profile);
   }
-  deleteProfile(ProfileId: number): Observable<void> {
+  deleteProfile(ProfileId: string): Observable<void> {
     const url = `${this.apiUrl}/${ProfileId}`;
     return this.http.delete<void>(url);
   }
 }
 
 export interface Profile {
-  _id?: number;
+  _id?: string;
   name?: string;
   surname?: string;
   occupation?: string;
@@ -46,5 +46,5 @@ export interface Profile {
   email?:string;
   telephoneNumber?:string;
   departments?:any[];
-  doors?:any[];
+  gates?:any[];
 }

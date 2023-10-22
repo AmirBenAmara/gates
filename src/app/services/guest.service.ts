@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { Department } from './departments.service';
-import { Door } from './doors.service';
+import { Gate } from './gates.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class GuestService {
     return this.http.post<Guest>(this.apiUrl, Guest);
   }
   // GetGuestById function with an HTTP GET request
-  getGuestById(GuestId: number): Observable<Guest> {
+  getGuestById(GuestId: string): Observable<Guest> {
     const url = `${this.apiUrl}/${GuestId}`;
     return this.http.get<Guest>(url);
   }
@@ -30,19 +30,19 @@ export class GuestService {
     const url = `${this.apiUrl}/${Guest._id}`;
     return this.http.put<Guest>(url, Guest);
   }
-  deleteGuest(GuestId: number): Observable<void> {
+  deleteGuest(GuestId: string): Observable<void> {
     const url = `${this.apiUrl}/${GuestId}`;
     return this.http.delete<void>(url);
   }
 }
 
 export interface Guest {
-  _id?: number;
+  _id?: string;
   name?: string;
   surname?: string;
   cin?: string;
   reason?: string;
   telephoneNumber?: string;
   departments?:any[];
-  doors?:any[];
+  gates?:any[];
 }
