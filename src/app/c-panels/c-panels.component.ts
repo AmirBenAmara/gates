@@ -47,8 +47,11 @@ export class CPanelsComponent implements OnInit {
   //TODO: finish implementation
   updateCtrPanel(ctrPanelId: string) {
     if (this.ctrPanelForm.valid) {
-      const updatedCtrPanel = { id: this.ctrPanel._id, ...this.ctrPanelForm.value };
-      this.ctrPanelService.updateCtrPanel(ctrPanelId, updatedCtrPanel).subscribe(data => this.getCtrPanels());
+      const updatedCtrPanel = this.ctrPanelForm.value ;
+      this.ctrPanelService.updateCtrPanel(ctrPanelId, updatedCtrPanel).subscribe(data => {
+        this.getCtrPanels();
+        this.cancel();
+      })
     }
   }
 
@@ -57,7 +60,10 @@ export class CPanelsComponent implements OnInit {
   newCtrPanel() {
     if (this.ctrPanelForm.valid) {
       const newCtrPanel = this.ctrPanelForm.value;
-      this.ctrPanelService.createCtrPanel(newCtrPanel).subscribe(data => this.getCtrPanels());
+      this.ctrPanelService.createCtrPanel(newCtrPanel).subscribe(data => {
+        this.getCtrPanels();
+        this.cancel()
+      })
     }
   }
 
