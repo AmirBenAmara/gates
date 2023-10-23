@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs/internal/observable/of';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CPanelsService {
-  apiUrl: string = environment.apiUrl + 'CtrPannel';
+  apiUrl: string = environment.apiUrl + 'controlPanels';
 
   constructor(private http: HttpClient) { }
 
@@ -40,27 +39,27 @@ export class CPanelsService {
 }
 export interface CtrPanel {
   _id: string;
+  serialNumber: string,
   nameControlPanel: string;
-  serialNumber: string;
 }
 
 export const CtrPanelsDATA: CtrPanel[] = [{ 
-  _id: "1",
-  serialNumber: 'N552854AG654657',
-  nameControlPanel: 'C Panel 1',
+  _id: 'jfkbjfbjb',
+  serialNumber: '172.53.3.6',
+  nameControlPanel: 'C Panel 1'
 },
 { 
-  _id: "2",
-  serialNumber: 'N552854AG654658',
-  nameControlPanel: 'C Panel 2',
+  _id: 'kbvjbdkdfj',
+  serialNumber: '172.53.3.7',
+  nameControlPanel: 'C Panel 2'
 },
 { 
-  _id: "3",
-  serialNumber: 'N552854AG654659',
-  nameControlPanel: 'C Panel 3',
+  _id: 'hbfvjhbdbv',
+  serialNumber: '172.53.3.8',
+  nameControlPanel: 'C Panel 3'
 },
 { 
-  _id: "4",
-  serialNumber: 'N552854AG654660',
-  nameControlPanel: 'C Panel 4',
+  _id: 'bfhbjdbhdb',
+  serialNumber: '172.53.3.9',
+  nameControlPanel: 'C Panel 4'
 }]

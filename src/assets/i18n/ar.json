@@ -8,7 +8,7 @@
         "submit": "إرسال",
         "confirmDelete": "تأكيد الحذف",
         "controlPanelDetails": "تفاصيل لوحة التحكم",
-        "name": "الاسم",
+        "nameControlPanel": "اسم لوحة التحكم",
         "ipAddress": "عنوان IP",
         "serialNumber": "الرقم التسلسلي"
     },

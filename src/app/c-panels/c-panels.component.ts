@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CPanelsService, CtrPanel } from '../services/c-panels.service'
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 
 @Component({
@@ -11,11 +11,14 @@ import { cilPencil, cilTrash, cilPlus, cilInfo } from '@coreui/icons';
 export class CPanelsComponent implements OnInit {
   p: number = 1;
   isEditMode = false;
-  ctrPanelForm : FormGroup
+  ctrPanelForm = this.fb.group({
+    serialNumber: ['', Validators.required],
+    nameControlPanel: ['', Validators.required],
+  });
   ctrPanel: CtrPanel = {
-    _id: "0",
-    serialNumber: 'N552854AG654657',
-    nameControlPanel: 'Undefined',
+    _id: 'vvreegev',
+    serialNumber: '0.0.0.0',
+    nameControlPanel: 'Undefined'
   }
   ctrPanels: CtrPanel[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
@@ -27,7 +30,7 @@ export class CPanelsComponent implements OnInit {
     this.getCtrPanels();
     this.ctrPanelForm = this.fb.group({
       serialNumber: ['', Validators.required],
-      name: ['', Validators.required],
+      nameControlPanel: ['', Validators.required],
     });
   }
 

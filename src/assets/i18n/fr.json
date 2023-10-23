@@ -8,7 +8,7 @@
         "submit": "Soumettre",
         "confirmDelete": "Confirmer la suppression",
         "controlPanelDetails": "Détails du panneau de contrôle",
-        "name": "Nom",
+        "nameControlPanel": "Nom du Panneau de contrôle",
         "ipAddress": "Adresse IP",
         "serialNumber": "Numéro de série"
     },

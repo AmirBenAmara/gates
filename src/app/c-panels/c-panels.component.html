@@ -36,39 +36,30 @@
                       <th scope="col">{{ 'controlPanel.nameControlPanel' | translate }}</th>
                       <th scope="col">{{ 'controlPanel.serialNumber' | translate }}</th>
                       <th scope="col"></th>
-
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let ctrPnl of ctrPanels">
-                      <th scope="row">{{ ctrPnl._id }}</th>
+                    <tr *ngFor="let ctrPnl of ctrPanels; let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
                       <td>{{ ctrPnl.nameControlPanel }}</td>
                       <td>{{ ctrPnl.serialNumber }}</td>
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewCtrPanelDetailsModal(ctrPnl)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
-
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="isEditMode = true; openCtrPanelModal(ctrPnl)">
                           <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
-
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="ctrPanel = ctrPnl"
                           [cModalToggle]="deleteCtrPanel.id">
                           <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                         </button>
                       </td>
-
                     </tr>
-
                   </tbody>
                 </table>
-
               </div>
-
             </div>
-
-
           </div>
         </div>
       </div>
@@ -106,10 +97,10 @@
   <c-modal-body>
     <form [formGroup]="ctrPanelForm" class="form-horizontal">
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label"><label for="name" class="col-md-3 col-form-label">{{ 'controlPanel.nameControlPanel' | translate }}</label>
+        <label for="name" class="col-md-3 col-form-label"><label for="name" class="col-md-3 col-form-label">{{ 'controlPanel.name' | translate }}</label>
       </label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="Name">
+          <input type="text" class="form-control" cFormControl formControlName="nameControlPanel" id="nameControlPanel" placeholder="Name">
         </div>
       </div>
       <div class="form-group row mb-3">
@@ -142,7 +133,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>{{ 'controlPanel.nameControlPanel' | translate }}:</strong> {{ ctrPanel.nameControlPanel }}</p>
+          <p><strong>{{ 'controlPanel.name' | translate }}:</strong> {{ ctrPanel.nameControlPanel }}</p>
         </div>
         <div class="col-sm-12">
           <p><strong>{{ 'controlPanel.serialNumber' | translate }}:</strong> {{ ctrPanel.serialNumber }}</p>

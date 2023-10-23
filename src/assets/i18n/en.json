@@ -8,7 +8,7 @@
         "submit": "Submit",
         "confirmDelete": "Confirm Delete",
         "controlPanelDetails": "Control Panel Details",
-        "name": "Name",
+        "nameControlPanel": "Name Control Panel",
         "ipAddress": "IP Address",
         "serialNumber": "Serial Number"
     },
