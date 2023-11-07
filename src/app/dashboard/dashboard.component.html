@@ -4,16 +4,18 @@
             <div class="example">
                 <div class="card  mt-4 mb-2">
                     <div class="card-header bg-white">
-                        <div class="fs-2 fw-semibold bg-white "><strong>{{ 'dashboard.title' | translate }}</strong></div>
-                        <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
-                    </div>
+                        <div class="fs-2 fw-semibold bg-white "><strong>{{ 'menu.dashboard' | translate }}</strong></div>
+                        <c-breadcrumb>
+                            <c-breadcrumb-item url="/">{{ 'menu.home' | translate }}</c-breadcrumb-item>
+                            <c-breadcrumb-item [active]="true">{{ 'menu.dashboard' | translate }}</c-breadcrumb-item>
+                          </c-breadcrumb>                    </div>
                     <div class="card-body row">
                         <app-widgets-dropdown></app-widgets-dropdown>
 
                         <c-col lg="12">
                             <div class="tab-content rounded-bottom">
                                 <div class="tab-pane active show p-3 preview fade">
-                                <p> RT LOG</p>
+                                <p class="title"> {{ 'dashboard.rtLog' | translate }}</p>
                                 <table cTable>
                                     <thead class="table-dark logs">
                                         <tr>
@@ -48,14 +50,14 @@
                         <c-col lg="12">
                               <div class="tab-content rounded-bottom">
                                 <div class="tab-pane active show p-3 preview fade">
-                                    <p class="title"> Missed Alarms</p>
+                                    <p class="title">{{ 'dashboard.missedAlarms' | translate }}</p>
                              <table cTable>
                                 <thead class="table-dark logs">
                                     <tr>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Door</th>
-                                        <th scope="col">User</th>
-                                        <th scope="col">Alarm Details</th>
+                                        <th scope="col">{{ 'manageLogs.dateColumn' | translate }}</th>
+                                        <th scope="col">{{ 'manageLogs.doorColumn' | translate }}</th>
+                                        <th scope="col">{{ 'dashboard.user' | translate }}</th>
+                                        <th scope="col">{{ 'dashboard.missedAlarms' | translate }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

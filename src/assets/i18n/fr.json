@@ -74,6 +74,7 @@
         "waveShareDetails": "Détails du partage Wave"
     },
     "doorsComp": {
+        "manageDoors": "Gérer les portes",
         "search": "Rechercher",
         "newDoor": "Nouvelle porte",
         "plusIcon": "Icône Plus",
@@ -226,6 +227,7 @@
         "profileDetailsTitle": "Détails du profil"
     },
     "menu": {
+        "home": "Accueil",
         "dashboard": "Tableau de bord",
         "monitoring": "Surveillance",
         "realTimeLog": "Journal en temps réel",
@@ -243,6 +245,10 @@
         "waveShares": "Partages Wave"
     },
     "dashboard": {
-        "title":"Dashboard"
+        "title":"Dashboard",
+        "missedAlarms":"Alarmes manquées",
+        "rtLog":"Journal en temps réel",
+        "alarmDetails": "Détails de l'alarme",
+        "user": "Utilisateur"
     }
 }

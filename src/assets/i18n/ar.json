@@ -227,6 +227,7 @@
         "profileDetailsTitle": "تفاصيل الملف الشخصي"
     },
     "menu": {
+        "home": "الصفحة الرئيسية",
         "dashboard": "لوحة القيادة",
         "monitoring": "المراقبة",
         "realTimeLog": "سجل الوقت الحقيقي",
@@ -244,6 +245,10 @@
         "waveShares": "مشاركات Wave"
     },
     "dashboard": {
-        "title": "لوحة القيادة"
+        "title": "لوحة القيادة",
+        "missedAlarms":"الإنذارات المفقودة",
+        "rtLog":"سجل الوقت الحقيقي",
+        "alarmDetails": "تفاصيل الإنذار",
+        "user": "المستخدم"
     }
 }

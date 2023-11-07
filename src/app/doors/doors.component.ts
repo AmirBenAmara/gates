@@ -9,6 +9,7 @@ import {
 import { Camera, CamerasService } from '../services/cameras.service';
 import { Reader, ReadersService } from '../services/readers.service';
 import { WaveShare, WaveShareService } from '../services/wave-share.service';
+import { IBreadcrumbItem } from '@coreui/angular/lib/breadcrumb';
 
 @Component({
   selector: 'app-doors',

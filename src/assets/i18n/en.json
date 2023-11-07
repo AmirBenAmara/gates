@@ -227,6 +227,7 @@
         "profileDetailsTitle": "Profile Details"
     },
     "menu": {
+        "home": "Home",
         "dashboard": "Dashboard",
         "monitoring": "Monitoring",
         "realTimeLog": "Real Time Log",
@@ -244,6 +245,10 @@
         "waveShares": "Wave Shares"
     },
     "dashboard": {
-        "title":"Dashboard"
+        "title":"Dashboard",
+        "missedAlarms":"Missed Alarms",
+        "rtLog":"Real Time Log",
+        "alarmDetails": "Alarm Details",
+        "user": "User"
     }
 }

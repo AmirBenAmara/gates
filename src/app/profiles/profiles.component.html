@@ -6,8 +6,10 @@
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
             <div class="fs-2 fw-semibold bg-white "><strong>{{ 'profileComp.title' | translate }}</strong></div>
-            <c-breadcrumb-router class="sm-2"></c-breadcrumb-router>
-          </div>
+            <c-breadcrumb>
+              <c-breadcrumb-item url="/">{{ 'menu.home' | translate }}</c-breadcrumb-item>
+              <c-breadcrumb-item [active]="true">{{ 'menu.profiles' | translate }}</c-breadcrumb-item>
+            </c-breadcrumb>          </div>
           <div class="card-body">
 
             <div class="tab-content rounded-bottom">
