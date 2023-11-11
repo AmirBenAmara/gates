@@ -14,7 +14,7 @@ export class SocketService {
   readonly wsEndpointDS: string = `ws://localhost:${this.port}/doorStatus`;
   readonly wsEndpointRTL: string = `ws://localhost:${this.port}/RTLog`;
   readonly wsEndpointDVS: string = `ws://localhost:${this.port}/deviceStatus`;
-  readonly wsEnrollement: string = `http://localhost:${this.port}/wsEnrollement`;
+  readonly wsEnrollement: string = `ws://localhost:${this.port}/wsEnrollement`;
 
   constructor() { 
     this.doorStatusSocket$ = new WebSocketSubject(this.wsEndpointDS);
