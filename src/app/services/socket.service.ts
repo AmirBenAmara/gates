@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WebSocketSubject } from 'rxjs/webSocket';
+import {webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class SocketService {
     this.doorStatusSocket$ = new WebSocketSubject(this.wsEndpointDS);
     this.rtLogsSocket$ = new WebSocketSubject(this.wsEndpointRTL);
     this.deviceStatusSocket$ = new WebSocketSubject(this.wsEndpointDVS);
-    this.wsEnrollementSocket$ = new WebSocketSubject(this.wsEndpointDVS);
+    this.wsEnrollementSocket$ = webSocket(this.wsEndpointDVS);
   }
   public getDoorStatus() {
     return this.doorStatusSocket$.asObservable();
@@ -33,7 +33,7 @@ export class SocketService {
   }
 
   public loadProfile() {
-    return this.wsEnrollementSocket$.asObservable()
+    return this.wsEnrollementSocket$
   }
 
 }
