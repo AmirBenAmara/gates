@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 export class ProfilesComponent {
   private socketSubscription: Subscription;
   profileForm: FormGroup 
-
+  private socket: WebSocket;
   profiles: Profile[] | undefined;
   selectedProfile: Profile | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
@@ -55,14 +55,20 @@ export class ProfilesComponent {
   }
 
   onProfileLoad() {
-    this.socketSubscription = this.socketService.loadProfile().subscribe(
-      (profile) => {
-        this.editProfile(profile);
-        this.openProfileModal();
-        // Handle WebSocket message
+    this.socket = this.socketService.loadProfile();
+    this.socket.addEventListener('open', (event) => {
+      console.log('WebSocket connection opened:', event);
+    });
 
-      }
-    );  }
+    this.socket.addEventListener('message', (profile) => {
+      console.log('WebSocket message received:', profile);
+      // this.editProfile(profile);
+      // this.openProfileModal();
+      this.socket.addEventListener('close', (event) => {
+        console.log('WebSocket connection closed:', event);
+      });
+    });
+   }
 
   getDepartments() {
     this.departmentService.getDepartments().subscribe((departments) => {
