@@ -79,7 +79,7 @@
 
 <c-modal id="ProfileModal" [visible]="visible" size="lg" (visibleChange)="handleProfileModalVisbilityChange($event)">
   <c-modal-header>
-    <h5 cModalTitle>{{ 'profileComp.newProfileModalTitle' | translate }}</h5>
+    <h5 cModalTitle>{{ 'profileComp.newProfileTitle' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
@@ -88,11 +88,11 @@
         <div class="col-6">
           <div class="form-group mb-3">
             <label for="name">{{ 'profileComp.nameLabel' | translate }}:</label>
-            <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'profileComp.namePlaceholder' | translate }}">
+            <input type="text" readonly class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'profileComp.namePlaceholder' | translate }}">
           </div>
           <div class="form-group mb-3">
             <label for="surname">{{ 'profileComp.surnameLabel' | translate }}:</label>
-            <input type="text" class="form-control" cFormControl formControlName="surname" id="surname"
+            <input type="text" readonly class="form-control" cFormControl formControlName="surname" id="surname"
               placeholder="{{ 'profileComp.surnamePlaceholder' | translate }}">
           </div>
           <div class="form-group mb-3">
@@ -122,10 +122,16 @@
             <input type="text" class="form-control" cFormControl formControlName="email" id="email"
               placeholder="{{ 'profileComp.emailLabel' | translate }}">
           </div>
+          <div class="form-group mb-3">
+            <label for="documentNumber">{{ 'profileComp.documentNumberLabel' | translate }}:</label>
+            <input type="text" readonly class="form-control" cFormControl formControlName="documentNumber" id="documentNumber"
+            placeholder="{{ 'profileComp.documentNumberLabel' | translate }}">
+            
+          </div>
         </div>
       </div>
       <div *ngIf="page2">
-        <div class="row">
+        <div class="row p-3">
           <h3>Authorized Departments:</h3>
           <div class="form-check col-3" *ngFor="let department of departments">
             <input class="form-check-input" type="radio" [checked]="departmentExist(department._id)" (click)="selectDepartment(department._id)">
@@ -141,7 +147,7 @@
             </label>
           </div>
         </div>
-        <div class="row">
+        <div class="row p-3">
           <h3>Authorized Doors:</h3>
           <div class="form-check col-3" *ngFor="let door of doors">
             <input class="form-check-input" type="radio" [checked]="doorExist(door._id)" (click)="selectDoor(door._id)">
@@ -165,8 +171,7 @@
     <button (click)="cancel()" cButton color="danger">{{ 'profileComp.closeButton' | translate }}</button>
     <button *ngIf="page1" (click)="page1 = false ; page2 = true" cButton color="primary">Next</button>
     <button *ngIf="page2" (click)="page1 = true ; page2 = false" cButton color="primary">Previous</button>
-    <button *ngIf="page2" (click)="submitAddModal()" cButton color="primary">{{ 'profileComp.submitButton' | translate
-      }}</button>
+    <button *ngIf="page2" (click)="submitAddModal()" cButton color="primary">{{ 'profileComp.submitButton' | translate  }}</button>
   </c-modal-footer>
 </c-modal>
 

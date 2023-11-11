@@ -4,6 +4,8 @@ import { Profile, ProfileService } from '../services/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Department, DepartmentsService } from '../services/departments.service';
 import { Gate, GatesService } from '../services/gates.service';
+import { SocketService } from '../services/socket.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profiles',
@@ -11,6 +13,7 @@ import { Gate, GatesService } from '../services/gates.service';
   styleUrls: ['./profiles.component.scss'],
 })
 export class ProfilesComponent {
+  private socketSubscription: Subscription;
   profileForm: FormGroup 
 
   profiles: Profile[] | undefined;
@@ -21,7 +24,7 @@ export class ProfilesComponent {
   public viewModalDeleteVisible = false;
   editMode: boolean = false;
 
-
+  profile: Profile = null;
   page1 = true;
   page2 = false;
   departments: Department[] | undefined;
@@ -34,6 +37,7 @@ export class ProfilesComponent {
     private fb: FormBuilder,
     private departmentService: DepartmentsService,
     private doorService: GatesService,
+    private socketService: SocketService
   ) { }
   ngOnInit(): void {
     this.getProfiles()
@@ -45,8 +49,20 @@ export class ProfilesComponent {
       address: ['', Validators.required],
       email: ['', Validators.required],
       telephoneNumber: ['', Validators.required],
+      documentNumber: ['', Validators.required],
+
     });
   }
+
+  onProfileLoad() {
+    this.socketSubscription = this.socketService.loadProfile().subscribe(
+      (profile) => {
+        this.editProfile(profile);
+        this.openProfileModal();
+        // Handle WebSocket message
+
+      }
+    );  }
 
   getDepartments() {
     this.departmentService.getDepartments().subscribe((departments) => {
@@ -126,7 +142,6 @@ export class ProfilesComponent {
         });
       } else {
         delete profile['_id']
-        console.log(profile)
         this.ProfileService.createProfile(profile).subscribe((res) => {
           this.getProfiles();
         });

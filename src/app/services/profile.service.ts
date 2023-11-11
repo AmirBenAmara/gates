@@ -9,7 +9,7 @@ import { Gate } from './gates.service';
 })
 export class ProfileService {
 
-  apiUrl: string = environment.apiUrl + 'Profile';
+  apiUrl: string = environment.apiUrl + 'profile';
 
   constructor(private http: HttpClient) { }
 

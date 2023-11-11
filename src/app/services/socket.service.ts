@@ -10,14 +10,17 @@ export class SocketService {
   private doorStatusSocket$: WebSocketSubject<DoorStatusPayload>;
   private rtLogsSocket$: WebSocketSubject<LogPayload>;
   private deviceStatusSocket$: WebSocketSubject<DeviceStatusPayload>;
+  private wsEnrollementSocket$: WebSocketSubject<ProfilePayload>;
   readonly wsEndpointDS: string = `ws://localhost:${this.port}/doorStatus`;
   readonly wsEndpointRTL: string = `ws://localhost:${this.port}/RTLog`;
   readonly wsEndpointDVS: string = `ws://localhost:${this.port}/deviceStatus`;
+  readonly wsEnrollement: string = `ws://localhost:${this.port}/wsEnrollement`;
+
   constructor() { 
     this.doorStatusSocket$ = new WebSocketSubject(this.wsEndpointDS);
     this.rtLogsSocket$ = new WebSocketSubject(this.wsEndpointRTL);
     this.deviceStatusSocket$ = new WebSocketSubject(this.wsEndpointDVS);
-
+    this.wsEnrollementSocket$ = new WebSocketSubject(this.wsEndpointDVS);
   }
   public getDoorStatus() {
     return this.doorStatusSocket$.asObservable();
@@ -27,6 +30,10 @@ export class SocketService {
   }
   public getDeviceStatus() {
     return this.deviceStatusSocket$.asObservable();
+  }
+
+  public loadProfile() {
+    return this.wsEnrollementSocket$.asObservable()
   }
 
 }
@@ -41,6 +48,12 @@ interface DoorStatusPayload {
   lastEvent: string;
 }
 
+interface ProfilePayload { 
+  name: string,
+  surname: string,
+  documentNumber: number 
+ }
+  
 interface DeviceStatusPayload {
   deviceName: string;
   deviceStatus: string;
