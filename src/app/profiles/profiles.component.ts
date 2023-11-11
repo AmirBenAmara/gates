@@ -40,6 +40,7 @@ export class ProfilesComponent {
     private socketService: SocketService
   ) { }
   ngOnInit(): void {
+    this.onProfileLoad();
     this.getProfiles()
     this.profileForm = this.fb.group({
       name: ['', Validators .required],
@@ -60,15 +61,16 @@ export class ProfilesComponent {
       console.log('WebSocket connection opened:', event);
     });
 
-    this.socket.addEventListener('message', (profile) => {
-      console.log('WebSocket message received:', profile);
-      // this.editProfile(profile);
-      // this.openProfileModal();
+    this.socket.addEventListener('message', (event) => {
+      console.log('WebSocket message received:', event.data);
+      this.editProfile(JSON.parse(event.data));
+      this.profileForm.patchValue(JSON.parse(event.data))
+      this.openProfileModal();
+    })
       this.socket.addEventListener('close', (event) => {
         console.log('WebSocket connection closed:', event);
       });
-    });
-   }
+    }
 
   getDepartments() {
     this.departmentService.getDepartments().subscribe((departments) => {

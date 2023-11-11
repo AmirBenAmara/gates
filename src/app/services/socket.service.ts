@@ -6,12 +6,8 @@ import {webSocket, WebSocketSubject } from 'rxjs/webSocket';
   providedIn: 'root'
 })
 export class SocketService {
-<<<<<<< HEAD
-  private port : number = 8000;
-=======
   private socket: WebSocket;
-  private port : number = 8080;
->>>>>>> 54679f367af7b9b7445f5705e8a3f0bf17d54dd3
+  private port : number = 8000;
   private doorStatusSocket$: WebSocketSubject<DoorStatusPayload>;
   private rtLogsSocket$: WebSocketSubject<LogPayload>;
   private deviceStatusSocket$: WebSocketSubject<DeviceStatusPayload>;
