@@ -6,6 +6,7 @@ import {webSocket, WebSocketSubject } from 'rxjs/webSocket';
   providedIn: 'root'
 })
 export class SocketService {
+  private socket: WebSocket;
   private port : number = 8080;
   private doorStatusSocket$: WebSocketSubject<DoorStatusPayload>;
   private rtLogsSocket$: WebSocketSubject<LogPayload>;
@@ -20,7 +21,8 @@ export class SocketService {
     this.doorStatusSocket$ = new WebSocketSubject(this.wsEndpointDS);
     this.rtLogsSocket$ = new WebSocketSubject(this.wsEndpointRTL);
     this.deviceStatusSocket$ = new WebSocketSubject(this.wsEndpointDVS);
-    this.wsEnrollementSocket$ = webSocket(this.wsEndpointDVS);
+    // this.wsEnrollementSocket$ = webSocket(this.wsEndpointDVS);
+    this.socket =new WebSocket(this.wsEnrollement);
   }
   public getDoorStatus() {
     return this.doorStatusSocket$.asObservable();
@@ -33,7 +35,7 @@ export class SocketService {
   }
 
   public loadProfile() {
-    return this.wsEnrollementSocket$
+    return this.socket
   }
 
 }
