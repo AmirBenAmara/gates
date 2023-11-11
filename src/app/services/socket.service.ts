@@ -6,7 +6,7 @@ import { WebSocketSubject } from 'rxjs/webSocket';
   providedIn: 'root'
 })
 export class SocketService {
-  private port : number = 8080;
+  private port : number = 8000;
   private doorStatusSocket$: WebSocketSubject<DoorStatusPayload>;
   private rtLogsSocket$: WebSocketSubject<LogPayload>;
   private deviceStatusSocket$: WebSocketSubject<DeviceStatusPayload>;
@@ -14,7 +14,7 @@ export class SocketService {
   readonly wsEndpointDS: string = `ws://localhost:${this.port}/doorStatus`;
   readonly wsEndpointRTL: string = `ws://localhost:${this.port}/RTLog`;
   readonly wsEndpointDVS: string = `ws://localhost:${this.port}/deviceStatus`;
-  readonly wsEnrollement: string = `ws://localhost:${this.port}/wsEnrollement`;
+  readonly wsEnrollement: string = `http://localhost:${this.port}/wsEnrollement`;
 
   constructor() { 
     this.doorStatusSocket$ = new WebSocketSubject(this.wsEndpointDS);
