@@ -7,10 +7,12 @@ import {webSocket, WebSocketSubject } from 'rxjs/webSocket';
 })
 export class SocketService {
   private socket: WebSocket;
+
+
   private port : number = 8000;
-  private doorStatusSocket$: WebSocketSubject<DoorStatusPayload>;
-  private rtLogsSocket$: WebSocketSubject<LogPayload>;
-  private deviceStatusSocket$: WebSocketSubject<DeviceStatusPayload>;
+  private doorStatusSocket$: WebSocket;
+  private rtLogsSocket$:  WebSocket;
+  private deviceStatusSocket$:  WebSocket;
   private wsEnrollementSocket$: WebSocketSubject<ProfilePayload>;
   readonly wsEndpointDS: string = `ws://localhost:${this.port}/doorStatus`;
   readonly wsEndpointRTL: string = `ws://localhost:${this.port}/RTLog`;
@@ -18,20 +20,21 @@ export class SocketService {
   readonly wsEnrollement: string = `ws://localhost:${this.port}/wsEnrollement`;
 
   constructor() { 
-    this.doorStatusSocket$ = new WebSocketSubject(this.wsEndpointDS);
-    this.rtLogsSocket$ = new WebSocketSubject(this.wsEndpointRTL);
-    this.deviceStatusSocket$ = new WebSocketSubject(this.wsEndpointDVS);
+    this.doorStatusSocket$ = new WebSocket(this.wsEndpointDS);
+    this.rtLogsSocket$ = new WebSocket(this.wsEndpointRTL);
+    this.deviceStatusSocket$ = new WebSocket(this.wsEndpointDVS);
     // this.wsEnrollementSocket$ = webSocket(this.wsEndpointDVS);
-    this.socket =new WebSocket(this.wsEnrollement);
+    this.socket = new WebSocket(this.wsEnrollement);
+    
   }
   public getDoorStatus() {
-    return this.doorStatusSocket$.asObservable();
+    return this.doorStatusSocket$;
   }
   public getRTLogs() {
-    return this.rtLogsSocket$.asObservable();
+    return this.rtLogsSocket$
   }
   public getDeviceStatus() {
-    return this.deviceStatusSocket$.asObservable();
+    return this.deviceStatusSocket$
   }
 
   public loadProfile() {

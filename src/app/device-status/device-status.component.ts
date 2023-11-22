@@ -13,11 +13,26 @@ export class DeviceStatusComponent implements OnInit {
   icons = { cilMediaPause, cilClearAll, cilX };
 
   deviceStatuses:  any;
+  private socket: WebSocket;
+
 
   ngOnInit(): void {
-    this.socketService.getDeviceStatus().subscribe((data) => {
-      this.deviceStatuses = data;
-    });
+    this.onDeviceStatusesReady();
   }
+  
+  onDeviceStatusesReady() {
+    this.socket = this.socketService.getRTLogs();
+    this.socket.addEventListener('open', (event) => {
+      console.log('WebSocket connection opened:', event);
+    });
+
+    this.socket.addEventListener('message', (event) => {
+      console.log('Device status message received:', event.data);
+      this.deviceStatuses = JSON.parse(event.data)
+    })
+      this.socket.addEventListener('close', (event) => {
+        console.log('WebSocket connection closed:', event);
+      });
+    }
   
 }

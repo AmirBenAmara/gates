@@ -11,12 +11,26 @@ import { cilMediaPause, cilClearAll, cilX } from '@coreui/icons';
 export class DoorsStatusComponent implements OnInit {
   constructor(private socketService: SocketService) {}
   icons = { cilMediaPause, cilClearAll, cilX };
-  doorStatuses:  any;
+  doorStatuses:  any[];
+  private socket: WebSocket;
+
 
   ngOnInit(): void {
-    this.socketService.getDoorStatus().subscribe((data) => {
-      this.doorStatuses = data;
-    });
+    this.onDoorStatusesReady()
   }
   
+  onDoorStatusesReady() {
+    this.socket = this.socketService.getRTLogs();
+    this.socket.addEventListener('open', (event) => {
+      console.log('WebSocket connection opened:', event);
+    });
+
+    this.socket.addEventListener('message', (event) => {
+      console.log('Door status message received:', event.data);
+      this.doorStatuses = JSON.parse(event.data)
+    })
+      this.socket.addEventListener('close', (event) => {
+        console.log('WebSocket connection closed:', event);
+      });
+    }
 }

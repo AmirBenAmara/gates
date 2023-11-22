@@ -11,6 +11,7 @@ export class RealTimeLogComponent implements OnInit{
   constructor(private socketService: SocketService) {}
   selectedProfile: any = null;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo, cilUser, cilMediaPause, cilClearAll, cilX };
+  private socket: WebSocket;
 
   public visible = false;
   public viewModalDeleteVisible = false;
@@ -18,10 +19,23 @@ export class RealTimeLogComponent implements OnInit{
   logs: any;
 
   ngOnInit(): void {
-    this.socketService.getRTLogs().subscribe((data) => {
-      this.logs = data;
-    });
+    this.onRTLogsLoad()
   }
+  
+  onRTLogsLoad() {
+    this.socket = this.socketService.getRTLogs();
+    this.socket.addEventListener('open', (event) => {
+      console.log('WebSocket connection opened:', event);
+    });
+
+    this.socket.addEventListener('message', (event) => {
+      console.log('Realtime Logs message received:', event.data);
+      this.logs = JSON.parse(event.data)
+    })
+      this.socket.addEventListener('close', (event) => {
+        console.log('WebSocket connection closed:', event);
+      });
+    }
   openUserModal() {
     this.visible = true;
   }
