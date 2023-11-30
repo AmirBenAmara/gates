@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ReadersService {
-  apiUrl: string = environment.apiUrl + 'Reader';
+  apiUrl: string = environment.apiUrl + 'readers';
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +29,7 @@ export class ReadersService {
   }
 
   updateReader(readerId: string, reader: Partial<Reader>): Observable<void> {
-    return this.http.put<void>(this.apiUrl, reader);
+    return this.http.put<void>(`${this.apiUrl}/${readerId}`, reader);
   }
 
   deleteReader(readerId: string): Observable<void> {

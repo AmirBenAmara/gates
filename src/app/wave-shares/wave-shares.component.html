@@ -44,8 +44,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let wavShre of waveShares">
-                      <th scope="row">{{ wavShre._id }}</th>
+                    <tr *ngFor="let wavShre of waveShares; let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
                       <td>{{ wavShre.nameWaveShare }}</td>
                       <td>{{ wavShre.ipAddress }}</td>
                       <td>{{ wavShre.serialNumber }}</td>
@@ -113,7 +113,7 @@
       <div class="form-group row mb-3">
         <label for="name" class="col-md-3 col-form-label">{{ 'waveshares.nameWaveShare' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'waveshares.nameWaveShare' | translate }}">
+          <input type="text" class="form-control" cFormControl formControlName="nameWaveShare" id="nameWaveShare" placeholder="{{ 'waveshares.nameWaveShare' | translate }}">
         </div>
       </div>
       <div class="form-group row mb-3">

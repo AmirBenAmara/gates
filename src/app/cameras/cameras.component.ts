@@ -14,7 +14,7 @@ export class CamerasComponent implements OnInit {
   cameraForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
-    name: ['', Validators.required],
+    nameCamera: ['', Validators.required],
   });
   camera: Camera = { 
     _id: "0",
@@ -33,7 +33,7 @@ export class CamerasComponent implements OnInit {
     this.cameraForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
-      name: ['', Validators.required],
+      nameCamera: ['', Validators.required],
     });
   }
 
@@ -48,21 +48,22 @@ export class CamerasComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateCamera() {
+  updateCamera(cameraId: string) {
     if (this.cameraForm.valid) {
-  
-      const updatedCamera  = { id: this.camera._id, ...this.cameraForm.value };
-
-      this.cameraService.updateCamera(updatedCamera).subscribe(data =>  this.getCameras() );
+      const updatedCamera = { id: cameraId, ...this.cameraForm.value };
+      this.cameraService.updateCamera(cameraId, updatedCamera).subscribe(data => this.getCameras());
+      this.getCameras();
+      this.cancel();
     }
   }
-  
 
   //TODO: finish implementation
   newCamera() {
     if (this.cameraForm.valid) {
       const newCamera = this.cameraForm.value;
       this.cameraService.createCamera(newCamera).subscribe(data =>  this.getCameras());
+      this.getCameras();
+      this.cancel();
     }
   }
 

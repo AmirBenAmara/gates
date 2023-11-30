@@ -4,12 +4,13 @@ import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CtrPanel, CtrPanelsDATA } from './c-panels.service';
 import { Gate } from './gates.service';
+import { cibLgtm } from '@coreui/icons';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DepartmentsService {
-  apiUrl: string = environment.apiUrl + 'Department';
+  apiUrl: string = environment.apiUrl + 'departments';
 
   constructor(private http: HttpClient) {}
 

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CamerasService {
-  apiUrl: string = environment.apiUrl + 'Camera';
+  apiUrl: string = environment.apiUrl + 'cameras';
 
   constructor(private http: HttpClient) { }
 
@@ -27,9 +27,8 @@ export class CamerasService {
     return this.http.get<Camera[]>(this.apiUrl);
   }
   // UpdateCamera function with an HTTP PUT request
-  updateCamera(camera: Partial<Camera>): Observable<Camera> {
-    const url = `${this.apiUrl}/${camera._id}`;
-    return this.http.put<Camera>(url, camera);
+  updateCamera(cameraId: string, camera: Partial<Camera>): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${cameraId}`, camera);
   }
   deleteCamera(cameraId: string): Observable<void> {
     const url = `${this.apiUrl}/${cameraId}`;

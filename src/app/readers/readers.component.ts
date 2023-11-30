@@ -14,7 +14,7 @@ export class ReadersComponent implements OnInit {
   readerForm = this.fb.group({
     ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
-    name: ['', Validators.required],
+    nameReader: ['', Validators.required],
   });
   reader: Reader = {
     _id: "0",
@@ -33,7 +33,7 @@ export class ReadersComponent implements OnInit {
     this.readerForm = this.fb.group({
       ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
-      name: ['', Validators.required],
+      nameReader: ['', Validators.required],
     });
   }
 
@@ -52,6 +52,8 @@ export class ReadersComponent implements OnInit {
     if (this.readerForm.valid) {
       const updatedReader = { id: readerId, ...this.readerForm.value };
       this.readerService.updateReader(readerId, updatedReader).subscribe(data => this.getReaders());
+      this.getReaders();
+      this.cancel();
     }
   }
 
@@ -61,6 +63,8 @@ export class ReadersComponent implements OnInit {
     if (this.readerForm.valid) {
       const newReader = this.readerForm.value;
       this.readerService.createReader(newReader).subscribe(data => this.getReaders());
+      this.getReaders();
+      this.cancel();
     }
   }
 

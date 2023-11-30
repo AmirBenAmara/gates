@@ -52,6 +52,8 @@ export class WaveSharesComponent implements OnInit {
     if (this.waveShareForm.valid) {
       const updatedWaveShare = { _id: this.waveShare._id, ...this.waveShareForm.value };
       this.waveShareService.updateWaveShare(waveShareId, updatedWaveShare).subscribe(data => this.getWaveShares());
+      this.getWaveShares();
+      this.cancel();
     }
   }
 
@@ -61,6 +63,8 @@ export class WaveSharesComponent implements OnInit {
     if (this.waveShareForm.valid) {
       const newWaveShare = this.waveShareForm.value;
       this.waveShareService.createWaveShare(newWaveShare).subscribe(data => this.getWaveShares());
+      this.getWaveShares();
+      this.cancel();
     }
   }
 

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class WaveShareService {
-  apiUrl: string = environment.apiUrl + 'WaveShare';
+  apiUrl: string = environment.apiUrl + 'waveShares';
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class WaveShareService {
   }
 
   getWaveShareById(ctrPanelId: string): Observable<WaveShare[]> {
-    const url = `${this.apiUrl}${ctrPanelId}`;
+    const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.get<WaveShare[]>(url);
   }
   createWaveShare(ctrPanel: Partial<WaveShare>): Observable<WaveShare> {

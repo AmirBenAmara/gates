@@ -28,15 +28,15 @@
                   <thead class="table-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">{{ 'readers.name' | translate }}</th>
+                      <th scope="col">{{ 'readers.nameReader' | translate }}</th>
                       <th scope="col">{{ 'readers.ipAddress' | translate }}</th>
                       <th scope="col">{{ 'readers.serialNumber' | translate }}</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let rdr of readers">
-                      <th scope="row">{{ rdr._id }}</th>
+                    <tr *ngFor="let rdr of readers; let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
                       <td>{{ rdr.nameReader }}</td>
                       <td>{{ rdr.ipAddress }}</td>
                       <td>{{ rdr.serialNumber }}</td>
@@ -91,7 +91,7 @@
       <div class="form-group row mb-3">
         <label for="name" class="col-md-3 col-form-label">{{ 'readers.nameReader' | translate }}</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'readers.nameReader' | translate }}">
+          <input type="text" class="form-control" cFormControl formControlName="nameReader" id="nameReader" placeholder="{{ 'readers.nameReader' | translate }}">
         </div>
       </div>
       <div class="form-group row mb-3">
