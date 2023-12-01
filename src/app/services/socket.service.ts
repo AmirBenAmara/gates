@@ -15,7 +15,7 @@ export class SocketService {
   private deviceStatusSocket$:  WebSocket;
   private wsEnrollementSocket$: WebSocketSubject<ProfilePayload>;
   readonly wsEndpointDS: string = `ws://localhost:${this.port}/doorStatus`;
-  readonly wsEndpointRTL: string = `ws://localhost:${this.port}/RTLog`;
+  readonly wsEndpointRTL: string = `ws://localhost:${this.port}/rtLog`;
   readonly wsEndpointDVS: string = `ws://localhost:${this.port}/deviceStatus`;
   readonly wsEnrollement: string = `ws://localhost:${this.port}/wsEnrollement`;
 
