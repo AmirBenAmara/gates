@@ -83,7 +83,7 @@
             </div>
             <div class="form-group  mb-3">
                 <label for="controllers">{{ 'departments.controllers' | translate }}</label>
-                <select cSelect id="controllers" formControlName="ctrPannels" multiple>
+                <select cSelect id="controllers" formControlName="ctrDepartment" multiple>
                     <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel._id">{{ ctrPannel.nameControlPanel }}</option>
                 </select>
             </div>

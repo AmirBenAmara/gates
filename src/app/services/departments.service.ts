@@ -44,6 +44,6 @@ export class DepartmentsService {
 export interface Department {
   _id: string;
   nameDepartment: string;
-  gates: any[];
+  gates?: any[];
   ctrDepartment: any;
 }

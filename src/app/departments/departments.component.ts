@@ -34,9 +34,8 @@ export class DepartmentsComponent implements OnInit {
     this.getCtrPannels();
     this.departmentForm = this.fb.group({
       id : [''],
-      name: ['', Validators.required],
-      ctrPannels: [[], Validators.required],
-      doors : ['']
+      nameDepartment: ['', Validators.required],
+      ctrDepartment: ['', Validators.required],
     });
   }
 
@@ -74,7 +73,7 @@ export class DepartmentsComponent implements OnInit {
       this.selectedDepartment = department;
       this.editMode = true;
       this.departmentForm.setValue(department)
-      this.departmentForm.controls['ctrPannels'].setValue(department.ctrDepartment.map(el=> el._id))
+      this.departmentForm.controls['ctrDepartment'].setValue(department.ctrDepartment.map(el=> el._id))
       this.visible = true
     }
   }

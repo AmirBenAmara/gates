@@ -29,7 +29,7 @@ export class GatesService {
     const url = `${this.apiUrl}/${doorId}`;
     return this.http.get<Gate[]>(url);
   }
-  createDoor(doors: Gate[]): Observable<Gate> {
+  createDoor(doors: Gate): Observable<Gate> {
     return this.http.post<Gate>(this.apiUrl, doors);
   }
 

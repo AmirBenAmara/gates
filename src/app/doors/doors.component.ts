@@ -47,22 +47,23 @@ export class DoorsComponent {
     this.getCameras();
     this.getWaveShares();
     this.doorForm = this.fb.group({
-      name: ['', Validators.required],
-      department: [null, Validators.required],
+      nameGate: ['', Validators.required],
+      departmentGate: [null, Validators.required],
       waveShare: ['', Validators.required],
-      cameraEntry: [null, Validators.required],
+      cameraEntry: ['', Validators.required],
       readerEntry: ['', Validators.required],
-      cameraExit: [null, Validators.required],
-      readerExit: [null, Validators.required],
+      cameraExit: ['', Validators.required],
+      readerExit: ['', Validators.required],
     });
     this.editDoorForm = this.fb.group({
       id : [''],
-      name: ['', Validators.required],
-      description : ['', Validators.required],
-      department: [null, Validators.required],
+      nameGate: ['', Validators.required],
+      departmentGate: [null, Validators.required],
       waveShare: ['', Validators.required],
-      camera: [null, Validators.required],
-      reader: ['', Validators.required],
+      cameraEntry: ['', Validators.required],
+      readerEntry: ['', Validators.required],
+      cameraExit: ['', Validators.required],
+      readerExit: ['', Validators.required],
     });
   }
 
@@ -114,7 +115,7 @@ export class DoorsComponent {
     if(door){
       this.selectedDoor = door;
       this.editDoorForm.setValue(door);
-      this.editDoorForm.controls['department'].setValue(door.departmentGate._id)
+      this.editDoorForm.controls['departmentGate'].setValue(door.departmentGate._id)
       this.editDoorForm.controls['waveShare'].setValue(door.waveShare._id)
       // this.editDoorForm.controls['camera'].setValue(door.camera._id)
       // this.editDoorForm.controls['reader'].setValue(door.reader._id)
@@ -157,34 +158,31 @@ export class DoorsComponent {
 
   submitDoorModal(){
     console.log(this.doorForm.value)
-    const door1 = {
-      name: this.doorForm.value.name,
-      description : 'Entry',
-      departmentId: this.doorForm.value.department ,
-      readerId : this.doorForm.value.readerEntry,
-      cameraId : this.doorForm.value.cameraEntry,
-      waveShareId : this.doorForm.value.waveShare,
+    const Gate : Gate = {
+      nameGate: this.doorForm.value.nameGate,
+      departmentGate: this.doorForm.value.departmentGate ,
+      waveShare : this.doorForm.value.waveShare,
+      entryDevices : {
+        camera : this.doorForm.value.cameraEntry,
+        reader : this.doorForm.value.readerEntry,
+      },
+      exitDevices : {
+        camera : this.doorForm.value.cameraExit,
+        reader : this.doorForm.value.readerExit,
+      }
     }
-    const door2 ={
-      name: this.doorForm.value.name,
-      description : 'Exit',
-      departmentId: this.doorForm.value.department,
-      readerId : this.doorForm.value.readerExit,
-      cameraId : this.doorForm.value.cameraExit,
-      waveShareId : this.doorForm.value.waveShare,
-    }
-    console.log([door1,door2])
-    // this.doorService.createDoor([door1, door2]).subscribe(res => {
-    //   this.getDoors()
-    //   this.cancel()
-    // })
+  
+    this.doorService.createDoor(Gate).subscribe(res => {
+      this.getDoors()
+      this.cancel()
+    })
   }
 
   submitEditDoor(){
     console.log(this.editDoorForm.value)
-    this.doorService.updateDoor(this.editDoorForm.value._id, this.editDoorForm.value).subscribe(res => {
-      this.getDoors()
-      this.cancel()
-    })
+    // this.doorService.updateDoor().subscribe(res => {
+    //   this.getDoors()
+    //   this.cancel()
+    // })
   }
 }
