@@ -33,13 +33,15 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">{{ 'departments.name' | translate }}</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">{{ 'departments.ctrPanel' | translate }}</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let department of departments">
-                                            <th scope="row">{{ department._id }}</th>
+                                        <tr *ngFor="let department of departments; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
                                             <td>{{ department.nameDepartment }}</td>
+                                            <td>{{ department.ctrDepartment.nameControlPanel }}</td>
                                             <td style="text-align:center;">
                                                 <button type="button" cButton color="light"
                                                     (click)="detailDepartment(department)">
@@ -71,7 +73,9 @@
 <c-modal id="DepartmentModal" [visible]="visible" size="lg"
     (visibleChange)="handleDepartmentModalVisbilityChange($event)">
     <c-modal-header>
-        <h5 cModalTitle>{{ 'departments.newDepartment' | translate }}</h5>
+        <h5 cModalTitle *ngIf="!isEditMode">{{ 'controlPanel.newControlPanel' | translate }}</h5>
+        <h5 cModalTitle *ngIf="isEditMode">{{ 'controlPanel.editControlPanel' | translate }}</h5>
+
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
@@ -83,7 +87,7 @@
             </div>
             <div class="form-group  mb-3">
                 <label for="controllers">{{ 'departments.controllers' | translate }}</label>
-                <select cSelect id="controllers" formControlName="ctrDepartment" multiple>
+                <select cSelect id="ctrDepartment" formControlName="ctrDepartment" multiple>
                     <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel._id">{{ ctrPannel.nameControlPanel }}</option>
                 </select>
             </div>
@@ -93,7 +97,8 @@
         <button (click)="cancel()" cButton color="secondary">
             {{ 'departments.close' | translate }}
         </button>
-        <button (click)="submitDepartmentModal()" cButton color="primary">{{ 'departments.submit' | translate }}</button>
+            <button  *ngIf="!isEditMode" (click)="newDepartment()" cButton color="primary">{{ 'controlPanel.submit' | translate }}</button>
+            <button  *ngIf="isEditMode" (click)="updateDepartment(department._id)" cButton color="primary">{{ 'controlPanel.submit' | translate }}</button>
     </c-modal-footer>
 </c-modal>
 
@@ -114,8 +119,7 @@
                     <p style="text-align: center;" *ngFor="let door of selectedDepartment.gates">{{ door.nameGate }}</p>
                 </div>
                 <div class="col-sm-12">
-                    <p><strong>{{ 'departments.controlPanels' | translate }}:</strong> </p>
-                    <p style="text-align: center;">{{ selectedDepartment.ctrDepartment.nameControlPanel }}</p>
+                    <p><strong>{{ 'departments.ctrPanel' | translate }}: </strong>{{ selectedDepartment.ctrDepartment.nameControlPanel }} </p>
                 </div>
             </div>
         </div>

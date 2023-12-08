@@ -40,7 +40,7 @@
         "controllers": "المراقبين",
         "deleteConfirmationMessage": "هل أنت متأكد أنك تريد حذفه؟",
         "doors": "الأبواب",
-        "controlPanels": "لوحات التحكم",
+        "ctrPanel": "لوحات التحكم",
         "confirm": "تأكيد"
     },
     "readers": {

@@ -17,11 +17,17 @@ export class DepartmentsComponent implements OnInit {
   departments: Department[] | undefined;
   ctrPannels: CtrPanel[] | undefined;
   selectedDepartment: Department | undefined;
+  isEditMode = false;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
   public viewModalVisible: boolean = false;
   public viewModalDeleteVisible = false;
   public editMode = false;
+  department: Department = {
+    _id: 'vvreegev',
+    nameDepartment: '0.0.0.0',
+    ctrDepartment: 'Undefined'
+  }
   
   constructor(
     private departmentService: DepartmentsService,
@@ -59,13 +65,25 @@ export class DepartmentsComponent implements OnInit {
     });
   }
   //TODO: finish implementation
-  updateDepartment(id: string, department: Department) {
-    this.departmentService.updateDepartment(id, department).subscribe();
+  updateDepartment(departmentId: string) {
+    if (this.departmentForm.valid) {
+      const updatedDepartment = this.departmentForm.value ;
+      this.departmentService.updateDepartment(departmentId, updatedDepartment).subscribe(data => {
+        this.getDepartments();
+        this.cancel();
+      })
+    }
   }
 
   //TODO: finish implementation
-  newDepartment(department: Department) {
-    this.departmentService.createDepartment(department).subscribe();
+  newDepartment() {
+    if (this.departmentForm.valid) {
+      const newDepartment = this.departmentForm.value;
+      this.departmentService.createDepartment(newDepartment).subscribe(data => {
+        this.getDepartments();
+        this.cancel()
+      })
+    }
   }
 
   editDepartment(department: Department | undefined) {

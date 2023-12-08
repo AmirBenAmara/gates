@@ -69,7 +69,7 @@
   </c-row>
 </c-container>
 
-
+<!-- Delete Control Panel Confirmation Modal -->
 <c-modal #deleteCtrPanel id="deleteCtrPanel">
   <c-modal-header>
     <h5 cModalTitle>{{ 'controlPanel.confirmDelete' | translate }}</h5>
@@ -88,7 +88,7 @@
   </c-modal-footer>
 </c-modal>
 
-
+<!-- Create/Update Control Panel Form Modal -->
 <c-modal id="upsertCtrPanelModal" size="lg" [visible]="upsertModalVisible">
   <c-modal-header>
     <h5 cModalTitle *ngIf="!isEditMode">{{ 'controlPanel.newControlPanel' | translate }}</h5>

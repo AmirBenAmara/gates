@@ -40,7 +40,7 @@
         "controllers": "Controllers",
         "deleteConfirmationMessage": "Are you sure you want to delete?",
         "doors": "Doors",
-        "controlPanels": "Control Panels",
+        "ctrPanel": "Control Panel",
         "confirm": "Confirm"
     },
     "readers": {
