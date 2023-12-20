@@ -73,8 +73,8 @@
 <c-modal id="DepartmentModal" [visible]="visible" size="lg"
     (visibleChange)="handleDepartmentModalVisbilityChange($event)">
     <c-modal-header>
-        <h5 cModalTitle *ngIf="!isEditMode">{{ 'controlPanel.newControlPanel' | translate }}</h5>
-        <h5 cModalTitle *ngIf="isEditMode">{{ 'controlPanel.editControlPanel' | translate }}</h5>
+        <h5 cModalTitle *ngIf="!isEditMode">{{ 'departments.newDepartment' | translate }}</h5>
+        <h5 cModalTitle *ngIf="isEditMode">{{ 'depratments.editDepratment' | translate }}</h5>
 
         <button (click)="cancel()" cButtonClose></button>
     </c-modal-header>

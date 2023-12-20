@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { cilPencil, cilPlus, cilTrash, cilInfo } from '@coreui/icons';
-import { Gate, GatesService } from '../services/gates.service';
+import { Gate, GatesService, NewGateRequest } from '../services/gates.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   Department,
@@ -17,6 +17,7 @@ import { IBreadcrumbItem } from '@coreui/angular/lib/breadcrumb';
   styleUrls: ['./doors.component.scss'],
 })
 export class DoorsComponent {
+  isEditMode = false;
   doorForm: FormGroup;
   editDoorForm: FormGroup;
   doors: Gate[] | undefined;
@@ -88,7 +89,7 @@ export class DoorsComponent {
     });
   }
 
-  //TODO: finish implementation
+  // //TODO: finish implementation
   deleteDoor() {
     this.doorService.deleteDoor(this.selectedDoor._id).subscribe(res => {
       this.viewModalDeleteVisible = false
@@ -102,27 +103,34 @@ export class DoorsComponent {
     });
   }
   //TODO: finish implementation
-  updateDoor(id: string, Door: Gate) {
-    this.doorService.updateDoor(id, Door).subscribe();
-  }
+  // updateDoor(id: string, Door: Gate) {
+  //   this.doorService.updateDoor(id, Door).subscribe();
+  // }
 
-  //TODO: finish implementation
-  newDoor(Door: Gate) {
-    // this.doorService.createDoor(Door).subscribe();
-  }
+  // //TODO: finish implementation
+  // newDoor(Door: Gate) {
+  //   // this.doorService.createDoor(Door).subscribe();
+  // }
 
   editDoor(door: Gate | undefined) {
-    if(door){
+    if (door) {
       this.selectedDoor = door;
-      this.editDoorForm.setValue(door);
-      this.editDoorForm.controls['departmentGate'].setValue(door.departmentGate._id)
-      this.editDoorForm.controls['waveShare'].setValue(door.waveShare._id)
-      // this.editDoorForm.controls['camera'].setValue(door.camera._id)
-      // this.editDoorForm.controls['reader'].setValue(door.reader._id)
-      this.editModalVisible = true;
+      this.editDoorForm.setValue({
+        id: door._id,
+        nameGate: door.nameGate,
+        departmentGate: door.departmentGate.nameDepartment,
+        waveShare: door.waveShare._id,
+        cameraEntry: door.entryDevices.camera._id,
+        readerEntry: door.entryDevices.reader._id,
+        cameraExit: door.exitDevices.camera._id,
+        readerExit: door.exitDevices.reader._id,
+
+      });
+      this.visible = true;
+      this.isEditMode = true
     }
-    console.log(this.editDoorForm.value)
   }
+  
 
   detailDoor(door: Gate | undefined) {
     this.viewModalVisible = true;
@@ -156,33 +164,47 @@ export class DoorsComponent {
     this.visible = true;
   }
 
-  submitDoorModal(){
-    console.log(this.doorForm.value)
-    const Gate : Gate = {
-      nameGate: this.doorForm.value.nameGate,
-      departmentGate: this.doorForm.value.departmentGate ,
-      waveShare : this.doorForm.value.waveShare,
-      entryDevices : {
-        camera : this.doorForm.value.cameraEntry,
-        reader : this.doorForm.value.readerEntry,
+  submitEditDoor() {
+    const editedDoor: Gate = {
+      _id: this.editDoorForm.value.id,
+      nameGate: this.editDoorForm.value.name,
+      departmentGate: this.editDoorForm.value.department,
+      waveShare: this.editDoorForm.value.waveShare,
+      entryDevices: {
+        camera: this.editDoorForm.value.camera,
+        reader: this.editDoorForm.value.reader,
       },
-      exitDevices : {
-        camera : this.doorForm.value.cameraExit,
-        reader : this.doorForm.value.readerExit,
+      exitDevices: {
+        camera: this.editDoorForm.value.camera,
+        reader: this.editDoorForm.value.reader,
       }
-    }
+    };
   
-    this.doorService.createDoor(Gate).subscribe(res => {
-      this.getDoors()
-      this.cancel()
-    })
+    this.doorService.updateDoor(editedDoor._id, editedDoor).subscribe(res => {
+      this.getDoors();
+      this.cancel();
+    });
   }
+  
 
-  submitEditDoor(){
-    console.log(this.editDoorForm.value)
-    // this.doorService.updateDoor().subscribe(res => {
-    //   this.getDoors()
-    //   this.cancel()
-    // })
+  submitDoorModal() {
+    const newGate: NewGateRequest = {
+      nameGate: this.doorForm.value.nameGate,
+      departmentGate: this.doorForm.value.departmentGate,
+      waveShare: this.doorForm.value.waveShare,
+      entryDevices: {
+        camera: this.doorForm.value.cameraEntry,
+        reader: this.doorForm.value.readerEntry,
+      },
+      exitDevices: {
+        camera: this.doorForm.value.cameraExit,
+        reader: this.doorForm.value.readerExit,
+      }
+    };
+
+    this.doorService.createNewGate(newGate).subscribe(res => {
+      this.getDoors();
+      this.cancel();
+    });
   }
 }

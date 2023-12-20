@@ -16,12 +16,8 @@ export class GatesService {
 
   constructor(private http: HttpClient) { }
 
-  
-  // getDoors(): Observable<Door[]> {
-  //   return this.http.get<Door[]>(`${this.apiUrl}`);
-  // }
   getDoors(): Observable<Gate[]> {
-    // return of (DoorsDATA);
+    console.log(this.http.get<Gate[]>(this.apiUrl))
     return this.http.get<Gate[]>(this.apiUrl);
   }
 
@@ -29,33 +25,47 @@ export class GatesService {
     const url = `${this.apiUrl}/${doorId}`;
     return this.http.get<Gate[]>(url);
   }
-  createDoor(doors: Gate): Observable<Gate> {
-    return this.http.post<Gate>(this.apiUrl, doors);
+  createNewGate(newGate: NewGateRequest): Observable<NewGateRequest> {
+    console.log(newGate)
+    return this.http.post<NewGateRequest>(this.apiUrl, newGate);
   }
 
   updateDoor(doorId: string, door: Gate): Observable<void> {
     const url = `${this.apiUrl}/${doorId}`;
     return this.http.put<void>(url, door);
   }
-  
+
   deleteDoor(doorId: string): Observable<void> {
     const url = `${this.apiUrl}/${doorId}`;
     return this.http.delete<void>(url);
   }
 }
 
+export interface NewGateRequest {
+  nameGate: string;
+  departmentGate: string;
+  waveShare: any;
+  entryDevices: {
+    camera: any;
+    reader: any;
+  };
+  exitDevices: {
+    camera: any;
+    reader: any;
+  };
+}
+
 export interface Gate {
-  _id?: string;
-  nameGate?: string;
-  departmentGate?: Department;
-  waveShare? : WaveShare;
-  entryDevices : {
-    camera? : Camera,
-    reader? : Reader,
-  }
-  exitDevices : {
-    camera? : Camera,
-    reader? : Reader,
-  }
- 
+  _id: string;
+  nameGate: string;
+  departmentGate: Department;
+  waveShare: WaveShare;
+  entryDevices: {
+    camera: Camera;
+    reader: Reader;
+  };
+  exitDevices: {
+    camera: Camera;
+    reader: Reader;
+  };
 }
