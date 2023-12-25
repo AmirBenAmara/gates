@@ -25,10 +25,6 @@ export class CPanelsService {
     return this.http.post<CtrPanel>(this.apiUrl, ctrPanel);
   }
 
-  updateCtrPanel(ctrPanelId: string, ctrPanel: Partial<CtrPanel>): Observable<void> {
-    const url = `${this.apiUrl}/${ctrPanelId}`;
-    return this.http.put<void>(url, ctrPanel);
-  }
   
   deleteCtrPanel(ctrPanelId: string): Observable<void> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
@@ -40,26 +36,21 @@ export class CPanelsService {
 export interface CtrPanel {
   _id: string;
   serialNumber: string,
-  nameControlPanel: string;
 }
 
 export const CtrPanelsDATA: CtrPanel[] = [{ 
   _id: 'jfkbjfbjb',
   serialNumber: '172.53.3.6',
-  nameControlPanel: 'C Panel 1'
 },
 { 
   _id: 'kbvjbdkdfj',
   serialNumber: '172.53.3.7',
-  nameControlPanel: 'C Panel 2'
 },
 { 
   _id: 'hbfvjhbdbv',
   serialNumber: '172.53.3.8',
-  nameControlPanel: 'C Panel 3'
 },
 { 
   _id: 'bfhbjdbhdb',
   serialNumber: '172.53.3.9',
-  nameControlPanel: 'C Panel 4'
 }]

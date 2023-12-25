@@ -5,12 +5,13 @@
             <div class="example">
                 <div class="card  mt-4 mb-2">
                     <div class="card-header bg-white">
-                        <div class="fs-2 fw-semibold bg-white "><strong>{{ 'departments.manageDepartments' | translate }}</strong></div>
+                        <div class="fs-2 fw-semibold bg-white "><strong>{{ 'departments.manageDepartments' | translate
+                                }}</strong></div>
                         <c-breadcrumb>
                             <c-breadcrumb-item url="/">{{ 'menu.home' | translate }}</c-breadcrumb-item>
                             <c-breadcrumb-item [active]="true">{{ 'menu.departments' | translate }}</c-breadcrumb-item>
-                          </c-breadcrumb>
-                                            </div>
+                        </c-breadcrumb>
+                    </div>
                     <div class="card-body">
                         <div class="tab-content rounded-bottom">
                             <div class="tab-pane active show p-3 preview fade">
@@ -19,11 +20,13 @@
                                     </div>
                                     <div class="col-6 mb-3">
                                         <c-input-group>
-                                            <input aria-label="Search" cFormControl placeholder="{{ 'departments.search' | translate }}" />
+                                            <input aria-label="Search" cFormControl
+                                                placeholder="{{ 'departments.search' | translate }}" />
 
-                                            <button cButton color="dark" type="button" variant="outline"
-                                                (click)="openDepartmentModal()">
-                                                <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> {{ 'departments.newDepartment' | translate }}
+                                            <button cButton color="dark" type="button" variant="outline" 
+                                                (click)="isEditMode=false; openDepartmentModal()">
+                                                <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> {{
+                                                'departments.newDepartment' | translate }}
                                             </button>
                                         </c-input-group>
                                     </div>
@@ -41,22 +44,19 @@
                                         <tr *ngFor="let department of departments; let i = index">
                                             <th scope="row">{{ i + 1 }}</th>
                                             <td>{{ department.nameDepartment }}</td>
-                                            <td>{{ department.ctrDepartment.nameControlPanel }}</td>
+                                            <td>{{ department.ctrDepartment.serialNumber }}</td>
                                             <td style="text-align:center;">
-                                                <button type="button" cButton color="light"
-                                                    (click)="detailDepartment(department)">
-                                                    <svg [cIcon]="icons.cilInfo" width="15" title="Detail Icon"></svg>
+                                                <button type="button" cButton (click)="detailDepartment(department)" color="light">
+                                                  <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light"
-                                                    (click)="editDepartment(department)">
-                                                    <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
+                                                <button type="button" cButton color="light" (click)="isEditMode = true; openDepartmentModal(department)">
+                                                  <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
                                                 </button> &nbsp;
-                                                <button type="button" cButton color="light"
-                                                    (click)="openModalDelete(department)">
-                                                    <svg [cIcon]="icons.cilTrash" width="15"
-                                                        title="Trash bin Icon"></svg>
+                                                <button type="button" cButton color="light" (click)="dpt = department"
+                                                  [cModalToggle]="deleteDepartment.id">
+                                                  <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                                                 </button>
-                                            </td>
+                                              </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -70,8 +70,7 @@
 </c-container>
 
 <!-- Department Modal -->
-<c-modal id="DepartmentModal" [visible]="visible" size="lg"
-    (visibleChange)="handleDepartmentModalVisbilityChange($event)">
+<c-modal id="upsertDepartmentModal" [visible]="upsertModalVisible" size="lg">
     <c-modal-header>
         <h5 cModalTitle *ngIf="!isEditMode">{{ 'departments.newDepartment' | translate }}</h5>
         <h5 cModalTitle *ngIf="isEditMode">{{ 'depratments.editDepratment' | translate }}</h5>
@@ -82,23 +81,25 @@
         <form [formGroup]="departmentForm">
             <div class="form-group  mb-3">
                 <label for="name">{{ 'departments.name' | translate }}</label>
-                <input type="text" class="form-control" id="nameDepartment" cFormControl formControlName="nameDepartment"
-                    placeholder="{{ 'departments.name' | translate }}">
+                <input type="text" class="form-control" id="nameDepartment" cFormControl
+                    formControlName="nameDepartment" placeholder="{{ 'departments.name' | translate }}">
             </div>
-            <div class="form-group  mb-3">
+            <div class="form-group mb-3">
                 <label for="controllers">{{ 'departments.controllers' | translate }}</label>
-                <select cSelect id="ctrDepartment" formControlName="ctrDepartment" multiple>
-                    <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel._id">{{ ctrPannel.nameControlPanel }}</option>
+                <select cSelect id="ctrDepartment" formControlName="ctrDepartment">
+                  <option *ngFor="let ctrPannel of ctrPannels" [value]="ctrPannel._id">{{ ctrPannel.serialNumber }}</option>
                 </select>
-            </div>
+              </div>
         </form>
     </c-modal-body>
     <c-modal-footer>
         <button (click)="cancel()" cButton color="secondary">
             {{ 'departments.close' | translate }}
         </button>
-            <button  *ngIf="!isEditMode" (click)="newDepartment()" cButton color="primary">{{ 'controlPanel.submit' | translate }}</button>
-            <button  *ngIf="isEditMode" (click)="updateDepartment(department._id)" cButton color="primary">{{ 'controlPanel.submit' | translate }}</button>
+        <button *ngIf="!isEditMode" (click)="newDepartment()" cButton color="primary">{{ 'controlPanel.submit' |
+            translate }}</button>
+        <button *ngIf="isEditMode" (click)="updateDepartment(dpt._id)" cButton color="primary">{{
+            'controlPanel.submit' | translate }}</button>
     </c-modal-footer>
 </c-modal>
 
@@ -112,14 +113,16 @@
         <div class="container" *ngIf="selectedDepartment">
             <div class="row">
                 <div class="col-sm-12">
-                    <p><strong>{{ 'departments.name' | translate }}:</strong> {{ selectedDepartment.nameDepartment }}</p>
+                    <p><strong>{{ 'departments.name' | translate }}:</strong> {{ selectedDepartment.nameDepartment }}
+                    </p>
                 </div>
-                <div class="col-sm-12">
+                <!-- <div class="col-sm-12">
                     <p><strong>{{ 'departments.doors' | translate }}:</strong> </p>
                     <p style="text-align: center;" *ngFor="let door of selectedDepartment.gates">{{ door.nameGate }}</p>
-                </div>
+                </div> -->
                 <div class="col-sm-12">
-                    <p><strong>{{ 'departments.ctrPanel' | translate }}: </strong>{{ selectedDepartment.ctrDepartment.nameControlPanel }} </p>
+                    <p><strong>{{ 'departments.ctrPanel' | translate }}: </strong>{{
+                        selectedDepartment.ctrDepartment.nameControlPanel }} </p>
                 </div>
             </div>
         </div>
@@ -131,21 +134,21 @@
     </c-modal-footer>
 </c-modal>
 
-<!-- Delete Department Confirmation Modal -->
-<c-modal id="viewDepartmentDeleteModal" [visible]="viewModalDeleteVisible">
+<!-- Delete Control Panel Confirmation Modal -->
+<c-modal #deleteDepartment id="deletedepartment">
     <c-modal-header>
-        <h5 cModalTitle>{{ 'departments.deleteConfirmation' | translate }}</h5>
-        <button (click)="viewModalDeleteVisible = false" cButtonClose></button>
+      <h5 cModalTitle>{{ 'contdepartment.confirmDelete' | translate }}</h5>
+      <button [cModalToggle]="deleteDepartment.id" cButtonClose></button>
     </c-modal-header>
     <c-modal-body>
-        <div class="container">
-            <h5>{{ 'departments.deleteConfirmationMessage' | translate }}</h5>
-        </div>
+      <p class="fw-semibold">{{ 'contdepartment.deleteConfirmation' | translate }}</p>
+      <p><strong> {{dpt.nameDepartment }} </strong></p>
     </c-modal-body>
+  
     <c-modal-footer>
-        <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
-            {{ 'departments.close' | translate }}
-        </button>
-        <button (click)="deleteDepartment()" class="text-white" cButton color="danger">{{ 'departments.confirm' | translate }}</button>
+      <button [cModalToggle]="deleteDepartment.id" cButton color="secondary">
+        {{ 'contdepartment.close' | translate }}
+      </button>
+      <button (click)="confirmDeleteDepartment(dpt._id)" [cModalToggle]="deleteDepartment.id" class="text-white" cButton color="danger">Confirm</button>
     </c-modal-footer>
-</c-modal>
+  </c-modal>

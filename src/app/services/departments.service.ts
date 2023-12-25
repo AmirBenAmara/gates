@@ -27,10 +27,7 @@ export class DepartmentsService {
     return this.http.post<Department>(this.apiUrl, department);
   }
 
-  updateDepartment(
-    departmentId: string,
-    department: Department
-  ): Observable<void> {
+  updateDepartment(departmentId: string, department: string): Observable<void> {
     const url = `${this.apiUrl}/${departmentId}`;
     return this.http.put<void>(url, department);
   }
@@ -44,6 +41,5 @@ export class DepartmentsService {
 export interface Department {
   _id: string;
   nameDepartment: string;
-  gates?: any[];
   ctrDepartment: any;
 }

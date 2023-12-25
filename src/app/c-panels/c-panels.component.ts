@@ -13,13 +13,12 @@ export class CPanelsComponent implements OnInit {
   isEditMode = false;
   ctrPanelForm = this.fb.group({
     serialNumber: ['', Validators.required],
-    nameControlPanel: ['', Validators.required],
   });
   ctrPanel: CtrPanel = {
     _id: 'vvreegev',
     serialNumber: '0.0.0.0',
-    nameControlPanel: 'Undefined'
   }
+
   ctrPanels: CtrPanel[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public upsertModalVisible: boolean = false;
@@ -30,7 +29,6 @@ export class CPanelsComponent implements OnInit {
     this.getCtrPanels();
     this.ctrPanelForm = this.fb.group({
       serialNumber: ['', Validators.required],
-      nameControlPanel: ['', Validators.required],
     });
   }
 
@@ -38,23 +36,13 @@ export class CPanelsComponent implements OnInit {
   confirmDeleteCtrPanel(id: string) {
     this.ctrPanelService.deleteCtrPanel(id).subscribe(data => this.getCtrPanels());
   }
+
   //TODO: finish implementation
   getCtrPanels() {
     this.ctrPanelService.getCtrPanels().subscribe(ctrPanels => {
       this.ctrPanels = ctrPanels;
     });
   }
-  //TODO: finish implementation
-  updateCtrPanel(ctrPanelId: string) {
-    if (this.ctrPanelForm.valid) {
-      const updatedCtrPanel = this.ctrPanelForm.value ;
-      this.ctrPanelService.updateCtrPanel(ctrPanelId, updatedCtrPanel).subscribe(data => {
-        this.getCtrPanels();
-        this.cancel();
-      })
-    }
-  }
-
 
   //TODO: finish implementation
   newCtrPanel() {
