@@ -181,6 +181,8 @@
         "surnamePlaceholder": "اللقب",
         "birthDatePlaceholder": "تاريخ الولادة",
         "documentNumberPlaceholder": "رقم الوثيقة",
+        "departmentsLabel": "الأقسام المأذونة",
+        "gatesLabel": "الأبواب المأذونة",
         "sexPlaceholder": "الجنس",
         "nationalityPlaceholder": "الجنسية",
         "expiryDatePlaceholder": "تاريخ الانتهاء",

@@ -40,11 +40,12 @@ export interface Profile {
   _id?: string;
   name?: string;
   surname?: string;
+  documentNumber?: string;
   occupation?: string;
   cin?:string;
   address?:string;
   email?:string;
   telephoneNumber?:string;
-  departments?:any[];
-  gates?:any[];
+  departments?:Department[];
+  gates?:Gate[];
 }

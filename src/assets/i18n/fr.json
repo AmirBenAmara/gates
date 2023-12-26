@@ -171,6 +171,8 @@
         "nationalityLabel": "Nationalité",
         "expiryDateLabel": "Date d'expiration",
         "personalDataLabel": "Données personnelles",
+        "departmentsLabel": "Départements authorisés",
+        "gatesLabel": "Portes authorisées",
         "cinLabel": "cin",
         "telNumberLabel": "tel",
         "addressLabel": "address",

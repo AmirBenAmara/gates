@@ -49,7 +49,7 @@ export class DoorsComponent {
     this.getWaveShares();
     this.doorForm = this.fb.group({
       nameGate: ['', Validators.required],
-      departmentGate: [null, Validators.required],
+      departmentGate: ['', Validators.required],
       waveShare: ['', Validators.required],
       cameraEntry: ['', Validators.required],
       readerEntry: ['', Validators.required],
@@ -96,12 +96,14 @@ export class DoorsComponent {
       this.getDoors();
     });
   }
+
   //TODO: finish implementation
   getDoors() {
     this.doorService.getDoors().subscribe((Doors) => {
       this.doors = Doors;
     });
   }
+
   //TODO: finish implementation
   // updateDoor(id: string, Door: Gate) {
   //   this.doorService.updateDoor(id, Door).subscribe();
@@ -112,13 +114,14 @@ export class DoorsComponent {
   //   // this.doorService.createDoor(Door).subscribe();
   // }
 
-  editDoor(door: Gate | undefined) {
+  editDoor(door: Gate) {
+    console.log(door)
     if (door) {
       this.selectedDoor = door;
-      this.editDoorForm.setValue({
+      this.doorForm.patchValue({
         id: door._id,
         nameGate: door.nameGate,
-        departmentGate: door.departmentGate.nameDepartment,
+        departmentGate: door.departmentGate._id,
         waveShare: door.waveShare._id,
         cameraEntry: door.entryDevices.camera._id,
         readerEntry: door.entryDevices.reader._id,
@@ -131,7 +134,6 @@ export class DoorsComponent {
     }
   }
   
-
   detailDoor(door: Gate | undefined) {
     this.viewModalVisible = true;
     this.selectedDoor = door;
@@ -166,22 +168,24 @@ export class DoorsComponent {
 
   submitEditDoor() {
     const editedDoor: Gate = {
-      _id: this.editDoorForm.value.id,
-      nameGate: this.editDoorForm.value.name,
-      departmentGate: this.editDoorForm.value.department,
-      waveShare: this.editDoorForm.value.waveShare,
+      _id: this.selectedDoor._id,
+      nameGate: this.doorForm.value.nameGate,
+      departmentGate: this.doorForm.value.departmentGate,
+      waveShare: this.doorForm.value.waveShare,
       entryDevices: {
-        camera: this.editDoorForm.value.camera,
-        reader: this.editDoorForm.value.reader,
+        camera: this.doorForm.value.cameraEntry,
+        reader: this.doorForm.value.readerEntry,
       },
       exitDevices: {
-        camera: this.editDoorForm.value.camera,
-        reader: this.editDoorForm.value.reader,
+        camera: this.doorForm.value.cameraExit,
+        reader: this.doorForm.value.readerExit,
       }
     };
   
-    this.doorService.updateDoor(editedDoor._id, editedDoor).subscribe(res => {
+    this.doorService.updateDoor(this.selectedDoor._id, editedDoor).subscribe(res => {
       this.getDoors();
+      this.doorForm.reset();
+      this.selectedDoor = null;
       this.cancel();
     });
   }

@@ -44,8 +44,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let profile of profiles">
-                      <th scope="row">{{profile._id}}</th>
+                    <tr *ngFor="let profile of profiles; let i = index">
+                      <th scope="row">{{i + 1}}</th>
                       <td>{{profile.name}}</td>
                       <td>{{profile.surname}}</td>
                       <td>{{profile.cin}}</td>
@@ -189,7 +189,7 @@
           alt="Avatar" />
       </div>
 
-      <!-- <div class="row">
+      <div class="row">
 
         <div class="col-sm-12">
           <p><strong>{{ 'profileComp.nameLabel' | translate }}:</strong> {{ selectedProfile.name}}</p>
@@ -198,36 +198,30 @@
           <p><strong>{{ 'profileComp.surnameLabel' | translate }}:</strong> {{ selectedProfile.surname }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.birthDateLabel' | translate }}:</strong> {{ selectedProfile.birthDate }}</p>
+          <p><strong>{{ 'profileComp.cinLabel' | translate }}:</strong> {{ selectedProfile.cin }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>{{ 'profileComp.occupationLabel' | translate }}:</strong> {{ selectedProfile.occupation }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>{{ 'profileComp.addressLabel' | translate }}:</strong> {{ selectedProfile.address }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>{{ 'profileComp.telephoneLabel' | translate }}:</strong> {{ selectedProfile.telephoneNumber }}</p>
+        </div>
+        <div class="col-sm-12">
+          <p><strong>{{ 'profileComp.emailLabel' | translate }}:</strong> {{ selectedProfile.email }}</p>
         </div>
         <div class="col-sm-12">
           <p><strong>{{ 'profileComp.documentNumberLabel' | translate }}:</strong> {{ selectedProfile.documentNumber }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.sexLabel' | translate }}:</strong> {{ selectedProfile.sex }}</p>
+          <p><strong>{{ 'profileComp.departmentsLabel' | translate }}:</strong> {{ selectedProfile.departments }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.nationalityLabel' | translate }}:</strong> {{ selectedProfile.nationality }}</p>
+          <p><strong>{{ 'profileComp.gatesLabel' | translate }}:</strong> {{ selectedProfile.gates }}</p>
         </div>
-        <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.expiryDateLabel' | translate }}:</strong> {{ selectedProfile.expiryDate }}</p>
-        </div>
-        <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.personalDataLabel' | translate }}:</strong> {{ selectedProfile.personalData }}</p>
-        </div>
-        <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.mrz1Label' | translate }}:</strong> {{ selectedProfile.mrZ1 }}</p>
-        </div>
-        <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.mrz2Label' | translate }}:</strong> {{ selectedProfile.mrZ2 }}</p>
-        </div>
-        <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.mrz3Label' | translate }}:</strong> {{ selectedProfile.mrZ3 }}</p>
-        </div>
-        <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.issueCountryLabel' | translate }}:</strong> {{ selectedProfile.issueCountry }}</p>
-        </div>
-      </div> -->
+      </div>
     </div>
 
   </c-modal-body>

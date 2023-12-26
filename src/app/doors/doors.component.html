@@ -166,7 +166,8 @@
     <button (click)="cancel()" cButton color="secondary">
       {{ 'doorsComp.close' | translate }}
     </button>
-    <button (click)="submitDoorModal()" cButton color="primary">{{ 'doorsComp.submit' | translate }}</button>
+    <button *ngIf="!isEditMode" (click)="submitDoorModal()" cButton color="primary">{{ 'doorsComp.submit' | translate }}</button>
+    <button *ngIf="isEditMode" (click)="submitEditDoor()" cButton color="primary">{{ 'doorsComp.submit' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('en');
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
-    translate.use('fr');
+    // translate.use('fr');
     titleService.setTitle(this.title);
     // iconSet singleton
     iconSetService.icons = { ...iconSubset };

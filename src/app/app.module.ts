@@ -3,6 +3,8 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LOCALE_ID } from '@angular/core';
+
 
 import {
   PERFECT_SCROLLBAR_CONFIG,
@@ -15,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Import app component
 import { AppComponent } from './app.component';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslateModule, TranslateModuleConfig} from '@ngx-translate/core';
 // Import containers
 import {
   DefaultFooterComponent,
@@ -126,7 +128,7 @@ const APP_CONTAINERS = [
           useFactory: (createTranslateLoader),
           deps: [HttpClient]
       }
-    }),
+    })
   ],
   providers: [
     {

@@ -167,6 +167,8 @@
         "surnameLabel": "Surname",
         "birthDateLabel": "Birth Date",
         "documentNumberLabel": "Document Number",
+        "departmentsLabel": "Authorized departments",
+        "gatesLabel": "Authorized departments",
         "sexLabel": "Sex",
         "nationalityLabel": "Nationality",
         "expiryDateLabel": "Expiry Date",
