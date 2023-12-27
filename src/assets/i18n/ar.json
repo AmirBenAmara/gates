@@ -181,6 +181,7 @@
         "surnamePlaceholder": "اللقب",
         "birthDatePlaceholder": "تاريخ الولادة",
         "documentNumberPlaceholder": "رقم الوثيقة",
+        "telephoneLabel": "رقم الهاتف",
         "departmentsLabel": "الأقسام المأذونة",
         "gatesLabel": "الأبواب المأذونة",
         "sexPlaceholder": "الجنس",

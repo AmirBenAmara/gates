@@ -31,6 +31,7 @@ export class ProfilesComponent {
   selectedDepartments = [];
   doors: Gate[] | undefined;
   selectedDoors = [];
+  
 
   constructor(
     private ProfileService: ProfileService,
@@ -39,9 +40,12 @@ export class ProfilesComponent {
     private doorService: GatesService,
     private socketService: SocketService
   ) { }
+
   ngOnInit(): void {
     this.onProfileLoad();
     this.getProfiles()
+    this.getDepartments(); // Fetch departments
+    this.getDoors(); // Fetch doors
     this.profileForm = this.fb.group({
       name: ['', Validators .required],
       surname: ['', Validators.required],
@@ -51,7 +55,6 @@ export class ProfilesComponent {
       email: ['', Validators.required],
       telephoneNumber: ['', Validators.required],
       documentNumber: ['', Validators.required],
-
     });
   }
 
@@ -86,7 +89,7 @@ export class ProfilesComponent {
 
   deleteProfile() {
     this.ProfileService.deleteProfile(this.selectedProfile._id).subscribe(res => {
-      this.viewModalDeleteVisible;
+      this.viewModalDeleteVisible = false;
       this.getProfiles()
       this.cancel()
     });
@@ -158,14 +161,6 @@ export class ProfilesComponent {
     }
   }
 
-  selectDepartment(departmentId) {
-    if (this.departmentExist(departmentId)) {
-      this.selectedDepartments = this.selectedDepartments.filter(depId => depId !== departmentId)
-    } else {
-      this.selectedDepartments.push(departmentId);
-    }
-  }
-
   selectAllDepartments() {
     this.selectedDepartments = this.departments.map(dep => dep._id);
     console.log("selectedDepartments", this.selectedDepartments)
@@ -196,5 +191,25 @@ export class ProfilesComponent {
     this.page2 = false;
     this.selectedDepartments = [];
     this.selectedDoors = [];
+  }
+
+  fetchGatesForDepartments() {
+    // Assuming you have a service method to get gates based on departments
+    // Adjust the service method accordingly
+    const selectedDepartmentIds = this.selectedDepartments;
+    this.departmentService.getGatesForDepartments(selectedDepartmentIds).subscribe((gates) => {
+      this.doors = gates;
+    });
+  }
+
+  selectDepartment(departmentId) {
+    if (this.departmentExist(departmentId)) {
+      this.selectedDepartments = this.selectedDepartments.filter(depId => depId !== departmentId);
+    } else {
+      this.selectedDepartments.push(departmentId);
+    }
+  
+    // Fetch gates for selected departments
+    this.fetchGatesForDepartments();
   }
 }

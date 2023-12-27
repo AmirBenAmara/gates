@@ -173,6 +173,7 @@
         "personalDataLabel": "Données personnelles",
         "departmentsLabel": "Départements authorisés",
         "gatesLabel": "Portes authorisées",
+        "telephoneLabel": "Numéro Téléphone",
         "cinLabel": "cin",
         "telNumberLabel": "tel",
         "addressLabel": "address",

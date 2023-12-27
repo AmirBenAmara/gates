@@ -61,8 +61,8 @@ export class CPanelsComponent implements OnInit {
     this.upsertModalVisible = false;
     this.viewModalVisible = false;
   }
+  
   //TODO: finish implementation
-
   handleCtrPanelModalVisbilityChange(event: any) {
     this.upsertModalVisible = event;
   }

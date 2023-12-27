@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CtrPanel, CtrPanelsDATA } from './c-panels.service';
-import { Gate } from './gates.service';
+import { Reader, ReadersDATA } from './readers.service';
+import { Camera, CamerasDATA } from './cameras.service';
+import { WaveShare } from './wave-share.service';
 import { cibLgtm } from '@coreui/icons';
 
 @Injectable({
@@ -16,7 +18,6 @@ export class DepartmentsService {
 
   getDepartments(): Observable<Department[]> {
     return this.http.get<Department[]>(`${this.apiUrl}`);
-    // return of(DepartmentsDATA);
   }
 
   getDepartmentById(departmentId: string): Observable<Department[]> {
@@ -36,10 +37,34 @@ export class DepartmentsService {
     const url = `${this.apiUrl}/${departmentId}`;
     return this.http.delete<void>(url);
   }
+
+  getGatesForDepartments(departmentIds: string[]): Observable<Gate[]> {
+      // Adjust the API endpoint based on your backend implementation
+      const endpoint = `http://localhost:8000/api/gates/forDepartments`;
+
+      // Make an HTTP request to fetch gates based on department IDs
+      return this.http.post<Gate[]>(endpoint, { departmentIds });
+  }
 }
 
 export interface Department {
   _id: string;
   nameDepartment: string;
   ctrDepartment: any;
+}
+
+
+export interface Gate {
+  _id: string;
+  nameGate: string;
+  departmentGate: Department;
+  waveShare: WaveShare;
+  entryDevices: {
+    camera: Camera;
+    reader: Reader;
+  };
+  exitDevices: {
+    camera: Camera;
+    reader: Reader;
+  };
 }

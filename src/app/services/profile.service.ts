@@ -16,11 +16,13 @@ export class ProfileService {
   createProfile(Profile: Profile): Observable<Profile> {
     return this.http.post<Profile>(this.apiUrl, Profile);
   }
+
   // GetProfileById function with an HTTP GET request
   getProfileById(ProfileId: string): Observable<Profile> {
     const url = `${this.apiUrl}/${ProfileId}`;
     return this.http.get<Profile>(url);
   }
+  
   // GetProfiles function with an HTTP GET request
   getProfiles(): Observable<Profile[]> {
     return this.http.get<Profile[]>(this.apiUrl);

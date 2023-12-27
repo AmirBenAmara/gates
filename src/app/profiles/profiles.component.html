@@ -2,35 +2,32 @@
   <c-row>
     <c-col lg="12">
       <div class="example">
-
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
             <div class="fs-2 fw-semibold bg-white "><strong>{{ 'profileComp.title' | translate }}</strong></div>
             <c-breadcrumb>
               <c-breadcrumb-item url="/">{{ 'menu.home' | translate }}</c-breadcrumb-item>
               <c-breadcrumb-item [active]="true">{{ 'menu.profiles' | translate }}</c-breadcrumb-item>
-            </c-breadcrumb>          </div>
+            </c-breadcrumb>
+          </div>
           <div class="card-body">
-
             <div class="tab-content rounded-bottom">
               <div class="tab-pane active show p-3 preview fade">
-
                 <div class="row">
                   <div class="col-6">
-
-
                   </div>
                   <div class="col-6 mb-3">
                     <c-input-group>
-                      <input aria-label="Search" cFormControl placeholder="{{ 'profileComp.searchPlaceholder' | translate }}" />
-
+                      <input aria-label="Search" cFormControl
+                        placeholder="{{ 'profileComp.searchPlaceholder' | translate }}" />
                       <button cButton color="dark" type="button" variant="outline" (click)="openProfileModal()">
-                        <svg [cIcon]="icons.cilPlus" title="{{ 'profileComp.newProfileTitle' | translate }}"></svg> {{ 'profileComp.newProfileButton' | translate }}
+                        <svg [cIcon]="icons.cilPlus" title="{{ 'profileComp.newProfileTitle' | translate }}"></svg> {{
+                        'profileComp.newProfileButton' | translate }}
                       </button>
                     </c-input-group>
                   </div>
-
                 </div>
+                <!-- Profiles Table -->
                 <table cTable>
                   <thead class="table-dark">
                     <tr>
@@ -40,7 +37,6 @@
                       <th scope="col">{{ 'profileComp.cinColumn' | translate }}</th>
                       <th scope="col">{{ 'profileComp.occupationColumn' | translate }}</th>
                       <th scope="col"></th>
-
                     </tr>
                   </thead>
                   <tbody>
@@ -52,24 +48,23 @@
                       <td>{{ 'profileComp.occupationValue' | translate }}</td>
                       <td style="text-align:center;">
                         <button type="button" cButton color="light" (click)="detailProfile(profile)">
-                          <svg [cIcon]="icons.cilInfo" width="15" title="{{ 'profileComp.detailIconTitle' | translate }}"></svg>
+                          <svg [cIcon]="icons.cilInfo" width="15"
+                            title="{{ 'profileComp.detailIconTitle' | translate }}"></svg>
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="editProfile(profile)">
-                          <svg [cIcon]="icons.cilPencil" width="15" title="{{ 'profileComp.pencilIconTitle' | translate }}"></svg>
+                          <svg [cIcon]="icons.cilPencil" width="15"
+                            title="{{ 'profileComp.pencilIconTitle' | translate }}"></svg>
                         </button> &nbsp;
                         <button type="button" cButton color="light" (click)="openModalDelete(profile)">
-                          <svg [cIcon]="icons.cilTrash" width="15" title="{{ 'profileComp.trashIconTitle' | translate }}"></svg>
+                          <svg [cIcon]="icons.cilTrash" width="15"
+                            title="{{ 'profileComp.trashIconTitle' | translate }}"></svg>
                         </button>
                       </td>
-
                     </tr>
                   </tbody>
                 </table>
               </div>
-
             </div>
-
-
           </div>
         </div>
       </div>
@@ -77,6 +72,7 @@
   </c-row>
 </c-container>
 
+<!-- Create/Update Profile Form Modal -->
 <c-modal id="ProfileModal" [visible]="visible" size="lg" (visibleChange)="handleProfileModalVisbilityChange($event)">
   <c-modal-header>
     <h5 cModalTitle>{{ 'profileComp.newProfileTitle' | translate }}</h5>
@@ -88,7 +84,8 @@
         <div class="col-6">
           <div class="form-group mb-3">
             <label for="name">{{ 'profileComp.nameLabel' | translate }}:</label>
-            <input type="text" readonly class="form-control" cFormControl formControlName="name" id="name" placeholder="{{ 'profileComp.namePlaceholder' | translate }}">
+            <input type="text" readonly class="form-control" cFormControl formControlName="name" id="name"
+              placeholder="{{ 'profileComp.namePlaceholder' | translate }}">
           </div>
           <div class="form-group mb-3">
             <label for="surname">{{ 'profileComp.surnameLabel' | translate }}:</label>
@@ -115,7 +112,7 @@
           <div class="form-group mb-3">
             <label for="telNumber">{{ 'profileComp.telNumberLabel' | translate }}:</label>
             <input type="text" class="form-control" cFormControl formControlName="telephoneNumber" id="telNumber"
-              placeholder="{{ 'profileComp.telNumberLabel' | translate }}">
+              placeholder="{{ 'profileComp.telephoneLabel' | translate }}">
           </div>
           <div class="form-group mb-3">
             <label for="email">{{ 'profileComp.emailLabel' | translate }}:</label>
@@ -124,29 +121,32 @@
           </div>
           <div class="form-group mb-3">
             <label for="documentNumber">{{ 'profileComp.documentNumberLabel' | translate }}:</label>
-            <input type="text" readonly class="form-control" cFormControl formControlName="documentNumber" id="documentNumber"
-            placeholder="{{ 'profileComp.documentNumberLabel' | translate }}">
-            
+            <input type="text" readonly class="form-control" cFormControl formControlName="documentNumber"
+              id="documentNumber" placeholder="{{ 'profileComp.documentNumberLabel' | translate }}">
           </div>
         </div>
       </div>
       <div *ngIf="page2">
+        <!-- Authorized Departments -->
         <div class="row p-3">
           <h3>Authorized Departments:</h3>
           <div class="form-check col-3" *ngFor="let department of departments">
-            <input class="form-check-input" type="radio" [checked]="departmentExist(department._id)" (click)="selectDepartment(department._id)">
+            <input class="form-check-input" type="radio" [checked]="departmentExist(department._id)"
+              (click)="selectDepartment(department._id)">
             <label class="form-check-label">
               {{department.nameDepartment}}
             </label>
           </div>
-          
           <div class="form-check col-3">
-            <input class="form-check-input" type="radio" [checked]="departments.length == selectedDepartments.length" (click)="selectAllDepartments()">
+            <input class="form-check-input" type="radio" [checked]="selectedDepartments.length === 0"
+              (click)="selectAllDepartments()">
             <label class="form-check-label">
               All
             </label>
           </div>
         </div>
+
+        <!-- Authorized Doors -->
         <div class="row p-3">
           <h3>Authorized Doors:</h3>
           <div class="form-check col-3" *ngFor="let door of doors">
@@ -155,42 +155,40 @@
               {{door.nameGate}}
             </label>
           </div>
-          
           <div class="form-check col-3">
-            <input class="form-check-input" type="radio" [checked]="doors.length == selectedDoors.length" (click)="selectAllDoors()">
+            <input class="form-check-input" type="radio" [checked]="selectedDoors.length === 0"
+              (click)="selectAllDoors()">
             <label class="form-check-label">
               All
             </label>
           </div>
         </div>
+
       </div>
     </form>
-
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="danger">{{ 'profileComp.closeButton' | translate }}</button>
     <button *ngIf="page1" (click)="page1 = false ; page2 = true" cButton color="primary">Next</button>
     <button *ngIf="page2" (click)="page1 = true ; page2 = false" cButton color="primary">Previous</button>
-    <button *ngIf="page2" (click)="submitAddModal()" cButton color="primary">{{ 'profileComp.submitButton' | translate  }}</button>
+    <button *ngIf="page2" (click)="submitAddModal()" cButton color="primary">{{ 'profileComp.submitButton' | translate
+      }}</button>
   </c-modal-footer>
 </c-modal>
 
-
+<!-- Profile Details -->
 <c-modal id="viewProfileDetailsModal" [visible]="viewModalVisible">
   <c-modal-header>
     <h5 cModalTitle>{{ 'profileComp.profileDetailsTitle' | translate }}</h5>
     <button (click)="cancel()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body>
-
     <div class="container" *ngIf="selectedProfile">
       <div class="text-center">
         <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 150px;"
           alt="Avatar" />
       </div>
-
       <div class="row">
-
         <div class="col-sm-12">
           <p><strong>{{ 'profileComp.nameLabel' | translate }}:</strong> {{ selectedProfile.name}}</p>
         </div>
@@ -213,17 +211,27 @@
           <p><strong>{{ 'profileComp.emailLabel' | translate }}:</strong> {{ selectedProfile.email }}</p>
         </div>
         <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.documentNumberLabel' | translate }}:</strong> {{ selectedProfile.documentNumber }}</p>
+          <p><strong>{{ 'profileComp.documentNumberLabel' | translate }}:</strong> {{ selectedProfile.documentNumber }}
+          </p>
         </div>
         <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.departmentsLabel' | translate }}:</strong> {{ selectedProfile.departments }}</p>
+          <p>
+            <strong>{{ 'profileComp.departmentsLabel' | translate }}:</strong>
+          </p>
+          <ul>
+            <li *ngFor="let department of selectedProfile.departments">{{ department.nameDepartment }}</li>
+          </ul>
         </div>
         <div class="col-sm-12">
-          <p><strong>{{ 'profileComp.gatesLabel' | translate }}:</strong> {{ selectedProfile.gates }}</p>
+          <p>
+            <strong>{{ 'profileComp.gatesLabel' | translate }}:</strong>
+          </p>
+          <ul>
+            <li *ngFor="let gate of selectedProfile.gates">{{ gate.nameGate }}</li>
+          </ul>
         </div>
       </div>
     </div>
-
   </c-modal-body>
   <c-modal-footer>
     <button (click)="cancel()" cButton color="secondary">
@@ -232,8 +240,7 @@
   </c-modal-footer>
 </c-modal>
 
-
-
+<!-- Profile Delete Modal -->
 <c-modal id="viewProfileDeleteModal" [visible]="viewModalDeleteVisible">
   <c-modal-header>
     <h5 cModalTitle>{{ 'profileComp.deleteConfirmationTitle' | translate }}</h5>
@@ -250,6 +257,7 @@
     <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
       {{ 'profileComp.closeButton' | translate }}
     </button>
-    <button (click)="deleteProfile()" class="text-white" cButton color="danger">{{ 'profileComp.confirmButton' | translate }}</button>
+    <button (click)="deleteProfile()" class="text-white" cButton color="danger">{{ 'profileComp.confirmButton' |
+      translate }}</button>
   </c-modal-footer>
 </c-modal>
