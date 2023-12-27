@@ -138,7 +138,7 @@
             </label>
           </div>
           <div class="form-check col-3">
-            <input class="form-check-input" type="radio" [checked]="selectedDepartments.length === 0"
+            <input class="form-check-input" type="radio" 
               (click)="selectAllDepartments()">
             <label class="form-check-label">
               All
@@ -156,7 +156,7 @@
             </label>
           </div>
           <div class="form-check col-3">
-            <input class="form-check-input" type="radio" [checked]="selectedDoors.length === 0"
+            <input class="form-check-input" type="radio"
               (click)="selectAllDoors()">
             <label class="form-check-label">
               All
@@ -173,6 +173,7 @@
     <button *ngIf="page2" (click)="page1 = true ; page2 = false" cButton color="primary">Previous</button>
     <button *ngIf="page2" (click)="submitAddModal()" cButton color="primary">{{ 'profileComp.submitButton' | translate
       }}</button>
+      
   </c-modal-footer>
 </c-modal>
 

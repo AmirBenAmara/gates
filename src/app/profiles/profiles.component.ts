@@ -110,6 +110,10 @@ export class ProfilesComponent {
 
   editProfile(profile: Profile | undefined) {
     this.selectedProfile = profile;
+    this.profileForm.patchValue(profile);
+    this.visible = true;
+    this.editMode = true;
+
   }
 
   detailProfile(profile: Profile | undefined) {
