@@ -12,15 +12,11 @@ export class CamerasComponent implements OnInit {
   p: number = 1;
   isEditMode = false;
   cameraForm = this.fb.group({
-    ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
-    nameCamera: ['', Validators.required],
   });
   camera: Camera = { 
     _id: "0",
-    ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
-    nameCamera: 'Undefined',
   }
   cameras: Camera[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
@@ -31,9 +27,7 @@ export class CamerasComponent implements OnInit {
   ngOnInit(): void {
     this.getCameras();
     this.cameraForm = this.fb.group({
-      ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
-      nameCamera: ['', Validators.required],
     });
   }
 

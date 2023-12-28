@@ -108,7 +108,7 @@
         <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.waveShare' | translate }}</label>
         <div class="col-md-9">
           <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="waveShare">
-            <option *ngFor="let waveShare of waveShares" [value]="waveShare._id">{{waveShare.nameWaveShare}}</option>
+            <option *ngFor="let waveShare of waveShares" [value]="waveShare._id">{{waveShare.serialNumber}}</option>
           </select>
         </div>
       </div>
@@ -127,7 +127,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.camera' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraEntry">
-                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.nameCamera}}</option>
+                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.serialNumber}}</option>
               </select>
             </div>
           </div>
@@ -135,7 +135,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerEntry">
-                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.nameReader}}</option>
+                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.serialNumber}}</option>
               </select>
             </div>
           </div>
@@ -146,7 +146,7 @@
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="cameraExit">
 
-                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.nameCamera}}</option>
+                <option *ngFor="let camera of cameras" [value]="camera._id">{{camera.serialNumber}}</option>
               </select>
             </div>
           </div>
@@ -154,7 +154,7 @@
             <label for="cameras" class="col-md-3 col-form-label">{{ 'doorsComp.reader' | translate }}</label>
             <div class="col-md-9">
               <select cSelect id="inputGroupSelect01" class="form-control" cFormControl formControlName="readerExit">
-                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.nameReader}}</option>
+                <option *ngFor="let reader of readers" [value]="reader._id">{{reader.serialNumber}}</option>
               </select>
             </div>
           </div>
@@ -195,15 +195,15 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <p><strong>{{ 'doorsComp.waveShare' | translate }}:</strong> {{ selectedDoor.waveShare.nameWaveShare}}</p>
+          <p><strong>{{ 'doorsComp.waveShare' | translate }}:</strong> {{ selectedDoor.waveShare.serialNumber}}</p>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
           <label><strong>{{ 'doorsComp.entryDevices' | translate }}</strong></label>
           <ul>
-            <li>Camera: {{ selectedDoor.entryDevices.camera.nameCamera}}</li>
-            <li>Reader: {{ selectedDoor.entryDevices.reader.nameReader}}</li>
+            <li>Camera: {{ selectedDoor.entryDevices.camera.serialNumber}}</li>
+            <li>Reader: {{ selectedDoor.entryDevices.reader.serialNumber}}</li>
           </ul>
         </div>
       </div>
@@ -211,8 +211,8 @@
         <div class="col-sm-12">
           <label><strong>{{ 'doorsComp.exitDevices' | translate }}</strong></label>
           <ul>
-            <li>Camera: {{ selectedDoor.exitDevices.camera.nameCamera}}</li>
-            <li>Reader: {{ selectedDoor.exitDevices.reader.nameReader}}</li>
+            <li>Camera: {{ selectedDoor.exitDevices.camera.serialNumber}}</li>
+            <li>Reader: {{ selectedDoor.exitDevices.reader.serialNumber}}</li>
           </ul>
         </div>
       </div>

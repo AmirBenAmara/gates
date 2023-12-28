@@ -12,15 +12,13 @@ export class ReadersComponent implements OnInit {
   p: number = 1;
   isEditMode = false;
   readerForm = this.fb.group({
-    ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
-    nameReader: ['', Validators.required],
+
   });
   reader: Reader = {
     _id: "0",
-    ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
-    nameReader: 'Undefined',
+    
   }
   readers: Reader[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
@@ -31,9 +29,9 @@ export class ReadersComponent implements OnInit {
   ngOnInit(): void {
     this.getReaders();
     this.readerForm = this.fb.group({
-      ipAddress: ['', Validators.required],
+    
       serialNumber: ['', Validators.required],
-      nameReader: ['', Validators.required],
+      
     });
   }
 

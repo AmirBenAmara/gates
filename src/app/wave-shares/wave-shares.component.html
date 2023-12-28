@@ -2,7 +2,6 @@
   <c-row>
     <c-col lg="12">
       <div class="example">
-
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
             <div class="fs-2 fw-semibold bg-white "><strong>{{ 'waveshares.manageWaveShares' | translate }}</strong></div>
@@ -12,42 +11,31 @@
             </c-breadcrumb>          
           </div>
           <div class="card-body">
-
             <div class="tab-content rounded-bottom">
               <div class="tab-pane active show p-3 preview fade">
-
                 <div class="row">
                   <div class="col-6">
-
-
                   </div>
                   <div class="col-6 mb-3">
                     <c-input-group>
                       <input aria-label="Search" cFormControl placeholder="{{ 'waveshares.search' | translate }}" />
-
                       <button cButton color="dark" type="button" variant="outline" (click)="isEditMode = false;openWaveShareModal()">
                         <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> {{ 'waveshares.newWaveShare' | translate }}
                       </button>
                     </c-input-group>
                   </div>
-
                 </div>
                 <table cTable>
                   <thead class="table-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">{{ 'waveshares.name' | translate }}</th>
-                      <th scope="col">{{ 'waveshares.ipAddress' | translate }}</th>
                       <th scope="col">{{ 'waveshares.serialNumber' | translate }}</th>
                       <th scope="col"></th>
-
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let wavShre of waveShares; let i = index">
                       <th scope="row">{{ i + 1 }}</th>
-                      <td>{{ wavShre.nameWaveShare }}</td>
-                      <td>{{ wavShre.ipAddress }}</td>
                       <td>{{ wavShre.serialNumber }}</td>
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewWaveShareDetailsModal(wavShre)" color="light">
@@ -63,24 +51,17 @@
                           <svg [cIcon]="icons.cilTrash" width="15" title="Trash bin Icon"></svg>
                         </button>
                       </td>
-
                     </tr>
-
                   </tbody>
                 </table>
-
               </div>
-
             </div>
-
-
           </div>
         </div>
       </div>
     </c-col>
   </c-row>
 </c-container>
-
 
 <c-modal #deleteWaveShare id="deleteWaveShare">
   <c-modal-header>
@@ -89,7 +70,7 @@
   </c-modal-header>
   <c-modal-body>
     <p class="fw-semibold">{{ 'waveshares.deleteConfirmationMessage' | translate }}</p>
-    <p><strong> {{ waveShare.nameWaveShare }} </strong></p>
+    <p><strong> {{ waveShare.serialNumber }} </strong></p>
   </c-modal-body>
 
   <c-modal-footer>
@@ -99,7 +80,6 @@
     <button (click)="confirmDeleteWaveShare(waveShare._id)" [cModalToggle]="deleteWaveShare.id" class="text-white" cButton color="danger">{{ 'waveshares.confirm' | translate }}</button>
   </c-modal-footer>
 </c-modal>
-
 
 <c-modal id="upsertWaveShareModal" size="lg" [visible]="upsertModalVisible">
   <c-modal-header>
@@ -111,26 +91,12 @@
   <c-modal-body>
     <form [formGroup]="waveShareForm" class="form-horizontal">
       <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">{{ 'waveshares.nameWaveShare' | translate }}</label>
-        <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="nameWaveShare" id="nameWaveShare" placeholder="{{ 'waveshares.nameWaveShare' | translate }}">
-        </div>
-      </div>
-      <div class="form-group row mb-3">
-        <label for="ipAddress" class="col-md-3 col-form-label">{{ 'waveshares.ipAddress' | translate }}</label>
-        <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress"
-            placeholder="{{ 'waveshares.ipAddress' | translate }}">
-        </div>
-      </div>
-      <div class="form-group row mb-3">
         <label for="serialNumber" class="col-md-3 col-form-label">{{ 'waveshares.serialNumber' | translate }}</label>
         <div class="col-md-9">
           <input type="text" class="form-control" cFormControl formControlName="serialNumber" id="serialNumber"
             placeholder="{{ 'waveshares.serialNumber' | translate }}">
         </div>
       </div>
-
     </form>
 
   </c-modal-body>
@@ -152,12 +118,6 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <p><strong>{{ 'waveshares.nameWaveShare' | translate }}:</strong> {{ waveShare.nameWaveShare }}</p>
-        </div>
-        <div class="col-sm-12">
-          <p><strong>{{ 'waveshares.ipAddress' | translate }}:</strong> {{ waveShare.ipAddress }}</p>
-        </div>
         <div class="col-sm-12">
           <p><strong>{{ 'waveshares.serialNumber' | translate }}:</strong> {{ waveShare.serialNumber }}</p>
         </div>

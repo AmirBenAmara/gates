@@ -28,8 +28,8 @@
                   <thead class="table-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">{{ 'readers.nameReader' | translate }}</th>
-                      <th scope="col">{{ 'readers.ipAddress' | translate }}</th>
+                      
+                    
                       <th scope="col">{{ 'readers.serialNumber' | translate }}</th>
                       <th scope="col"></th>
                     </tr>
@@ -37,8 +37,8 @@
                   <tbody>
                     <tr *ngFor="let rdr of readers; let i = index">
                       <th scope="row">{{ i + 1 }}</th>
-                      <td>{{ rdr.nameReader }}</td>
-                      <td>{{ rdr.ipAddress }}</td>
+                      
+                    
                       <td>{{ rdr.serialNumber }}</td>
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewReaderDetailsModal(rdr)" color="light">
@@ -70,7 +70,7 @@
   </c-modal-header>
   <c-modal-body>
     <p class="fw-semibold">{{ 'readers.deleteConfirmationMessage' | translate }}</p>
-    <p><strong> {{reader.nameReader }} </strong></p>
+    <p><strong> {{reader.serialNumber }} </strong></p>
   </c-modal-body>
   <c-modal-footer>
     <button [cModalToggle]="deleteReader.id" cButton color="secondary">
@@ -88,18 +88,6 @@
   </c-modal-header>
   <c-modal-body>
     <form [formGroup]="readerForm" class="form-horizontal">
-      <div class="form-group row mb-3">
-        <label for="name" class="col-md-3 col-form-label">{{ 'readers.nameReader' | translate }}</label>
-        <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="nameReader" id="nameReader" placeholder="{{ 'readers.nameReader' | translate }}">
-        </div>
-      </div>
-      <div class="form-group row mb-3">
-        <label for="ipAddress" class="col-md-3 col-form-label">{{ 'readers.ipAddress' | translate }}</label>
-        <div class="col-md-9">
-          <input type="text" class="form-control" cFormControl formControlName="ipAddress" id="ipAddress" placeholder="{{ 'readers.ipAddress' | translate }}">
-        </div>
-      </div>
       <div class="form-group row mb-3">
         <label for="serialNumber" class="col-md-3 col-form-label">{{ 'readers.serialNumber' | translate }}</label>
         <div class="col-md-9">
@@ -125,12 +113,6 @@
   <c-modal-body>
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <p><strong>{{ 'readers.nameReader' | translate }}:</strong> {{ reader.nameReader }}</p>
-        </div>
-        <div class="col-sm-12">
-          <p><strong>{{ 'readers.ipAddress' | translate }}:</strong> {{ reader.ipAddress }}</p>
-        </div>
         <div class="col-sm-12">
           <p><strong>{{ 'readers.serialNumber' | translate }}:</strong> {{ reader.serialNumber }}</p>
         </div>

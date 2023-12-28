@@ -38,32 +38,22 @@ export class CamerasService {
 
 export interface Camera {
   _id?: string;
-  nameCamera?: string;
-  ipAddress?: string;
   serialNumber?: string;
 }
 
 export const CamerasDATA: Camera[] = [{ 
   _id: "1",
-  ipAddress: '172.53.3.6',
   serialNumber: 'N552854AG654657',
-  nameCamera: 'Camera 1',
 },
 { 
   _id: "2",
-  ipAddress: '172.53.3.7',
   serialNumber: 'N552854AG654658',
-  nameCamera: 'Camera 2',
 },
 { 
   _id: "3",
-  ipAddress: '172.53.3.8',
   serialNumber: 'N552854AG654659',
-  nameCamera: 'Camera 3',
 },
 { 
   _id: "4",
-  ipAddress: '172.53.3.9',
   serialNumber: 'N552854AG654660',
-  nameCamera: 'Camera 4',
 }]

@@ -12,16 +12,13 @@ export class WaveSharesComponent implements OnInit {
   p: number = 1;
   isEditMode = false;
   waveShareForm = this.fb.group({
-    ipAddress: ['', Validators.required],
     serialNumber: ['', Validators.required],
-    nameWaveShare: ['', Validators.required],
   });
   waveShare: WaveShare = {
     _id: "0",
-    ipAddress: '0.0.0.0',
     serialNumber: 'N552854AG654657',
-    nameWaveShare: 'Undefined',
   }
+
   waveShares: WaveShare[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public upsertModalVisible: boolean = false;
@@ -31,9 +28,7 @@ export class WaveSharesComponent implements OnInit {
   ngOnInit(): void {
     this.getWaveShares();
     this.waveShareForm = this.fb.group({
-      ipAddress: ['', Validators.required],
       serialNumber: ['', Validators.required],
-      nameWaveShare: ['', Validators.required],
     });
   }
 
