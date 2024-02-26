@@ -16,7 +16,7 @@ export class RealTimeLogComponent implements OnInit{
   public visible = false;
   public viewModalDeleteVisible = false;
   public viewProfileModelVisible = false;
-  logs: any;
+  logs: any[] = [];
 
   ngOnInit(): void {
     this.onRTLogsLoad()
@@ -30,8 +30,11 @@ export class RealTimeLogComponent implements OnInit{
 
     this.socket.addEventListener('message', (event) => {
       console.log('Realtime Logs message received:', event.data);
-      this.logs = JSON.parse(event.data)
-    })
+      const log = JSON.parse(event.data);
+      this.logs.push(log);
+      
+    });
+    
       this.socket.addEventListener('close', (event) => {
         console.log('WebSocket connection closed:', event);
       });

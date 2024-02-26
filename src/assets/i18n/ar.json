@@ -117,14 +117,12 @@
     },
     "doorsStatus": {
         "clear": "مسح",
-        "export": "تصدير",
-        "pause": "إيقاف مؤقت",
-        "doorName": "اسم الباب",
-        "status": "الحالة",
-        "statusType": "نوع الحالة",
-        "doorRelay": "ريلاي الباب",
-        "alarm": "إنذار",
-        "lastEvent": "أخر حدث"
+        "export": "إستخراح",
+        "pause": "إيقاف",
+        "gateName": "إسم البوابة",
+        "event": "الحدث الجاري",
+        "date": "التاريخ",
+        "lastEvent": "الحدث الأخير"
     },
     "guestsComp": {
         "manageGuests": "إدارة الزوار",

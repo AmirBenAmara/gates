@@ -11,7 +11,7 @@ import { cilMediaPause, cilClearAll, cilX } from '@coreui/icons';
 export class DoorsStatusComponent implements OnInit {
   constructor(private socketService: SocketService) {}
   icons = { cilMediaPause, cilClearAll, cilX };
-  doorStatuses:  any[];
+  doorStatuses:  any[] = [];
   private socket: WebSocket;
 
 
@@ -20,14 +20,15 @@ export class DoorsStatusComponent implements OnInit {
   }
   
   onDoorStatusesReady() {
-    this.socket = this.socketService.getRTLogs();
+    this.socket = this.socketService.getDoorStatus();
     this.socket.addEventListener('open', (event) => {
       console.log('WebSocket connection opened:', event);
     });
 
     this.socket.addEventListener('message', (event) => {
       console.log('Door status message received:', event.data);
-      this.doorStatuses = JSON.parse(event.data)
+      const doorStatuse = JSON.parse(event.data)
+      this.doorStatuses.push(doorStatuse);
     })
       this.socket.addEventListener('close', (event) => {
         console.log('WebSocket connection closed:', event);

@@ -119,11 +119,9 @@
         "clear": "Clear",
         "export": "Export",
         "pause": "Pause",
-        "doorName": "Door Name",
-        "status": "Status",
-        "statusType": "Status Type",
-        "doorRelay": "Door Relay",
-        "alarm": "Alarm",
+        "gateName": "Gate Name",
+        "event": "Current Event",
+        "date": "Date",
         "lastEvent": "Last Event"
     },
     "guestsComp": {

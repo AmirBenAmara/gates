@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { cilPencil, cilPlus, cilTrash, cilInfo } from '@coreui/icons';
+import { cilPencil, cilPlus, cilTrash, cilInfo, cibLgtm } from '@coreui/icons';
 import { Profile, ProfileService } from '../services/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Department, DepartmentsService } from '../services/departments.service';
@@ -157,6 +157,7 @@ export class ProfilesComponent {
         });
       } else {
         delete profile['_id']
+        console.log(profile)
         this.ProfileService.createProfile(profile).subscribe((res) => {
           this.getProfiles();
         });
@@ -198,8 +199,6 @@ export class ProfilesComponent {
   }
 
   fetchGatesForDepartments() {
-    // Assuming you have a service method to get gates based on departments
-    // Adjust the service method accordingly
     const selectedDepartmentIds = this.selectedDepartments;
     this.departmentService.getGatesForDepartments(selectedDepartmentIds).subscribe((gates) => {
       this.doors = gates;
@@ -212,7 +211,6 @@ export class ProfilesComponent {
     } else {
       this.selectedDepartments.push(departmentId);
     }
-  
     // Fetch gates for selected departments
     this.fetchGatesForDepartments();
   }

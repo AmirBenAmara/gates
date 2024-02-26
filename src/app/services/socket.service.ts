@@ -14,9 +14,9 @@ export class SocketService {
   private rtLogsSocket$:  WebSocket;
   private deviceStatusSocket$:  WebSocket;
   private wsEnrollementSocket$: WebSocketSubject<ProfilePayload>;
-  readonly wsEndpointDS: string = `ws://localhost:${this.port}/doorStatus`;
-  readonly wsEndpointRTL: string = `ws://localhost:${this.port}/rtLog`;
-  readonly wsEndpointDVS: string = `ws://localhost:${this.port}/deviceStatus`;
+  readonly wsEndpointDS: string = `ws://localhost:${this.port}/accessControl`;
+  readonly wsEndpointRTL: string = `ws://localhost:${this.port}/accessControl`;
+  readonly wsEndpointDVS: string = `ws://localhost:${this.port}/deviceStatus2`;
   readonly wsEnrollement: string = `ws://localhost:${this.port}/wsEnrollement`;
 
   constructor() { 
@@ -44,13 +44,20 @@ export class SocketService {
 }
 
 
+// interface DoorStatusPayload {
+//   doorName: string;
+//   doorStatus: string;
+//   doorStatusType: string;
+//   doorRelay: string;
+//   Alarm: string;
+//   lastEvent: string;
+// }
+
 interface DoorStatusPayload {
-  doorName: string;
-  doorStatus: string;
-  doorStatusType: string;
-  doorRelay: string;
-  Alarm: string;
-  lastEvent: string;
+  gateName: String,
+  status: String,
+  date: String,
+  lastEvent: String
 }
 
 interface ProfilePayload { 
@@ -68,25 +75,11 @@ interface DeviceStatusPayload {
 
 
 interface LogPayload {
-  Date: string;
-  Name: string;
-  Door: string;
-  Department: string;
-  Event: string;
-  Profile: {
-    id: number;
-    name: string;
-    surname: string;
-    birthDate: string;
-    documentNumber: string;
-    sex: string;
-    nationality: string;
-    expiryDate: string;
-    personalData: string;
-    mrZ1: string;
-    mrZ2: string;
-    mrZ3: string;
-    issueCountry: string;
+  date: String,
+  name: String,
+  gate: String,
+  department: String,
+  event: String
   };
-}
+
 

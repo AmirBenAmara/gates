@@ -13,8 +13,9 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  createProfile(Profile: Profile): Observable<Profile> {
-    return this.http.post<Profile>(this.apiUrl, Profile);
+  createProfile(profile: Profile): Observable<Profile> {
+    const { _id, ...profileData } = profile;
+    return this.http.post<Profile>(this.apiUrl, profileData);
   }
 
   // GetProfileById function with an HTTP GET request
@@ -42,12 +43,12 @@ export interface Profile {
   _id?: string;
   name?: string;
   surname?: string;
-  documentNumber?: string;
+  documentNumber?: number;
   occupation?: string;
-  cin?:string;
+  cin?:number;
   address?:string;
   email?:string;
-  telephoneNumber?:string;
+  telephoneNumber?:number;
   departments?:Department[];
   gates?:Gate[];
 }
