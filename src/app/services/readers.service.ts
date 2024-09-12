@@ -41,23 +41,51 @@ export class ReadersService {
 // Example Reader interface
 export interface Reader {
   _id: string;
-  
   serialNumber: string;
-  
+  ipAddress: string;
+  status: string;
+  hostname: string;
+  userName: string;
+  password: string;
+  apiToken: string;
 }
 export const ReadersDATA: Reader[] = [{ 
   _id: "1",
-  serialNumber: ''
+  serialNumber: '',
+  ipAddress: "",
+  status: "",
+  hostname: "",
+  userName: "",
+  password: "",
+  apiToken: "",
 },
 { 
   _id: "2",
   serialNumber: 'N552854AG654658',
+  ipAddress: "",
+  status: "",
+  hostname: "",
+  userName: "",
+  password: "",
+  apiToken: "",
 },
 { 
   _id: "3",
   serialNumber: 'N552854AG654659',
+  ipAddress: "",
+  status: "",
+  hostname: "",
+  userName: "",
+  password: "",
+  apiToken: "",
 },
 { 
-  _id: "4",
+  _id: "",
   serialNumber: 'N552854AG654660',
+  ipAddress: "",
+  status: "",
+  hostname: "",
+  userName: "",
+  password: "",
+  apiToken: "",
 }]

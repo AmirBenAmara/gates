@@ -30,6 +30,8 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">{{ 'controlPanel.serialNumber' | translate }}</th>
+                      <th scope="col">{{ 'controlPanel.status' | translate }}</th> <!-- Add this line -->
+                      <th scope="col"></th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -37,6 +39,12 @@
                     <tr *ngFor="let ctrPnl of ctrPanels; let i = index">
                       <th scope="row">{{ i + 1 }}</th>
                       <td>{{ ctrPnl.serialNumber }}</td>
+                      <td>
+                        <span
+                          [ngClass]="{'badge': true, 'bg-success': ctrPnl.status === '1', 'bg-danger': ctrPnl.status === '0'}">
+                          {{ ctrPnl.status === '1' ? 'Online' : 'Offline' }}
+                        </span>
+                      </td> <!-- Status Field -->
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewCtrPanelDetailsModal(ctrPnl)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>

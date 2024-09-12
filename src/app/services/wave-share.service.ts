@@ -38,21 +38,27 @@ export class WaveShareService {
 export interface WaveShare {
   _id: string;
   serialNumber: string;
+  status: string
 }
 
 export const WaveSharesDATA: WaveShare[] = [{ 
   _id: "1",
   serialNumber: 'N552854AG654657',
+  status: '0'
 },
 { 
   _id: "2",
   serialNumber: 'N552854AG654658',
+  status: '0'
+
 },
 { 
   _id: "3",
   serialNumber: 'N552854AG654659',
+  status: '0'
 },
 { 
   _id: "4",
   serialNumber: 'N552854AG654660',
+  status: '0'
 }]

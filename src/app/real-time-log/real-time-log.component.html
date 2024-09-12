@@ -1,158 +1,172 @@
 <c-container fluid>
-  <c-row>
-      <c-col lg="12">
-          <div class="example">
-              <div class="card  mt-4 mb-2">
-                  <div class="card-header bg-white">
-                    <c-breadcrumb>
-                        <c-breadcrumb-item url="/">{{ 'menu.home' | translate }}</c-breadcrumb-item>
-                        <c-breadcrumb-item [active]="true">{{ 'menu.realTimeLog' | translate }}</c-breadcrumb-item>
-                      </c-breadcrumb>
+    <c-row>
+        <c-col lg="12">
+            <div class="example">
+                <div class="card  mt-4 mb-2">
+                    <div class="card-header bg-white">
+                        <c-breadcrumb>
+                            <c-breadcrumb-item url="/">{{ 'menu.home' | translate }}</c-breadcrumb-item>
+                            <c-breadcrumb-item [active]="true">{{ 'menu.realTimeLog' | translate }}</c-breadcrumb-item>
+                        </c-breadcrumb>
                     </div>
-                  <div class="card-body">
-                      <div class="tab-content rounded-bottom">
-                          <div class="tab-pane active show p-3 preview fade">
-                              <div class="row">
-                                  <div class="col-6">
-                                      <c-input-group>
-                                          <button cButton color="dark" type="button" variant="outline">
-                                              <svg [cIcon]="icons.cilClearAll" title="Clear"></svg> {{ 'manageLogs.export' | translate }}
-                                          </button>
-                                      </c-input-group>
-                                  </div>
-                                  <div class="col-3"></div>
-                                  <div class="col-md-3 col-xs-1 mb-3 d-flex justify-content-end">
-                                      <c-input-group>
-                                          <button cButton color="dark" style="margin-left: auto;" type="button" variant="outline">
-                                              <svg [cIcon]="icons.cilX" title="Clear"></svg> {{ 'manageLogs.clear' | translate }}
-                                          </button>
-                                          <button cButton color="dark" type="button" variant="outline">
-                                              <svg [cIcon]="icons.cilMediaPause" title="Pause"></svg> {{ 'manageLogs.pause' | translate }}
-                                          </button>
-                                      </c-input-group>
-                                  </div>
-                              </div>
-                              <table cTable>
-                                  <thead class="table-dark logs">
-                                      <tr>
-                                          <th scope="col">{{ 'manageLogs.dateColumn' | translate }}</th>
-                                          <th scope="col">{{ 'manageLogs.nameColumn' | translate }}</th>
-                                          <th scope="col">{{ 'manageLogs.doorColumn' | translate }}</th>
-                                          <th scope="col">{{ 'manageLogs.departmentColumn' | translate }}</th>
-                                          <th scope="col">{{ 'manageLogs.eventColumn' | translate }}</th>
-                                          <th scope="col">{{ 'manageLogs.viewProfileColumn' | translate }}</th>
-                                          <th></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr *ngFor="let log of logs">
-                                          <th class="log-level" scope="row">{{ log.date }}</th>
-                                          <td>{{ log.name }}</td>
-                                          <td>{{ log.gate }}</td>
-                                          <td>{{ log.department }}</td>
-                                          <td class="log-level error">{{ log.event }}</td>
-                                          <td>
-                                              <button type="button" (click)="viewProfile(log.Profile)" cButton color="light">
-                                                  <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </c-col>
-  </c-row>
+                    <div class="card-body">
+                        <div class="tab-content rounded-bottom">
+                            <div class="tab-pane active show p-3 preview fade">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <c-input-group>
+                                            <button cButton color="dark" type="button" variant="outline">
+                                                <svg [cIcon]="icons.cilClearAll" title="Clear"></svg> {{
+                                                'manageLogs.export' | translate }}
+                                            </button>
+                                        </c-input-group>
+                                    </div>
+                                    <div class="col-3"></div>
+                                    <div class="col-md-3 col-xs-1 mb-3 d-flex justify-content-end">
+                                        <c-input-group>
+                                            <button cButton color="dark" style="margin-left: auto;" type="button"
+                                                variant="outline">
+                                                <svg [cIcon]="icons.cilX" title="Clear"></svg> {{ 'manageLogs.clear' |
+                                                translate }}
+                                            </button>
+                                            <button cButton color="dark" type="button" variant="outline">
+                                                <svg [cIcon]="icons.cilMediaPause" title="Pause"></svg> {{
+                                                'manageLogs.pause' | translate }}
+                                            </button>
+                                        </c-input-group>
+                                    </div>
+                                </div>
+                                <table cTable>
+                                    <thead class="table-dark logs">
+                                        <tr>
+                                            <th scope="col">{{ 'manageLogs.dateColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.nameColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.surnameColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.cinColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.eventColumn' | translate }}</th>
+                                            <th scope="col">{{ 'manageLogs.detailsColumn' | translate }}</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let log of logs">
+                                            <th class="log-level" scope="row">{{ log.date }}</th>
+                                            <td>{{ log.name }}</td>
+                                            <td>{{ log.surname }}</td>
+                                            <td>{{ log.cin }}</td>
+                                            <td class="log-level error">{{ log.event }}</td>
+                                            <td>
+                                                <button type="button" (click)="viewProfile(log.profile)" cButton
+                                                    color="light">
+                                                    <svg [cIcon]="icons.cilUser" width="15" title="User Icon"></svg>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-col>
+    </c-row>
 </c-container>
 
 <c-modal id="UserModal" [visible]="visible" (visibleChange)="handleUserModalVisbilityChange($event)">
-  <c-modal-header>
-      <h5 cModalTitle>{{ 'manageLogs.newUserTitle' | translate }}</h5>
-      <button (click)="cancel()" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>{{ 'manageLogs.newUserForm' | translate }}</c-modal-body>
-  <c-modal-footer>
-      <button (click)="cancel()" cButton color="secondary">
-          {{ 'manageLogs.closeButton' | translate }}
-      </button>
-      <button (click)="cancel()" cButton color="primary">{{ 'manageLogs.submitButton' | translate }}</button>
-  </c-modal-footer>
+    <c-modal-header>
+        <h5 cModalTitle>{{ 'manageLogs.newUserTitle' | translate }}</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>{{ 'manageLogs.newUserForm' | translate }}</c-modal-body>
+    <c-modal-footer>
+        <button (click)="cancel()" cButton color="secondary">
+            {{ 'manageLogs.closeButton' | translate }}
+        </button>
+        <button (click)="cancel()" cButton color="primary">{{ 'manageLogs.submitButton' | translate }}</button>
+    </c-modal-footer>
 </c-modal>
 
 <c-modal id="viewUserDeleteModal" [visible]="viewModalDeleteVisible">
-  <c-modal-header>
-      <h5 cModalTitle>{{ 'manageLogs.deleteConfirmationTitle' | translate }}</h5>
-      <button (click)="cancel()" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>
-      <div class="container">
-          <h5>{{ 'manageLogs.deleteConfirmationMessage' | translate }}</h5>
-      </div>
-  </c-modal-body>
-  <c-modal-footer>
-      <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
-          {{ 'manageLogs.closeButton' | translate }}
-      </button>
-      <button (click)="cancel()" class="text-white" cButton color="danger">{{ 'manageLogs.confirmButton' | translate }}</button>
-  </c-modal-footer>
+    <c-modal-header>
+        <h5 cModalTitle>{{ 'manageLogs.deleteConfirmationTitle' | translate }}</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+        <div class="container">
+            <h5>{{ 'manageLogs.deleteConfirmationMessage' | translate }}</h5>
+        </div>
+    </c-modal-body>
+    <c-modal-footer>
+        <button (click)="viewModalDeleteVisible = false" cButton color="secondary">
+            {{ 'manageLogs.closeButton' | translate }}
+        </button>
+        <button (click)="cancel()" class="text-white" cButton color="danger">{{ 'manageLogs.confirmButton' | translate
+            }}</button>
+    </c-modal-footer>
 </c-modal>
 
 <c-modal id="viewProfileDetailsModal" [visible]="viewProfileModelVisible">
-  <c-modal-header>
-      <h5 cModalTitle>{{ 'manageLogs.profileDetailsTitle' | translate }}</h5>
-      <button (click)="cancel()" cButtonClose></button>
-  </c-modal-header>
-  <c-modal-body>
-      <div class="container" *ngIf="selectedProfile">
-          <div class="text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 150px;" alt="Avatar" />
-          </div>
-          <div class="row">
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.nameLabel' | translate }}:</strong> {{ selectedProfile.name }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.surnameLabel' | translate }}:</strong> {{ selectedProfile.surname }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.birthDateLabel' | translate }}:</strong> {{ selectedProfile.birthDate }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.documentNumberLabel' | translate }}:</strong> {{ selectedProfile.documentNumber }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.sexLabel' | translate }}:</strong> {{ selectedProfile.sex }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.nationalityLabel' | translate }}:</strong> {{ selectedProfile.nationality }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.expiryDateLabel' | translate }}:</strong> {{ selectedProfile.expiryDate }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.personalDataLabel' | translate }}:</strong> {{ selectedProfile.personalData }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.mrz1Label' | translate }}:</strong> {{ selectedProfile.mrZ1 }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.mrz2Label' | translate }}:</strong> {{ selectedProfile.mrZ2 }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.mrz3Label' | translate }}:</strong> {{ selectedProfile.mrZ3 }}</p>
-              </div>
-              <div class="col-sm-12">
-                  <p><strong>{{ 'manageLogs.issueCountryLabel' | translate }}:</strong> {{ selectedProfile.issueCountry }}</p>
-              </div>
-          </div>
-      </div>
-  </c-modal-body>
-  <c-modal-footer>
-      <button (click)="cancel()" cButton color="secondary">
-          {{ 'manageLogs.closeButton' | translate }}
-      </button>
-  </c-modal-footer>
+    <c-modal-header>
+        <h5 cModalTitle>{{ 'manageLogs.profileDetailsTitle' | translate }}</h5>
+        <button (click)="cancel()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+        <div class="container" *ngIf="selectedProfile">
+            <div class="text-center">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 150px;"
+                    alt="Avatar" />
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p><strong>{{ 'manageLogs.nameLabel' | translate }}:</strong> {{ selectedProfile.name }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>{{ 'manageLogs.surnameLabel' | translate }}:</strong> {{ selectedProfile.surname }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>{{ 'manageLogs.cinLabel' | translate }}:</strong> {{ selectedProfile.cin }}
+                    </p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>{{ 'manageLogs.occupationLabel' | translate }}:</strong> {{
+                        selectedProfile.occupation }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>{{ 'manageLogs.addressLabel' | translate }}:</strong> {{ selectedProfile.address }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>{{ 'manageLogs.telNumberLabel' | translate }}:</strong> {{ selectedProfile.telephoneNummber
+                        }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>{{ 'manageLogs.emailLabel' | translate }}:</strong> {{ selectedProfile.email }}
+                    </p>
+                </div>
+                <div class="col-sm-12">
+                    <p><strong>{{ 'manageLogs.documentNumberLabel' | translate }}:</strong> {{
+                        selectedProfile.documentNumber }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p>
+                        <strong>{{ 'manageLogs.authDepartmentsLabel' | translate }}:</strong></p>
+                        <ul>
+                            <li *ngFor="let department of selectedProfile.departments">{{ department.nameDepartment }}</li>
+                        </ul>
+                </div>
+                <div class="col-sm-12">
+                    <p>
+                        <strong>{{ 'manageLogs.authGatesLabel' | translate }}:</strong></p>
+                        <ul>
+                            <li *ngFor="let gate of selectedProfile.gates">{{ gate.nameGate }}</li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </c-modal-body>
+    <c-modal-footer>
+        <button (click)="cancel()" cButton color="secondary">
+            {{ 'manageLogs.closeButton' | translate }}
+        </button>
+    </c-modal-footer>
 </c-modal>

@@ -9,12 +9,13 @@ import { Gate } from './gates.service';
   providedIn: 'root',
 })
 export class GuestService {
-  apiUrl: string = environment.apiUrl + 'Guest';
+  apiUrl: string = environment.apiUrl + 'guests';
 
   constructor(private http: HttpClient) {}
 
-  createGuest(Guest: Guest): Observable<Guest> {
-    return this.http.post<Guest>(this.apiUrl, Guest);
+  createGuest(guest: Guest): Observable<Guest> {
+    const { _id, ...guestData } = guest;
+    return this.http.post<Guest>(this.apiUrl, guestData);
   }
   // GetGuestById function with an HTTP GET request
   getGuestById(GuestId: string): Observable<Guest> {
@@ -30,6 +31,7 @@ export class GuestService {
     const url = `${this.apiUrl}/${Guest._id}`;
     return this.http.put<Guest>(url, Guest);
   }
+  // Delete guest function with HTTP Delete request
   deleteGuest(GuestId: string): Observable<void> {
     const url = `${this.apiUrl}/${GuestId}`;
     return this.http.delete<void>(url);

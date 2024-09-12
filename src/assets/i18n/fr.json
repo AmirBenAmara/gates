@@ -41,7 +41,8 @@
         "deleteConfirmationMessage": "Êtes-vous sûr de vouloir supprimer ?",
         "doors": "Portes",
         "ctrPanel": "Panneau de contrôle",
-        "confirm": "Confirmer"
+        "confirm": "Confirmer",
+        "status": "Statut"
     },
     "readers": {
         "manageReaders": "Gérer les lecteurs",
@@ -56,7 +57,8 @@
         "confirm": "Confirmer",
         "editReader": "Modifier le lecteur",
         "submit": "Soumettre",
-        "readerDetails": "Détails du lecteur"
+        "readerDetails": "Détails du lecteur",
+        "status": "Statut"
     },
     "waveshares": {
         "manageWaveShares": "Gérer les partages Wave",
@@ -104,7 +106,9 @@
         "descriptionPlaceholder": "Description",
         "waveSharePlaceholder": "Sélectionnez le partage d'onde",
         "cameraPlaceholder": "Sélectionnez la caméra",
-        "readerPlaceholder": "Sélectionnez le lecteur"
+        "readerPlaceholder": "Sélectionnez le lecteur",
+        "status": "Statut",
+        "details": "Détails de l'état de la porte"
     },
     "deviceStatus": {
         "export": "Exporter",
@@ -128,8 +132,7 @@
         "manageGuests": "Gérer les invités",
         "search": "Rechercher",
         "newGuest": "Nouvel invité",
-        "fatherName": "Nom du père",
-        "surName": "Nom de famille",
+        "surName": "Prénom",
         "cin": "CIN",
         "birthDate": "Date de naissance",
         "birthPlace": "Lieu de naissance",
@@ -203,6 +206,9 @@
         "pause": "Pause",
         "dateColumn": "Date",
         "nameColumn": "Nom",
+        "surnameColumn": "Prénom",
+        "cinColumn": "Cin",
+        "detailsColumn": "Details",
         "doorColumn": "Porte",
         "departmentColumn": "Département",
         "eventColumn": "Événement",
@@ -213,18 +219,16 @@
         "submitButton": "Soumettre",
         "deleteConfirmationTitle": "Confirmation de la suppression",
         "deleteConfirmationMessage": "Êtes-vous sûr de vouloir supprimer ?",
-        "nameLabel": "Nom",
-        "surnameLabel": "Prénom",
-        "birthDateLabel": "Date de naissance",
-        "documentNumberLabel": "Numéro de document",
-        "sexLabel": "Sexe",
-        "nationalityLabel": "Nationalité",
-        "expiryDateLabel": "Date d'expiration",
-        "personalDataLabel": "Données personnelles",
-        "mrz1Label": "MRZ1",
-        "mrz2Label": "MRZ2",
-        "mrz3Label": "MRZ3",
-        "issueCountryLabel": "Pays de délivrance",
+        "nameLabel": "Name",
+        "surnameLabel": "Surname",
+        "cinLabel":"CIN",
+        "occupationLabel": "Occupation",
+        "addressLabel": "Address",
+        "telNumberLabel": "Telephone Number",
+        "emailLabel": "Email",
+        "authDepartmentsLabel": "Authorized departments",
+        "authGatesLabel": "Authorized gates",
+        "documentNumberLabel":"Document Number",
         "profileDetailsTitle": "Détails du profil"
     },
     "menu": {

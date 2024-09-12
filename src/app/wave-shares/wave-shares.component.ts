@@ -17,9 +17,11 @@ export class WaveSharesComponent implements OnInit {
   waveShare: WaveShare = {
     _id: "0",
     serialNumber: 'N552854AG654657',
+    status: '0'
   }
 
   waveShares: WaveShare[] | undefined;
+  ws: WebSocket;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public upsertModalVisible: boolean = false;
   public viewModalVisible: boolean = false
@@ -42,6 +44,8 @@ export class WaveSharesComponent implements OnInit {
       this.waveShares = waveShares;
     });
   }
+
+
   //TODO: finish implementation
   updateWaveShare(waveShareId: string) {
     if (this.waveShareForm.valid) {

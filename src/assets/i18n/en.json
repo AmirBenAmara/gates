@@ -25,7 +25,8 @@
         "name": "Name",
         "ipAddress": "IP Address",
         "serialNumber": "Serial Number",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "status": "Status"
     },
     "departments": {
         "manageDepartments": "Manage Departments",
@@ -56,7 +57,8 @@
         "confirm": "Confirm",
         "editReader": "Edit Reader",
         "submit": "Submit",
-        "readerDetails": "Reader Details"
+        "readerDetails": "Reader Details",
+        "status": "Status"
     },
     "waveshares": {
         "manageWaveShares": "Manage Wave Shares",
@@ -104,7 +106,9 @@
         "descriptionPlaceholder": "Description",
         "waveSharePlaceholder": "Select Wave Share",
         "cameraPlaceholder": "Select Camera",
-        "readerPlaceholder": "Select Reader"
+        "readerPlaceholder": "Select Reader",
+        "status": "Status",
+        "details": "Gate Status Details"
     },
     "deviceStatus": {
         "export": "Export",
@@ -128,7 +132,6 @@
         "manageGuests": "Manage Guests",
         "search": "Search",
         "newGuest": "New Guest",
-        "fatherName": "Father Name",
         "surName": "Surname",
         "cin": "CIN",
         "birthDate": "Birthdate",
@@ -142,10 +145,15 @@
         "pencilIcon": "Pencil Icon",
         "trashBinIcon": "Trash Bin Icon",
         "name": "Name",
-        "close": "Close",
+        "closeBtn": "Close",
+        "nextBtn": "Next",
+        "previousBtn": "Previous",
         "submit": "Submit",
         "reason": "Reason",
-        "telNumber": "Phone"
+        "telNumber": "Phone",
+        "optVisitor": "Visitor",
+        "optSupplier": "Supplier",
+        "all": "All"
     },
     "profileComp": {
         "title": "Manage Profiles",
@@ -202,6 +210,9 @@
         "pause": "Pause",
         "dateColumn": "Date",
         "nameColumn": "Name",
+        "surnameColumn": "Surname",
+        "cinColumn": "Cin",
+        "detailsColumn": "Details",
         "doorColumn": "Door",
         "departmentColumn": "Department",
         "eventColumn": "Event",
@@ -214,16 +225,14 @@
         "deleteConfirmationMessage": "Are you sure you want to delete?",
         "nameLabel": "Name",
         "surnameLabel": "Surname",
-        "birthDateLabel": "Birth Date",
-        "documentNumberLabel": "Document Number",
-        "sexLabel": "Sex",
-        "nationalityLabel": "Nationality",
-        "expiryDateLabel": "Expiry Date",
-        "personalDataLabel": "Personal Data",
-        "mrz1Label": "MRZ1",
-        "mrz2Label": "MRZ2",
-        "mrz3Label": "MRZ3",
-        "issueCountryLabel": "Issue Country",
+        "cinLabel":"CIN",
+        "occupationLabel": "Occupation",
+        "addressLabel": "Address",
+        "telNumberLabel": "Telephone Number",
+        "emailLabel": "Email",
+        "authDepartmentsLabel": "Authorized departments",
+        "authGatesLabel": "Authorized gates",
+        "documentNumberLabel":"Document Number",
         "profileDetailsTitle": "Profile Details"
     },
     "menu": {

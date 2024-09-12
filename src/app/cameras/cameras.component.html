@@ -31,6 +31,7 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">{{ 'cameras.serialNumber' | translate }}</th>
+                      <th scope="col">{{ 'cameras.status' | translate }}</th> <!-- Add this line -->
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -38,6 +39,12 @@
                     <tr *ngFor="let cam of cameras; let i = index">
                       <th scope="row">{{ i + 1 }}</th>
                       <td>{{ cam.serialNumber }}</td>
+                      <td>
+                        <span
+                          [ngClass]="{'badge': true, 'bg-success': cam.status === '1', 'bg-danger': cam.status === '0'}">
+                          {{ cam.status === '1' ? 'Online' : 'Offline' }}
+                        </span>
+                      </td> <!-- Status Field -->
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewCameraDetailsModal(cam)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="Detail Icon"></svg>

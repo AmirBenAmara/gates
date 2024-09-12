@@ -17,6 +17,7 @@ export class CamerasComponent implements OnInit {
   camera: Camera = { 
     _id: "0",
     serialNumber: 'N552854AG654657',
+    status: '0'
   }
   cameras: Camera[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };

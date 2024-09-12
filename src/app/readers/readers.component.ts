@@ -18,7 +18,12 @@ export class ReadersComponent implements OnInit {
   reader: Reader = {
     _id: "0",
     serialNumber: 'N552854AG654657',
-    
+    ipAddress: "",
+    status: "",
+    hostname: "",
+    userName: "",
+    password: "",
+    apiToken: "",
   }
   readers: Reader[] | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };

@@ -17,6 +17,7 @@ export class CPanelsComponent implements OnInit {
   ctrPanel: CtrPanel = {
     _id: 'vvreegev',
     serialNumber: '0.0.0.0',
+    status: '0'
   }
 
   ctrPanels: CtrPanel[] | undefined;

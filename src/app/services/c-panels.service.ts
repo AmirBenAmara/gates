@@ -25,7 +25,6 @@ export class CPanelsService {
     return this.http.post<CtrPanel>(this.apiUrl, ctrPanel);
   }
 
-  
   deleteCtrPanel(ctrPanelId: string): Observable<void> {
     const url = `${this.apiUrl}/${ctrPanelId}`;
     return this.http.delete<void>(url);
@@ -36,6 +35,7 @@ export class CPanelsService {
 export interface CtrPanel {
   _id: string;
   serialNumber: string,
+  status?: string
 }
 
 export const CtrPanelsDATA: CtrPanel[] = [{ 

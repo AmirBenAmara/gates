@@ -39,6 +39,7 @@ export class CamerasService {
 export interface Camera {
   _id?: string;
   serialNumber?: string;
+  status?: string
 }
 
 export const CamerasDATA: Camera[] = [{ 

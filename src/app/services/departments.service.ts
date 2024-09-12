@@ -67,4 +67,6 @@ export interface Gate {
     camera: Camera;
     reader: Reader;
   };
+  status: number;
+  details: string[];
 }

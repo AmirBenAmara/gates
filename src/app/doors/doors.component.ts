@@ -26,6 +26,9 @@ export class DoorsComponent {
   readers: Reader[] | undefined;
   waveShares: WaveShare[] | undefined;
   selectedDoor: Gate | undefined;
+  selectedDoorDetails: string;
+  detailsModalVisible: boolean = false;
+
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
   public viewModalVisible: boolean = false;
@@ -165,6 +168,11 @@ export class DoorsComponent {
   openDoorModal() {
     this.visible = true;
   }
+  openDetailsModal(door: any) {
+    this.selectedDoorDetails = door.details; // Store the details of the door
+    this.detailsModalVisible = true; // Show the modal
+  }
+  
 
   submitEditDoor() {
     const editedDoor: Gate = {
@@ -179,7 +187,9 @@ export class DoorsComponent {
       exitDevices: {
         camera: this.doorForm.value.cameraExit,
         reader: this.doorForm.value.readerExit,
-      }
+      },
+      status: 0,
+      details: []
     };
   
     this.doorService.updateDoor(this.selectedDoor._id, editedDoor).subscribe(res => {

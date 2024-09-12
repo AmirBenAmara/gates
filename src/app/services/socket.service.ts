@@ -14,8 +14,8 @@ export class SocketService {
   private rtLogsSocket$:  WebSocket;
   private deviceStatusSocket$:  WebSocket;
   private wsEnrollementSocket$: WebSocketSubject<ProfilePayload>;
-  readonly wsEndpointDS: string = `ws://localhost:${this.port}/accessControl`;
-  readonly wsEndpointRTL: string = `ws://localhost:${this.port}/accessControl`;
+  readonly wsEndpointDS: string = `ws://localhost:${this.port}/`;
+  readonly wsEndpointRTL: string = `ws://localhost:${this.port}/ `;
   readonly wsEndpointDVS: string = `ws://localhost:${this.port}/deviceStatus2`;
   readonly wsEnrollement: string = `ws://localhost:${this.port}/wsEnrollement`;
 
@@ -77,8 +77,8 @@ interface DeviceStatusPayload {
 interface LogPayload {
   date: String,
   name: String,
-  gate: String,
-  department: String,
+  surname: String,
+  cin: Number,
   event: String
   };
 

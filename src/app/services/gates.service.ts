@@ -68,4 +68,7 @@ export interface Gate {
     camera: Camera;
     reader: Reader;
   };
+  status: number; // 0 for offline, 1 for online
+  details: string[]; // Array of issues or status details
 }
+

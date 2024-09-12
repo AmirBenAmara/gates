@@ -31,15 +31,20 @@
                       
                     
                       <th scope="col">{{ 'readers.serialNumber' | translate }}</th>
+                      <th scope="col">{{ 'readers.status' | translate }}</th> <!-- Add this line -->
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let rdr of readers; let i = index">
                       <th scope="row">{{ i + 1 }}</th>
-                      
-                    
                       <td>{{ rdr.serialNumber }}</td>
+                      <td>
+                        <span
+                          [ngClass]="{'badge': true, 'bg-success': rdr.status === '1', 'bg-danger': rdr.status === '0'}">
+                          {{ rdr.status === '1' ? 'Online' : 'Offline' }}
+                        </span>
+                      </td>
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewReaderDetailsModal(rdr)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>

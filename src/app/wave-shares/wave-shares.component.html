@@ -4,11 +4,12 @@
       <div class="example">
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
-            <div class="fs-2 fw-semibold bg-white "><strong>{{ 'waveshares.manageWaveShares' | translate }}</strong></div>
+            <div class="fs-2 fw-semibold bg-white "><strong>{{ 'waveshares.manageWaveShares' | translate }}</strong>
+            </div>
             <c-breadcrumb>
               <c-breadcrumb-item url="/">{{ 'menu.home' | translate }}</c-breadcrumb-item>
               <c-breadcrumb-item [active]="true">{{ 'menu.waveShares' | translate }}</c-breadcrumb-item>
-            </c-breadcrumb>          
+            </c-breadcrumb>
           </div>
           <div class="card-body">
             <div class="tab-content rounded-bottom">
@@ -19,8 +20,10 @@
                   <div class="col-6 mb-3">
                     <c-input-group>
                       <input aria-label="Search" cFormControl placeholder="{{ 'waveshares.search' | translate }}" />
-                      <button cButton color="dark" type="button" variant="outline" (click)="isEditMode = false;openWaveShareModal()">
-                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> {{ 'waveshares.newWaveShare' | translate }}
+                      <button cButton color="dark" type="button" variant="outline"
+                        (click)="isEditMode = false;openWaveShareModal()">
+                        <svg [cIcon]="icons.cilPlus" title="Plus Icon"></svg> {{ 'waveshares.newWaveShare' | translate
+                        }}
                       </button>
                     </c-input-group>
                   </div>
@@ -30,6 +33,7 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">{{ 'waveshares.serialNumber' | translate }}</th>
+                      <th scope="col">{{ 'waveshares.status' | translate }}</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -37,12 +41,19 @@
                     <tr *ngFor="let wavShre of waveShares; let i = index">
                       <th scope="row">{{ i + 1 }}</th>
                       <td>{{ wavShre.serialNumber }}</td>
+                      <td>
+                        <span
+                          [ngClass]="{'badge': true, 'bg-success': wavShre.status === '1', 'bg-danger': wavShre.status === '0'}">
+                          {{ wavShre.status === '1' ? 'Online' : 'Offline' }}
+                        </span>
+                      </td> <!-- Status Field -->
                       <td style="text-align:center;">
                         <button type="button" cButton (click)="openViewWaveShareDetailsModal(wavShre)" color="light">
                           <svg [cIcon]="icons.cilInfo" width="15" title="detail Icon"></svg>
 
                         </button> &nbsp;
-                        <button type="button" cButton color="light" (click)="isEditMode = true; openWaveShareModal(wavShre)">
+                        <button type="button" cButton color="light"
+                          (click)="isEditMode = true; openWaveShareModal(wavShre)">
                           <svg [cIcon]="icons.cilPencil" width="15" title="Pencil Icon"></svg>
 
                         </button> &nbsp;
@@ -77,7 +88,8 @@
     <button [cModalToggle]="deleteWaveShare.id" cButton color="secondary">
       {{ 'waveshares.close' | translate }}
     </button>
-    <button (click)="confirmDeleteWaveShare(waveShare._id)" [cModalToggle]="deleteWaveShare.id" class="text-white" cButton color="danger">{{ 'waveshares.confirm' | translate }}</button>
+    <button (click)="confirmDeleteWaveShare(waveShare._id)" [cModalToggle]="deleteWaveShare.id" class="text-white"
+      cButton color="danger">{{ 'waveshares.confirm' | translate }}</button>
   </c-modal-footer>
 </c-modal>
 
@@ -104,8 +116,10 @@
     <button (click)="cancel()" cButton color="secondary">
       {{ 'waveshares.close' | translate }}
     </button>
-    <button  *ngIf="!isEditMode" (click)="newWaveShare()" cButton color="primary">{{ 'waveshares.submit' | translate }}</button>
-    <button  *ngIf="isEditMode" (click)="updateWaveShare(waveShare._id)" cButton color="primary">{{ 'waveshares.submit' | translate }}</button>
+    <button *ngIf="!isEditMode" (click)="newWaveShare()" cButton color="primary">{{ 'waveshares.submit' | translate
+      }}</button>
+    <button *ngIf="isEditMode" (click)="updateWaveShare(waveShare._id)" cButton color="primary">{{ 'waveshares.submit' |
+      translate }}</button>
   </c-modal-footer>
 </c-modal>
 
@@ -122,7 +136,7 @@
           <p><strong>{{ 'waveshares.serialNumber' | translate }}:</strong> {{ waveShare.serialNumber }}</p>
         </div>
       </div>
-      
+
     </div>
 
   </c-modal-body>

@@ -100,6 +100,7 @@ export class ProfilesComponent {
       this.profiles = Profiles;
     });
   }
+  
   updateProfile(Profile: Profile) {
     this.ProfileService.updateProfile(Profile).subscribe();
   }
@@ -147,24 +148,26 @@ export class ProfilesComponent {
       profile = this.profileForm.value;
       profile.departments = this.selectedDepartments;
       profile.gates = this.selectedDoors;
-
+  
       console.log(profile);
-
+  
       if (this.editMode) {
         this.ProfileService.updateProfile(profile).subscribe((res) => {
           this.getProfiles();
           this.editMode = false;
         });
       } else {
-        delete profile['_id']
-        console.log(profile)
+        // Remove _id field if it exists
+        delete profile._id;
+        console.log(profile);
         this.ProfileService.createProfile(profile).subscribe((res) => {
           this.getProfiles();
         });
       }
-      this.cancel()
+      this.cancel();
     }
   }
+  
 
   selectAllDepartments() {
     this.selectedDepartments = this.departments.map(dep => dep._id);

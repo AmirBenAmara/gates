@@ -41,7 +41,8 @@
         "deleteConfirmationMessage": "هل أنت متأكد أنك تريد حذفه؟",
         "doors": "الأبواب",
         "ctrPanel": "لوحات التحكم",
-        "confirm": "تأكيد"
+        "confirm": "تأكيد",
+        "status": "الحالة"
     },
     "readers": {
         "manageReaders": "إدارة القرّاء",
@@ -56,7 +57,8 @@
         "confirm": "تأكيد",
         "editReader": "تحرير القارئ",
         "submit": "إرسال",
-        "readerDetails": "تفاصيل القارئ"
+        "readerDetails": "تفاصيل القارئ",
+        "status": "الحالة"
     },
     "waveshares": {
         "manageWaveShares": "إدارة مشاركات Wave",
@@ -104,7 +106,9 @@
         "descriptionPlaceholder": "الوصف",
         "waveSharePlaceholder": "حدد مشاركة Wave",
         "cameraPlaceholder": "حدد كاميرا",
-        "readerPlaceholder": "حدد قارئ"
+        "readerPlaceholder": "حدد قارئ",
+        "status": "الحالة",
+        "details": "تفاصيل حالة البوابة"
     },
     "deviceStatus": {
         "export": "تصدير",
@@ -128,8 +132,7 @@
         "manageGuests": "إدارة الزوار",
         "search": "بحث",
         "newGuest": "زائر جديد",
-        "fatherName": "اسم الأب",
-        "surName": "اللقب",
+        "surName": "الإسم",
         "cin": "رقم البطاقة الوطنية",
         "birthDate": "تاريخ الولادة",
         "birthPlace": "مكان الولادة",
@@ -141,11 +144,11 @@
         "detailIcon": "أيقونة التفاصيل",
         "pencilIcon": "أيقونة القلم",
         "trashBinIcon": "أيقونة سلة المهملات",
-        "name": "الاسم",
+        "name": "اللقب",
         "close": "إغلاق",
         "submit": "إرسال",
-        "reason": "",
-        "telNumber": ""
+        "reason": "السبب",
+        "telNumber": "رقم الهاتف"
     },
     "profileComp": {
         "title": "إدارة الملفات الشخصية",
@@ -203,6 +206,9 @@
         "pause": "إيقاف مؤقت",
         "dateColumn": "التاريخ",
         "nameColumn": "الاسم",
+        "surnameColumn": "اللقب",
+        "cinColumn": "ر.بطاقة التعريف الوطنية",
+        "detailsColumn": "تفاصيل",
         "doorColumn": "الباب",
         "departmentColumn": "القسم",
         "eventColumn": "الحدث",
@@ -213,18 +219,16 @@
         "submitButton": "إرسال",
         "deleteConfirmationTitle": "تأكيد الحذف",
         "deleteConfirmationMessage": "هل أنت متأكد أنك تريد حذفه؟",
-        "nameLabel": "الاسم",
-        "surnameLabel": "اللقب",
-        "birthDateLabel": "تاريخ الولادة",
-        "documentNumberLabel": "رقم الوثيقة",
-        "sexLabel": "الجنس",
-        "nationalityLabel": "الجنسية",
-        "expiryDateLabel": "تاريخ الانتهاء",
-        "personalDataLabel": "البيانات الشخصية",
-        "mrz1Label": "MRZ1",
-        "mrz2Label": "MRZ2",
-        "mrz3Label": "MRZ3",
-        "issueCountryLabel": "بلد الإصدار",
+        "nameLabel": "Name",
+        "surnameLabel": "Surname",
+        "cinLabel":"CIN",
+        "occupationLabel": "Occupation",
+        "addressLabel": "Address",
+        "telNumberLabel": "Telephone Number",
+        "emailLabel": "Email",
+        "authDepartmentsLabel": "Authorized departments",
+        "authGatesLabel": "Authorized gates",
+        "documentNumberLabel":"Document Number",
         "profileDetailsTitle": "تفاصيل الملف الشخصي"
     },
     "menu": {

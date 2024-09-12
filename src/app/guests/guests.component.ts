@@ -10,23 +10,17 @@ import { Gate, GatesService } from '../services/gates.service';
   templateUrl: './guests.component.html',
   styleUrls: ['./guests.component.scss'],
 })
+
 export class GuestsComponent implements OnInit {
-  guestForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
-    surname: ['', Validators.required],
-    cin: ['', Validators.required],
-    telephoneNumber: ['', Validators.required],
-  });
+  guestForm: FormGroup 
+  guests: Guest[] | undefined;
+  selectedGuest: Guest | undefined;
   icons = { cilPencil, cilTrash, cilPlus, cilInfo };
   public visible = false;
   public viewModalVisible = false;
   public viewModalDeleteVisible = false;
   editMode: boolean = false;
-
-  guests: Guest[] | undefined;
-
-  selectedGuest: Guest | undefined;
-
+  guest: Guest = null;
   page1 = true;
   page2 = false;
   departments: Department[] | undefined;
@@ -34,17 +28,17 @@ export class GuestsComponent implements OnInit {
   doors: Gate[] | undefined;
   selectedDoors = [];
 
-
   constructor(
-    private guestservice: GuestService,
+    private guestService: GuestService,
     private fb: FormBuilder,
     private departmentService: DepartmentsService,
     private doorService: GatesService,
-
     ) { }
 
   ngOnInit(): void {
-    this.getGuests()
+    this.getGuests();
+    this.getDepartments(); // Fetch departments
+    this.getDoors(); // Fetch doors
     this.guestForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -67,36 +61,58 @@ export class GuestsComponent implements OnInit {
   }
 
   deleteGuest() {
-    if (this.selectedGuest) {
-      this.guestservice.deleteGuest(this.selectedGuest._id ? this.selectedGuest._id : "0").subscribe(res => {
-        this.viewModalDeleteVisible = false;
-        this.getGuests()
-      });
-    }
-  }
-  //TODO: finish implementation
-  getGuests() {
-    this.guestservice.getGuests().subscribe(Guests => {
-      this.guests = Guests;
+    this.guestService.deleteGuest(this.selectedGuest._id).subscribe(res => {
+      this.viewModalDeleteVisible = false;
+      this.getGuests()
+      this.cancel()
     });
   }
-  //TODO: finish implementation
-  updateGuest(Guest: any) {
-    // this.guestservice.updateGuest(Guest).subscribe();
+
+  getGuests() {
+    this.guestService.getGuests().subscribe(Guests => {
+      this.guests = Guests;
+      // console.log(this.guests);
+    });
+  }
+
+  // //TODO: finish implementation
+  // updateGuest(Guest: any) {
+  //   this.guestService.updateGuest(Guest).subscribe();
+  // }
+
+  updateGuest() {
+    if (this.guestForm.valid) {
+      const updatedGuest = { ...this.guestForm.value, _id: this.selectedGuest?._id, departments: this.selectedDepartments, doors: this.selectedDoors };
+      this.guestService.updateGuest(updatedGuest).subscribe(() => {
+        console.log(updatedGuest);
+        this.getGuests();
+        this.cancel();
+      });
+    }
   }
 
   //TODO: finish implementation
   newGuest(Guest: any) {
-    // this.guestservice.createGuest(Guest).subscribe();
+    this.guestService.createGuest(Guest).subscribe();
   }
 
-  editGuest(guest: Guest | undefined) {
-    if (guest) {
-      this.editMode = true;
-      this.selectedGuest = guest;
-      this.guestForm.setValue(guest);
-      this.visible = true;
-    }
+  // createGuest() {
+  //   if (this.guestForm.valid) {
+  //     const newGuest = { ...this.guestForm.value, departments: this.selectedDepartments, doors: this.selectedDoors };
+  //     this.guestService.createGuest(newGuest).subscribe(() => {
+  //       this.getGuests();
+  //       this.cancel();
+  //     });
+  //   }
+  // }
+
+  editGuest(guest: Guest) {
+    this.selectedGuest = guest;
+    this.guestForm.patchValue(guest);
+    // this.selectedDepartments = guest.departments || [];
+    // this.selectedDoors = guest.doors || [];
+    this.visible = true;
+    this.editMode = true;
   }
 
   detailGuest(guest: Guest | undefined) {
@@ -108,15 +124,15 @@ export class GuestsComponent implements OnInit {
     this.selectedGuest = guest;
     this.viewModalDeleteVisible = true;
   }
+  
   //TODO: finish implementation
-
   cancel() {
     this.visible = false;
     this.viewModalVisible = false;
     this.initAddGuestForm();
   }
+  
   //TODO: finish implementation
-
   handleGuestModalVisbilityChange(event: any) {
     this.visible = event;
   }
@@ -136,31 +152,18 @@ export class GuestsComponent implements OnInit {
       console.log(guest);
 
       if (this.editMode) {
-        this.guestservice.updateGuest(guest).subscribe((res) => {
+        this.guestService.updateGuest(guest).subscribe((res) => {
           this.getGuests();
           this.editMode = false;
         });
       } else {
         delete guest['_id']
         console.log(guest)
-        this.guestservice.createGuest(guest).subscribe((res) => {
+        this.guestService.createGuest(guest).subscribe((res) => {
           this.getGuests();
         });
       }
       this.cancel()
-    }
-  }
-
-  formatDate(date: string) {
-    let dateArray = date.split('-');
-    return dateArray[2] + '/' + dateArray[1] + '/' + dateArray[0];
-  }
-
-  selectDepartment(departmentId) {
-    if (this.departmentExist(departmentId)) {
-      this.selectedDepartments = this.selectedDepartments.filter(depId => depId !== departmentId)
-    } else {
-      this.selectedDepartments.push(departmentId);
     }
   }
 
@@ -194,6 +197,23 @@ export class GuestsComponent implements OnInit {
     this.page2 = false;
     this.selectedDepartments = [];
     this.selectedDoors = [];
+  }
+
+  fetchGatesForDepartments() {
+    const selectedDepartmentIds = this.selectedDepartments;
+    this.departmentService.getGatesForDepartments(selectedDepartmentIds).subscribe((gates) => {
+      this.doors = gates;
+    });
+  }
+
+  selectDepartment(departmentId) {
+    if (this.departmentExist(departmentId)) {
+      this.selectedDepartments = this.selectedDepartments.filter(depId => depId !== departmentId);
+    } else {
+      this.selectedDepartments.push(departmentId);
+    }
+    // Fetch gates for selected departments
+    this.fetchGatesForDepartments();
   }
 
 }
