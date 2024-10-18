@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs/internal/observable/of';
 import { environment } from 'src/environments/environment';
+import { Gate } from './departments.service';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,7 @@ export interface Reader {
   userName: string;
   password: string;
   apiToken: string;
+  gate?: Gate
 }
 export const ReadersDATA: Reader[] = [{ 
   _id: "1",

@@ -31,6 +31,7 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">{{ 'cameras.serialNumber' | translate }}</th>
+                      <th scope="col">{{ 'cameras.gate' | translate }}</th>
                       <th scope="col">{{ 'cameras.status' | translate }}</th> <!-- Add this line -->
                       <th scope="col"></th>
                     </tr>
@@ -39,6 +40,7 @@
                     <tr *ngFor="let cam of cameras; let i = index">
                       <th scope="row">{{ i + 1 }}</th>
                       <td>{{ cam.serialNumber }}</td>
+                      <td>{{ cam.gate?.nameGate ? cam.gate.nameGate : 'Undefined Gate' }}</td>
                       <td>
                         <span
                           [ngClass]="{'badge': true, 'bg-success': cam.status === '1', 'bg-danger': cam.status === '0'}">

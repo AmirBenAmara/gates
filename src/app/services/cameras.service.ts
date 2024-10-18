@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs/internal/observable/of';
 import { environment } from 'src/environments/environment';
+import { Gate } from './departments.service';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,8 @@ export class CamerasService {
 export interface Camera {
   _id?: string;
   serialNumber?: string;
-  status?: string
+  status?: string;
+  gate?: Gate
 }
 
 export const CamerasDATA: Camera[] = [{ 

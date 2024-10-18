@@ -25,7 +25,8 @@
         "name": "الاسم",
         "ipAddress": "عنوان IP",
         "serialNumber": "الرقم التسلسلي",
-        "confirm": "تأكيد"
+        "confirm": "تأكيد",
+        "gate": "البوابة"
     },
     "departments": {
         "manageDepartments": "إدارة الأقسام",
@@ -58,7 +59,8 @@
         "editReader": "تحرير القارئ",
         "submit": "إرسال",
         "readerDetails": "تفاصيل القارئ",
-        "status": "الحالة"
+        "status": "الحالة",
+        "gate":"البوابة"
     },
     "waveshares": {
         "manageWaveShares": "إدارة مشاركات Wave",
@@ -73,7 +75,9 @@
         "confirm": "تأكيد",
         "editWaveShare": "تحرير مشاركة Wave",
         "submit": "إرسال",
-        "waveShareDetails": "تفاصيل مشاركة Wave"
+        "waveShareDetails": "تفاصيل مشاركة Wave",
+        "status":"الحالة",
+        "gate":"البوابة"
     },
     "doorsComp": {
         "manageDoors": "إدارة الأبواب",

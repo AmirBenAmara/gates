@@ -26,7 +26,8 @@
         "ipAddress": "IP Address",
         "serialNumber": "Serial Number",
         "confirm": "Confirm",
-        "status": "Status"
+        "status": "Status",
+        "gate": "Gate"
     },
     "departments": {
         "manageDepartments": "Manage Departments",
@@ -58,7 +59,8 @@
         "editReader": "Edit Reader",
         "submit": "Submit",
         "readerDetails": "Reader Details",
-        "status": "Status"
+        "status": "Status",
+        "gate": "Gate"
     },
     "waveshares": {
         "manageWaveShares": "Manage Wave Shares",
@@ -73,12 +75,14 @@
         "confirm": "Confirm",
         "editWaveShare": "Edit Wave Share",
         "submit": "Submit",
-        "waveShareDetails": "Wave Share Details"
+        "waveShareDetails": "Wave Share Details",
+        "status":"Status",
+        "gate":"Gate"
     },
     "doorsComp": {
-        "manageDoors": "Manage Doors",
+        "manageGates": "Manage Gates",
         "search": "Search",
-        "newDoor": "New Door",
+        "newGate": "New Gate",
         "plusIcon": "Plus Icon",
         "name": "Name",
         "type": "Type",
@@ -100,7 +104,7 @@
         "no": "No",
         "close": "Close",
         "submit": "Submit",
-        "doorDetails": "Door Details",
+        "doorDetails": "Gate Details",
         "namePlaceholder": "Name",
         "departmentPlaceholder": "Select Department",
         "descriptionPlaceholder": "Description",
@@ -245,7 +249,7 @@
         "users": "Users",
         "profiles": "Profiles",
         "guests": "Guests",
-        "doors": "Doors",
+        "doors": "Gates",
         "departments": "Departments",
         "devices": "Devices",
         "cameras": "Cameras",

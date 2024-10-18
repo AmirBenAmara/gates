@@ -5,7 +5,7 @@
 
         <div class="card  mt-4 mb-2">
           <div class="card-header bg-white">
-            <div class="fs-2 fw-semibold bg-white "><strong>{{ 'doorsComp.manageDoors' | translate }}</strong></div>
+            <div class="fs-2 fw-semibold bg-white "><strong>{{ 'doorsComp.manageGates' | translate }}</strong></div>
             <c-breadcrumb>
               <c-breadcrumb-item url="/">{{ 'menu.home' | translate }}</c-breadcrumb-item>
               <c-breadcrumb-item [active]="true">{{ 'menu.doors' | translate }}</c-breadcrumb-item>
@@ -21,14 +21,12 @@
                   <div class="col-6 mb-3">
                     <c-input-group>
                       <input aria-label="Search" cFormControl placeholder="{{ 'doorsComp.search' | translate }}" />
-
                       <button cButton color="dark" type="button" variant="outline" (click)="openDoorModal()">
                         <svg [cIcon]="icons.cilPlus" title="{{ 'doorsComp.plusIcon' | translate }}"></svg> {{
-                        'doorsComp.newDoor' | translate }}
+                        'doorsComp.newGate' | translate }}
                       </button>
                     </c-input-group>
                   </div>
-
                 </div>
                 <table cTable>
                   <thead class="table-dark">
@@ -37,9 +35,7 @@
                       <th scope="col">{{ 'doorsComp.name' | translate }}</th>
                       <th scope="col">{{ 'doorsComp.department' | translate }}</th>
                       <th scope="col">{{ 'doorsComp.status' | translate }}</th>
-
                       <th scope="col"></th>
-
                     </tr>
                   </thead>
                   <tbody>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
+import { Gate } from './departments.service';
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +38,9 @@ export class WaveShareService {
 
 export interface WaveShare {
   _id: string;
-  serialNumber: string;
-  status: string
+  serialNumber?: string;
+  status?: string;
+  gate?: Gate
 }
 
 export const WaveSharesDATA: WaveShare[] = [{ 

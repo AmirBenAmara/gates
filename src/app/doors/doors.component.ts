@@ -189,7 +189,7 @@ export class DoorsComponent {
         reader: this.doorForm.value.readerExit,
       },
       status: 0,
-      details: []
+      details: [],
     };
   
     this.doorService.updateDoor(this.selectedDoor._id, editedDoor).subscribe(res => {

@@ -31,6 +31,7 @@
                       
                     
                       <th scope="col">{{ 'readers.serialNumber' | translate }}</th>
+                      <th scope="col">{{ 'readers.gate' | translate }}</th>
                       <th scope="col">{{ 'readers.status' | translate }}</th> <!-- Add this line -->
                       <th scope="col"></th>
                     </tr>
@@ -39,6 +40,7 @@
                     <tr *ngFor="let rdr of readers; let i = index">
                       <th scope="row">{{ i + 1 }}</th>
                       <td>{{ rdr.serialNumber }}</td>
+                      <td>{{ rdr.gate?.nameGate ? rdr.gate.nameGate : 'Undefined Gate' }}</td>
                       <td>
                         <span
                           [ngClass]="{'badge': true, 'bg-success': rdr.status === '1', 'bg-danger': rdr.status === '0'}">

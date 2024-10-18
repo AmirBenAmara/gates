@@ -25,7 +25,8 @@
         "name": "Nom",
         "ipAddress": "Adresse IP",
         "serialNumber": "Numéro de série",
-        "confirm": "Confirmer"
+        "confirm": "Confirmer",
+        "gate": "Porte"
     },
     "departments": {
         "manageDepartments": "Gérer les départements",
@@ -58,7 +59,8 @@
         "editReader": "Modifier le lecteur",
         "submit": "Soumettre",
         "readerDetails": "Détails du lecteur",
-        "status": "Statut"
+        "status": "Statut",
+        "gate": "Porte"
     },
     "waveshares": {
         "manageWaveShares": "Gérer les partages Wave",
@@ -73,7 +75,8 @@
         "confirm": "Confirmer",
         "editWaveShare": "Modifier le partage Wave",
         "submit": "Soumettre",
-        "waveShareDetails": "Détails du partage Wave"
+        "waveShareDetails": "Détails du partage Wave",
+        "status": "Statut"
     },
     "doorsComp": {
         "manageDoors": "Gérer les portes",
